@@ -183,21 +183,14 @@ section {
   font-weight: 600;
   letter-spacing: -0.01em;
 }
+/* Brand mark — the DeadStick Digital squircle logo, rendered as an <img> */
 .brand-mark {
-  width: 26px; height: 26px;
-  border-radius: 7px;
-  background:
-    radial-gradient(circle at 30% 20%, #fff 0 15%, transparent 16%),
-    linear-gradient(135deg, #1a1a26, #2a2a3a);
-  border: 1px solid var(--border-strong);
-  position: relative;
-  overflow: hidden;
-}
-.brand-mark::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, transparent 48%, rgba(255,255,255,0.15) 50%, transparent 52%);
+  width: 32px;
+  height: 32px;
+  display: block;
+  flex-shrink: 0;
+  object-fit: contain;
+  /* keep the img crisp on HiDPI and preserve its alpha against any bg */
 }
 .brand-name { font-size: 15px; }
 .brand-suffix { color: var(--text-soft); font-weight: 400; }
@@ -231,6 +224,18 @@ section {
   padding: 120px 0 80px;
   text-align: left;
   position: relative;
+}
+.hero-logo {
+  display: block;
+  width: auto;
+  max-width: 420px;
+  height: auto;
+  margin: 0 0 36px;
+  /* slight glow so the wordmark sits comfortably on the aurora background */
+  filter: drop-shadow(0 6px 24px rgba(0, 0, 0, 0.35));
+}
+@media (max-width: 720px) {
+  .hero-logo { max-width: 300px; }
 }
 .hero-kicker {
   margin-bottom: 22px;
