@@ -88,9 +88,9 @@ section" of any page that uses an Apple trademark. The modern form is:
   add the attribution line to the minimal footer on those pages, or move the
   notice to a shared partial.
 
-## 5. VPN app review (CarrierPigeon) — Guideline 5.4 (⚠️  fix recommended + risk note)
+## 5. VPN app review (CarrierPigeonVPN) — Guideline 5.4 (⚠️  fix recommended + risk note)
 
-CarrierPigeon is a VPN app for App Review purposes (NEPacketTunnelProvider on
+CarrierPigeonVPN is a VPN app for App Review purposes (NEPacketTunnelProvider on
 iOS, VpnService on Android). Guideline 5.4 says:
 
 > "VPN apps may not sell, use, or disclose to third parties any data for any
@@ -101,10 +101,10 @@ iOS, VpnService on Android). Guideline 5.4 says:
 
 - **Organization enrollment.** DeadStick Digital LLC is the developer entity
   — ✅.
-- **Technical implementation.** The `apps/carrierpigeon.html` page describes
+- **Technical implementation.** The `apps/carrierpigeonvpn.html` page describes
   using `NEPacketTunnelProvider` on iOS and `VpnService` on Android, which is
   what Apple expects.
-- **No data collection.** The privacy policy (§10.3) says CarrierPigeon never
+- **No data collection.** The privacy policy (§10.3) says CarrierPigeonVPN never
   sees traffic contents, destinations, or metadata.
 
 ### Gaps
@@ -114,11 +114,11 @@ iOS, VpnService on Android). Guideline 5.4 says:
   collected by this app." Privacy §10.3 should add a sentence like:
 
   > "As required by Apple's VPN-app policy, DeadStick Digital does not sell,
-  > use, or disclose to third parties any data collected by CarrierPigeon
+  > use, or disclose to third parties any data collected by CarrierPigeonVPN
   > for any purpose."
 
 - ⚠️  **"Carrier tether detection" framing is a review risk.** The
-  `carrierpigeon.html` hero says the traffic is *"indistinguishable from
+  `carrierpigeonvpn.html` hero says the traffic is *"indistinguishable from
   native on-device traffic… no hotspot fingerprint,"* and the "How it works"
   section mentions setting TTL to 65 *"so the phone's +1-hop decrement lands
   at the native-looking 64."* Apple reviewers have historically rejected apps
@@ -129,7 +129,7 @@ iOS, VpnService on Android). Guideline 5.4 says:
   stay, but consider softening the "indistinguishable from native" language
   in the public marketing copy. One option:
 
-  > "CarrierPigeon keeps the connection efficient — no double-NAT, no extra
+  > "CarrierPigeonVPN keeps the connection efficient — no double-NAT, no extra
   > battery drain — and is fully within your control, which is why it's your
   > responsibility to use it in line with your carrier's terms."
 
@@ -180,7 +180,7 @@ anything to App Review:
    Apple's communications.
 3. **Privacy Manifest (`PrivacyInfo.xcprivacy`)** — mandatory in every iOS /
    iPadOS / visionOS / watchOS / tvOS app binary as of May 2024. Make sure
-   BillingBird's iOS build and CarrierPigeon's iOS + macOS builds ship one
+   BillingBird's iOS build and CarrierPigeonVPN's iOS + macOS builds ship one
    that matches the privacy policy.
 4. **iOS 26 SDK deadline.** Starting **April 28, 2026** (ten days from
    today), new App Store submissions must be built with the iOS 26 / iPadOS
@@ -199,16 +199,27 @@ anything to App Review:
 
 - [ ] Paste the Web3Forms access key into `index.html` in place of
       `REPLACE_WITH_WEB3FORMS_ACCESS_KEY`.
-- [ ] Add Apple trademark attribution to the footers of `support.html`,
-      `privacy.html`, `terms.html`, and the three `apps/*.html` pages (or
-      share a common footer). Update the main footer to read "…and other
-      countries **and regions**" and include **Apple Silicon**.
-- [ ] Add the literal 5.4 commitment to `privacy.html` §10.3 (CarrierPigeon).
+- [x] ~~Add Apple trademark attribution to the footers of `support.html`,
+      `privacy.html`, `terms.html`, and the three `apps/*.html` pages.~~
+      Verified 2026-04-19: every inner page carries the full "…and other
+      countries **and regions**… Apple Silicon… App Store is a service mark
+      of Apple Inc." line, plus the Google Play / Android trademark line.
+      `deletion.html` was missing the Android trademark line; fixed.
+- [x] ~~Add the literal 5.4 commitment to `privacy.html` §10.3 (CarrierPigeonVPN).~~
+      Done 2026-04-18; updated 2026-04-19 to cover Google Play's VpnService
+      policy in the same sentence.
 - [ ] Consider softening the "indistinguishable from native traffic /
-      no hotspot fingerprint / TTL 65" language on `apps/carrierpigeon.html`
+      no hotspot fingerprint / TTL 65" language on `apps/carrierpigeonvpn.html`
       ahead of App Review — optional, but I'd do it.
 - [ ] Clarify whether BillingBird's "optional Pro tier" is a subscription or
       a one-time upgrade, once decided.
+
+### Rename (2026-04-19)
+
+- [x] Renamed app from "CarrierPigeon" to "CarrierPigeonVPN" across the whole
+      site: display text, `apps/carrierpigeonvpn.html`, `icons/carrierpigeonvpn.{png,svg}`,
+      CSS class `is-carrierpigeonvpn`, and anchor IDs `#carrierpigeonvpn`.
+      Old paths were deleted (clean break — site hadn't launched yet).
 
 ### Developer-side setup (outside this repo)
 

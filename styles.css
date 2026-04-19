@@ -389,7 +389,7 @@ section {
 
 .app-card.is-clawmelt    { --card-accent: var(--claw);   --card-accent-soft: var(--claw-soft); }
 .app-card.is-billingbird { --card-accent: var(--bill);   --card-accent-soft: var(--bill-soft); }
-.app-card.is-carrierpigeon { --card-accent: var(--pigeon); --card-accent-soft: var(--pigeon-soft); }
+.app-card.is-carrierpigeonvpn { --card-accent: var(--pigeon); --card-accent-soft: var(--pigeon-soft); }
 
 .app-icon {
   width: 84px;
