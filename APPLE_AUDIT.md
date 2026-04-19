@@ -190,8 +190,9 @@ anything to App Review:
 
 ### Website changes (small)
 
-- [ ] Paste the Web3Forms access key into `index.html` in place of
-      `REPLACE_WITH_WEB3FORMS_ACCESS_KEY`.
+- [x] ~~Paste the Web3Forms access key into `index.html` in place of
+      `REPLACE_WITH_WEB3FORMS_ACCESS_KEY`.~~ Done 2026-04-19 — real key
+      issued for `contact@deadstick.net` is now in place.
 - [x] ~~Add Apple trademark attribution to the footers of `support.html`,
       `privacy.html`, `terms.html`, and the three `apps/*.html` pages.~~
       Verified 2026-04-19: every inner page carries the full "…and other
