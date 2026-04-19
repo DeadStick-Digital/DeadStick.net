@@ -117,23 +117,16 @@ iOS, VpnService on Android). Guideline 5.4 says:
   > use, or disclose to third parties any data collected by CarrierPigeonVPN
   > for any purpose."
 
-- ⚠️  **"Carrier tether detection" framing is a review risk.** The
-  `carrierpigeonvpn.html` hero says the traffic is *"indistinguishable from
-  native on-device traffic… no hotspot fingerprint,"* and the "How it works"
-  section mentions setting TTL to 65 *"so the phone's +1-hop decrement lands
-  at the native-looking 64."* Apple reviewers have historically rejected apps
-  whose framing suggests circumventing carrier tethering detection — it
-  brushes against Guideline 5.5 (Developer Code of Conduct / third-party ToS).
-  The disclaimer "You remain fully responsible for how you use the connection
-  and for complying with your carrier's terms of service" is good and should
-  stay, but consider softening the "indistinguishable from native" language
-  in the public marketing copy. One option:
-
-  > "CarrierPigeonVPN keeps the connection efficient — no double-NAT, no extra
-  > battery drain — and is fully within your control, which is why it's your
-  > responsibility to use it in line with your carrier's terms."
-
-  This is a risk judgment, not a hard rule. Worth knowing going into review.
+- ✅ ~~**"Carrier tether detection" framing is a review risk.**~~ **Resolved
+  2026-04-19.** All circumvention-signaling language was stripped from the
+  public marketing copy: hero + homepage card now read as "paired-device
+  networking" / "lightweight WireGuard bridge between two devices you already
+  own." Removed "indistinguishable from native on-device traffic," "no hotspot
+  fingerprint," the TTL-65 explanation, "Personal Hotspot" phrasing, and the
+  Layer-4 flow-re-origination bullet. Kept the honest technical description
+  (WireGuard, NEPacketTunnelProvider, VpnService, exit is user's own phone,
+  no DeadStick-operated servers) and made the user's carrier-TOS responsibility
+  explicit in the "What CarrierPigeonVPN is not" section.
 
 ## 6. Account-deletion rule (Guideline 5.1.1(v))
 
@@ -208,9 +201,12 @@ anything to App Review:
 - [x] ~~Add the literal 5.4 commitment to `privacy.html` §10.3 (CarrierPigeonVPN).~~
       Done 2026-04-18; updated 2026-04-19 to cover Google Play's VpnService
       policy in the same sentence.
-- [ ] Consider softening the "indistinguishable from native traffic /
+- [x] ~~Consider softening the "indistinguishable from native traffic /
       no hotspot fingerprint / TTL 65" language on `apps/carrierpigeonvpn.html`
-      ahead of App Review — optional, but I'd do it.
+      ahead of App Review.~~ Done 2026-04-19 — rewrote as neutral
+      "paired-device networking" framing on both `apps/carrierpigeonvpn.html`
+      and the homepage card in `index.html`, plus strengthened the carrier-TOS
+      responsibility language in the "What CarrierPigeonVPN is not" section.
 - [ ] Clarify whether BillingBird's "optional Pro tier" is a subscription or
       a one-time upgrade, once decided.
 

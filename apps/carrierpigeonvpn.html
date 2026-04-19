@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#09090c">
-  <meta name="description" content="CarrierPigeonVPN — modern paired-phone networking for macOS, Windows, iOS, and Android. From DeadStick Digital LLC.">
+  <meta name="description" content="CarrierPigeonVPN — efficient paired-device networking for macOS, Windows, iOS, and Android. From DeadStick Digital LLC.">
   <title>CarrierPigeonVPN — DeadStick Digital LLC</title>
   <link rel="icon" type="image/png" href="../icons/carrierpigeonvpn.png">
   <link rel="stylesheet" href="../styles.css">
@@ -35,11 +35,11 @@
 <section class="wrap app-hero">
   <div class="app-icon"><img src="../icons/carrierpigeonvpn.png" alt="CarrierPigeonVPN app icon"></div>
   <div>
-    <div class="eyebrow" style="color:var(--pigeon);">For mobile-first networks</div>
+    <div class="eyebrow" style="color:var(--pigeon);">Paired-device networking</div>
     <h1>CarrierPigeonVPN</h1>
-    <p>A modern successor to paired-phone tethering. CarrierPigeonVPN lets your desktop (macOS or
-       Windows) route through your paired phone (iOS or Android) over an efficient WireGuard
-       tunnel — no double-NAT, no extra battery drain, and fully under your control.</p>
+    <p>A lightweight WireGuard bridge between two devices you already own. CarrierPigeonVPN lets
+       your desktop (macOS or Windows) share a connection with your paired phone (iOS or Android)
+       over a single encrypted tunnel — lean, private, and fully under your control.</p>
     <div class="hero-actions" style="margin-top:28px;">
       <a class="btn btn-primary" href="../index.html#contact">Contact support <span class="btn-arrow">→</span></a>
       <a class="btn" href="#overview">Learn more</a>
@@ -54,31 +54,33 @@
       <h2 id="overview">Overview</h2>
       <p>CarrierPigeonVPN is a two-part app: a desktop companion that runs on your Mac or Windows PC,
          and a phone companion that runs on your paired iPhone or Android device. Together they
-         open a WireGuard tunnel between the two devices — over Personal Hotspot Wi-Fi, USB tether,
-         or Bluetooth PAN — and hand your desktop's traffic off through the phone's native
-         networking stack.</p>
-      <p>The result is a lean, efficient connection between devices you already own: low latency,
-         aggressive DNS leak protection, and screen-off battery efficiency — without the
-         double-NAT baggage of legacy tethering software.</p>
+         establish an encrypted WireGuard tunnel between the two devices over whichever local
+         transport they share — Wi-Fi, USB, or Bluetooth PAN — so the desktop can reach the
+         internet through the phone it is already paired with.</p>
+      <p>The result is a clean, efficient link between devices you already own: low latency,
+         DNS leak protection by default, and screen-off battery efficiency — with the whole
+         connection encrypted end-to-end between your two devices.</p>
 
       <h3>How it works</h3>
       <ul>
-        <li>On iOS, the companion terminates a WireGuard server inside an
-            <code>NEPacketTunnelProvider</code>, then forwards flows out through the phone's
-            normal networking path. On Android, the equivalent is a <code>VpnService</code> bound
-            to a foreground service.</li>
+        <li>On iOS, the phone companion runs a WireGuard endpoint inside an
+            <code>NEPacketTunnelProvider</code>. On Android, the equivalent is a
+            <code>VpnService</code> bound to a foreground service. In both cases, the tunnel's only
+            job is to carry your desktop's traffic to your own phone.</li>
         <li>The desktop companion (macOS or Windows) configures the local WireGuard client and
             locks DNS to a safe resolver to prevent leaks.</li>
-        <li>Flows are re-originated at Layer 4 on the phone so each desktop connection travels as
-            a fresh socket with clean routing — keeping things responsive and predictable.</li>
+        <li>Your phone forwards that traffic out through its own cellular or Wi-Fi connection.
+            The exit point is your phone — your SIM, your plan, your account.</li>
       </ul>
 
       <h3>What CarrierPigeonVPN is <em>not</em></h3>
       <p>CarrierPigeonVPN is not a commercial VPN service. We do not operate exit nodes, do not
          terminate your traffic on DeadStick-owned servers, and do not anonymize you on the public
-         internet. Your exit point is your own phone on your own cellular plan. CarrierPigeonVPN is
-         fully under your control, which is why it's your responsibility to use it in line with
-         your carrier's terms of service.</p>
+         internet. Your exit point is your own phone on your own cellular or Wi-Fi plan — which is
+         why it is <em>your</em> responsibility to use CarrierPigeonVPN in a manner that complies
+         with your carrier's or network's terms of service and acceptable-use policy. DeadStick
+         Digital makes no representation that any particular use of CarrierPigeonVPN is permitted
+         under any particular plan.</p>
 
       <h3>VPN scope and disclosures</h3>
       <p>CarrierPigeonVPN uses Android's <code>VpnService</code> API and iOS's
