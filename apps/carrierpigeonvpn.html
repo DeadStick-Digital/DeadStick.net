@@ -54,9 +54,10 @@
       <h2 id="overview">Overview</h2>
       <p>CarrierPigeonVPN is a two-part app: a desktop companion that runs on your Mac or Windows PC,
          and a phone companion that runs on your paired iPhone or Android device. Together they
-         establish an encrypted WireGuard tunnel between the two devices over whichever local
-         transport they share — Wi-Fi, USB, or Bluetooth PAN — so the desktop can reach the
-         internet through the phone it is already paired with.</p>
+         establish an encrypted WireGuard tunnel between the two devices over the phone's Personal
+         Hotspot — either Wi-Fi or USB tethering — so the desktop can reach the internet through
+         the phone it is already paired with. Bluetooth LE is used only briefly during the initial
+         pairing step to exchange keys; it does not carry ongoing traffic.</p>
       <p>The result is a clean, efficient link between devices you already own: low latency,
          DNS leak protection by default, and screen-off battery efficiency — with the whole
          connection encrypted end-to-end between your two devices.</p>
@@ -68,7 +69,8 @@
             <code>VpnService</code> bound to a foreground service. In both cases, the tunnel's only
             job is to carry your desktop's traffic to your own phone.</li>
         <li>The desktop companion (macOS or Windows) configures the local WireGuard client and
-            locks DNS to a safe resolver to prevent leaks.</li>
+            routes DNS through the paired phone's own network stack, so lookups never leak to
+            whatever network the desktop is sitting on.</li>
         <li>Your phone forwards that traffic out through its own cellular or Wi-Fi connection.
             The exit point is your phone — your SIM, your plan, your account.</li>
       </ul>
@@ -112,7 +114,7 @@
       <dl>
         <dt>Category</dt>     <dd>Networking / Utilities</dd>
         <dt>Platform</dt>     <dd>macOS · Windows · iOS · Android</dd>
-        <dt>Price</dt>        <dd>One-time purchase</dd>
+        <dt>Price</dt>        <dd>US$4.99/year (phone app) · desktop clients free</dd>
         <dt>Network use</dt>  <dd>Paired devices only</dd>
         <dt>Account</dt>      <dd>None required</dd>
         <dt>Age rating</dt>   <dd>4+</dd>

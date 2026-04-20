@@ -136,19 +136,29 @@ rule doesn't apply — ✅. If any app ever gains an account system, revisit.
 
 ## 7. Subscription disclosures (Guideline 3.1.2)
 
-BillingBird's side-card lists *"One-time + optional Pro tier."* If that Pro
-tier is an auto-renewing subscription, Apple requires clear disclosure of:
+**CarrierPigeonVPN — first app to ship.** Confirmed 2026-04-20: the phone
+companion is an auto-renewing subscription at **US$4.99/year** with a free
+trial; the macOS / Windows desktop companions are free. Apple requires the
+following to be disclosed clearly **both in the App Store Connect listing
+and on the in-app screen the user sees before they purchase**:
 
-- Subscription length
-- Price per billing period
-- Renewal terms
-- How to cancel
+- Subscription length (1 year)
+- Price per billing period (US$4.99)
+- Auto-renewal terms (renews unless cancelled 24h before period ends)
+- How to cancel (Settings → Apple ID → Subscriptions)
+- Free-trial length and that it converts to a paid subscription
 
-…both in the App Store listing **and** before purchase in the app. The
-website itself isn't obligated to show pricing, but the phrase "optional Pro
-tier" is slightly underspecified — once the tier ships, it's worth either
-saying "optional Pro subscription" (accurate) or "optional Pro one-time
-upgrade" (accurate) so the marketing matches what the App Store will show.
+The marketing site already names the price (`apps/carrierpigeonvpn.html`
+side-card now reads "US$4.99/year (phone app) · desktop clients free"), so
+the website does not contradict App Store Connect. The full §3.1.2 disclosure
+is an App-Store-Connect / in-app responsibility — not a website fix.
+
+**BillingBird.** The side-card still lists *"One-time + optional Pro tier."*
+If that Pro tier is an auto-renewing subscription, the same Guideline 3.1.2
+disclosure obligations apply. Once the tier ships, update the marketing copy
+to say either "optional Pro subscription" (accurate) or "optional Pro
+one-time upgrade" (accurate) so the marketing matches what the App Store
+listing shows.
 
 ## 8. EULA
 

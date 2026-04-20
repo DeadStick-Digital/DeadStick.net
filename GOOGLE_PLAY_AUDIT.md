@@ -157,11 +157,17 @@ anything to Play Review:
    policy to be accessible **inside the app**, not just on the Play Store
    listing. Each app's Settings / About screen must link to
    <https://www.deadstick.net/privacy.html>.
-8. **Billing / payments.** If BillingBird ships a paid tier, all in-app
-   digital-goods payments on Android must use Google Play Billing — no
-   third-party processors. (External web purchases are allowed after the
-   2024 FTC + EU rulings, but Google Play distribution still requires
-   Play Billing for in-app purchases.)
+8. **Billing / payments.** Google Play distribution requires that all in-app
+   digital-goods purchases use **Google Play Billing** — no third-party
+   processors. (External web purchases are allowed after the 2024 FTC + EU
+   rulings, but in-app purchases on Android must use Play Billing.) This
+   affects:
+   - **CarrierPigeonVPN** (first app to ship, confirmed 2026-04-20):
+     auto-renewing US$4.99/year subscription on the phone app, with a free
+     trial. The Android build must offer this through Google Play Billing as
+     a subscription product, with the free trial declared in the Play Console
+     subscription configuration.
+   - **BillingBird:** if/when the optional Pro tier ships, same rule applies.
 
 ## 10. Summary — what still to do
 
@@ -182,5 +188,8 @@ anything to Play Review:
       disclosure screens, support always-on VPN + lockdown.
 - [ ] Add in-app links to `privacy.html` from each Android app.
 - [ ] Provide `contact@deadstick.net` in Play Console app contact fields.
+- [ ] CarrierPigeonVPN Android build: ship the US$4.99/year subscription
+      through Google Play Billing as a subscription product, declare the free
+      trial in the Play Console subscription configuration.
 - [ ] Confirm BillingBird's monetization model uses Google Play Billing for
       any in-app digital-goods purchases.
