@@ -167,7 +167,13 @@ anything to Play Review:
      trial. The Android build must offer this through Google Play Billing as
      a subscription product, with the free trial declared in the Play Console
      subscription configuration.
-   - **BillingBird:** if/when the optional Pro tier ships, same rule applies.
+   - **BillingBird** (confirmed 2026-04-20 as a subscription product): same
+     rule — the Android build must offer the subscription through Google Play
+     Billing, with any free trial declared in the Play Console subscription
+     configuration.
+   - **ClawMelt** (confirmed 2026-04-20 as a subscription product): when an
+     Android build ships, same Google Play Billing rule applies. The macOS
+     build will use Apple In-App Purchase on the Mac App Store.
 
 ## 10. Summary — what still to do
 
@@ -191,5 +197,8 @@ anything to Play Review:
 - [ ] CarrierPigeonVPN Android build: ship the US$4.99/year subscription
       through Google Play Billing as a subscription product, declare the free
       trial in the Play Console subscription configuration.
-- [ ] Confirm BillingBird's monetization model uses Google Play Billing for
-      any in-app digital-goods purchases.
+- [ ] BillingBird Android build: ship the subscription through Google Play
+      Billing as a subscription product, declare any free trial in the Play
+      Console subscription configuration.
+- [ ] ClawMelt Android build (if/when shipped): same — Google Play Billing
+      subscription product with free-trial declaration.

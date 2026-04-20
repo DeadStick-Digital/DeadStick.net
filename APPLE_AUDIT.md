@@ -91,7 +91,7 @@ section" of any page that uses an Apple trademark. The modern form is:
 ## 5. VPN app review (CarrierPigeonVPN) — Guideline 5.4 (⚠️  fix recommended + risk note)
 
 CarrierPigeonVPN is a VPN app for App Review purposes (NEPacketTunnelProvider on
-iOS, VpnService on Android). Guideline 5.4 says:
+iOS / macOS / tvOS, VpnService on Android). Guideline 5.4 says:
 
 > "VPN apps may not sell, use, or disclose to third parties any data for any
 > purpose, and must commit to this in their privacy policy... Apps offering VPN
@@ -102,8 +102,9 @@ iOS, VpnService on Android). Guideline 5.4 says:
 - **Organization enrollment.** DeadStick Digital LLC is the developer entity
   — ✅.
 - **Technical implementation.** The `apps/carrierpigeonvpn.html` page describes
-  using `NEPacketTunnelProvider` on iOS and `VpnService` on Android, which is
-  what Apple expects.
+  using `NEPacketTunnelProvider` on iOS, macOS, and tvOS (all of which share the
+  NetworkExtension framework) and `VpnService` on Android, which is what Apple
+  and Google expect.
 - **No data collection.** The privacy policy (§10.3) says CarrierPigeonVPN never
   sees traffic contents, destinations, or metadata.
 
@@ -138,7 +139,7 @@ rule doesn't apply — ✅. If any app ever gains an account system, revisit.
 
 **CarrierPigeonVPN — first app to ship.** Confirmed 2026-04-20: the phone
 companion is an auto-renewing subscription at **US$4.99/year** with a free
-trial; the macOS / Windows desktop companions are free. Apple requires the
+trial; the macOS / Windows / tvOS companions are free. Apple requires the
 following to be disclosed clearly **both in the App Store Connect listing
 and on the in-app screen the user sees before they purchase**:
 
@@ -148,17 +149,21 @@ and on the in-app screen the user sees before they purchase**:
 - How to cancel (Settings → Apple ID → Subscriptions)
 - Free-trial length and that it converts to a paid subscription
 
-The marketing site already names the price (`apps/carrierpigeonvpn.html`
-side-card now reads "US$4.99/year (phone app) · desktop clients free"), so
-the website does not contradict App Store Connect. The full §3.1.2 disclosure
-is an App-Store-Connect / in-app responsibility — not a website fix.
+**Website posture (2026-04-20):** Chance has decided to keep all pricing off
+the public site — the "Price" row was removed from each app's side card, and
+once the apps are live on the stores, the site will link out to the App Store
+/ Play Store listing as the source of truth for price. This eliminates any
+risk of the site contradicting App Store Connect (Apple's only website
+concern under 3.1.2) and sidesteps localized-pricing drift. The full §3.1.2
+disclosure remains an App-Store-Connect / in-app responsibility — not a
+website fix.
 
-**BillingBird.** The side-card still lists *"One-time + optional Pro tier."*
-If that Pro tier is an auto-renewing subscription, the same Guideline 3.1.2
-disclosure obligations apply. Once the tier ships, update the marketing copy
-to say either "optional Pro subscription" (accurate) or "optional Pro
-one-time upgrade" (accurate) so the marketing matches what the App Store
-listing shows.
+**All three apps are subscription products** (confirmed 2026-04-20). That means
+Guideline 3.1.2 disclosure obligations (length, price, renewal terms,
+cancellation route, free-trial length) apply in App Store Connect and on the
+in-app purchase screen for **ClawMelt**, **BillingBird**, and
+**CarrierPigeonVPN**. No website update needed since the site no longer
+advertises pricing.
 
 ## 8. EULA
 
@@ -183,8 +188,8 @@ anything to App Review:
    Apple's communications.
 3. **Privacy Manifest (`PrivacyInfo.xcprivacy`)** — mandatory in every iOS /
    iPadOS / visionOS / watchOS / tvOS app binary as of May 2024. Make sure
-   BillingBird's iOS build and CarrierPigeonVPN's iOS + macOS builds ship one
-   that matches the privacy policy.
+   BillingBird's iOS build and CarrierPigeonVPN's iOS + macOS + tvOS builds
+   each ship one that matches the privacy policy.
 4. **iOS 26 SDK deadline.** Starting **April 28, 2026** (ten days from
    today), new App Store submissions must be built with the iOS 26 / iPadOS
    26 / tvOS 26 / visionOS 26 / watchOS 26 SDKs. Plan accordingly.
@@ -218,8 +223,10 @@ anything to App Review:
       "paired-device networking" framing on both `apps/carrierpigeonvpn.html`
       and the homepage card in `index.html`, plus strengthened the carrier-TOS
       responsibility language in the "What CarrierPigeonVPN is not" section.
-- [ ] Clarify whether BillingBird's "optional Pro tier" is a subscription or
-      a one-time upgrade, once decided.
+- [x] ~~Clarify whether BillingBird's "optional Pro tier" is a subscription or
+      a one-time upgrade, once decided.~~ Resolved 2026-04-20 — all three apps
+      (ClawMelt, BillingBird, CarrierPigeonVPN) will be subscription products.
+      Pricing removed from public site; store listings will carry the numbers.
 
 ### Rename (2026-04-19)
 

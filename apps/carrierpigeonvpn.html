@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#09090c">
-  <meta name="description" content="CarrierPigeonVPN — efficient paired-device networking for macOS, Windows, iOS, and Android. From DeadStick Digital LLC.">
+  <meta name="description" content="CarrierPigeonVPN — efficient paired-device networking for macOS, Windows, tvOS, iOS, and Android. From DeadStick Digital LLC.">
   <title>CarrierPigeonVPN — DeadStick Digital LLC</title>
   <link rel="icon" type="image/png" href="../icons/carrierpigeonvpn.png">
   <link rel="stylesheet" href="../styles.css">
@@ -38,8 +38,8 @@
     <div class="eyebrow" style="color:var(--pigeon);">Paired-device networking</div>
     <h1>CarrierPigeonVPN</h1>
     <p>A lightweight WireGuard bridge between two devices you already own. CarrierPigeonVPN lets
-       your desktop (macOS or Windows) share a connection with your paired phone (iOS or Android)
-       over a single encrypted tunnel — lean, private, and fully under your control.</p>
+       your Mac, PC, or Apple TV share a connection with your paired iPhone or Android phone over
+       a single encrypted tunnel — lean, private, and fully under your control.</p>
     <div class="hero-actions" style="margin-top:28px;">
       <a class="btn btn-primary" href="../index.html#contact">Contact support <span class="btn-arrow">→</span></a>
       <a class="btn" href="#overview">Learn more</a>
@@ -52,15 +52,18 @@
 
     <div class="detail-body">
       <h2 id="overview">Overview</h2>
-      <p>CarrierPigeonVPN is a two-part app: a desktop companion that runs on your Mac or Windows PC,
-         and a phone companion that runs on your paired iPhone or Android device. Together they
-         establish an encrypted WireGuard tunnel between the two devices over the phone's Personal
-         Hotspot — either Wi-Fi or USB tethering — so the desktop can reach the internet through
-         the phone it is already paired with. Bluetooth LE is used only briefly during the initial
-         pairing step to exchange keys; it does not carry ongoing traffic.</p>
-      <p>The result is a clean, efficient link between devices you already own: low latency,
-         DNS leak protection by default, and screen-off battery efficiency — with the whole
-         connection encrypted end-to-end between your two devices.</p>
+      <p>CarrierPigeonVPN is a powerful, two-part ecosystem designed to perfectly synchronize your
+         devices. Featuring companion apps for your Mac, Windows PC, and tvOS, and a mobile app
+         for your iPhone or Android, they work together, establishing a rock-solid, encrypted
+         WireGuard tunnel directly over your phone's Personal Hotspot (via Wi-Fi or USB).</p>
+      <p>Thanks to our seamless, zero-configuration handshake, your devices authenticate instantly
+         and securely behind the scenes. The result is a lightning-fast, ultra-efficient link
+         between the hardware you already own. Enjoy incredibly low latency, default DNS leak
+         protection, and optimized screen-off battery efficiency — all locked down with
+         uncompromising, end-to-end encryption.</p>
+      <p>Bring the whole household along: a single paired phone can carry up to five receiving
+         devices at once, so your Mac, PC, and Apple TV can share the same tunnel without taking
+         turns.</p>
 
       <h3>How it works</h3>
       <ul>
@@ -68,9 +71,9 @@
             <code>NEPacketTunnelProvider</code>. On Android, the equivalent is a
             <code>VpnService</code> bound to a foreground service. In both cases, the tunnel's only
             job is to carry your desktop's traffic to your own phone.</li>
-        <li>The desktop companion (macOS or Windows) configures the local WireGuard client and
-            routes DNS through the paired phone's own network stack, so lookups never leak to
-            whatever network the desktop is sitting on.</li>
+        <li>The receiving companion (macOS, Windows, or tvOS) configures the local WireGuard client
+            and routes DNS through the paired phone's own network stack, so lookups never leak to
+            whatever network that device is sitting on.</li>
         <li>Your phone forwards that traffic out through its own cellular or Wi-Fi connection.
             The exit point is your phone — your SIM, your plan, your account.</li>
       </ul>
@@ -85,9 +88,10 @@
          under any particular plan.</p>
 
       <h3>VPN scope and disclosures</h3>
-      <p>CarrierPigeonVPN uses Android's <code>VpnService</code> API and iOS's
-         <code>NEPacketTunnelProvider</code> API for a single purpose: to route the desktop
-         companion's outbound traffic through the paired phone's own networking stack. We do not
+      <p>CarrierPigeonVPN uses Apple's <code>NEPacketTunnelProvider</code> API on iOS, macOS, and
+         tvOS, and Android's <code>VpnService</code> API, for a single purpose: to route the
+         receiving companion's outbound traffic through the paired phone's own networking stack.
+         We do not
          inspect, log, collect, share, or transmit the contents, destinations, or metadata of any
          traffic that flows through the tunnel. The tunnel carries only the user's own traffic
          between two devices that the same user controls, and the app does not modify traffic from
@@ -106,6 +110,7 @@
 
       <h3>Platforms</h3>
       <p><strong>Desktop:</strong> macOS 14 Sonoma or later · Windows 11.
+         <br><strong>TV:</strong> tvOS 17 or later.
          <br><strong>Phone:</strong> iOS 17 or later · Android 12 or later.</p>
     </div>
 
@@ -113,8 +118,8 @@
       <h4>At a glance</h4>
       <dl>
         <dt>Category</dt>     <dd>Networking / Utilities</dd>
-        <dt>Platform</dt>     <dd>macOS · Windows · iOS · Android</dd>
-        <dt>Price</dt>        <dd>US$4.99/year (phone app) · desktop clients free</dd>
+        <dt>Platform</dt>     <dd>macOS · Windows · tvOS · iOS · Android</dd>
+        <dt>Connections</dt>  <dd>Up to 5 devices per phone at once</dd>
         <dt>Network use</dt>  <dd>Paired devices only</dd>
         <dt>Account</dt>      <dd>None required</dd>
         <dt>Age rating</dt>   <dd>4+</dd>
