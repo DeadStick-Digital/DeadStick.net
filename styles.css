@@ -200,12 +200,8 @@ section {
   white-space: nowrap;
 }
 .brand-sub.brand-tagline {
-  display: block;
-  width: 172px;
-  font-size: 8px;
-  letter-spacing: 0.08em;
-  text-align: justify;
-  text-align-last: justify;
+  font-size: 8.5px;
+  letter-spacing: 0.04em;
 }
 .brand-wordmark {
   height: 22px;
