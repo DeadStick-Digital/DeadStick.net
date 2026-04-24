@@ -192,6 +192,11 @@ section {
   gap: 4px;
   line-height: 1;
 }
+.brand-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .brand-wordmark {
   height: 22px;
   width: auto;
