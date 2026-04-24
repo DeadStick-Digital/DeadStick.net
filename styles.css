@@ -199,7 +199,7 @@ section {
   gap: 2px;
   white-space: nowrap;
 }
-.brand-tagline {
+.brand-sub.brand-tagline {
   font-size: 4.2px;
   letter-spacing: 0.14em;
 }
