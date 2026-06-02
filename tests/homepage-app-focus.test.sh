@@ -27,6 +27,10 @@ require '<article class="app-card is-billingbird is-primary-focus">' \
   index.html \
   'BillingBird should carry the primary focus state'
 
+require '<link rel="stylesheet" href="styles.css?v=20260602-billingbird-focus">' \
+  index.html \
+  'Homepage should cache-bust the stylesheet for the BillingBird focus launch'
+
 reject '3</strong>Shipping apps' \
   index.html \
   'Homepage stats should not imply all three apps are shipping'
