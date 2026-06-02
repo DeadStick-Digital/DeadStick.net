@@ -402,6 +402,88 @@ section {
 .app-card.is-billingbird { --card-accent: var(--bill);   --card-accent-soft: var(--bill-soft); }
 .app-card.is-carrierpigeonvpn { --card-accent: var(--pigeon); --card-accent-soft: var(--pigeon-soft); }
 
+.app-card.is-primary-focus {
+  border-color: rgba(94, 168, 232, 0.38);
+  background:
+    radial-gradient(360px 220px at 28% -6%, rgba(94, 168, 232, 0.18), transparent 72%),
+    linear-gradient(180deg, rgba(255,255,255,0.052), rgba(255,255,255,0.016));
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.08) inset,
+    0 34px 90px -42px rgba(94,168,232,0.62),
+    0 30px 80px -46px rgba(0,0,0,0.86);
+}
+.app-card.is-primary-focus::before {
+  background: radial-gradient(280px 180px at 30% 0%, rgba(94, 168, 232, 0.28), transparent 72%);
+}
+.app-card.is-primary-focus .app-link {
+  border-color: rgba(94, 168, 232, 0.25);
+}
+
+.app-card.is-coming-soon {
+  border-color: rgba(255,255,255,0.055);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.026), rgba(255,255,255,0.008));
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.035) inset,
+    0 24px 70px -48px rgba(0,0,0,0.9);
+}
+.app-card.is-coming-soon:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,0.09);
+}
+.app-card.is-coming-soon::before {
+  opacity: 0.28;
+}
+.app-card.is-coming-soon::after {
+  content: attr(data-status);
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  z-index: 2;
+  width: 118%;
+  padding: 11px 0;
+  border-top: 1px solid rgba(255,255,255,0.13);
+  border-bottom: 1px solid rgba(255,255,255,0.13);
+  color: rgba(255,255,255,0.14);
+  font-size: clamp(26px, 3vw, 42px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 0 24px rgba(0,0,0,0.45);
+  transform: translate(-50%, -50%) rotate(-16deg);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.app-card.is-coming-soon > * {
+  opacity: 0.48;
+  transition: opacity 0.25s ease;
+}
+.app-card.is-coming-soon:hover > * {
+  opacity: 0.58;
+}
+.app-card.is-coming-soon .app-icon {
+  filter: grayscale(0.48) saturate(0.58);
+  box-shadow: 0 10px 28px -14px rgba(0,0,0,0.72),
+              0 0 0 1px rgba(255,255,255,0.07) inset;
+}
+.app-card.is-coming-soon .app-link {
+  color: rgba(255,255,255,0.42);
+  border-color: rgba(255,255,255,0.07);
+}
+.app-card.is-coming-soon .app-features li::before {
+  background: rgba(255,255,255,0.28);
+}
+
+@media (max-width: 480px) {
+  .app-card.is-coming-soon::after {
+    width: 124%;
+    font-size: 25px;
+    letter-spacing: 0.12em;
+  }
+}
+
 .app-icon {
   width: 84px;
   height: 84px;
