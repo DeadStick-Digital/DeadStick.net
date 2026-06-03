@@ -27,9 +27,9 @@ require '<article class="app-card is-billingbird is-primary-focus">' \
   index.html \
   'BillingBird should carry the primary focus state'
 
-require '<link rel="stylesheet" href="styles.css?v=20260602-billingbird-focus">' \
+require '<link rel="stylesheet" href="styles.css?v=20260603-icon-links">' \
   index.html \
-  'Homepage should cache-bust the stylesheet for the BillingBird focus launch'
+  'Homepage should cache-bust the stylesheet for icon-link styling'
 
 reject '3</strong>Shipping apps' \
   index.html \
@@ -39,9 +39,21 @@ require '<article class="app-card is-clawmelt is-coming-soon" data-status="Comin
   index.html \
   'ClawMelt should expose the coming-soon state for the watermark'
 
+require '<a class="app-icon app-icon-link" href="apps/clawmelt.html" aria-label="Open ClawMelt app page">' \
+  index.html \
+  'ClawMelt icon should link to its app page'
+
 require '<article class="app-card is-carrierpigeonvpn is-coming-soon" data-status="Coming soon">' \
   index.html \
   'CarrierPigeonVPN should expose the coming-soon state for the watermark'
+
+require '<a class="app-icon app-icon-link" href="apps/billingbird.html" aria-label="Open BillingBird app page">' \
+  index.html \
+  'BillingBird icon should link to its app page'
+
+require '<a class="app-icon app-icon-link" href="apps/carrierpigeonvpn.html" aria-label="Open CarrierPigeonVPN app page">' \
+  index.html \
+  'CarrierPigeonVPN icon should link to its app page'
 
 require '.app-card.is-coming-soon::after' \
   styles.css \

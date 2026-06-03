@@ -494,6 +494,20 @@ section {
   margin-bottom: 22px;
 }
 .app-icon img, .app-icon svg { width: 100%; height: 100%; display: block; }
+.app-icon-link {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+.app-icon-link:hover,
+.app-icon-link:focus-visible {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 16px 40px -14px rgba(0,0,0,0.72),
+              0 0 0 1px var(--card-accent) inset,
+              0 0 26px -10px var(--card-accent);
+}
+.app-icon-link:focus-visible {
+  outline: 2px solid var(--card-accent);
+  outline-offset: 4px;
+}
 
 .app-card h3 {
   margin-bottom: 6px;
