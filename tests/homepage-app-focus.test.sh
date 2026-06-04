@@ -27,9 +27,37 @@ require '<article class="app-card is-billingbird is-primary-focus">' \
   index.html \
   'BillingBird should carry the primary focus state'
 
-require '<link rel="stylesheet" href="styles.css?v=20260603-icon-links">' \
+require '<link rel="stylesheet" href="styles.css?v=20260604-privacy-promise">' \
   index.html \
-  'Homepage should cache-bust the stylesheet for icon-link styling'
+  'Homepage should cache-bust the stylesheet for privacy-promise copy styling'
+
+require 'DeadStick Digital is built on a simple foundational promise: customer data belongs to' \
+  index.html \
+  'Studio intro should lead with the customer privacy promise'
+
+require 'the customer. Data is never collected, monetized, inspected, or stored by the company.' \
+  index.html \
+  'Studio intro should continue the customer privacy promise'
+
+require 'Data is never collected, monetized, inspected, or stored by the company.' \
+  index.html \
+  'Studio intro should say customer data is not collected or accessed'
+
+require 'Our value is in our promise. All DeadStick Digital software is built with your privacy' \
+  index.html \
+  'Studio intro should close with the privacy-first software promise'
+
+require 'in mind.</p>' \
+  index.html \
+  'Studio intro should complete the privacy-first software promise'
+
+reject 'DeadStick Digital is a boutique software studio.' \
+  index.html \
+  'Old studio intro should be replaced'
+
+reject 'We sign our own releases' \
+  index.html \
+  'Old studio intro should no longer use first-person wording'
 
 reject '3</strong>Shipping apps' \
   index.html \
