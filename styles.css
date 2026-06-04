@@ -28,6 +28,8 @@
   --bill-soft: #5ea8e833;
   --pigeon: #c77dff;         /* neon-violet pigeon */
   --pigeon-soft: #c77dff33;
+  --pitot: #7ef4f0;          /* scanner aqua */
+  --pitot-soft: #7ef4f033;
 
   --radius-xs: 8px;
   --radius-sm: 12px;
@@ -371,10 +373,10 @@ section {
 
 .apps-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
-@media (max-width: 960px) { .apps-grid { grid-template-columns: 1fr; } }
+@media (max-width: 720px) { .apps-grid { grid-template-columns: 1fr; } }
 
 .app-card {
   --card-accent: var(--accent);
@@ -410,6 +412,7 @@ section {
 .app-card.is-clawmelt    { --card-accent: var(--claw);   --card-accent-soft: var(--claw-soft); }
 .app-card.is-billingbird { --card-accent: var(--bill);   --card-accent-soft: var(--bill-soft); }
 .app-card.is-carrierpigeonvpn { --card-accent: var(--pigeon); --card-accent-soft: var(--pigeon-soft); }
+.app-card.is-pitot { --card-accent: var(--pitot); --card-accent-soft: var(--pitot-soft); }
 
 .app-card.is-primary-focus {
   border-color: rgba(94, 168, 232, 0.38);
@@ -612,6 +615,7 @@ section {
   gap: 40px;
   align-items: center;
 }
+.cta-panel > * { min-width: 0; }
 .cta-panel h2 { max-width: 16ch; }
 .cta-panel p  { color: var(--text-muted); margin-top: 16px; max-width: 48ch; }
 .cta-meta     { display: flex; flex-direction: column; gap: 14px; font-size: 14px; }
@@ -621,6 +625,11 @@ section {
 
 @media (max-width: 900px) {
   .cta-panel { grid-template-columns: 1fr; padding: 32px; }
+}
+@media (max-width: 520px) {
+  .cta-panel { padding: 24px; }
+  .contact-form { padding: 20px; }
+  .cta-panel h2 { max-width: none; }
 }
 
 /* --------------------- Contact form --------------------- */
@@ -905,7 +914,7 @@ footer {
 .app-hero p { color: var(--text-muted); margin-top: 16px; max-width: 58ch; font-size: 17px; }
 
 @media (max-width: 720px) {
-  .app-hero { grid-template-columns: 1fr; gap: 20px; }
+  .app-hero { grid-template-columns: 1fr; gap: 20px; padding-left: var(--pad-x); padding-right: var(--pad-x); }
   .app-hero .app-icon { width: 104px; height: 104px; }
 }
 

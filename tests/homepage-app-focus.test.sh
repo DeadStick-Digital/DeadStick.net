@@ -75,6 +75,10 @@ require '<article class="app-card is-carrierpigeonvpn is-coming-soon" data-statu
   index.html \
   'CarrierPigeonVPN should expose the coming-soon state for the watermark'
 
+require '<article class="app-card is-pitot is-coming-soon" data-status="Coming soon">' \
+  index.html \
+  'Pitot should expose the coming-soon state for the watermark'
+
 require '<a class="app-icon app-icon-link" href="apps/billingbird.html" aria-label="Open BillingBird app page">' \
   index.html \
   'BillingBird icon should link to its app page'
@@ -82,6 +86,10 @@ require '<a class="app-icon app-icon-link" href="apps/billingbird.html" aria-lab
 require '<a class="app-icon app-icon-link" href="apps/carrierpigeonvpn.html" aria-label="Open CarrierPigeonVPN app page">' \
   index.html \
   'CarrierPigeonVPN icon should link to its app page'
+
+require '<a class="app-icon app-icon-link" href="apps/pitot.html" aria-label="Open Pitot app page">' \
+  index.html \
+  'Pitot icon should link to its app page'
 
 require '.app-card.is-coming-soon::after' \
   styles.css \

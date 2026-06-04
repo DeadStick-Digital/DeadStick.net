@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#09090c">
-  <meta name="description" content="Open-source software, frameworks, and services that the DeadStick Digital apps — ClawMelt, BillingBird, and CarrierPigeonVPN — are built on.">
+  <meta name="description" content="Open-source software, frameworks, and services that the DeadStick Digital apps — ClawMelt, BillingBird, CarrierPigeonVPN, and Pitot — are built on.">
   <title>Acknowledgements — DeadStick Digital LLC</title>
   <link rel="icon" type="image/png" href="assets/logo-mark-128.png">
   <link rel="stylesheet" href="styles.css">
@@ -43,7 +43,7 @@
        governs how it may be used; the license texts are reproduced in-app under
        <em>Settings → About → Licenses</em>. If we've forgotten anyone, please
        <a href="index.html#contact">let us know</a> and we will correct it.</p>
-    <p class="muted mono" style="margin-top:14px;">Last updated: April 18, 2026</p>
+    <p class="muted mono" style="margin-top:14px;">Last updated: June 4, 2026</p>
   </div>
 
   <div class="doc-body">
@@ -54,6 +54,7 @@
         <li><a href="#clawmelt">ClawMelt</a></li>
         <li><a href="#billingbird">BillingBird</a></li>
         <li><a href="#carrierpigeonvpn">CarrierPigeonVPN</a></li>
+        <li><a href="#pitot">Pitot</a></li>
         <li><a href="#website">Website</a></li>
         <li><a href="#typography">Typography &amp; type</a></li>
         <li><a href="#trademarks">Trademarks &amp; service marks</a></li>
@@ -139,7 +140,25 @@
     <p>CarrierPigeonVPN is an independent product and is not endorsed by, affiliated with, or
        sponsored by the WireGuard project or Mr Donenfeld.</p>
 
-    <h2 id="website">4. Website</h2>
+    <h2 id="pitot">4. Pitot</h2>
+    <p>Pitot is a native document scanning and storage app. Its Apple implementation is built on
+       system frameworks and a small set of local-first storage, OCR, and PDF boundaries:</p>
+    <ul>
+      <li><strong>Swift</strong> and <strong>SwiftUI</strong> — the language and UI framework for the
+          Apple app surface.</li>
+      <li><strong>VisionKit</strong>, <strong>Vision</strong>, and <strong>Core Image</strong> — Apple
+          frameworks used for document camera capture, rectangle detection, perspective correction,
+          image enhancement, and on-device OCR.</li>
+      <li><strong>PDFKit</strong> — Apple framework used for local PDF assembly and page-level PDF
+          operations.</li>
+      <li><strong>SwiftData</strong> and <strong>CryptoKit</strong> — Apple frameworks used for local
+          document-library metadata and content identity.</li>
+      <li><strong>Kotlin</strong>, <strong>Jetpack Compose</strong>, <strong>Room</strong>,
+          <strong>CameraX</strong>, <strong>Google ML Kit</strong>, and Google Drive
+          <strong>appDataFolder</strong> APIs are planned for the Android implementation.</li>
+    </ul>
+
+    <h2 id="website">5. Website</h2>
     <p><a href="https://www.deadstick.net">www.deadstick.net</a> is a hand-written static site
        served from GitHub Pages. It relies on:</p>
     <ul>
@@ -153,12 +172,12 @@
           contact form. © Intuition Machines, Inc.</li>
     </ul>
 
-    <h2 id="typography">5. Typography &amp; type</h2>
+    <h2 id="typography">6. Typography &amp; type</h2>
     <p>The system font stack (SF Pro on Apple platforms, Segoe UI Variable on Windows, Roboto on
        Android) is used throughout, with no custom webfonts loaded from third parties. This keeps
        our pages fast and keeps your browser from making extra requests you did not ask for.</p>
 
-    <h2 id="trademarks">6. Trademarks &amp; service marks</h2>
+    <h2 id="trademarks">7. Trademarks &amp; service marks</h2>
     <p>Apple, the Apple logo, iPhone, iPad, Mac, macOS, and Apple Silicon are trademarks of
        Apple Inc., registered in the U.S. and other countries and regions. App Store is a service
        mark of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC.
@@ -167,7 +186,7 @@
        their respective owners; their use here is purely for identification and does not imply
        endorsement.</p>
 
-    <h2 id="contact">7. Corrections &amp; contact</h2>
+    <h2 id="contact">8. Corrections &amp; contact</h2>
     <p>If a project has been misattributed, a license identifier is wrong, or a dependency has
        been left out, please send a note through the
        <a href="index.html#contact">contact form</a> (topic: <em>Something else</em>) and we will

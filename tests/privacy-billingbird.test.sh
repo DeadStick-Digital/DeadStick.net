@@ -23,9 +23,9 @@ reject() {
   fi
 }
 
-require 'Last updated: June 3, 2026' \
+require 'Last updated: June 4, 2026' \
   privacy.html \
-  'Privacy policy should show the BillingBird clarification update date'
+  'Privacy policy should show the latest app-copy update date'
 
 require "For BillingBird's iOS App Store release, DeadStick Digital does not collect data" \
   privacy.html \
