@@ -12,41 +12,49 @@ require() {
   fi
 }
 
-require '<h3>Pitot Document Scanner and Vault</h3>' \
+require '<div class="app-tag">Document Scanner and Vault</div>' \
   index.html \
-  'Homepage card should use the full Pitot product name'
+  'Homepage card should use Document Scanner and Vault as the category label'
 
-require '<li><a href="apps/pitot.html">Pitot Document Scanner and Vault</a></li>' \
+require '<h3>Pitot</h3>' \
   index.html \
-  'Homepage footer app list should use the full Pitot product name'
+  'Homepage card should use the short Pitot product name'
 
-require '<title>Pitot Document Scanner and Vault — DeadStick Digital LLC</title>' \
+require '<li><a href="apps/pitot.html">Pitot</a></li>' \
+  index.html \
+  'Homepage footer app list should use the short Pitot product name'
+
+require '<title>Pitot — DeadStick Digital LLC</title>' \
   apps/pitot.html \
-  'Pitot detail page title should use the full product name'
+  'Pitot detail page title should use the short product name'
 
-require '<h1>Pitot Document Scanner and Vault</h1>' \
+require 'Coming soon · Document Scanner and Vault' \
   apps/pitot.html \
-  'Pitot detail page hero should use the full product name'
+  'Pitot detail page eyebrow should use Document Scanner and Vault'
 
-require '<a href="apps/pitot.html">Pitot Document Scanner and Vault</a>' \
+require '<h1>Pitot</h1>' \
+  apps/pitot.html \
+  'Pitot detail page hero should use the short product name'
+
+require '<a href="apps/pitot.html">Pitot</a>' \
   support.html \
-  'Support page app list should use the full product name'
+  'Support page app list should use the short product name'
 
-require '<strong>Pitot Document Scanner and Vault</strong>' \
+require '<strong>Pitot</strong>' \
   privacy.html \
-  'Privacy app list should use the full product name'
+  'Privacy app list should use the short product name'
 
-require '<h2 id="pitot">Pitot Document Scanner and Vault</h2>' \
+require '<h2 id="pitot">Pitot</h2>' \
   deletion.html \
-  'Deletion page heading should use the full product name'
+  'Deletion page heading should use the short product name'
 
-require '<h3 id="apps-pitot">14.4 Pitot Document Scanner and Vault</h3>' \
+require '<h3 id="apps-pitot">14.4 Pitot</h3>' \
   terms.html \
-  'Terms Pitot section should use the full product name'
+  'Terms Pitot section should use the short product name'
 
-require '<h2 id="pitot">4. Pitot Document Scanner and Vault</h2>' \
+require '<h2 id="pitot">4. Pitot</h2>' \
   acknowledgements.html \
-  'Acknowledgements section should use the full product name'
+  'Acknowledgements section should use the short product name'
 
 require 'long-term vault for important documents' \
   index.html \

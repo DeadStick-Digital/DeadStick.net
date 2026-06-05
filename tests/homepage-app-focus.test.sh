@@ -87,7 +87,7 @@ require '<a class="app-icon app-icon-link" href="apps/carrierpigeonvpn.html" ari
   index.html \
   'CarrierPigeonVPN icon should link to its app page'
 
-require '<a class="app-icon app-icon-link" href="apps/pitot.html" aria-label="Open Pitot Document Scanner and Vault app page">' \
+require '<a class="app-icon app-icon-link" href="apps/pitot.html" aria-label="Open Pitot app page">' \
   index.html \
   'Pitot icon should link to its app page'
 
