@@ -931,6 +931,48 @@ footer {
 .detail-body h3 { font-size: 17px; margin: 28px 0 8px; }
 .detail-body ul { color: var(--text-muted); font-size: 14.5px; line-height: 1.7; padding-left: 22px; }
 
+.security-measures {
+  margin: 30px 0 4px;
+  padding: 22px 24px;
+  border: 1px solid rgba(126, 244, 240, 0.2);
+  border-radius: var(--radius-sm);
+  background:
+    linear-gradient(180deg, rgba(126, 244, 240, 0.055), rgba(255,255,255,0.014));
+}
+.security-measures h3 {
+  margin-top: 0;
+  color: var(--text);
+}
+.security-measures p {
+  max-width: 64ch;
+}
+.security-measures ul {
+  margin: 14px 0 0;
+  padding-left: 0;
+  list-style: none;
+}
+.security-measures li {
+  position: relative;
+  padding-left: 22px;
+}
+.security-measures li + li {
+  margin-top: 10px;
+}
+.security-measures li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--pitot);
+  box-shadow: 0 0 18px var(--pitot-soft);
+}
+.security-measures strong {
+  color: var(--text);
+}
+
 .side-card {
   padding: 28px;
   border-radius: var(--radius-md);

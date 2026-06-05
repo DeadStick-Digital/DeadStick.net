@@ -7,7 +7,7 @@
   <meta name="description" content="Pitot — a self-contained document scanner and vault for important records, with OCR, translation, and PDF export. Coming soon from DeadStick Digital LLC.">
   <title>Pitot — DeadStick Digital LLC</title>
   <link rel="icon" type="image/png" href="../icons/pitot.png">
-  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../styles.css?v=20260605-pitot-security">
 </head>
 <body>
 
@@ -79,6 +79,31 @@
          OCR results, translations, and generated PDFs stay in the local document vault by default.
          Private sync through the user's own iCloud or Google Drive storage is planned as a
          provider-specific boundary rather than a proprietary Pitot server.</p>
+
+      <div class="security-measures">
+        <h3>Security measures</h3>
+        <p>Important documents deserve a calm, predictable data path. Pitot is built around
+           practical safeguards that reduce where your documents need to travel and who can see
+           them.</p>
+        <ul>
+          <li><strong>Documents stay local by default.</strong> Scans, page images, OCR text,
+              translations, search indexes, and generated PDFs live in the local vault unless you
+              choose an export or future private sync path.</li>
+          <li><strong>No proprietary Pitot document server.</strong> Local scanning and storage do
+              not require a DeadStick-operated backend that receives or recovers your documents.</li>
+          <li><strong>On-device OCR and search indexes.</strong> Searchable text is created and
+              stored with the device-first document record, keeping lookup fast without making a
+              remote indexing service part of the workflow.</li>
+          <li><strong>File-backed assets use SHA-256 content identity.</strong> Large page assets
+              are kept outside metadata storage and addressed by content hash so the vault can
+              track page files deterministically.</li>
+          <li><strong>Path and symlink escape checks.</strong> The local asset store rejects unsafe
+              paths that try to leave the vault root before loading, saving, or deleting files.</li>
+          <li><strong>Optional app unlock controls.</strong> Pitot is designed to support Face ID, biometrics, or a Pitot PIN
+              stored in the device keychain for people who want an extra unlock step before opening
+              the vault.</li>
+        </ul>
+      </div>
 
       <h3>Platform</h3>
       <p><strong>Coming soon:</strong> iOS 18 or later.
