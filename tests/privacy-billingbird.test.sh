@@ -23,7 +23,7 @@ reject() {
   fi
 }
 
-require 'Last updated: June 5, 2026' \
+require 'Last updated: June 6, 2026' \
   privacy.html \
   'Privacy policy should show the latest app-copy update date'
 

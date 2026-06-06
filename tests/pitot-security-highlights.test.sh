@@ -7,24 +7,24 @@ require() {
   local message="$3"
 
   if ! git grep -q "$pattern" -- "$file"; then
-    printf 'Missing expected Pitot security highlight: %s\n' "$message" >&2
+    printf 'Missing expected Voyage Vault security highlight: %s\n' "$message" >&2
     exit 1
   fi
 }
 
 require '<h3>Security measures</h3>' \
   apps/pitot.html \
-  'Pitot detail page should introduce the security measures section'
+  'Voyage Vault detail page should introduce the security measures section'
 
-require 'styles.css?v=20260605-pitot-security' \
+require 'styles.css?v=20260606-voyage-vault' \
   apps/pitot.html \
-  'Pitot detail page should request the security-highlight stylesheet update'
+  'Voyage Vault detail page should request the security-highlight stylesheet update'
 
 require 'Documents stay local by default' \
   apps/pitot.html \
   'Security highlights should lead with local-first storage'
 
-require 'No proprietary Pitot document server' \
+require 'No proprietary Voyage Vault document server' \
   apps/pitot.html \
   'Security highlights should call out the avoided backend'
 
@@ -40,7 +40,7 @@ require 'Path and symlink escape checks' \
   apps/pitot.html \
   'Security highlights should mention unsafe path checks'
 
-require 'Face ID, biometrics, or a Pitot PIN' \
+require 'Face ID, biometrics, or a Voyage Vault PIN' \
   apps/pitot.html \
   'Security highlights should mention optional unlock controls'
 
