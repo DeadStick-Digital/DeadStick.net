@@ -48,11 +48,11 @@ require '<h2 id="voyagevault">VoyageVault</h2>' \
   deletion.html \
   'Deletion page heading should use the short product name'
 
-require '<h3 id="apps-voyagevault">14.4 VoyageVault</h3>' \
+require '<h3 id="apps-voyagevault">14.3 VoyageVault</h3>' \
   terms.html \
   'Terms VoyageVault section should use the short product name'
 
-require '<h2 id="voyagevault">4. VoyageVault</h2>' \
+require '<h2 id="voyagevault">3. VoyageVault</h2>' \
   acknowledgements.html \
   'Acknowledgements section should use the short product name'
 

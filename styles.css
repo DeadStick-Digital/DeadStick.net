@@ -22,8 +22,6 @@
   --accent-3: #ffd28a;
 
   /* Per-app accents (keyed to each app's icon palette) */
-  --claw: #ff5a4d;           /* dripping red claw */
-  --claw-soft: #ff5a4d33;
   --bill: #5ea8e8;           /* sky-blue feather */
   --bill-soft: #5ea8e833;
   --pigeon: #c77dff;         /* neon-violet pigeon */
@@ -409,7 +407,6 @@ section {
 }
 .app-card > * { position: relative; z-index: 1; }
 
-.app-card.is-clawmelt    { --card-accent: var(--claw);   --card-accent-soft: var(--claw-soft); }
 .app-card.is-billingbird { --card-accent: var(--bill);   --card-accent-soft: var(--bill-soft); }
 .app-card.is-carrierpigeonvpn { --card-accent: var(--pigeon); --card-accent-soft: var(--pigeon-soft); }
 .app-card.is-voyagevault { --card-accent: var(--voyagevault); --card-accent-soft: var(--voyagevault-soft); }
