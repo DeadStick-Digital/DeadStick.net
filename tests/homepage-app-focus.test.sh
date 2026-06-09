@@ -63,6 +63,10 @@ reject '3</strong>Shipping apps' \
   index.html \
   'Homepage stats should not imply all three apps are shipping'
 
+require 'grid-template-columns: repeat(3, minmax(0, 1fr));' \
+  styles.css \
+  'Homepage app cards should sit side-by-side on desktop'
+
 require '<article class="app-card is-carrierpigeonvpn is-coming-soon" data-status="Coming soon">' \
   index.html \
   'CarrierPigeonVPN should expose the coming-soon state for the watermark'
