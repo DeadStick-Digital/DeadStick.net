@@ -27,7 +27,7 @@ require '<article class="app-card is-billingbird is-primary-focus">' \
   index.html \
   'BillingBird should carry the primary focus state'
 
-require '<link rel="stylesheet" href="styles.css?v=20260606-voyagevault">' \
+require '<link rel="stylesheet" href="styles.css?v=20260609-app-grid">' \
   index.html \
   'Homepage should cache-bust the stylesheet for privacy-promise copy styling'
 
