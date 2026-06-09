@@ -63,14 +63,6 @@ reject '3</strong>Shipping apps' \
   index.html \
   'Homepage stats should not imply all three apps are shipping'
 
-require '<article class="app-card is-clawmelt is-coming-soon" data-status="Coming soon">' \
-  index.html \
-  'ClawMelt should expose the coming-soon state for the watermark'
-
-require '<a class="app-icon app-icon-link" href="apps/clawmelt.html" aria-label="Open ClawMelt app page">' \
-  index.html \
-  'ClawMelt icon should link to its app page'
-
 require '<article class="app-card is-carrierpigeonvpn is-coming-soon" data-status="Coming soon">' \
   index.html \
   'CarrierPigeonVPN should expose the coming-soon state for the watermark'

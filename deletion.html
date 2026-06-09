@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#09090c">
-  <meta name="description" content="How to delete your data from DeadStick Digital LLC apps: ClawMelt, BillingBird, CarrierPigeonVPN, and VoyageVault.">
+  <meta name="description" content="How to delete your data from DeadStick Digital LLC apps: BillingBird, CarrierPigeonVPN, and VoyageVault.">
   <title>Account &amp; data deletion — DeadStick Digital LLC</title>
   <link rel="icon" type="image/png" href="assets/logo-mark-128.png">
   <link rel="stylesheet" href="styles.css">
@@ -50,20 +50,6 @@
       iCloud or Google Drive sync, delete the app's container/folder in that service to remove the
       remote copy. We never receive either copy. No message to us is required.
     </div>
-
-    <h2 id="clawmelt">ClawMelt</h2>
-    <p>ClawMelt stores every dataset, checkpoint, adapter, and log file in a local project folder on
-       your Mac. Nothing is uploaded to DeadStick Digital or to any third party during training.</p>
-    <ul>
-      <li><strong>Remove a single project.</strong> In ClawMelt, right-click the project in the
-          sidebar and choose <em>Delete</em>, or delete the project folder directly in Finder.</li>
-      <li><strong>Remove everything.</strong> Drag <em>ClawMelt.app</em> to the Trash, then delete
-          <code>~/Library/Application Support/ClawMelt/</code> and
-          <code>~/Library/Caches/com.deadstick.clawmelt/</code>. That removes preferences, the
-          model catalog cache, and any local training logs.</li>
-      <li><strong>Hugging Face-side data.</strong> Models or datasets you downloaded from Hugging
-          Face live on your machine only. They are not mirrored anywhere by DeadStick Digital.</li>
-    </ul>
 
     <h2 id="billingbird">BillingBird</h2>
     <p>BillingBird stores clients, invoices, receipts, and attachments in an on-device database.
