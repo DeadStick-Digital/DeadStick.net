@@ -81,8 +81,8 @@ section" of any page that uses an Apple trademark. The modern form is:
 
 - The footer on `index.html` already has this notice — ✅
   - Minor: add "**and regions**" and include "**Apple Silicon**" (used on
-    `clawmelt.html`).
-- `support.html`, `privacy.html`, `terms.html`, and the three pages under
+    `index.html`).
+- `support.html`, `privacy.html`, `terms.html`, and the pages under
   `apps/` all mention Apple marks (iPhone, iPad, Mac, macOS, App Store) but
   have a stripped-down footer with **no** attribution. The cleanest fix is to
   add the attribution line to the minimal footer on those pages, or move the
@@ -132,7 +132,7 @@ iOS / macOS / tvOS, VpnService on Android). Guideline 5.4 says:
 ## 6. Account-deletion rule (Guideline 5.1.1(v))
 
 Apple requires apps that support account creation to offer in-app account
-deletion. All three app pages declare **"Account: None required"**, so this
+deletion. Our app pages declare **"Account: None required"**, so this
 rule doesn't apply — ✅. If any app ever gains an account system, revisit.
 
 ## 7. Subscription disclosures (Guideline 3.1.2)
@@ -158,12 +158,11 @@ concern under 3.1.2) and sidesteps localized-pricing drift. The full §3.1.2
 disclosure remains an App-Store-Connect / in-app responsibility — not a
 website fix.
 
-**All three apps are subscription products** (confirmed 2026-04-20). That means
-Guideline 3.1.2 disclosure obligations (length, price, renewal terms,
-cancellation route, free-trial length) apply in App Store Connect and on the
-in-app purchase screen for **ClawMelt**, **BillingBird**, and
-**CarrierPigeonVPN**. No website update needed since the site no longer
-advertises pricing.
+**BillingBird and CarrierPigeonVPN are subscription products** (confirmed
+2026-04-20). That means Guideline 3.1.2 disclosure obligations (length, price,
+renewal terms, cancellation route, free-trial length) apply in App Store
+Connect and on the in-app purchase screen for those apps. No website update
+needed since the site no longer advertises pricing.
 
 ## 8. EULA
 
@@ -224,8 +223,8 @@ anything to App Review:
       and the homepage card in `index.html`, plus strengthened the carrier-TOS
       responsibility language in the "What CarrierPigeonVPN is not" section.
 - [x] ~~Clarify whether BillingBird's "optional Pro tier" is a subscription or
-      a one-time upgrade, once decided.~~ Resolved 2026-04-20 — all three apps
-      (ClawMelt, BillingBird, CarrierPigeonVPN) will be subscription products.
+      a one-time upgrade, once decided.~~ Resolved 2026-04-20 — BillingBird
+      and CarrierPigeonVPN will be subscription products.
       Pricing removed from public site; store listings will carry the numbers.
 
 ### Rename (2026-04-19)

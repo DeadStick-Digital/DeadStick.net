@@ -46,9 +46,10 @@ Google's User Data policy requires the policy to disclose:
 | Data retention and deletion policy                         | §6 + §7 + dedicated `deletion.html`                      | ✅ |
 | Compliance with applicable laws (CCPA / GDPR / COPPA etc.) | §7 + §8                                                  | ✅ |
 
-**App-specific sections** in §10 name each app (ClawMelt, BillingBird,
-CarrierPigeonVPN) and describe what, if anything, is handled per app — which
-satisfies Google's requirement that the policy be "specific to the app".
+**App-specific sections** in §10 name each app (BillingBird,
+CarrierPigeonVPN, and VoyageVault) and describe what, if anything, is handled
+per app — which satisfies Google's requirement that the policy be "specific to
+the app".
 
 ## 3. Data Safety section (🚧 Play Console filing)
 
@@ -56,12 +57,12 @@ Separate from the privacy policy, Google Play requires every app to complete
 the **Data Safety** form in the Play Console. The answers must match the
 privacy policy. Based on `privacy.html`, the answers for each app are:
 
-| Question                                 | ClawMelt | BillingBird | CarrierPigeonVPN |
-|------------------------------------------|----------|-------------|------------------|
-| Does the app collect user data?          | No       | No¹         | No²              |
-| Does the app share user data?            | No       | No          | No               |
-| Is data encrypted in transit?            | Yes (TLS for any optional third-party download) | Yes (sync via iCloud / Google Drive) | Yes (WireGuard) |
-| Can users request data deletion?         | Yes — uninstall + `deletion.html` | Yes — local DB wipe + `deletion.html` | Yes — uninstall per-device + `deletion.html` |
+| Question                                 | BillingBird | CarrierPigeonVPN | VoyageVault |
+|------------------------------------------|-------------|------------------|-------------|
+| Does the app collect user data?          | No¹         | No²              | No³         |
+| Does the app share user data?            | No          | No               | No          |
+| Is data encrypted in transit?            | Yes (sync via iCloud / Google Drive) | Yes (WireGuard) | Yes (future sync via iCloud / Google Drive) |
+| Can users request data deletion?         | Yes — local DB wipe + `deletion.html` | Yes — uninstall per-device + `deletion.html` | Yes — local vault wipe + `deletion.html` |
 
 ¹ BillingBird stores business data **locally** or in the user's own iCloud /
 Google Drive account — not collected by DeadStick Digital. Google's form
@@ -72,6 +73,10 @@ by the app developer."
 traffic is routed through DeadStick-operated servers. The keychain-held
 WireGuard keys and paired-device identifiers are user-device-local, not
 collected.
+
+³ VoyageVault stores scanned documents, OCR text, translations, generated PDFs,
+and indexes locally by default. Future private sync is planned through the
+user's own iCloud or Google Drive account, not a DeadStick-operated server.
 
 ## 4. VPN apps (CarrierPigeonVPN) — Android `VpnService` policy
 
@@ -93,10 +98,10 @@ Google's policy for apps using `android.net.VpnService` (updated November
 | Permission                                                                 | Apps that use it           | Play Console declaration | Status |
 |----------------------------------------------------------------------------|-----------------------------|--------------------------|--------|
 | `BIND_VPN_SERVICE` + `FOREGROUND_SERVICE_SPECIAL_USE` (VPN)                | CarrierPigeonVPN            | Required for VPN apps    | 🚧 app-side |
-| `INTERNET`                                                                 | All three                   | No declaration needed    | ✅ |
+| `INTERNET`                                                                 | BillingBird, CarrierPigeonVPN, VoyageVault | No declaration needed    | ✅ |
 | `CAMERA` (if BillingBird does receipt scanning)                            | BillingBird (TBD)           | In-app rationale prompt required | 🚧 app-side, clarify scope |
 | `READ_MEDIA_IMAGES` / photo picker                                         | BillingBird (if users attach receipts) | Photo picker preferred on Android 13+ | 🚧 app-side |
-| `POST_NOTIFICATIONS` (Android 13+)                                          | All three if they notify    | Runtime permission       | 🚧 app-side |
+| `POST_NOTIFICATIONS` (Android 13+)                                          | Any app that notifies users | Runtime permission       | 🚧 app-side |
 
 The website does not need to enumerate permissions — that is the Play Console
 job — but the privacy policy should name any permission that accesses
@@ -118,14 +123,14 @@ build-configuration item, not a website item.
 ## 7. Content rating (🚧 Play Console filing)
 
 Every app must complete the **Content Rating questionnaire** (IARC) in the
-Play Console. For these three apps, the expected rating is **Everyone** —
+Play Console. For these apps, the expected rating is **Everyone** —
 no user-generated content, no violence, no communication features that would
 trigger a higher rating.
 
 ## 8. Account deletion (User Data policy)
 
 Google requires apps that allow account creation to offer **in-app account
-deletion** and a **web-based deletion route**. None of the three apps have
+deletion** and a **web-based deletion route**. None of the apps have
 user accounts on DeadStick-operated servers, so the strict in-app
 requirement does not apply, but `deletion.html` already documents the
 data-deletion steps for each app and satisfies the web-based route — ✅.
@@ -168,12 +173,6 @@ anything to Play Review:
      a subscription product, with the free trial declared in the Play Console
      subscription configuration.
    - **BillingBird** (confirmed 2026-04-20 as a subscription product): same
-     rule — the Android build must offer the subscription through Google Play
-     Billing, with any free trial declared in the Play Console subscription
-     configuration.
-   - **ClawMelt** (confirmed 2026-04-20 as a subscription product): when an
-     Android build ships, same Google Play Billing rule applies. The macOS
-     build will use Apple In-App Purchase on the Mac App Store.
 
 ## 10. Summary — what still to do
 
@@ -200,5 +199,3 @@ anything to Play Review:
 - [ ] BillingBird Android build: ship the subscription through Google Play
       Billing as a subscription product, declare any free trial in the Play
       Console subscription configuration.
-- [ ] ClawMelt Android build (if/when shipped): same — Google Play Billing
-      subscription product with free-trial declaration.
