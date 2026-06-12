@@ -27,7 +27,7 @@ require '<article class="app-card is-billingbird is-primary-focus">' \
   index.html \
   'BillingBird should carry the primary focus state'
 
-require '<link rel="stylesheet" href="styles.css?v=20260612-cryptscan">' \
+require '<link rel="stylesheet" href="styles.css?v=20260612-holos-document-vault">' \
   index.html \
   'Homepage should cache-bust the stylesheet for privacy-promise copy styling'
 
@@ -71,9 +71,9 @@ require '<article class="app-card is-carrierpigeonvpn is-coming-soon" data-statu
   index.html \
   'CarrierPigeonVPN should expose the coming-soon state for the watermark'
 
-require '<article class="app-card is-cryptscan is-coming-soon" data-status="Coming soon">' \
+require '<article class="app-card is-holos-document-vault is-coming-soon" data-status="Coming soon">' \
   index.html \
-  'CryptScan should expose the coming-soon state for the watermark'
+  'Holos Document Vault should expose the coming-soon state for the watermark'
 
 require '<a class="app-icon app-icon-link" href="apps/billingbird.html" aria-label="Open BillingBird app page">' \
   index.html \
@@ -83,9 +83,9 @@ require '<a class="app-icon app-icon-link" href="apps/carrierpigeonvpn.html" ari
   index.html \
   'CarrierPigeonVPN icon should link to its app page'
 
-require '<a class="app-icon app-icon-link" href="apps/cryptscan.html" aria-label="Open CryptScan app page">' \
+require '<a class="app-icon app-icon-link" href="apps/holos-document-vault.html" aria-label="Open Holos Document Vault app page">' \
   index.html \
-  'CryptScan icon should link to its app page'
+  'Holos Document Vault icon should link to its app page'
 
 require '.app-card.is-coming-soon::after' \
   styles.css \

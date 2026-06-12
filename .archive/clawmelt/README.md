@@ -1,6 +1,6 @@
 # ClawMelt archive
 
-ClawMelt was removed from the public DeadStick Digital website so the site can focus on the three current app pages: BillingBird, CarrierPigeonVPN, and CryptScan.
+ClawMelt was removed from the public DeadStick Digital website so the site can focus on the three current app pages: BillingBird, CarrierPigeonVPN, and Holos Document Vault.
 
 Preserved files:
 

@@ -7,11 +7,11 @@ require() {
   local message="$3"
 
   if ! git grep -q "$pattern" -- "$file"; then
-    printf 'Missing expected CryptScan private-sync copy: %s\n' "$message" >&2
+    printf 'Missing expected Holos Document Vault private-sync copy: %s\n' "$message" >&2
     exit 1
   fi
 }
 
 require 'Use planned private sync to access your document vault through your own iCloud or Google Drive account across supported devices' \
-  apps/cryptscan.html \
-  'CryptScan capability list should explain iCloud and Google Drive account access'
+  apps/holos-document-vault.html \
+  'Holos Document Vault capability list should explain iCloud and Google Drive account access'
