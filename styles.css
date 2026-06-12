@@ -26,8 +26,8 @@
   --bill-soft: #5ea8e833;
   --pigeon: #c77dff;         /* neon-violet pigeon */
   --pigeon-soft: #c77dff33;
-  --voyagevault: #7ef4f0;          /* scanner aqua */
-  --voyagevault-soft: #7ef4f033;
+  --cryptscan: #7ef4f0;          /* scanner aqua */
+  --cryptscan-soft: #7ef4f033;
 
   --radius-xs: 8px;
   --radius-sm: 12px;
@@ -409,7 +409,7 @@ section {
 
 .app-card.is-billingbird { --card-accent: var(--bill);   --card-accent-soft: var(--bill-soft); }
 .app-card.is-carrierpigeonvpn { --card-accent: var(--pigeon); --card-accent-soft: var(--pigeon-soft); }
-.app-card.is-voyagevault { --card-accent: var(--voyagevault); --card-accent-soft: var(--voyagevault-soft); }
+.app-card.is-cryptscan { --card-accent: var(--cryptscan); --card-accent-soft: var(--cryptscan-soft); }
 
 .app-card.is-primary-focus {
   border-color: rgba(94, 168, 232, 0.38);
@@ -963,8 +963,8 @@ footer {
   width: 7px;
   height: 7px;
   border-radius: 999px;
-  background: var(--voyagevault);
-  box-shadow: 0 0 18px var(--voyagevault-soft);
+  background: var(--cryptscan);
+  box-shadow: 0 0 18px var(--cryptscan-soft);
 }
 .security-measures strong {
   color: var(--text);

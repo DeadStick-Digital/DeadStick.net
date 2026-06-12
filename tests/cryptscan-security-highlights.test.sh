@@ -7,41 +7,41 @@ require() {
   local message="$3"
 
   if ! git grep -q "$pattern" -- "$file"; then
-    printf 'Missing expected VoyageVault security highlight: %s\n' "$message" >&2
+    printf 'Missing expected CryptScan security highlight: %s\n' "$message" >&2
     exit 1
   fi
 }
 
 require '<h3>Security measures</h3>' \
-  apps/pitot.html \
-  'VoyageVault detail page should introduce the security measures section'
+  apps/cryptscan.html \
+  'CryptScan detail page should introduce the security measures section'
 
-require 'styles.css?v=20260606-voyagevault' \
-  apps/pitot.html \
-  'VoyageVault detail page should request the security-highlight stylesheet update'
+require 'styles.css?v=20260612-cryptscan' \
+  apps/cryptscan.html \
+  'CryptScan detail page should request the security-highlight stylesheet update'
 
 require 'Documents stay local by default' \
-  apps/pitot.html \
+  apps/cryptscan.html \
   'Security highlights should lead with local-first storage'
 
-require 'No proprietary VoyageVault document server' \
-  apps/pitot.html \
+require 'No proprietary CryptScan document server' \
+  apps/cryptscan.html \
   'Security highlights should call out the avoided backend'
 
 require 'On-device OCR and search indexes' \
-  apps/pitot.html \
+  apps/cryptscan.html \
   'Security highlights should mention local OCR/indexing'
 
 require 'SHA-256 content identity' \
-  apps/pitot.html \
+  apps/cryptscan.html \
   'Security highlights should mention content-addressed asset identity'
 
 require 'Path and symlink escape checks' \
-  apps/pitot.html \
+  apps/cryptscan.html \
   'Security highlights should mention unsafe path checks'
 
-require 'Face ID, biometrics, or a VoyageVault PIN' \
-  apps/pitot.html \
+require 'Face ID, biometrics, or a CryptScan PIN' \
+  apps/cryptscan.html \
   'Security highlights should mention optional unlock controls'
 
 require '.security-measures' \
