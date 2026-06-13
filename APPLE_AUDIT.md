@@ -1,7 +1,8 @@
 # deadstick.net — Apple Developer / App Store audit
 
-_Audit date: 2026-04-18. Based on App Store Review Guidelines, App Store Connect
-requirements, and Apple's third-party trademark guidelines as of this date._
+_Audit date: 2026-04-18. Refreshed 2026-06-13 for Holos Drive Vault website
+coverage. Based on App Store Review Guidelines, App Store Connect requirements,
+and Apple's third-party trademark guidelines as of this date._
 
 This audits **the website** against Apple's requirements for apps distributed
 through the App Store and Mac App Store. It doesn't cover things that live
@@ -135,6 +136,23 @@ Apple requires apps that support account creation to offer in-app account
 deletion. Our app pages declare **"Account: None required"**, so this
 rule doesn't apply — ✅. If any app ever gains an account system, revisit.
 
+## 6.1 Holos Drive Vault website coverage (added 2026-06-13)
+
+Holos Drive Vault now has its own page at `apps/holos-drive-vault.html`,
+separate from Holos Document Vault. The page links to the required public
+support and privacy surfaces and to the data-deletion page:
+
+- Privacy URL: `privacy.html#apps-holos-drive-vault`
+- Support URL: `support.html`
+- Data deletion / privacy choices route: `deletion.html#holos-drive-vault`
+- Marketing URL: `apps/holos-drive-vault.html`
+
+The public copy is careful to avoid promising server-side recovery. It states
+that DeadStick Digital does not receive, store, sell, share, or recover drive
+PINs, passwords, recovery keys, drive contents, or keychain items. It also
+warns that formatting is destructive and that recovery contact information
+written to the setup partition is intentionally visible on the removable drive.
+
 ## 7. Subscription disclosures (Guideline 3.1.2)
 
 **CarrierPigeonVPN — first app to ship.** Confirmed 2026-04-20: the phone
@@ -199,6 +217,10 @@ anything to App Review:
 6. **App Privacy questionnaire.** When submitting each app, the answers in
    the App Privacy section of App Store Connect must match `privacy.html`.
    Mismatches are a common review-rejection reason.
+7. **Holos Drive Vault destructive operation review notes.** App Review notes
+   should explain that the app formats user-selected external drives only,
+   avoids internal startup disks, requires confirmation before erasing, and
+   cannot recover encrypted contents if the user loses the recovery path.
 
 ## 10. Summary — what still to do
 

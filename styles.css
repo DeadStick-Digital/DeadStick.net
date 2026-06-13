@@ -26,6 +26,8 @@
   --bill-soft: #5ea8e833;
   --pigeon: #c77dff;         /* neon-violet pigeon */
   --pigeon-soft: #c77dff33;
+  --holos-drive-vault: #9fe6ba;           /* secure drive green */
+  --holos-drive-vault-soft: #9fe6ba33;
   --holos-document-vault: #7ef4f0;          /* scanner aqua */
   --holos-document-vault-soft: #7ef4f033;
 
@@ -371,10 +373,11 @@ section {
 
 .apps-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
 }
-@media (max-width: 900px) { .apps-grid { grid-template-columns: 1fr; } }
+@media (max-width: 1100px) { .apps-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .apps-grid { grid-template-columns: 1fr; } }
 
 .app-card {
   --card-accent: var(--accent);
@@ -409,6 +412,7 @@ section {
 
 .app-card.is-billingbird { --card-accent: var(--bill);   --card-accent-soft: var(--bill-soft); }
 .app-card.is-carrierpigeonvpn { --card-accent: var(--pigeon); --card-accent-soft: var(--pigeon-soft); }
+.app-card.is-holos-drive-vault { --card-accent: var(--holos-drive-vault); --card-accent-soft: var(--holos-drive-vault-soft); }
 .app-card.is-holos-document-vault { --card-accent: var(--holos-document-vault); --card-accent-soft: var(--holos-document-vault-soft); }
 
 .app-card.is-primary-focus {
@@ -968,6 +972,17 @@ footer {
 }
 .security-measures strong {
   color: var(--text);
+}
+
+.security-measures.is-drive-vault {
+  border-color: rgba(159, 230, 186, 0.22);
+  background:
+    linear-gradient(180deg, rgba(159, 230, 186, 0.06), rgba(255,255,255,0.014));
+}
+
+.security-measures.is-drive-vault li::before {
+  background: var(--holos-drive-vault);
+  box-shadow: 0 0 18px var(--holos-drive-vault-soft);
 }
 
 .side-card {

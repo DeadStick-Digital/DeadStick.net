@@ -27,7 +27,7 @@ require '<article class="app-card is-billingbird is-primary-focus">' \
   index.html \
   'BillingBird should carry the primary focus state'
 
-require '<link rel="stylesheet" href="styles.css?v=20260612-holos-document-vault">' \
+require '<link rel="stylesheet" href="styles.css?v=20260613-holos-drive-vault">' \
   index.html \
   'Homepage should cache-bust the stylesheet for privacy-promise copy styling'
 
@@ -63,13 +63,17 @@ reject '3</strong>Shipping apps' \
   index.html \
   'Homepage stats should not imply all three apps are shipping'
 
-require 'grid-template-columns: repeat(3, minmax(0, 1fr));' \
+require 'grid-template-columns: repeat(4, minmax(0, 1fr));' \
   styles.css \
-  'Homepage app cards should sit side-by-side on desktop'
+  'Homepage app cards should sit side-by-side on wide desktop'
 
 require '<article class="app-card is-carrierpigeonvpn is-coming-soon" data-status="Coming soon">' \
   index.html \
   'CarrierPigeonVPN should expose the coming-soon state for the watermark'
+
+require '<article class="app-card is-holos-drive-vault is-coming-soon" data-status="Coming soon">' \
+  index.html \
+  'Holos Drive Vault should expose the coming-soon state for the watermark'
 
 require '<article class="app-card is-holos-document-vault is-coming-soon" data-status="Coming soon">' \
   index.html \
@@ -82,6 +86,10 @@ require '<a class="app-icon app-icon-link" href="apps/billingbird.html" aria-lab
 require '<a class="app-icon app-icon-link" href="apps/carrierpigeonvpn.html" aria-label="Open CarrierPigeonVPN app page">' \
   index.html \
   'CarrierPigeonVPN icon should link to its app page'
+
+require '<a class="app-icon app-icon-link" href="apps/holos-drive-vault.html" aria-label="Open Holos Drive Vault app page">' \
+  index.html \
+  'Holos Drive Vault icon should link to its app page'
 
 require '<a class="app-icon app-icon-link" href="apps/holos-document-vault.html" aria-label="Open Holos Document Vault app page">' \
   index.html \

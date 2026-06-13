@@ -1,10 +1,10 @@
 # deadstick.net — Google Play / Android audit
 
-_Audit date: 2026-04-19. Based on Google Play Developer Program Policies,
-Google Play Console requirements, and Android platform requirements as of
-this date. Parallels the scope of `APPLE_AUDIT.md` — this audits **the
-website**, with flagged items for things that live inside the app or inside
-the Play Console._
+_Audit date: 2026-04-19. Refreshed 2026-06-13 for Holos Drive Vault website
+coverage. Based on Google Play Developer Program Policies, Google Play Console
+requirements, and Android platform requirements as of this date. Parallels the
+scope of `APPLE_AUDIT.md` — this audits **the website**, with flagged items for
+things that live inside the app or inside the Play Console._
 
 ## Legend
 
@@ -47,9 +47,9 @@ Google's User Data policy requires the policy to disclose:
 | Compliance with applicable laws (CCPA / GDPR / COPPA etc.) | §7 + §8                                                  | ✅ |
 
 **App-specific sections** in §10 name each app (BillingBird,
-CarrierPigeonVPN, and Holos Document Vault) and describe what, if anything, is handled
-per app — which satisfies Google's requirement that the policy be "specific to
-the app".
+CarrierPigeonVPN, Holos Drive Vault, and Holos Document Vault) and describe
+what, if anything, is handled per app — which satisfies Google's requirement
+that the policy be "specific to the app".
 
 ## 3. Data Safety section (🚧 Play Console filing)
 
@@ -57,12 +57,12 @@ Separate from the privacy policy, Google Play requires every app to complete
 the **Data Safety** form in the Play Console. The answers must match the
 privacy policy. Based on `privacy.html`, the answers for each app are:
 
-| Question                                 | BillingBird | CarrierPigeonVPN | Holos Document Vault |
-|------------------------------------------|-------------|------------------|-------------|
-| Does the app collect user data?          | No¹         | No²              | No³         |
-| Does the app share user data?            | No          | No               | No          |
-| Is data encrypted in transit?            | Yes (sync via iCloud / Google Drive) | Yes (WireGuard) | Yes (future sync via iCloud / Google Drive) |
-| Can users request data deletion?         | Yes — local DB wipe + `deletion.html` | Yes — uninstall per-device + `deletion.html` | Yes — local vault wipe + `deletion.html` |
+| Question                                 | BillingBird | CarrierPigeonVPN | Holos Drive Vault | Holos Document Vault |
+|------------------------------------------|-------------|------------------|-------------------|----------------------|
+| Does the app collect user data?          | No¹         | No²              | No³               | No⁴                  |
+| Does the app share user data?            | No          | No               | No                | No                   |
+| Is data encrypted in transit?            | Yes (sync via iCloud / Google Drive) | Yes (WireGuard) | Yes (optional OS/cloud keychain sync) | Yes (future sync via iCloud / Google Drive) |
+| Can users request data deletion?         | Yes — local DB wipe + `deletion.html` | Yes — uninstall per-device + `deletion.html` | Yes — keychain/credential deletion + drive erase + `deletion.html` | Yes — local vault wipe + `deletion.html` |
 
 ¹ BillingBird stores business data **locally** or in the user's own iCloud /
 Google Drive account — not collected by DeadStick Digital. Google's form
@@ -74,7 +74,11 @@ traffic is routed through DeadStick-operated servers. The keychain-held
 WireGuard keys and paired-device identifiers are user-device-local, not
 collected.
 
-³ Holos Document Vault stores scanned documents, OCR text, translations, generated PDFs,
+³ Holos Drive Vault stores recovery material in OS credential stores and can
+write optional contact information to the removable drive selected by the user.
+DeadStick Digital does not receive keys, drive contents, or telemetry.
+
+⁴ Holos Document Vault stores scanned documents, OCR text, translations, generated PDFs,
 and indexes locally by default. Future private sync is planned through the
 user's own iCloud or Google Drive account, not a DeadStick-operated server.
 
@@ -98,7 +102,7 @@ Google's policy for apps using `android.net.VpnService` (updated November
 | Permission                                                                 | Apps that use it           | Play Console declaration | Status |
 |----------------------------------------------------------------------------|-----------------------------|--------------------------|--------|
 | `BIND_VPN_SERVICE` + `FOREGROUND_SERVICE_SPECIAL_USE` (VPN)                | CarrierPigeonVPN            | Required for VPN apps    | 🚧 app-side |
-| `INTERNET`                                                                 | BillingBird, CarrierPigeonVPN, Holos Document Vault | No declaration needed    | ✅ |
+| `INTERNET`                                                                 | BillingBird, CarrierPigeonVPN, Holos Drive Vault if Android support ships, Holos Document Vault | No declaration needed    | ✅ |
 | `CAMERA` (if BillingBird does receipt scanning)                            | BillingBird (TBD)           | In-app rationale prompt required | 🚧 app-side, clarify scope |
 | `READ_MEDIA_IMAGES` / photo picker                                         | BillingBird (if users attach receipts) | Photo picker preferred on Android 13+ | 🚧 app-side |
 | `POST_NOTIFICATIONS` (Android 13+)                                          | Any app that notifies users | Runtime permission       | 🚧 app-side |
@@ -162,7 +166,11 @@ anything to Play Review:
    policy to be accessible **inside the app**, not just on the Play Store
    listing. Each app's Settings / About screen must link to
    <https://www.deadstick.net/privacy.html>.
-8. **Billing / payments.** Google Play distribution requires that all in-app
+8. **Holos Drive Vault Android scope.** Android support is not represented by
+   current repo code. If Holos Drive Vault ships on Google Play, complete a
+   fresh Android permission, Data Safety, and account-deletion review for that
+   build before relying on this website audit.
+9. **Billing / payments.** Google Play distribution requires that all in-app
    digital-goods purchases use **Google Play Billing** — no third-party
    processors. (External web purchases are allowed after the 2024 FTC + EU
    rulings, but in-app purchases on Android must use Play Billing.) This
@@ -192,6 +200,8 @@ anything to Play Review:
 - [ ] CarrierPigeonVPN: select VPN category, declare VpnService, add in-app
       disclosure screens, support always-on VPN + lockdown.
 - [ ] Add in-app links to `privacy.html` from each Android app.
+- [ ] Holos Drive Vault: if an Android build ships, verify Android-specific
+      permissions, Data Safety responses, and in-app deletion/privacy links.
 - [ ] Provide `contact@deadstick.net` in Play Console app contact fields.
 - [ ] CarrierPigeonVPN Android build: ship the US$4.99/year subscription
       through Google Play Billing as a subscription product, declare the free

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#09090c">
-  <meta name="description" content="How to delete your data from DeadStick Digital LLC apps: BillingBird, CarrierPigeonVPN, and Holos Document Vault.">
+  <meta name="description" content="How to delete your data from DeadStick Digital LLC apps: BillingBird, CarrierPigeonVPN, Holos Drive Vault, and Holos Document Vault.">
   <title>Account &amp; data deletion — DeadStick Digital LLC</title>
   <link rel="icon" type="image/png" href="assets/logo-mark-128.png">
   <link rel="stylesheet" href="styles.css">
@@ -93,6 +93,26 @@
       <li><strong>Future private sync copies.</strong> If you enable optional iCloud or Google Drive
           sync in a later version, delete Holos Document Vault's app container or hidden app data from that provider
           to remove the remote copy.</li>
+    </ul>
+
+    <h2 id="holos-drive-vault">Holos Drive Vault</h2>
+    <p>Holos Drive Vault stores recovery material in operating-system credential stores and writes
+       drive setup files only to the removable drive you choose. DeadStick Digital does not keep a
+       server-side account, drive-key escrow, drive-content backup, or telemetry profile for Holos
+       Drive Vault.</p>
+    <ul>
+      <li><strong>On-device apps.</strong> Uninstalling Holos Drive Vault removes the app. If you
+          want to remove recovery keys as well, delete keychain items for
+          <code>com.holosdrive.recovery</code> in Apple Keychain or any <code>HolosDrive_*</code>
+          entries in Windows Credential Manager.</li>
+      <li><strong>iCloud Keychain copy.</strong> If iCloud Keychain sync is enabled, deleting the
+          Holos Drive Vault keychain item from a signed-in Apple device with sync enabled removes
+          the synced keychain copy through Apple's normal keychain sync process.</li>
+      <li><strong>Drive contents.</strong> To delete the encrypted drive vault itself, erase or
+          reformat the external drive using Disk Utility, Holos Drive Vault, or your operating
+          system's disk tools. Export anything you want to keep before erasing.</li>
+      <li><strong>Recovery contact file.</strong> If you entered recovery contact information, remove
+          the public contact file from the drive's setup partition or erase that partition.</li>
     </ul>
 
     <h2 id="on-the-web">Our website</h2>

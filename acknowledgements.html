@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#09090c">
-  <meta name="description" content="Open-source software, frameworks, and services that the DeadStick Digital apps — BillingBird, CarrierPigeonVPN, and Holos Document Vault — are built on.">
+  <meta name="description" content="Open-source software, frameworks, and services that the DeadStick Digital apps — BillingBird, CarrierPigeonVPN, Holos Drive Vault, and Holos Document Vault — are built on.">
   <title>Acknowledgements — DeadStick Digital LLC</title>
   <link rel="icon" type="image/png" href="assets/logo-mark-128.png">
   <link rel="stylesheet" href="styles.css">
@@ -54,6 +54,7 @@
         <li><a href="#billingbird">BillingBird</a></li>
         <li><a href="#carrierpigeonvpn">CarrierPigeonVPN</a></li>
         <li><a href="#holos-document-vault">Holos Document Vault</a></li>
+        <li><a href="#holos-drive-vault">Holos Drive Vault</a></li>
         <li><a href="#website">Website</a></li>
         <li><a href="#typography">Typography &amp; type</a></li>
         <li><a href="#trademarks">Trademarks &amp; service marks</a></li>
@@ -128,7 +129,25 @@
           <strong>appDataFolder</strong> APIs are planned for the Android implementation.</li>
     </ul>
 
-    <h2 id="website">4. Website</h2>
+    <h2 id="holos-drive-vault">4. Holos Drive Vault</h2>
+    <p>Holos Drive Vault is a native encrypted-drive utility with Apple-platform and Windows
+       companion components. Major platform and open-source building blocks include:</p>
+    <ul>
+      <li><strong>Swift</strong>, <strong>SwiftUI</strong>, and <strong>Charts</strong> for the
+          macOS drive-management interface.</li>
+      <li>Apple's <strong>Security</strong> framework and <strong>LocalAuthentication</strong> for
+          Keychain storage and Touch ID / Face ID / device-owner authentication flows.</li>
+      <li>Apple's <strong>APFS</strong>, <strong>Disk Utility</strong>, and <code>diskutil</code>
+          command-line tooling for encrypted external-drive setup.</li>
+      <li><strong>.NET</strong> Worker Services, Windows Credential Manager APIs, and Windows WMI
+          event watching for planned Windows companion behavior.</li>
+      <li><strong><a href="https://github.com/winfsp/winfsp">WinFsp</a></strong> and a local APFS
+          bridge for planned user-mode mounted-drive access on Windows.</li>
+      <li><strong><a href="https://github.com/lzfse/lzfse">LZFSE</a></strong> compression support,
+          used within the local APFS parsing boundary.</li>
+    </ul>
+
+    <h2 id="website">5. Website</h2>
     <p><a href="https://www.deadstick.net">www.deadstick.net</a> is a hand-written static site
        served from GitHub Pages. It relies on:</p>
     <ul>
@@ -142,12 +161,12 @@
           contact form. © Intuition Machines, Inc.</li>
     </ul>
 
-    <h2 id="typography">5. Typography &amp; type</h2>
+    <h2 id="typography">6. Typography &amp; type</h2>
     <p>The system font stack (SF Pro on Apple platforms, Segoe UI Variable on Windows, Roboto on
        Android) is used throughout, with no custom webfonts loaded from third parties. This keeps
        our pages fast and keeps your browser from making extra requests you did not ask for.</p>
 
-    <h2 id="trademarks">6. Trademarks &amp; service marks</h2>
+    <h2 id="trademarks">7. Trademarks &amp; service marks</h2>
     <p>Apple, the Apple logo, iPhone, iPad, Mac, macOS, and Apple Silicon are trademarks of
        Apple Inc., registered in the U.S. and other countries and regions. App Store is a service
        mark of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC.
@@ -156,7 +175,7 @@
        their respective owners; their use here is purely for identification and does not imply
        endorsement.</p>
 
-    <h2 id="contact">7. Corrections &amp; contact</h2>
+    <h2 id="contact">8. Corrections &amp; contact</h2>
     <p>If a project has been misattributed, a license identifier is wrong, or a dependency has
        been left out, please send a note through the
        <a href="index.html#contact">contact form</a> (topic: <em>Something else</em>) and we will

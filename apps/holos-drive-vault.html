@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09090c">
+  <meta name="description" content="Holos Drive Vault — a security-first encrypted drive utility for macOS and iOS key recovery. Coming soon from DeadStick Digital LLC.">
+  <title>Holos Drive Vault — DeadStick Digital LLC</title>
+  <link rel="icon" type="image/png" href="../icons/holos-drive-vault.png">
+  <link rel="stylesheet" href="../styles.css?v=20260613-holos-drive-vault">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../index.html" aria-label="DeadStick Digital LLC — home">
+      <span class="brand-lockup">
+        <span class="brand-top">
+          <img class="brand-wordmark" src="../assets/logo-wordmark-deadstick-silver.png" alt="DeadStick" width="172" height="22">
+          <span class="brand-sub">Digital <span class="brand-suffix">LLC</span></span>
+        </span>
+        <span class="brand-sub brand-tagline">Engineered for edge cases</span>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../index.html#apps">Apps</a>
+      <a href="../index.html#company">Company</a>
+      <a href="../support.html">Support</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../terms.html">Terms</a>
+    </nav>
+    <a class="nav-cta" href="../index.html#contact">Contact</a>
+  </div>
+</header>
+
+<main>
+
+<section class="wrap app-hero">
+  <div class="app-icon"><img src="../icons/holos-drive-vault.png" alt="Holos Drive Vault app icon"></div>
+  <div>
+    <div class="eyebrow" style="color:var(--holos-drive-vault);">Coming soon · Encrypted Drive Security</div>
+    <h1>Holos Drive Vault</h1>
+    <p>A security-first utility for people who move sensitive files on external drives. Holos Drive
+       Vault helps prepare encrypted APFS drives on macOS, stores recovery material in OS-managed
+       keychains, and keeps drive access under your control without a DeadStick account, analytics
+       profile, or recovery-key server.</p>
+    <div class="hero-actions" style="margin-top:28px;">
+      <a class="btn btn-primary" href="../index.html#contact">Contact support <span class="btn-arrow">→</span></a>
+      <a class="btn" href="#security">Security details</a>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" style="padding-top:0;">
+  <div class="detail-grid">
+
+    <div class="detail-body">
+      <h2 id="overview">Overview</h2>
+      <p>Holos Drive Vault is separate from Holos Document Vault. Document Vault is for scanning and
+         organizing records; Drive Vault is for securing removable storage. Its macOS app focuses
+         on eligible external drives: it shows external disks, guides the setup process, warns
+         before destructive formatting, creates a small setup partition, and prepares an encrypted
+         APFS vault volume protected by a PIN or password you choose.</p>
+      <p>The companion recovery flow is designed around the platform security model. Recovery keys
+         are stored in Apple Keychain, can sync through the user's own iCloud Keychain when enabled,
+         and can be revealed only after Touch ID, Face ID, or device passcode authentication
+         succeeds. DeadStick Digital does not receive or escrow the key.</p>
+
+      <h3>What it does</h3>
+      <ul>
+        <li>Discovers external macOS drives and avoids internal startup-disk operations.</li>
+        <li>Runs a guided setup flow for contact details, PIN or password selection, and final
+            confirmation before formatting.</li>
+        <li>Formats the selected external drive with a setup partition and an encrypted APFS vault
+            volume for private files.</li>
+        <li>Stores recovery material in the OS keychain instead of a DeadStick-operated database.</li>
+        <li>Uses Touch ID, Face ID, or device passcode before displaying a synced recovery key on a
+            trusted Apple device.</li>
+        <li>Includes a local-first path for future Windows mounting through Windows Credential
+            Manager and a user-mode APFS bridge, without a DeadStick key server.</li>
+      </ul>
+
+      <h3>How your data is protected</h3>
+      <p>Holos Drive Vault is built around a narrow data path: the encrypted drive, your device
+         keychain, and optional iCloud Keychain sync that you control in system settings. The app
+         does not create a web account and does not upload drive contents, PINs, recovery keys, or
+         usage telemetry to DeadStick Digital.</p>
+      <p>If you add recovery contact details, those details are written to the drive's setup
+         partition so someone who finds the drive can contact you. That file is intentionally
+         visible on the drive; only include contact information you are comfortable putting on the
+         removable media itself.</p>
+
+      <div class="security-measures is-drive-vault" id="security">
+        <h3>Why Holos Drive Vault is safe and secure</h3>
+        <p>Security is the point of the app, not a feature added later. The design favors operating
+           system protections, local storage, explicit user consent, and recoverability without
+           handing DeadStick Digital a copy of your secret material.</p>
+        <ul>
+          <li><strong>No DeadStick recovery-key server.</strong> DeadStick Digital does not receive,
+              store, sell, share, or recover your drive PIN, password, or keychain item.</li>
+          <li><strong>OS-backed key storage.</strong> Recovery material is stored through Apple
+              Keychain and, when you enable it, iCloud Keychain rather than an app database.</li>
+          <li><strong>Biometric data stays on device.</strong> Touch ID and Face ID are handled by
+              the operating system; Holos Drive Vault receives only the success or failure result.</li>
+          <li><strong>Local-first drive encryption.</strong> External-drive setup uses macOS APFS
+              encryption, with your chosen PIN or password protecting the vault volume.</li>
+          <li><strong>External-drive safety checks.</strong> The macOS app filters for external disks,
+              avoids the internal startup disk, and requires confirmation before destructive
+              formatting begins.</li>
+          <li><strong>No accounts, ads, or telemetry.</strong> The app is designed without user
+              accounts, advertising SDKs, behavioral analytics, or app-usage tracking.</li>
+          <li><strong>User-controlled sync boundary.</strong> Key sync, when available, uses the
+              user's own iCloud Keychain setting; turning off iCloud Keychain keeps keys local to
+              the device.</li>
+          <li><strong>Clear deletion path.</strong> Removing the app, erasing the drive, and deleting
+              related keychain or credential-manager entries removes the copies under your control;
+              there is no DeadStick server-side account to delete.</li>
+        </ul>
+      </div>
+
+      <h3>Privacy and store disclosures</h3>
+      <p>For Apple App Store and Google Play review, Holos Drive Vault is documented as an app that
+         does not collect or share user data with DeadStick Digital. Any recovery contact information
+         you choose to write belongs on the drive itself, and any iCloud Keychain sync is handled by
+         Apple under the Apple account and system settings you control. See the
+         <a href="../privacy.html#apps-holos-drive-vault">privacy policy</a>,
+         <a href="../support.html#apps">support page</a>, and
+         <a href="../deletion.html#holos-drive-vault">data deletion page</a> for the public URLs
+         required by store listings.</p>
+
+      <h3>Important safety note</h3>
+      <p>Formatting a drive deletes data on that drive. Holos Drive Vault is for drives you own or
+         are authorized to manage, and it is not a data recovery service. Keep backups of anything
+         important before setup, and keep your recovery information safe; DeadStick Digital cannot
+         recover encrypted drive contents if your device, keychain, and backups are lost.</p>
+
+      <h3>Platforms</h3>
+      <p><strong>Coming soon:</strong> macOS 14 or later for encrypted drive setup; iOS companion for
+         key recovery through iCloud Keychain.
+         <br><strong>Planned:</strong> Windows companion components for mounted-drive access. Android
+         support will be documented separately if it ships.</p>
+    </div>
+
+    <aside class="side-card">
+      <h4>At a glance</h4>
+      <dl>
+        <dt>Status</dt>       <dd>Coming soon</dd>
+        <dt>Category</dt>     <dd>Utilities / Security</dd>
+        <dt>Platform</dt>     <dd>macOS 14+; iOS companion</dd>
+        <dt>Network use</dt>  <dd>No DeadStick server; optional iCloud Keychain</dd>
+        <dt>Account</dt>      <dd>None required</dd>
+        <dt>Age rating</dt>   <dd>4+ / Everyone</dd>
+      </dl>
+      <a class="btn btn-primary" href="../index.html#contact">Contact support</a>
+      <a class="btn" href="../privacy.html#apps-holos-drive-vault" style="margin-top:10px;">Privacy details</a>
+      <a class="btn" href="../deletion.html#holos-drive-vault" style="margin-top:10px;">Data deletion</a>
+    </aside>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-bottom" style="border:0; padding:0;">
+      <div>© 2026 DeadStick Digital LLC · All rights reserved.</div>
+      <div><a href="../index.html">← Back to home</a></div>
+    </div>
+    <div class="footer-bottom" style="border:0; padding-top:12px;">
+      <div class="legal-note">
+        Apple, the Apple logo, iPhone, iPad, Mac, macOS, and Apple Silicon are trademarks of
+        Apple Inc., registered in the U.S. and other countries and regions. App Store is a
+        service mark of Apple Inc. Google Play and the Google Play logo are trademarks of
+        Google LLC. Android is a trademark of Google LLC.
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
