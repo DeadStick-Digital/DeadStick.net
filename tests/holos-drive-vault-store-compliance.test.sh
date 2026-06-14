@@ -20,9 +20,9 @@ require '<h1>Holos Drive Vault</h1>' \
   apps/holos-drive-vault.html \
   'detail page should have a clear app-page headline'
 
-require 'Holos Drive Vault is separate from Holos Document Vault' \
+require 'drive-provisioning tool in the Holos family' \
   apps/holos-drive-vault.html \
-  'detail page should explicitly distinguish the two Holos apps'
+  'detail page should position Holos Drive Vault as the drive-provisioning app'
 
 require 'Why Holos Drive Vault is safe and secure' \
   apps/holos-drive-vault.html \
@@ -33,7 +33,7 @@ require 'creating encrypted macOS APFS external drives that can work' \
   apps/holos-drive-vault.html \
   'hero should emphasize creating encrypted macOS APFS drives for Mac and Windows use'
 
-require 'Windows-compatible access path' \
+require 'move into a Windows' \
   apps/holos-drive-vault.html \
   'overview should emphasize Windows-compatible APFS access'
 
