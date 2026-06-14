@@ -247,12 +247,26 @@ section {
 /* --------------------- Hero --------------------- */
 
 .hero {
-  padding: 120px 0 80px;
+  padding: 72px var(--pad-x) 44px;
   text-align: left;
   position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.75fr);
+  column-gap: 72px;
+  align-items: end;
+}
+.hero.wrap,
+#apps .wrap {
+  max-width: 1480px;
 }
 .hero-kicker {
   margin-bottom: 22px;
+}
+.hero-kicker,
+.hero h1,
+.hero-sub,
+.hero-actions {
+  grid-column: 1;
 }
 .hero h1 {
   background: linear-gradient(180deg, #ffffff 0%, #c4c4d0 120%);
@@ -269,14 +283,14 @@ section {
   color: transparent;
 }
 .hero-sub {
-  margin-top: 28px;
+  margin-top: 22px;
   max-width: 62ch;
   font-size: clamp(17px, 1.4vw, 20px);
   color: var(--text-muted);
   line-height: 1.6;
 }
 .hero-actions {
-  margin-top: 40px;
+  margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -318,12 +332,16 @@ section {
 
 /* Hero stat strip */
 .hero-meta {
-  margin-top: 64px;
-  padding-top: 28px;
-  border-top: 1px solid var(--border);
+  grid-column: 2;
+  grid-row: 1 / span 4;
+  align-self: end;
+  margin-top: 0;
+  padding: 0 0 0 28px;
+  border-top: 0;
+  border-left: 1px solid var(--border);
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 26px;
   color: var(--text-muted);
   font-size: 13px;
 }
@@ -335,11 +353,27 @@ section {
   margin-bottom: 4px;
   letter-spacing: -0.01em;
 }
-@media (max-width: 720px) {
-  .hero-meta { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+@media (max-width: 960px) {
+  .hero { padding: 64px var(--pad-x) 38px; display: block; }
+  .hero-meta {
+    margin-top: 38px;
+    padding: 22px 0 0;
+    border-top: 1px solid var(--border);
+    border-left: 0;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
 }
 
 /* --------------------- Section headers --------------------- */
+
+#apps {
+  padding-top: 54px;
+}
+
+#apps .section-head {
+  margin-bottom: 34px;
+}
 
 .section-head {
   display: flex;

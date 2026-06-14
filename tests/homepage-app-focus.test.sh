@@ -67,6 +67,26 @@ require 'grid-template-columns: repeat(4, minmax(0, 1fr));' \
   styles.css \
   'Homepage app cards should sit side-by-side on wide desktop'
 
+require 'grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.75fr);' \
+  styles.css \
+  'Homepage hero should use the empty right side on desktop'
+
+require 'max-width: 1480px;' \
+  styles.css \
+  'Homepage hero and apps should use wide desktop space efficiently'
+
+require 'grid-column: 2;' \
+  styles.css \
+  'Homepage hero facts should sit beside the hero copy on desktop'
+
+require '#apps {' \
+  styles.css \
+  'Homepage apps section should have a targeted spacing rule'
+
+require 'padding-top: 54px;' \
+  styles.css \
+  'Homepage apps section should start closer to the hero'
+
 require '<article class="app-card is-carrierpigeonvpn is-coming-soon" data-status="Coming soon">' \
   index.html \
   'CarrierPigeonVPN should expose the coming-soon state for the watermark'
