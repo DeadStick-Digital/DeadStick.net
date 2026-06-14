@@ -28,6 +28,19 @@ require 'Why Holos Drive Vault is safe and secure' \
   apps/holos-drive-vault.html \
   'detail page should include the requested security bullet section'
 
+
+require 'creating encrypted macOS APFS external drives that can work' \
+  apps/holos-drive-vault.html \
+  'hero should emphasize creating encrypted macOS APFS drives for Mac and Windows use'
+
+require 'Windows-compatible access path' \
+  apps/holos-drive-vault.html \
+  'overview should emphasize Windows-compatible APFS access'
+
+require 'Designed for Windows access through companion tooling' \
+  index.html \
+  'homepage card should mention Windows access'
+
 require 'No DeadStick recovery-key server' \
   apps/holos-drive-vault.html \
   'security bullets should lead with no key escrow'
