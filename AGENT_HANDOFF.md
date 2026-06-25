@@ -58,8 +58,11 @@ GitHub push readiness snapshot:
   - All 10 local shell tests passed (including `deadstick-utilities-legal-support.test.sh`).
   - `CNAME` contains `www.deadstick.net`.
   - `gh auth status` reported valid token with `repo` scope.
-  - GitHub Pages build: [record build status after push].
-  - Live URL verification: [record results after push].
+  - GitHub Pages build: **success** for commit `72cd36a` (`pages-build-deployment`).
+  - Live URL verification:
+    - `https://www.deadstick.net/deadstick-utilities/privacy` — ✅ live, serves Privacy Policy with local-first posture and platform limits
+    - `https://www.deadstick.net/deadstick-utilities/terms` — ✅ live, serves Terms of Use with $9.99/year Pro and subscription language
+    - `https://www.deadstick.net/deadstick-utilities/support` — ✅ live, serves Support page with DeadStick Digital message form
 - Pre-existing dirty state preserved (unchanged from previous slice): `icons/carrierpigeonvpn.svg` deletion, `AGENTS.md` untracked.
 - Release state: committed and pushed to `origin/main` on `https://github.com/DeadStick-Digital/DeadStick.net.git`.
 - Next steps: verify live URLs at /deadstick-utilities/privacy, /deadstick-utilities/terms, /deadstick-utilities/support; update App Store Connect metadata with published URLs; owner/legal review.
