@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09090c">
+  <meta name="description" content="Evidence retention and handling policy for Holos Document Vault support and release QA.">
+  <title>Holos Document Vault Evidence Retention - DeadStick Digital LLC</title>
+  <link rel="icon" type="image/png" href="../../icons/holos-document-vault.png">
+  <link rel="stylesheet" href="../../styles.css?v=20260629-holos-public-urls">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html" aria-label="DeadStick Digital LLC - home">
+      <span class="brand-lockup">
+        <span class="brand-top">
+          <img class="brand-wordmark" src="../../assets/logo-wordmark-deadstick-silver.png" alt="DeadStick" width="172" height="22">
+          <span class="brand-sub">Digital <span class="brand-suffix">LLC</span></span>
+        </span>
+        <span class="brand-sub brand-tagline">Engineered for edge cases</span>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../support/">Support</a>
+      <a href="../privacy/">Privacy</a>
+      <a href="../terms/">Terms</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="doc wrap">
+  <div class="doc-head">
+    <div class="eyebrow">Holos Document Vault</div>
+    <h1>Evidence Retention</h1>
+    <p>Holos Document Vault support and release QA evidence must stay privacy-safe. Evidence can help diagnose defects, prove release gates, or answer App Review questions, but it must not become a copy of a user's vault.</p>
+  </div>
+
+  <div class="doc-body">
+    <h2>Collection rules</h2>
+    <p>Evidence collection is minimum necessary and redacted by default. Do not send vault content, document images, generated PDFs, OCR text, translation text, filenames, folders, tags, packet contents, identity documents, financial documents, medical documents, PINs, passwords, OAuth tokens, one-time codes, account identifiers, provider object ids, local paths, receipts, transaction ids, purchase tokens, or billing records unless a narrowly scoped investigation genuinely requires a redacted sample.</p>
+
+    <h2>Storage rules</h2>
+    <p>Support should prefer text summaries that name the validated behavior over raw screenshots or logs. Private evidence must not be pasted into commits, GitHub issues, release notes, public documentation, or public support threads.</p>
+
+    <h2>Retention rules</h2>
+    <p>Routine support triage evidence should be deleted within 30 days after the request is resolved unless a user asks for earlier deletion or an active legal/security hold applies. Release QA evidence for App Store, TestFlight, paid subscription, privacy-label, sync, Phase 1, or accessibility gates should be kept only until the related release decision, App Review cycle, or rollback window is closed, then deleted or replaced with a redacted summary within 180 days.</p>
+
+    <h2>Escalation</h2>
+    <p>Escalate before accepting or retaining anything that may contain vault content, government identity material, payment data, medical data, unredacted account identifiers, secrets, or provider logs. If evidence may indicate a security or privacy incident, stop routine sharing and follow <a href="../incident-support/">incident support</a>.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-bottom" style="border:0; padding:0;">
+      <div>&copy; 2026 DeadStick Digital LLC - All rights reserved.</div>
+      <div><a href="../support/">Holos support</a></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

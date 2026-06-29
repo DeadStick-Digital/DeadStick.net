@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09090c">
+  <meta name="description" content="Sync recovery guidance for Holos Document Vault.">
+  <title>Holos Document Vault Sync Recovery - DeadStick Digital LLC</title>
+  <link rel="icon" type="image/png" href="../../icons/holos-document-vault.png">
+  <link rel="stylesheet" href="../../styles.css?v=20260629-holos-public-urls">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html" aria-label="DeadStick Digital LLC - home">
+      <span class="brand-lockup">
+        <span class="brand-top">
+          <img class="brand-wordmark" src="../../assets/logo-wordmark-deadstick-silver.png" alt="DeadStick" width="172" height="22">
+          <span class="brand-sub">Digital <span class="brand-suffix">LLC</span></span>
+        </span>
+        <span class="brand-sub brand-tagline">Engineered for edge cases</span>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../support/">Support</a>
+      <a href="../privacy/">Privacy</a>
+      <a href="../terms/">Terms</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="doc wrap">
+  <div class="doc-head">
+    <div class="eyebrow">Holos Document Vault</div>
+    <h1>Sync Recovery</h1>
+    <p>Sync recovery should preserve the user's best available Holos Document Vault copy before attempting any provider, migration, or local reset step.</p>
+  </div>
+
+  <div class="doc-body">
+    <h2>Safety before taking action</h2>
+    <p>Stop making changes on every synced device until the recovery path is chosen. Keep at least one unlocked device or recent Holos Document Vault packet backup available before any destructive recovery step. Deleting app data, switching providers, or replacing local state can remove local-only changes if no current backup exists.</p>
+
+    <h2>Common sync recovery paths</h2>
+    <ul>
+      <li>Local-only expected state: export a packet backup from the good device, then import it on the affected device only after confirming replacement is safe.</li>
+      <li>One device good, provider stale: pause changes on other devices, export a backup from the good device, then use the app's provider migration or replace-provider path when available.</li>
+      <li>Provider good, one device stale: keep the stale device from making changes, confirm the provider account, then use the app's refresh, replace-local, or reconnect path when available.</li>
+      <li>Missing assets or hash mismatch: stop sync, preserve local state, collect the redacted error label and build, and contact support before deleting or reconnecting.</li>
+    </ul>
+
+    <h2>Provider notes</h2>
+    <p>For iCloud, confirm the intended Apple ID, iCloud availability, quota, and account restrictions. For Google Drive, confirm the intended Google account and app-data scope. Do not manually edit CloudKit records, Drive app-data files, provider metadata, tombstones, or recovery snapshots.</p>
+
+    <h2>Need help?</h2>
+    <p>Use <a href="../support/">Holos Document Vault support</a> and include the app build, platform, active provider, redacted sync state label, whether another device has the expected data, and whether a packet backup exists.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-bottom" style="border:0; padding:0;">
+      <div>&copy; 2026 DeadStick Digital LLC - All rights reserved.</div>
+      <div><a href="../support/">Holos support</a></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

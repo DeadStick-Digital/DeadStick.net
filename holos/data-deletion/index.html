@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09090c">
+  <meta name="description" content="Data deletion and account deletion support for Holos Document Vault.">
+  <title>Holos Document Vault Data Deletion - DeadStick Digital LLC</title>
+  <link rel="icon" type="image/png" href="../../icons/holos-document-vault.png">
+  <link rel="stylesheet" href="../../styles.css?v=20260629-holos-public-urls">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html" aria-label="DeadStick Digital LLC - home">
+      <span class="brand-lockup">
+        <span class="brand-top">
+          <img class="brand-wordmark" src="../../assets/logo-wordmark-deadstick-silver.png" alt="DeadStick" width="172" height="22">
+          <span class="brand-sub">Digital <span class="brand-suffix">LLC</span></span>
+        </span>
+        <span class="brand-sub brand-tagline">Engineered for edge cases</span>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../support/">Support</a>
+      <a href="../privacy/">Privacy</a>
+      <a href="../terms/">Terms</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="doc wrap">
+  <div class="doc-head">
+    <div class="eyebrow">Holos Document Vault</div>
+    <h1>Data Deletion</h1>
+    <p>Holos Document Vault is local-first. Data deletion may involve local device data, user-selected cloud provider data, exported files, and subscription account records.</p>
+  </div>
+
+  <div class="doc-body">
+    <h2>Local device data</h2>
+    <p>To remove local Holos Document Vault data from a device, unlock the app and delete individual documents in Holos Document Vault. Export a packet backup first if you may need the documents later. Removing the app or its local app data can remove local-only documents from that device.</p>
+    <p>Deleting the app or local app data does not automatically remove exported files, cloud-provider copies, device backups, or files saved elsewhere by the user.</p>
+
+    <h2>Document deletion in the app</h2>
+    <p>Document deletion is sync-aware. Deleted documents are removed from active app views and may create tombstones so iCloud or Google Drive sync can reconcile the deletion safely. Users should not manually edit vault files, provider metadata, or tombstone records.</p>
+
+    <h2>Cloud provider data</h2>
+    <p>If iCloud or Google Drive sync is enabled, vault data may exist in the user's provider account. Sign-out removes or invalidates the local app credential, but it does not guarantee immediate deletion of provider-side vault objects. Delete unwanted documents in the app, let sync complete on each device, and use provider storage or account settings when you need to remove provider-side copies completely.</p>
+
+    <h2>Exports, backups, and subscription accounts</h2>
+    <p>Holos Document Vault cannot delete files after the user exports, shares, emails, saves, AirDrops, or backs them up outside the app sandbox. Packet backups may contain documents, OCR text, metadata, and assets, so store them only in trusted locations.</p>
+    <p>Paid or trial builds may use RevenueCat and Supabase Auth for subscription entitlement validation, cross-platform account linking, restore purchases, and account deletion. Deleting local vault content does not cancel a store subscription or remove store billing history.</p>
+
+    <h2>Need help?</h2>
+    <p>Use <a href="../support/">Holos Document Vault support</a> for data deletion, account deletion, provider deletion, sync recovery, or forgotten PIN questions.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-bottom" style="border:0; padding:0;">
+      <div>&copy; 2026 DeadStick Digital LLC - All rights reserved.</div>
+      <div><a href="../support/">Holos support</a></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

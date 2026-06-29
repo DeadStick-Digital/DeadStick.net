@@ -1,6 +1,6 @@
 # Agent Handoff
 
-Last updated: 2026-06-25
+Last updated: 2026-06-28
 
 Local project: `/Users/chanceneel/Projects/Deadstick website`
 Current branch snapshot: `main`
@@ -42,6 +42,42 @@ GitHub push readiness snapshot:
 - Codex routing: use `GPT 5.5 High` as the default architect/lead for first-pass design, scope control, implementation planning, ordinary architecture decisions, and normal final review; escalate to `GPT 5.5 xhigh` only for high-risk architecture, persistence/schema migrations, security-sensitive decisions, App Store/TestFlight/release decisions, major cross-system refactors, production incidents, or final review before risky external actions; use `GPT 5.4-mini` for coding/build/test/debug loops once the plan is settled, escalating only if implementation becomes ambiguous or risky.
 
 ## Current Handoff
+
+- Active task: Prepare Holos Document Vault public legal/support URLs for the paid-release public
+  URL gate.
+- Last agent: Prepared the Holos public URL pages locally only; no push, GitHub Pages
+  publication, DNS change, or external website mutation was performed.
+- Summary: Added local pages for the eight required Holos production endpoints:
+  `/holos/privacy/`, `/holos/terms/`, `/holos/support/`, `/holos/data-deletion/`,
+  `/holos/forgotten-pin/`, `/holos/sync-recovery/`, `/holos/evidence-retention/`, and
+  `/holos/incident-support/`. Updated the Holos product page links to point at the local Holos
+  support and privacy pages. Added a shell test that verifies those pages exist, include
+  Holos/DeadStick identity, carry endpoint-specific release-topic wording, and are linked from the
+  app page where appropriate.
+- Files touched by this slice:
+  - `apps/holos-document-vault.html`
+  - `holos/privacy/index.html`
+  - `holos/terms/index.html`
+  - `holos/support/index.html`
+  - `holos/data-deletion/index.html`
+  - `holos/forgotten-pin/index.html`
+  - `holos/sync-recovery/index.html`
+  - `holos/evidence-retention/index.html`
+  - `holos/incident-support/index.html`
+  - `tests/holos-public-urls.test.sh`
+- Verification:
+  - All local website shell tests passed.
+  - `/Users/chanceneel/Projects/SuperAssistant/scripts/local-validate.sh website --standard`
+    passed with 0 failures.
+  - `CNAME` remains `www.deadstick.net`.
+  - `git diff --check -- .` passed.
+- Release state: local-only and uncommitted. The live Holos public URLs still return HTTP 404
+  until these website changes are committed, pushed to `origin/main`, and GitHub Pages publishes
+  them.
+- Next steps: after explicit approval to publish, commit and push the website changes, wait for
+  GitHub Pages success, verify the eight live URLs, then rerun the Holos public URL checker and
+  release blocker refresh.
+- Blockers: publication requires explicit approval; no local website blocker remains.
 
 - Active task: Publish DeadStick Utilities legal/support pages to www.deadstick.net.
 - Last agent: Published DeadStick Utilities candidate pages (Privacy Policy, Terms of Use, Support, and product overview) to production via direct push to main.

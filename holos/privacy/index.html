@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09090c">
+  <meta name="description" content="Privacy policy for Holos Document Vault, the local-first private document scanner and vault from DeadStick Digital LLC.">
+  <title>Holos Document Vault Privacy Policy - DeadStick Digital LLC</title>
+  <link rel="icon" type="image/png" href="../../icons/holos-document-vault.png">
+  <link rel="stylesheet" href="../../styles.css?v=20260629-holos-public-urls">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html" aria-label="DeadStick Digital LLC - home">
+      <span class="brand-lockup">
+        <span class="brand-top">
+          <img class="brand-wordmark" src="../../assets/logo-wordmark-deadstick-silver.png" alt="DeadStick" width="172" height="22">
+          <span class="brand-sub">Digital <span class="brand-suffix">LLC</span></span>
+        </span>
+        <span class="brand-sub brand-tagline">Engineered for edge cases</span>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../../apps/holos-document-vault.html">Holos</a>
+      <a href="../support/">Support</a>
+      <a href="../terms/">Terms</a>
+      <a href="../../index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="doc wrap">
+  <div class="doc-head">
+    <div class="eyebrow">Holos Document Vault</div>
+    <h1>Privacy Policy</h1>
+    <p>Holos Document Vault is a local-first document scanner and private vault. This privacy policy explains what the app stores, what DeadStick Digital does not collect, and how optional providers fit into the product.</p>
+    <p class="muted mono" style="margin-top:14px;">Effective date: June 12, 2026</p>
+  </div>
+
+  <div class="doc-body">
+    <div class="callout">
+      <strong>Short version.</strong> Holos Document Vault does not use a proprietary Holos document backend, does not sell personal data, and does not include advertising SDKs, third-party analytics SDKs, or cross-app tracking.
+    </div>
+
+    <h2>Local vault data</h2>
+    <p>Holos Document Vault stores vault content in the local app sandbox by default. That may include scanned document images, imported files, generated PDFs, packet exports, document titles, folders, tags, page order, scan source, timestamps, sync state, OCR text, translation text, crop information, filter choices, app-lock settings, local safety snapshots, and deletion tombstones used for sync reconciliation.</p>
+
+    <h2>Data DeadStick does not collect</h2>
+    <p>DeadStick Digital does not collect vault documents, scan images, imported files, generated PDFs, packet contents, OCR text, translations, titles, filenames, tags, folders, document hashes, search indexes, PINs, Google OAuth tokens, iCloud account details, or provider file identifiers to a developer-operated server.</p>
+    <p>Holos Document Vault does not collect location, contacts, browsing history, advertising identifiers, or health data.</p>
+
+    <h2>Subscription services</h2>
+    <p>Paid or trial builds may use App Store or Google Play purchases, RevenueCat entitlement validation, and Supabase Auth account linking. Those services may process purchase history, entitlement state, product identifiers, app-user identifiers, sign-in identifiers, and account-deletion records needed for billing, Premium access, restore purchases, cross-platform entitlement linking, and account management. They must not receive vault documents, scan images, OCR text, translations, filenames, folders, tags, packet contents, generated PDFs, PINs, biometric settings, Google OAuth tokens, or provider file identifiers.</p>
+
+    <h2>Permissions and providers</h2>
+    <p>Camera access is used when the user scans documents. Face ID or Touch ID access is used only when the user enables biometric app unlock. File, share, import, and export surfaces are used only when the user chooses documents or destinations. Network access is used for user-selected cloud sync, OAuth sign-in, provider file upload or download, and subscription account features.</p>
+    <p>When a user enables iCloud or Google Drive sync, vault metadata and selected assets may be uploaded to that provider under the user's account. Holos Document Vault does not operate an intermediate sync server. Cloud providers process account, file, diagnostic, security, or usage data under their own policies.</p>
+
+    <h2>Sharing, export, and diagnostics</h2>
+    <p>Users can export PDFs, protected PDFs, and Holos Document Vault packet backups. Exported files leave the app sandbox when the user shares or saves them outside Holos Document Vault.</p>
+    <p>Holos Document Vault does not include developer-operated analytics or crash reporting in the current beta. Local diagnostic events are designed to remain privacy-safe, avoid automatic upload, and redact emails, tokens, keys, paths, hashes, ids, and one-time-code-like values.</p>
+
+    <h2>Retention, deletion, and security</h2>
+    <p>Local vault content remains on the user's device until the user deletes documents, removes local app data, resets the device, or uninstalls the app. Documents deleted in Holos Document Vault are hidden from active vault views and may create tombstones so deletions can sync safely. See <a href="../data-deletion/">data deletion</a> for more detail.</p>
+    <p>Holos Document Vault uses AES-256-GCM for default local vault storage on Apple platforms when the Keychain-held vault key is available. The optional app PIN controls app access. It does not encrypt the local vault database by itself.</p>
+
+    <h2>Contact</h2>
+    <p>Use the <a href="../support/">Holos Document Vault support page</a> or the <a href="../../index.html#contact">DeadStick Digital message form</a> for privacy questions.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-bottom" style="border:0; padding:0;">
+      <div>&copy; 2026 DeadStick Digital LLC - All rights reserved.</div>
+      <div><a href="../../apps/holos-document-vault.html">Back to Holos Document Vault</a></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
