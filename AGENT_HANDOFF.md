@@ -45,9 +45,9 @@ GitHub push readiness snapshot:
 
 - Active task: Prepare Holos Document Vault public legal/support URLs for the paid-release public
   URL gate.
-- Last agent: Prepared the Holos public URL pages locally only; no push, GitHub Pages
-  publication, DNS change, or external website mutation was performed.
-- Summary: Added local pages for the eight required Holos production endpoints:
+- Last agent: Published the Holos public URL pages to GitHub and verified the live production
+  URLs after GitHub Pages deployment.
+- Summary: Added pages for the eight required Holos production endpoints:
   `/holos/privacy/`, `/holos/terms/`, `/holos/support/`, `/holos/data-deletion/`,
   `/holos/forgotten-pin/`, `/holos/sync-recovery/`, `/holos/evidence-retention/`, and
   `/holos/incident-support/`. Updated the Holos product page links to point at the local Holos
@@ -71,13 +71,13 @@ GitHub push readiness snapshot:
     passed with 0 failures.
   - `CNAME` remains `www.deadstick.net`.
   - `git diff --check -- .` passed.
-- Release state: committed as `d1ffac5` (`publish Holos public URL pages`) and pushed to
-  `origin/main` on June 28, 2026. GitHub Pages deployment for that commit was queued immediately
-  after push; the Holos public URLs should be verified live after the Pages build completes.
-- Next steps: wait for GitHub Pages success, verify the eight live URLs, then rerun the Holos
-  public URL checker and release blocker refresh.
-- Blockers: no local website blocker remains; live URL verification depends on GitHub Pages
-  publication completing.
+  - GitHub Pages `pages-build-deployment` succeeded for commit `a660df7`.
+  - Holos live public URL checker passed: all eight production URLs returned HTTP 200.
+- Release state: committed as `d1ffac5` (`publish Holos public URL pages`) plus handoff commit
+  `a660df7` and pushed to `origin/main` on June 28, 2026. GitHub Pages deployed successfully.
+- Next steps: use the now-live URLs in App Store/paid-release evidence, then continue the Holos
+  blocker list for physical-device QA, Supabase configuration, and final paid-submission evidence.
+- Blockers: no website blocker remains.
 
 - Active task: Publish DeadStick Utilities legal/support pages to www.deadstick.net.
 - Last agent: Published DeadStick Utilities candidate pages (Privacy Policy, Terms of Use, Support, and product overview) to production via direct push to main.
