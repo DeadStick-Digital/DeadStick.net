@@ -71,13 +71,13 @@ GitHub push readiness snapshot:
     passed with 0 failures.
   - `CNAME` remains `www.deadstick.net`.
   - `git diff --check -- .` passed.
-- Release state: local-only and uncommitted. The live Holos public URLs still return HTTP 404
-  until these website changes are committed, pushed to `origin/main`, and GitHub Pages publishes
-  them.
-- Next steps: after explicit approval to publish, commit and push the website changes, wait for
-  GitHub Pages success, verify the eight live URLs, then rerun the Holos public URL checker and
-  release blocker refresh.
-- Blockers: publication requires explicit approval; no local website blocker remains.
+- Release state: committed as `d1ffac5` (`publish Holos public URL pages`) and pushed to
+  `origin/main` on June 28, 2026. GitHub Pages deployment for that commit was queued immediately
+  after push; the Holos public URLs should be verified live after the Pages build completes.
+- Next steps: wait for GitHub Pages success, verify the eight live URLs, then rerun the Holos
+  public URL checker and release blocker refresh.
+- Blockers: no local website blocker remains; live URL verification depends on GitHub Pages
+  publication completing.
 
 - Active task: Publish DeadStick Utilities legal/support pages to www.deadstick.net.
 - Last agent: Published DeadStick Utilities candidate pages (Privacy Policy, Terms of Use, Support, and product overview) to production via direct push to main.
