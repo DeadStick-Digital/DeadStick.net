@@ -66,6 +66,13 @@ GitHub push readiness snapshot:
   masks mid-loop test failures — only the last test's exit code propagates; worth fixing in
   SuperAssistant). Both pages visually verified in a local browser at 1440px (screenshots
   reviewed; hCaptcha logs a localhost warning in local preview only).
+- Update (2026-07-04, latest): replaced the homepage apps grid with an equal-size horizontal
+  snap rail (`grid-auto-flow: column; grid-auto-columns: 344px`, snap points, thin scrollbar,
+  vertical stack under 700px) because the full-width DeadStick Utilities card broke the grid
+  rhythm. All five cards now share one footprint and the rail scales to future apps. Owner
+  wording directive enforced across the app page: every NIAP/FIPS reference uses the
+  "designed to meet" formula (never "meets"), pinned by the page shell test. Commits ac31c9b,
+  872409b, e1ffc26 pushed and verified live.
 - Update (2026-07-04, later): rewrote `apps/deadstick-utilities.html` in plain, positive
   language at owner request, with NIAP and FIPS named explicitly. NIAP is described accurately
   as the NSA-operated National Information Assurance Partnership and its Protection Profile for
