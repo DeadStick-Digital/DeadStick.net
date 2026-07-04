@@ -66,8 +66,13 @@ GitHub push readiness snapshot:
   masks mid-loop test failures — only the last test's exit code propagates; worth fixing in
   SuperAssistant). Both pages visually verified in a local browser at 1440px (screenshots
   reviewed; hCaptcha logs a localhost warning in local preview only).
-- Status: local-only, uncommitted, not pushed. Per SOP, push/publish only after explicit owner
-  approval.
+- Status: committed as 88f7c4e and pushed to origin/main on 2026-07-04 after owner approval
+  ("update the website to now have a section for DeadStick Utilities"). Live verification after
+  GitHub Pages deploy: homepage shows the card and "Five apps. One philosophy.", the app page and
+  icon return 200, the sanctioned assurance phrasing is present on the live page, and the
+  Apple-required URLs (/deadstick-utilities/, /privacy/, /terms/, /support/) all return 200. The
+  Utilities repo validators `validate_legal_support_url_readiness.sh --verify` and
+  `validate_subscription_disclosure.sh --verify` pass against this working copy.
 - Files touched by this slice:
   - `apps/deadstick-utilities.html` (new)
   - `icons/deadstick-utilities.png` (new)
