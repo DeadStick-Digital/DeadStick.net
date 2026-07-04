@@ -27,7 +27,7 @@ require '<article class="app-card is-billingbird is-primary-focus">' \
   index.html \
   'BillingBird should carry the primary focus state'
 
-require '<link rel="stylesheet" href="styles.css?v=20260704-deadstick-utilities">' \
+require '<link rel="stylesheet" href="styles.css?v=20260704-apps-rail">' \
   index.html \
   'Homepage should cache-bust the stylesheet for privacy-promise copy styling'
 
@@ -63,9 +63,13 @@ reject '3</strong>Shipping apps' \
   index.html \
   'Homepage stats should not imply all three apps are shipping'
 
-require 'grid-template-columns: repeat(4, minmax(0, 1fr));' \
+require 'grid-auto-columns: 344px;' \
   styles.css \
-  'Homepage app cards should sit side-by-side on wide desktop'
+  'Homepage app cards should share one equal-size footprint in the rail'
+
+require 'scroll-snap-type: x proximity;' \
+  styles.css \
+  'Homepage app rail should scroll horizontally with snap points'
 
 require 'grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.75fr);' \
   styles.css \

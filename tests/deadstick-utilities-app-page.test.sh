@@ -80,8 +80,8 @@ require '.app-card.is-deadstick-utilities { --card-accent: var(--deadstick-utili
   styles.css \
   'Styles should map the DeadStick Utilities card accent'
 
-require '.apps-grid .app-card.is-deadstick-utilities { grid-column: 1 / -1; }' \
+reject '.app-card.is-deadstick-utilities { grid-column' \
   styles.css \
-  'DeadStick Utilities card should span the full grid row'
+  'DeadStick Utilities card must share the same footprint as the other app cards'
 
 echo "DeadStick Utilities app page checks passed."
