@@ -30,6 +30,8 @@
   --holos-drive-vault-soft: #9fe6ba33;
   --holos-document-vault: #7ef4f0;          /* scanner aqua */
   --holos-document-vault-soft: #7ef4f033;
+  --deadstick-utilities: #b8c7d9;           /* brushed-steel yoke silver */
+  --deadstick-utilities-soft: #b8c7d933;
 
   --radius-xs: 8px;
   --radius-sm: 12px;
@@ -448,6 +450,9 @@ section {
 .app-card.is-carrierpigeonvpn { --card-accent: var(--pigeon); --card-accent-soft: var(--pigeon-soft); }
 .app-card.is-holos-drive-vault { --card-accent: var(--holos-drive-vault); --card-accent-soft: var(--holos-drive-vault-soft); }
 .app-card.is-holos-document-vault { --card-accent: var(--holos-document-vault); --card-accent-soft: var(--holos-document-vault-soft); }
+.app-card.is-deadstick-utilities { --card-accent: var(--deadstick-utilities); --card-accent-soft: var(--deadstick-utilities-soft); }
+/* DeadStick Utilities is the assurance flagship: it spans the full grid row. */
+.apps-grid .app-card.is-deadstick-utilities { grid-column: 1 / -1; }
 
 .app-card.is-primary-focus {
   border-color: rgba(94, 168, 232, 0.38);
@@ -1148,6 +1153,17 @@ footer {
 .security-measures.is-drive-vault li::before {
   background: var(--holos-drive-vault);
   box-shadow: 0 0 18px var(--holos-drive-vault-soft);
+}
+
+.security-measures.is-deadstick-utilities {
+  border-color: rgba(184, 199, 217, 0.24);
+  background:
+    linear-gradient(180deg, rgba(184, 199, 217, 0.06), rgba(255,255,255,0.014));
+}
+
+.security-measures.is-deadstick-utilities li::before {
+  background: var(--deadstick-utilities);
+  box-shadow: 0 0 18px var(--deadstick-utilities-soft);
 }
 
 .side-card {
