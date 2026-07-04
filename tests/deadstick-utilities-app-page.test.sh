@@ -45,6 +45,7 @@ require 'security-measures is-deadstick-utilities' \
   "$PAGE" \
   'Assurance panel should use the DeadStick Utilities security-measures variant'
 
+require 'Designed to meet government NIAP and FIPS standards' "$PAGE" 'Headline claim must use the designed-to-meet formula with named standards'
 require 'Protection Profile for Application Software' "$PAGE" 'NIAP item should name the actual Protection Profile'
 require 'FIPS 140-3' "$PAGE" 'FIPS item should name the standard by number'
 require 'National Information Assurance Partnership' "$PAGE" 'NIAP should be spelled out for readers'
