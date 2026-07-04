@@ -45,6 +45,9 @@ require 'security-measures is-deadstick-utilities' \
   "$PAGE" \
   'Assurance panel should use the DeadStick Utilities security-measures variant'
 
+require 'Protection Profile for Application Software' "$PAGE" 'NIAP item should name the actual Protection Profile'
+require 'FIPS 140-3' "$PAGE" 'FIPS item should name the standard by number'
+require 'National Information Assurance Partnership' "$PAGE" 'NIAP should be spelled out for readers'
 require 'NIST SP 800-218' "$PAGE" 'Assurance list should name NIST SSDF by number'
 require 'software bill of materials' "$PAGE" 'Assurance list should name the SBOM release gate'
 require 'VPAT/ACR' "$PAGE" 'Assurance list should name the accessibility evidence track'
