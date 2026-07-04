@@ -66,6 +66,14 @@ GitHub push readiness snapshot:
   masks mid-loop test failures — only the last test's exit code propagates; worth fixing in
   SuperAssistant). Both pages visually verified in a local browser at 1440px (screenshots
   reviewed; hCaptcha logs a localhost warning in local preview only).
+- Update (2026-07-04, later): rewrote `apps/deadstick-utilities.html` in plain, positive
+  language at owner request, with NIAP and FIPS named explicitly. NIAP is described accurately
+  as the NSA-operated National Information Assurance Partnership and its Protection Profile for
+  Application Software; FIPS 140-3 is described as the federal cryptography standard met via
+  Apple platform corecrypto (no custom cryptography). Claim ceilings from the Utilities repo
+  assurance docs are preserved (designed-to-meet-or-exceed phrasing; explicit
+  no-certification/no-validation disclaimers in the assurance panel and footer), and the page
+  shell test now pins the NIAP/FIPS literals. Committed as ac31c9b, pushed, and verified live.
 - Status: committed as 88f7c4e and pushed to origin/main on 2026-07-04 after owner approval
   ("update the website to now have a section for DeadStick Utilities"). Live verification after
   GitHub Pages deploy: homepage shows the card and "Five apps. One philosophy.", the app page and
