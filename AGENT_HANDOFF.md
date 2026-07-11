@@ -68,8 +68,13 @@ GitHub push readiness snapshot:
     exact `www.deadstick.net` CNAME check.
   - Local browser review passed for the product detail page at 1440x1100 and 390x844. The browser
     title, hero name, `by DeadStick` line, body copy, responsive layout, and console were clean.
-- Change state: local validation complete; commit, push, Pages deployment, and live verification
-  are pending in this publication run.
+  - Live production crawl passed for all 15 affected URLs: every page returned HTTP 200 and none
+    contained the retired full name. All nine dedicated Document Vault product/support pages also
+    contained no visible standalone Holos branding. The live product page title, `h1`, and
+    `by DeadStick` line match the new identity.
+- Change state: implementation committed as `c0f94c2`, pushed to `origin/main`, served by GitHub
+  Pages, and verified live. This final handoff record was committed and pushed immediately
+  afterward.
 - Blockers: none.
 
 - Active task: Prioritize Document Vault ahead of Drive Vault in the homepage app rail.
