@@ -27,6 +27,14 @@ require '<h3>Drive Vault</h3>' index.html \
   'Drive Vault should use its simplified display name'
 require '<h3>Document Vault</h3>' index.html \
   'Document Vault should use its simplified display name'
+
+document_card_line="$(grep -n 'article class="app-card is-holos-document-vault' index.html | cut -d: -f1)"
+drive_card_line="$(grep -n 'article class="app-card is-holos-drive-vault' index.html | cut -d: -f1)"
+if (( document_card_line >= drive_card_line )); then
+  printf 'Expected Document Vault to appear before Drive Vault on the homepage\n' >&2
+  exit 1
+fi
+
 reject '<h3>Holos Drive Vault</h3>' index.html \
   'Holos Drive Vault should not remain as the homepage card title'
 reject '<h3>Holos Document Vault</h3>' index.html \
