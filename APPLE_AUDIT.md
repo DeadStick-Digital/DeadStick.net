@@ -139,7 +139,7 @@ rule doesn't apply — ✅. If any app ever gains an account system, revisit.
 ## 6.1 Holos Drive Vault website coverage (added 2026-06-13)
 
 Holos Drive Vault now has its own page at `apps/holos-drive-vault.html`,
-separate from Holos Document Vault. The page links to the required public
+separate from Document Vault. The page links to the required public
 support and privacy surfaces and to the data-deletion page:
 
 - Privacy URL: `privacy.html#apps-holos-drive-vault`

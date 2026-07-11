@@ -37,8 +37,6 @@ fi
 
 reject '<h3>Holos Drive Vault</h3>' index.html \
   'Holos Drive Vault should not remain as the homepage card title'
-reject '<h3>Holos Document Vault</h3>' index.html \
-  'Holos Document Vault should not remain as the homepage card title'
 
 byline_count="$(grep -c '<p class="app-byline">by DeadStick</p>' index.html)"
 if [[ "$byline_count" -ne 2 ]]; then

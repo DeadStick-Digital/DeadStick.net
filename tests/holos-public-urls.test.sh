@@ -36,7 +36,7 @@ pages=(
 
 for page in "${pages[@]}"; do
   test -f "$page"
-  require 'Holos Document Vault' "$page" "$page should identify the product"
+  require 'Document Vault' "$page" "$page should identify the product"
   require 'DeadStick Digital' "$page" "$page should identify DeadStick"
   require 'styles.css?v=20260629-holos-public-urls' "$page" "$page should use the Holos public URL stylesheet version"
   reject '\[TBD\]' "$page" "$page should not publish bracket placeholders"

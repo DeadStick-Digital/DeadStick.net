@@ -43,8 +43,37 @@ GitHub push readiness snapshot:
 
 ## Current Handoff
 
+- Active task: Retire the former Document Vault Holos branding across every website-facing
+  surface and publish the consistent name.
+- Last agent: Replaced the retired full product name with `Document Vault` across every public
+  page, metadata description, browser title, accessibility label, footer/link label, legal and
+  support page, audit, test, handoff reference, and archived website note. Removed remaining
+  standalone visible Holos labels from the dedicated Document Vault support pages. Added
+  `by DeadStick` beneath the detail-page `h1` with a scoped low-emphasis style. Preserved the
+  existing lowercase `/holos/` URLs, `holos-document-vault` file paths, anchors, CSS variables,
+  and classes so published links and selectors remain compatible.
+- Files touched by this local slice:
+  - `apps/holos-document-vault.html`, `styles.css`, and `index.html`
+  - `acknowledgements.html`, `deletion.html`, `privacy.html`, `support.html`, and `terms.html`
+  - all eight public pages under `holos/`
+  - seven Document Vault/homepage shell tests under `tests/`
+  - `APPLE_AUDIT.md`, `GOOGLE_PLAY_AUDIT.md`, `.archive/clawmelt/README.md`, and
+    `AGENT_HANDOFF.md`
+- Verification:
+  - Repository-wide hidden-file search found zero remaining occurrences of the retired full name.
+  - Dedicated Document Vault public pages contain no remaining visible standalone Holos labels.
+  - All `tests/*.sh` files passed independently with fail-fast handling (14/14).
+  - `/Users/chanceneel/Projects/SuperAssistant/scripts/local-validate.sh website --standard`
+    passed with 0 failures, including whitespace validation, secret scan, all shell tests, and the
+    exact `www.deadstick.net` CNAME check.
+  - Local browser review passed for the product detail page at 1440x1100 and 390x844. The browser
+    title, hero name, `by DeadStick` line, body copy, responsive layout, and console were clean.
+- Change state: local validation complete; commit, push, Pages deployment, and live verification
+  are pending in this publication run.
+- Blockers: none.
+
 - Active task: Prioritize Document Vault ahead of Drive Vault in the homepage app rail.
-- Last agent: Moved the complete Holos Document Vault card block ahead of Holos Drive Vault in
+- Last agent: Moved the complete Document Vault card block ahead of Holos Drive Vault in
   `index.html`, without changing either card's content, styling, links, icons, overlays, or
   responsive behavior. Extended the focused homepage branding regression test to require this
   order so the desktop/tablet rail and mobile stack keep Document Vault first.
@@ -67,8 +96,8 @@ GitHub push readiness snapshot:
 
 - Active task: Simplify the two Holos homepage product-card names and add a shared DeadStick
   brand byline without changing the products' full names elsewhere.
-- Last agent: Updated only the homepage card display titles from `Holos Drive Vault` to
-  `Drive Vault` and from `Holos Document Vault` to `Document Vault`. Added a subtle
+- Last agent: Updated the homepage card display titles to `Drive Vault` and `Document Vault`.
+  Added a subtle
   `by DeadStick` line beneath each title using the existing typography and `--text-soft` token.
   Full product names remain unchanged in detail pages, metadata, URLs, accessibility labels,
   footer navigation, legal/support content, and tests that protect those surfaces. BillingBird,
@@ -190,7 +219,7 @@ GitHub push readiness snapshot:
 
 ## Previous Handoff (2026-06-28)
 
-- Active task: Prepare Holos Document Vault public legal/support URLs for the paid-release public
+- Active task: Prepare Document Vault public legal/support URLs for the paid-release public
   URL gate.
 - Last agent: Published the Holos public URL pages to GitHub and verified the live production
   URLs after GitHub Pages deployment.

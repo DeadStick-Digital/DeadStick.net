@@ -101,7 +101,7 @@ require '<article class="app-card is-holos-drive-vault is-coming-soon" data-stat
 
 require '<article class="app-card is-holos-document-vault is-coming-soon" data-status="Coming soon">' \
   index.html \
-  'Holos Document Vault should expose the coming-soon state for the watermark'
+  'Document Vault should expose the coming-soon state for the watermark'
 
 require '<a class="app-icon app-icon-link" href="apps/billingbird.html" aria-label="Open BillingBird app page">' \
   index.html \
@@ -115,9 +115,9 @@ require '<a class="app-icon app-icon-link" href="apps/holos-drive-vault.html" ar
   index.html \
   'Holos Drive Vault icon should link to its app page'
 
-require '<a class="app-icon app-icon-link" href="apps/holos-document-vault.html" aria-label="Open Holos Document Vault app page">' \
+require '<a class="app-icon app-icon-link" href="apps/holos-document-vault.html" aria-label="Open Document Vault app page">' \
   index.html \
-  'Holos Document Vault icon should link to its app page'
+  'Document Vault icon should link to its app page'
 
 require '.app-card.is-coming-soon::after' \
   styles.css \

@@ -47,7 +47,7 @@ Google's User Data policy requires the policy to disclose:
 | Compliance with applicable laws (CCPA / GDPR / COPPA etc.) | §7 + §8                                                  | ✅ |
 
 **App-specific sections** in §10 name each app (BillingBird,
-CarrierPigeonVPN, Holos Drive Vault, and Holos Document Vault) and describe
+CarrierPigeonVPN, Holos Drive Vault, and Document Vault) and describe
 what, if anything, is handled per app — which satisfies Google's requirement
 that the policy be "specific to the app".
 
@@ -57,7 +57,7 @@ Separate from the privacy policy, Google Play requires every app to complete
 the **Data Safety** form in the Play Console. The answers must match the
 privacy policy. Based on `privacy.html`, the answers for each app are:
 
-| Question                                 | BillingBird | CarrierPigeonVPN | Holos Drive Vault | Holos Document Vault |
+| Question                                 | BillingBird | CarrierPigeonVPN | Holos Drive Vault | Document Vault |
 |------------------------------------------|-------------|------------------|-------------------|----------------------|
 | Does the app collect user data?          | No¹         | No²              | No³               | No⁴                  |
 | Does the app share user data?            | No          | No               | No                | No                   |
@@ -78,7 +78,7 @@ collected.
 write optional contact information to the removable drive selected by the user.
 DeadStick Digital does not receive keys, drive contents, or telemetry.
 
-⁴ Holos Document Vault stores scanned documents, OCR text, translations, generated PDFs,
+⁴ Document Vault stores scanned documents, OCR text, translations, generated PDFs,
 and indexes locally by default. Future private sync is planned through the
 user's own iCloud or Google Drive account, not a DeadStick-operated server.
 
@@ -102,7 +102,7 @@ Google's policy for apps using `android.net.VpnService` (updated November
 | Permission                                                                 | Apps that use it           | Play Console declaration | Status |
 |----------------------------------------------------------------------------|-----------------------------|--------------------------|--------|
 | `BIND_VPN_SERVICE` + `FOREGROUND_SERVICE_SPECIAL_USE` (VPN)                | CarrierPigeonVPN            | Required for VPN apps    | 🚧 app-side |
-| `INTERNET`                                                                 | BillingBird, CarrierPigeonVPN, Holos Drive Vault if Android support ships, Holos Document Vault | No declaration needed    | ✅ |
+| `INTERNET`                                                                 | BillingBird, CarrierPigeonVPN, Holos Drive Vault if Android support ships, Document Vault | No declaration needed    | ✅ |
 | `CAMERA` (if BillingBird does receipt scanning)                            | BillingBird (TBD)           | In-app rationale prompt required | 🚧 app-side, clarify scope |
 | `READ_MEDIA_IMAGES` / photo picker                                         | BillingBird (if users attach receipts) | Photo picker preferred on Android 13+ | 🚧 app-side |
 | `POST_NOTIFICATIONS` (Android 13+)                                          | Any app that notifies users | Runtime permission       | 🚧 app-side |
