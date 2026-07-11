@@ -43,6 +43,43 @@ GitHub push readiness snapshot:
 
 ## Current Handoff
 
+- Active task: Simplify the two Holos homepage product-card names and add a shared DeadStick
+  brand byline without changing the products' full names elsewhere.
+- Last agent: Updated only the homepage card display titles from `Holos Drive Vault` to
+  `Drive Vault` and from `Holos Document Vault` to `Document Vault`. Added a subtle
+  `by DeadStick` line beneath each title using the existing typography and `--text-soft` token.
+  Full product names remain unchanged in detail pages, metadata, URLs, accessibility labels,
+  footer navigation, legal/support content, and tests that protect those surfaces. BillingBird,
+  CarrierPigeonVPN, card descriptions, features, links, icons, responsive rail behavior,
+  hover effects, and Coming Soon overlays were not changed.
+- Files touched by this local slice:
+  - `index.html`
+  - `styles.css`
+  - `tests/homepage-card-branding.test.sh` (new focused regression gate)
+  - `tests/holos-document-vault-product-name.test.sh`
+  - `tests/homepage-app-focus.test.sh`
+  - `AGENT_HANDOFF.md`
+- Verification:
+  - All `tests/*.sh` files passed independently with fail-fast handling (14/14).
+  - `/Users/chanceneel/Projects/SuperAssistant/scripts/local-validate.sh website --standard`
+    passed with 0 failures, including the local secret scan.
+  - `git diff --check` passed.
+  - `CNAME` remains exactly `www.deadstick.net`.
+  - Local browser review passed at 1440x1100, 900x1000, and 390x844. Both renamed cards and
+    bylines render cleanly in the desktop/tablet rail and mobile stack; existing Coming Soon
+    overlays remain intact; browser console reported no warnings or errors.
+  - GitHub Pages workflow run `29146072715` completed successfully for implementation commit
+    `ec939cf` (build, deploy, and status-report jobs all passed).
+  - Live production verification returned HTTP 200 and confirmed `Drive Vault`,
+    `Document Vault`, exactly two `by DeadStick` bylines, the refreshed stylesheet URL, and the
+    scoped byline CSS at `https://www.deadstick.net`.
+  - This static HTML/CSS repo has no configured package manifest, linter, TypeScript checker,
+    or build command; the shell suite and shared website validator are its defined local gates.
+- Change state: implementation committed as `ec939cf`, pushed to `origin/main`, deployed by
+  GitHub Pages, and verified live. This final handoff record was committed and pushed immediately
+  afterward.
+- Blockers: none.
+
 - Active task: Reposition the BillingBird product page around customer ownership of bookkeeping
   data without changing the site design.
 - Last agent: Reworked the BillingBird metadata, hero, and detail-content hierarchy so professional
