@@ -43,6 +43,28 @@ GitHub push readiness snapshot:
 
 ## Current Handoff
 
+- Active task: Prioritize Document Vault ahead of Drive Vault in the homepage app rail.
+- Last agent: Moved the complete Holos Document Vault card block ahead of Holos Drive Vault in
+  `index.html`, without changing either card's content, styling, links, icons, overlays, or
+  responsive behavior. Extended the focused homepage branding regression test to require this
+  order so the desktop/tablet rail and mobile stack keep Document Vault first.
+- Files touched by this local slice:
+  - `index.html`
+  - `tests/homepage-card-branding.test.sh`
+  - `AGENT_HANDOFF.md`
+- Verification:
+  - `/Users/chanceneel/Projects/SuperAssistant/scripts/local-validate.sh website --standard`
+    passed with 0 failures, including all 14 shell tests, whitespace validation, secret scan,
+    and the exact `www.deadstick.net` CNAME check.
+  - GitHub Pages workflow run `29146159598` completed successfully for implementation commit
+    `efc91f2`; build, deployment, and status-report jobs all passed.
+  - Live production verification returned HTTP 200 and confirmed the Document Vault card appears
+    before the Drive Vault card in the served homepage HTML.
+- Change state: implementation committed as `efc91f2`, pushed to `origin/main`, deployed by
+  GitHub Pages, and verified live. This final handoff record was committed and pushed immediately
+  afterward.
+- Blockers: none.
+
 - Active task: Simplify the two Holos homepage product-card names and add a shared DeadStick
   brand byline without changing the products' full names elsewhere.
 - Last agent: Updated only the homepage card display titles from `Holos Drive Vault` to
