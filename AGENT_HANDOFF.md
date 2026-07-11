@@ -70,8 +70,10 @@ GitHub push readiness snapshot:
     established site design with no BillingBird-page console warnings or errors.
   - The Learn more anchor, privacy-policy link, and contact-support link were exercised locally and
     reached their intended destinations.
-- Change state: local-only on `main`; not committed, pushed, published, or production-verified.
-  The worktree was clean before this slice. No blockers found.
+- Publication state: committed to and pushed on `main` after explicit owner approval. GitHub Pages
+  built commit `e9ed81a`, and the live BillingBird page, stylesheet, and app icon returned HTTP 200.
+  The production page contains the ownership-first hero and required ownership, export, rationale,
+  accessibility, and technical-specification headings. No blockers remain.
 
 - Active task: DeadStick Utilities app page (assurance-focused) in the standard app-page format.
 - Last agent: Built `apps/deadstick-utilities.html` in the same structure as the other app pages
