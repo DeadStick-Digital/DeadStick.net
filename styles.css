@@ -585,6 +585,19 @@ section {
   margin-bottom: 6px;
   font-size: 22px;
 }
+.app-card .app-title-lockup {
+  margin-bottom: 6px;
+}
+.app-card .app-title-lockup h3 {
+  margin-bottom: 0;
+}
+.app-card .app-byline {
+  margin-top: 3px;
+  color: var(--text-soft);
+  font-size: 12px;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+}
 .app-card .app-tag {
   color: var(--card-accent);
   font-size: 12px;

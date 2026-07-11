@@ -16,9 +16,9 @@ require '<div class="app-tag">Secure Document Scanner</div>' \
   index.html \
   'Homepage card should use Secure Document Scanner as the category label'
 
-require '<h3>Holos Document Vault</h3>' \
+require '<h3>Document Vault</h3>' \
   index.html \
-  'Homepage card should use the short Holos Document Vault product name'
+  'Homepage card should use the simplified Document Vault display name'
 
 require '<li><a href="apps/holos-document-vault.html">Holos Document Vault</a></li>' \
   index.html \

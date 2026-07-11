@@ -27,9 +27,9 @@ require '<article class="app-card is-billingbird is-primary-focus">' \
   index.html \
   'BillingBird should carry the primary focus state'
 
-require '<link rel="stylesheet" href="styles.css?v=20260704-apps-rail">' \
+require '<link rel="stylesheet" href="styles.css?v=20260711-product-branding">' \
   index.html \
-  'Homepage should cache-bust the stylesheet for privacy-promise copy styling'
+  'Homepage should cache-bust the stylesheet for product-card branding'
 
 require 'DeadStick Digital is built on a simple foundational promise: customer data belongs to' \
   index.html \
