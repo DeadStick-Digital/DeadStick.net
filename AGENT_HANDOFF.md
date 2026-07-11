@@ -1,6 +1,6 @@
 # Agent Handoff
 
-Last updated: 2026-07-04
+Last updated: 2026-07-11
 
 Local project: `/Users/chanceneel/Projects/Deadstick website`
 Current branch snapshot: `main`
@@ -42,6 +42,36 @@ GitHub push readiness snapshot:
 - Codex routing: use `GPT 5.5 High` as the default architect/lead for first-pass design, scope control, implementation planning, ordinary architecture decisions, and normal final review; escalate to `GPT 5.5 xhigh` only for high-risk architecture, persistence/schema migrations, security-sensitive decisions, App Store/TestFlight/release decisions, major cross-system refactors, production incidents, or final review before risky external actions; use `GPT 5.4-mini` for coding/build/test/debug loops once the plan is settled, escalating only if implementation becomes ambiguous or risky.
 
 ## Current Handoff
+
+- Active task: Reposition the BillingBird product page around customer ownership of bookkeeping
+  data without changing the site design.
+- Last agent: Reworked the BillingBird metadata, hero, and detail-content hierarchy so professional
+  invoicing, local user-owned records, optional personal-cloud sync, and the absence of a DeadStick
+  bookkeeping server are clear before the feature list. Added the phone/server/device comparison,
+  plain-language data-ownership copy with current iOS/iCloud and qualified Google Drive
+  availability, ownership and business capability groups, a highlighted export/no-lock-in section,
+  the product rationale before Accessibility, and Technical specifications as the final content
+  section. Navigation, footer, detail layout, side card, privacy link, shared CSS, and visual
+  language remain unchanged.
+- Files touched by this local slice:
+  - `apps/billingbird.html`
+  - `tests/billingbird-ownership-page.test.sh` (new focused regression gate)
+  - `AGENT_HANDOFF.md`
+- Verification:
+  - `bash tests/billingbird-ownership-page.test.sh` passed.
+  - `bash tests/privacy-billingbird.test.sh` passed.
+  - `/Users/chanceneel/Projects/SuperAssistant/scripts/local-validate.sh website --standard`
+    passed with 0 failures, including the local secret scan.
+  - Every `tests/*.sh` file passed independently with fail-fast handling (13/13).
+  - `git diff --check` passed.
+  - `CNAME` remains exactly `www.deadstick.net`.
+  - Local browser review passed at 1440x1100 and 390x844: the hero, comparison,
+    highlighted export panel, section order, responsive layout, side card, and footer render in the
+    established site design with no BillingBird-page console warnings or errors.
+  - The Learn more anchor, privacy-policy link, and contact-support link were exercised locally and
+    reached their intended destinations.
+- Change state: local-only on `main`; not committed, pushed, published, or production-verified.
+  The worktree was clean before this slice. No blockers found.
 
 - Active task: DeadStick Utilities app page (assurance-focused) in the standard app-page format.
 - Last agent: Built `apps/deadstick-utilities.html` in the same structure as the other app pages

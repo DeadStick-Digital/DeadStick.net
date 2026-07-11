@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#09090c">
-  <meta name="description" content="BillingBird — invoicing, receipts, and client bookkeeping for iOS and Android. From DeadStick Digital LLC.">
+  <meta name="description" content="BillingBird — professional invoicing with local, user-owned records and optional personal-cloud sync. DeadStick Digital never stores your books.">
   <title>BillingBird — DeadStick Digital LLC</title>
   <link rel="icon" type="image/png" href="../icons/billingbird.png">
   <link rel="stylesheet" href="../styles.css">
@@ -38,11 +38,11 @@
 <section class="wrap app-hero">
   <div class="app-icon"><img src="../icons/billingbird.png" alt="BillingBird app icon"></div>
   <div>
-    <div class="eyebrow" style="color:var(--bill);">For small teams &amp; sole proprietors</div>
-    <h1>BillingBird</h1>
-    <p>Invoicing, receipts, and client bookkeeping that fits in your pocket. Scan a receipt,
-       send a professional invoice, and keep clean books — on a platform that doesn't own your
-       records.</p>
+    <div class="eyebrow" style="color:var(--bill);">BillingBird · Professional invoicing</div>
+    <h1>The invoicing app that never owns your books.</h1>
+    <p>Create professional invoices, scan receipts, track payments, and keep your business
+       organized while your records stay on your device. Sync is optional and uses your own cloud
+       account. DeadStick Digital has no bookkeeping server storing your data.</p>
     <div class="hero-actions" style="margin-top:28px;">
       <a class="btn btn-primary" href="../index.html#contact">Contact support <span class="btn-arrow">→</span></a>
       <a class="btn" href="#overview">Learn more</a>
@@ -54,39 +54,66 @@
   <div class="detail-grid">
 
     <div class="detail-body">
-      <h2 id="overview">Overview</h2>
-      <p>BillingBird is a mobile-first invoicing app for freelancers, contractors, and small
-         service businesses. It handles clients, invoices, receipts, payments, templates, and
-         expense reports — the whole paper trail — in one app, on your phone.</p>
+      <h2 id="overview">Your business data belongs to your business.</h2>
+      <p>Most invoicing apps synchronize through company-owned servers. BillingBird keeps your
+         records on your device. If you choose to sync, the app uses your own supported iCloud or
+         Google Drive account instead of a DeadStick Digital bookkeeping server.</p>
 
-      <h3>What it does</h3>
+      <h3>Most invoicing apps</h3>
+      <p class="mono">Phone<br>↓<br>Company servers<br>↓<br>Tablet</p>
+
+      <h3>BillingBird</h3>
+      <p class="mono">Phone<br>↕<br>Your iCloud / Google Drive<br>↕<br>Your other devices</p>
+      <p>On the current iOS release, optional sync uses your iCloud account. Google Drive sync is
+         available only on supported platforms or releases.</p>
+
+      <h3>Data ownership</h3>
+      <p>Your invoices, receipts, and customer records stay on your device. If you enable sync,
+         your information is stored in your own supported cloud account. DeadStick Digital has no
+         server that stores or reads your bookkeeping. See the
+         <a href="../privacy.html#apps">privacy policy</a> for details.</p>
+
+      <h3>Built around ownership</h3>
       <ul>
-        <li>Create and send professional PDF invoices in seconds, with line items, categories, and
-            tax rules.</li>
-        <li>Scan paper receipts with your camera and attach them to a client or expense report.</li>
-        <li>Track payments, partial payments, and outstanding balances.</li>
-        <li>Maintain a clean client directory with notes, default rates, and contact history.</li>
-        <li>Export a full <code>.billingbird</code> archive anytime — your data is never stuck.</li>
-        <li>Choose between six color schemes (ocean, forest, sunset, berry, slate, ember) with
-            full light and dark modes.</li>
+        <li>Local-first records that stay available on your device.</li>
+        <li>No BillingBird account required.</li>
+        <li>Optional sync through your own supported cloud account.</li>
+        <li>Export everything at any time.</li>
+        <li>Works offline.</li>
       </ul>
 
-      <h3>How your data is stored</h3>
-      <p>BillingBird stores everything in a local on-device database. If you want your records on
-         more than one device, you can enable optional sync via <strong>Apple iCloud</strong> or
-         <strong>Google Drive</strong>. In that case your data is encrypted in transit and kept in
-         your own cloud account — DeadStick Digital does not operate a server that can read your
-         BillingBird data. See the <a href="../privacy.html#apps">privacy policy</a> for details.</p>
+      <h3>Built for business</h3>
+      <ul>
+        <li>Create and send professional PDF invoices with line items, categories, and tax rules.</li>
+        <li>Scan receipts and attach them to a client or expense report.</li>
+        <li>Track payments, partial payments, and outstanding balances.</li>
+        <li>Keep a client directory with notes, default rates, and contact history.</li>
+        <li>Build reports from your invoices, payments, and expenses.</li>
+        <li>Choose from six themes with full light and dark modes.</li>
+      </ul>
 
-      <h3>Platform</h3>
-      <p><strong>Shipping:</strong> iOS 17 or later on iPhone and iPad; Android 12 or later.
-         <br><strong>Framework:</strong> React Native 0.76 (New Architecture) with Expo SDK 52.</p>
+      <div class="security-measures">
+        <h3>Your data isn't rented.</h3>
+        <p>Export a full <code>.billingbird</code> archive whenever you choose. Your business records
+           are portable, with no lock-in and no dependence on BillingBird servers.</p>
+      </div>
+
+      <h3>Why we built BillingBird this way</h3>
+      <p>Small businesses shouldn't have to upload years of invoices, receipts, client lists, and
+         payment history to someone else's servers just to send an invoice. BillingBird was
+         designed so syncing your devices doesn't require giving us your books. You stay in
+         control. Always.</p>
 
       <h3>Accessibility</h3>
       <p>BillingBird supports VoiceOver on iOS and TalkBack on Android, respects Dynamic Type, and
          ships with a high-contrast palette for users with low vision. If you find an accessibility
          issue, please send us a note through the
          <a href="../index.html#contact">contact form</a>.</p>
+
+      <h3>Technical specifications</h3>
+      <p><strong>Platforms:</strong> iOS 17 or later on iPhone and iPad; Android 12 or later.
+         <br><strong>Implementation:</strong> React Native 0.76 with Expo SDK 52 and React Native's
+         New Architecture.</p>
     </div>
 
     <aside class="side-card">
