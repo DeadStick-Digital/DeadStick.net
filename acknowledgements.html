@@ -43,7 +43,7 @@
        governs how it may be used; the license texts are reproduced in-app under
        <em>Settings → About → Licenses</em>. If we've forgotten anyone, please
        <a href="index.html#contact">let us know</a> and we will correct it.</p>
-    <p class="muted mono" style="margin-top:14px;">Last updated: June 6, 2026</p>
+    <p class="muted mono" style="margin-top:14px;">Last updated: July 13, 2026</p>
   </div>
 
   <div class="doc-body">
@@ -70,24 +70,23 @@
     </div>
 
     <h2 id="billingbird">1. BillingBird</h2>
-    <p>BillingBird is a React Native app with the Expo SDK and New Architecture enabled. The
-       teams behind these projects make it possible for a very small studio to ship a universal
-       iOS and Android product:</p>
+    <p>BillingBird uses React Native, Expo, and Apple platform services to deliver one private
+       invoicing workflow across iPhone, iPad, and Mac:</p>
     <ul>
-      <li><strong><a href="https://reactnative.dev">React Native</a></strong> 0.76 (Fabric /
+      <li><strong><a href="https://reactnative.dev">React Native</a></strong> 0.85.3 (Fabric /
           TurboModules) — MIT License. © Meta Platforms, Inc. and affiliates.</li>
-      <li><strong><a href="https://expo.dev">Expo</a></strong> SDK 52 and the Expo modules
+      <li><strong><a href="https://expo.dev">Expo</a></strong> SDK 56 and the Expo modules
           ecosystem — MIT License. © 650 Industries, Inc. and contributors.</li>
       <li><strong><a href="https://reactjs.org">React</a></strong> — MIT License. © Meta
           Platforms, Inc. and affiliates.</li>
-      <li>The <strong>Apple iCloud</strong> and <strong>Google Drive</strong> APIs, used to
-          store the optional encrypted sync container in your own cloud account.</li>
-      <li>On-device receipt capture via
-          <strong><a href="https://developer.apple.com/documentation/vision">Apple Vision</a></strong>
-          (iOS) and
-          <strong><a href="https://developers.google.com/ml-kit">Google ML Kit</a></strong>
-          (Android).</li>
-      <li>PDF rendering and export via the system PDF APIs on each platform.</li>
+      <li><strong>Apple CloudKit and iCloud</strong>, used for optional private backup and guarded
+          device handoff through the user's own Apple account.</li>
+      <li>On-device receipt capture through <strong>Apple Vision</strong> and
+          <strong>VisionKit</strong> on iPhone and iPad.</li>
+      <li><strong>Apple PDF services</strong> for PDF rendering and export, and
+          <strong>Mac Catalyst</strong> for the macOS experience.</li>
+      <li><strong><a href="https://www.revenuecat.com">RevenueCat</a></strong> services may be used
+          to check subscription entitlements separately from BillingBird bookkeeping records.</li>
     </ul>
 
     <h2 id="carrierpigeonvpn">2. CarrierPigeonVPN</h2>

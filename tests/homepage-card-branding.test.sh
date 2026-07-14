@@ -46,6 +46,14 @@ fi
 
 require '<h3>BillingBird</h3>' index.html \
   'BillingBird should remain unchanged'
+require 'Professional invoicing, receipt capture, and client bookkeeping for small businesses—built' index.html \
+  'BillingBird homepage description should lead with professional, private bookkeeping'
+require 'Built for iPhone, iPad &amp; Mac' index.html \
+  'BillingBird homepage platforms should be Apple-only for now'
+require 'Optional private iCloud handoff—no DeadStick bookkeeping server' index.html \
+  'BillingBird homepage card should state the precise architecture boundary'
+require '>Explore BillingBird <span aria-hidden="true">→</span></a>' index.html \
+  'BillingBird homepage link should clearly name its destination'
 require '<h3>CarrierPigeonVPN</h3>' index.html \
   'CarrierPigeonVPN should remain unchanged'
 require '.app-card .app-byline {' styles.css \

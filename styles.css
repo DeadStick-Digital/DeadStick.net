@@ -1142,6 +1142,51 @@ footer {
 .detail-body h3 { font-size: 17px; margin: 28px 0 8px; }
 .detail-body ul { color: var(--text-muted); font-size: 14.5px; line-height: 1.7; padding-left: 22px; }
 
+.billingbird-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 28px 0 34px;
+}
+.billingbird-pillars article {
+  padding: 20px;
+  border: 1px solid rgba(94, 168, 232, 0.2);
+  border-radius: var(--radius-sm);
+  background: linear-gradient(180deg, rgba(94, 168, 232, 0.055), rgba(255,255,255,0.012));
+}
+.billingbird-pillars h3 { margin-top: 0; color: var(--text); }
+.billingbird-pillars p { margin-bottom: 0; font-size: 14px; }
+
+.billingbird-data-path {
+  margin: 34px 0 6px;
+  padding: 24px;
+  border: 1px solid rgba(94, 168, 232, 0.24);
+  border-radius: var(--radius-md);
+  background:
+    radial-gradient(420px 180px at 0% 0%, rgba(94, 168, 232, 0.1), transparent 70%),
+    var(--surface);
+}
+.billingbird-data-path h3 { margin-top: 0; }
+.billingbird-data-path ol { margin: 18px 0 0; padding-left: 22px; }
+.billingbird-data-path li {
+  color: var(--text-muted);
+  font-size: 14.5px;
+  line-height: 1.65;
+  padding-left: 4px;
+}
+.billingbird-data-path li + li { margin-top: 12px; }
+.billingbird-data-path strong { color: var(--text); }
+.billingbird-data-path .billingbird-data-note {
+  margin: 20px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  font-size: 13.5px;
+}
+
+@media (max-width: 760px) {
+  .billingbird-pillars { grid-template-columns: 1fr; }
+}
+
 .security-measures {
   margin: 30px 0 4px;
   padding: 22px 24px;

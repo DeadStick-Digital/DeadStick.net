@@ -6,7 +6,7 @@ require() {
   local file="$2"
   local message="$3"
 
-  if ! git grep -q "$pattern" -- "$file"; then
+  if ! grep -qF "$pattern" "$file"; then
     printf 'Missing expected BillingBird privacy language: %s\n' "$message" >&2
     exit 1
   fi
@@ -17,36 +17,42 @@ reject() {
   local file="$2"
   local message="$3"
 
-  if git grep -q "$pattern" -- "$file"; then
+  if grep -qF "$pattern" "$file"; then
     printf 'Outdated BillingBird privacy language remains: %s\n' "$message" >&2
     exit 1
   fi
 }
 
-require 'Last updated: June 6, 2026' \
-  privacy.html \
-  'Privacy policy should show the latest app-copy update date'
+require 'Last updated: July 13, 2026' privacy.html \
+  'Privacy policy should show the Apple-platform copy update date'
+require '<strong>BillingBird</strong> — a private invoicing and receipt app for iPhone, iPad, and Mac' privacy.html \
+  'Scope should identify the supported Apple devices'
+require 'private local app storage on your iPhone, iPad, or Mac' privacy.html \
+  'Policy should describe the local storage boundary'
+require 'DeadStick Digital does not collect,' privacy.html \
+  'Policy should state that DeadStick does not collect bookkeeping records'
+require 'optional private iCloud backup and handoff' privacy.html \
+  'Policy should qualify optional iCloud continuity'
+require 'single-active-device handoff' privacy.html \
+  'Policy should reject a realtime multi-device interpretation'
+require 'RevenueCat may process the' privacy.html \
+  'Policy should identify the separate entitlement service'
+require '<a href="https://www.revenuecat.com/privacy">RevenueCat</a>' privacy.html \
+  'Service-provider list should disclose RevenueCat and link its policy'
+require 'automatically generated app-user identifier' privacy.html \
+  'Policy should identify the RevenueCat customer boundary'
+require 'device/platform information, and entitlement status' privacy.html \
+  'General purchase summary should match the RevenueCat processor disclosure'
+require 'DeadStick does not receive your credit card, billing address, or real name' privacy.html \
+  'Purchase summary should retain the payment-data boundary'
+require 'direct RevenueCat' privacy.html \
+  'Policy should explain provider-held record deletion handling'
+require 'it does not' privacy.html \
+  'Policy should separate entitlements from bookkeeping records'
+require 'receive your BillingBird bookkeeping records.' privacy.html \
+  'Policy should state the RevenueCat bookkeeping boundary'
 
-require "For BillingBird's iOS App Store release, DeadStick Digital does not collect data" \
-  privacy.html \
-  'iOS App Store release should explicitly align with Data Not Collected'
-
-require 'from the app. Client records, invoices, receipts, attachments, reports, and settings remain' \
-  privacy.html \
-  'Policy should describe the data that remains under user control'
-
-require 'DeadStick Digital does not receive, read, or store BillingBird app data.' \
-  privacy.html \
-  'Policy should state DeadStick cannot access BillingBird app data'
-
-require 'Google Drive sync may be available on some platforms or future releases.' \
-  privacy.html \
-  'Google Drive availability should be qualified for the current iOS build'
-
-require 'Store release uses local storage and optional iCloud sync only.' \
-  privacy.html \
-  'Current iOS sync options should be explicit'
-
-reject 'You may optionally enable sync via <strong>Apple iCloud</strong> or' \
-  privacy.html \
-  'Old wording made Google Drive sound available in the current iOS release'
+reject "For BillingBird's iOS App Store release" privacy.html \
+  'iPhone-only release language should not exclude iPad and Mac'
+reject 'Google Drive sync may be available on some platforms or future releases.' privacy.html \
+  'BillingBird privacy copy should no longer advertise future Google Drive behavior'

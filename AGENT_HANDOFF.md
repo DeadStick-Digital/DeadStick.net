@@ -1,6 +1,6 @@
 # Agent Handoff
 
-Last updated: 2026-07-11
+Last updated: 2026-07-13 BillingBird Apple-platform website repositioning (local, unpublished)
 
 Local project: `/Users/chanceneel/Projects/Deadstick website`
 Current branch snapshot: `main`
@@ -42,6 +42,42 @@ GitHub push readiness snapshot:
 - Codex routing: use `GPT 5.5 High` as the default architect/lead for first-pass design, scope control, implementation planning, ordinary architecture decisions, and normal final review; escalate to `GPT 5.5 xhigh` only for high-risk architecture, persistence/schema migrations, security-sensitive decisions, App Store/TestFlight/release decisions, major cross-system refactors, production incidents, or final review before risky external actions; use `GPT 5.4-mini` for coding/build/test/debug loops once the plan is settled, escalating only if implementation becomes ambiguous or risky.
 
 ## Current Handoff
+
+- Active task: Reposition BillingBird across the public website for iPhone, iPad, and Mac, with
+  customer-owned records, professional quality, and Apple-device continuity as the three product
+  pillars.
+- Last agent: Replaced the homepage's iOS/Android card copy with Apple-only customer-facing
+  positioning; rebuilt the BillingBird detail page around the approved ownership, quality, and
+  cross-device hierarchy; added an accessible three-pillar/data-path presentation; and aligned
+  BillingBird-specific privacy, support, deletion, terms, and acknowledgements copy. The public
+  wording now distinguishes local bookkeeping records and optional private-iCloud handoff from
+  Apple/RevenueCat subscription infrastructure, avoids an absolute no-third-party-server claim,
+  and describes the guarded single-active-device model instead of realtime collaboration.
+- Files touched by this local slice:
+  - `index.html`, `apps/billingbird.html`, and `styles.css`
+  - `privacy.html`, `support.html`, `deletion.html`, `terms.html`, and `acknowledgements.html`
+  - `tests/billingbird-ownership-page.test.sh`, `tests/privacy-billingbird.test.sh`,
+    `tests/homepage-app-focus.test.sh`, `tests/homepage-card-branding.test.sh`, and the new
+    `tests/billingbird-public-surface-consistency.test.sh`
+  - `AGENT_HANDOFF.md`
+- Verification:
+  - All 15 `tests/*.sh` files passed independently through the website shell-test lane.
+  - `/Users/chanceneel/Projects/SuperAssistant/scripts/local-validate.sh website --standard`
+    passed with 0 failures, including whitespace, redacted secret scan, all shell tests, and the
+    exact `www.deadstick.net` CNAME check.
+  - `git diff --check` passed.
+  - Local Playwright review passed at 1440x1100 and 390x844: the product page had no horizontal
+    overflow, visible keyboard focus, correct semantic heading/list/region order, working
+    `#why-billingbird` and privacy actions, and 0 browser warnings/errors.
+  - Current Apple support guidance was checked for iPhone/iPad app deletion, Mac app removal, and
+    Mac iCloud-storage deletion. RevenueCat's current privacy disclosure and customer-deletion API
+    were checked before adding the subscription-provider disclosure and deletion-request path.
+  - Independent read-only review found no P0 issue. Its RevenueCat disclosure, seven-theme count,
+    and accessibility-evidence findings were corrected and the full local gate was rerun green.
+- Change state: local-only on `main`; unstaged, uncommitted, not pushed, not published, and not
+  live. No BillingBird application files were changed.
+- Blockers: none for local implementation. Commit, push, GitHub Pages deployment, and live URL
+  verification require explicit owner publication approval.
 
 - Active task: Retire the former Document Vault Holos branding across every website-facing
   surface and publish the consistent name.

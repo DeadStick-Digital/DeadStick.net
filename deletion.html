@@ -38,35 +38,44 @@
   <div class="doc-head">
     <div class="eyebrow">Your data</div>
     <h1>Account &amp; data deletion</h1>
-    <p>DeadStick Digital does not operate user accounts. There is nothing stored on our servers to
-       delete — the only copies of your data live on your own devices and, if you opted in, in
-       your own cloud account. This page explains how to remove each copy.</p>
+    <p>DeadStick Digital does not operate app-content accounts or keep a readable copy of your app
+       content on a DeadStick server. Your content lives on your own devices and, if you opted in,
+       in your own cloud account. Apple and RevenueCat may separately process limited purchase and
+       subscription records. This page explains how to address each kind of data.</p>
   </div>
 
   <div class="doc-body">
 
     <div class="callout">
-      <strong>Short version:</strong> uninstall the app to wipe its local database. If you turned on
-      iCloud or Google Drive sync, delete the app's container/folder in that service to remove the
-      remote copy. We never receive either copy. No message to us is required.
+      <strong>Short version:</strong> uninstall the app to remove its local database. If you turned
+      on iCloud or Google Drive sync, delete the app's container/folder in that service to remove
+      the remote copy. We never receive either content copy. Purchase and subscription records are
+      separate; use the steps below or send a privacy request when provider-held data is involved.
     </div>
 
     <h2 id="billingbird">BillingBird</h2>
     <p>BillingBird stores clients, invoices, receipts, and attachments in an on-device database.
-       Sync, if enabled, writes an encrypted container to your own iCloud or Google Drive account.
-       DeadStick Digital cannot read either copy.</p>
+       Optional private iCloud backup and handoff stores an additional copy in your own Apple
+       account. DeadStick Digital cannot read either copy.</p>
     <ul>
-      <li><strong>On-device.</strong> Uninstalling BillingBird from your phone removes the local
-          database. iOS: long-press the app → <em>Remove App</em> → <em>Delete App</em>. Android:
-          long-press → <em>App info</em> → <em>Uninstall</em>.</li>
-      <li><strong>iCloud sync copy.</strong> Open <em>Settings</em> → <em>Apple ID</em> →
-          <em>iCloud</em> → <em>Manage Account Storage</em> → <em>BillingBird</em> → <em>Delete
-          Data</em>. This removes the encrypted BillingBird container from your iCloud.</li>
-      <li><strong>Google Drive sync copy.</strong> Open <a href="https://drive.google.com">drive.google.com</a>
-          → <em>Settings (gear)</em> → <em>Manage apps</em> → find <em>BillingBird</em> →
-          <em>Options</em> → <em>Delete hidden app data</em>.</li>
+      <li><strong>iPhone or iPad.</strong> Long-press BillingBird, then choose <em>Remove App</em> →
+          <em>Delete App</em> to remove the app and its local container from that device.</li>
+      <li><strong>Mac.</strong> Remove BillingBird from the Applications folder. macOS may retain
+          sandboxed app data after an app is removed; <a href="support.html#contact">contact
+          support</a> if you need help confirming that the local BillingBird container is gone.</li>
+      <li><strong>Private iCloud copy.</strong> On iPhone or iPad, open <em>Settings</em> →
+          <em>Apple Account</em> → <em>iCloud</em> → <em>Manage Account Storage</em> →
+          <em>BillingBird</em> → <em>Delete Data</em>. On Mac, use the corresponding iCloud storage
+          controls in <em>System Settings</em>. This removes BillingBird's private iCloud copy.</li>
       <li><strong>Export first, if you want.</strong> Before deleting, you can export your full
           records as a <code>.billingbird</code> archive from <em>Settings → Export</em>.</li>
+      <li><strong>BillingBird Pro subscription record.</strong> Apple and RevenueCat may retain an
+          automatically generated app-user identifier, Apple purchase receipt, and entitlement
+          history separately from your bookkeeping. Deleting BillingBird or its iCloud data does
+          not cancel a subscription. Manage or cancel it through your Apple Account subscriptions.
+          For an access or deletion request involving RevenueCat data, use the privacy-request path
+          below; after verification, DeadStick will direct the provider to process the associated
+          customer record where applicable law permits.</li>
     </ul>
 
     <h2 id="carrierpigeonvpn">CarrierPigeonVPN</h2>
@@ -126,8 +135,9 @@
     <h2 id="requests">Where to send a deletion request</h2>
     <p>If you cannot complete one of the steps above, send a note through the
        <a href="index.html#contact">contact form</a> with the topic <em>Privacy request</em>.
-       Because we hold no user data at rest, most requests are answered with a short explanation
-       and a pointer to the steps above.</p>
+       Because DeadStick does not hold your app content, most requests are answered with the
+       relevant device or cloud steps. When limited subscription information is held by a provider,
+       we will explain any verification needed and direct the provider to process a valid request.</p>
 
     <h2 id="addr">Written requests</h2>
     <p>
