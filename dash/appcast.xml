@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+  <channel>
+    <title>DeadStick Dash</title>
+    <link>https://deadstick.net/apps/deadstickdash.html</link>
+    <description>DeadStick Dash release feed</description>
+    <!-- script/release.sh prints each release's <item>; paste it here. -->
+  </channel>
+</rss>
