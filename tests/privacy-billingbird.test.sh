@@ -23,18 +23,16 @@ reject() {
   fi
 }
 
-require 'Last updated: July 13, 2026' privacy.html \
-  'Privacy policy should show the Apple-platform copy update date'
-require '<strong>BillingBird</strong> — a private invoicing and receipt app for iPhone, iPad, and Mac' privacy.html \
-  'Scope should identify the supported Apple devices'
-require 'private local app storage on your iPhone, iPad, or Mac' privacy.html \
-  'Policy should describe the local storage boundary'
+require 'Last updated: July 19, 2026' privacy.html \
+  'Privacy policy should show the iPhone-first copy update date'
+require 'launching first on iPhone; iPadOS, macOS, Android, and Windows support is planned' privacy.html \
+  'Scope should identify iPhone launch and planned platforms'
+require 'private local app storage on your iPhone' privacy.html \
+  'Policy should describe the current iPhone storage boundary'
 require 'DeadStick Digital does not collect,' privacy.html \
   'Policy should state that DeadStick does not collect bookkeeping records'
-require 'optional private iCloud backup and handoff' privacy.html \
-  'Policy should qualify optional iCloud continuity'
-require 'single-active-device handoff' privacy.html \
-  'Policy should reject a realtime multi-device interpretation'
+require 'optional private iCloud backup' privacy.html \
+  'Policy should qualify optional iCloud backup'
 require 'RevenueCat may process the' privacy.html \
   'Policy should identify the separate entitlement service'
 require '<a href="https://www.revenuecat.com/privacy">RevenueCat</a>' privacy.html \
@@ -51,8 +49,14 @@ require 'it does not' privacy.html \
   'Policy should separate entitlements from bookkeeping records'
 require 'receive your BillingBird bookkeeping records.' privacy.html \
   'Policy should state the RevenueCat bookkeeping boundary'
+require 'those platforms are not yet shipping' privacy.html \
+  'Policy should not imply future-platform data handling is already implemented'
 
-reject "For BillingBird's iOS App Store release" privacy.html \
-  'iPhone-only release language should not exclude iPad and Mac'
+reject 'private local app storage on your iPhone, iPad, or Mac' privacy.html \
+  'Retired multi-Apple current storage claim should be removed'
+reject 'for iPhone, iPad, and Mac' privacy.html \
+  'Retired multi-Apple scope line should be removed'
+reject 'Built for iPhone, iPad &amp; Mac' privacy.html \
+  'Multi-Apple marketing claim must not appear in privacy'
 reject 'Google Drive sync may be available on some platforms or future releases.' privacy.html \
-  'BillingBird privacy copy should no longer advertise future Google Drive behavior'
+  'BillingBird privacy copy should not advertise future Google Drive behavior'

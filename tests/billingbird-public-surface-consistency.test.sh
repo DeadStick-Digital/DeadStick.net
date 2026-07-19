@@ -17,8 +17,8 @@ extract_between() {
   ' "$file" > "$output"
 }
 
-extract_between index.html '<!-- ==== BillingBird ==== -->' '<!-- ==== CarrierPigeonVPN ==== -->' "$tmp_dir/homepage"
 cp apps/billingbird.html "$tmp_dir/product"
+extract_between index.html '<!-- ==== BillingBird ==== -->' '<!-- ==== CarrierPigeonVPN ==== -->' "$tmp_dir/homepage"
 extract_between privacy.html '<h3>10.1 BillingBird</h3>' '<h3>10.2 CarrierPigeonVPN</h3>' "$tmp_dir/privacy"
 grep 'BillingBird</a> —' support.html > "$tmp_dir/support"
 extract_between deletion.html '<h2 id="billingbird">BillingBird</h2>' '<h2 id="carrierpigeonvpn">' "$tmp_dir/deletion"
@@ -27,9 +27,20 @@ extract_between acknowledgements.html '<h2 id="billingbird">' '<h2 id="carrierpi
 
 cat "$tmp_dir"/* > "$tmp_dir/all-billingbird"
 
-if grep -Eqi 'Android|TalkBack|Google Drive|React Native 0\.76|Expo( SDK)? 52' "$tmp_dir/all-billingbird"; then
-  echo 'A BillingBird-specific public surface still contains Android, TalkBack, Google Drive, or stale framework claims.' >&2
-  grep -Eni 'Android|TalkBack|Google Drive|React Native 0\.76|Expo( SDK)? 52' "$tmp_dir/all-billingbird" >&2
+if grep -Eqi 'TalkBack|Google Drive|React Native 0\.76|Expo( SDK)? 52' "$tmp_dir/all-billingbird"; then
+  echo 'A BillingBird-specific public surface still contains TalkBack, Google Drive, or stale framework claims.' >&2
+  grep -Eni 'TalkBack|Google Drive|React Native 0\.76|Expo( SDK)? 52' "$tmp_dir/all-billingbird" >&2
+  exit 1
+fi
+
+if grep -Eqi 'for Apple devices|Built for iPhone, iPad &amp; Mac|Built for iPhone, iPad & Mac' "$tmp_dir/all-billingbird"; then
+  echo 'A BillingBird-specific public surface still claims multi-Apple current shipping support.' >&2
+  grep -Eni 'for Apple devices|Built for iPhone, iPad' "$tmp_dir/all-billingbird" >&2
+  exit 1
+fi
+
+if grep -Eq 'iOS 17 or later; iPadOS 17 or later; macOS 14 or later|iPadOS 17 or later|macOS 14 or later' "$tmp_dir/product"; then
+  echo 'BillingBird product page still advertises planned Apple OS floors as current metadata.' >&2
   exit 1
 fi
 
@@ -43,13 +54,17 @@ require_in_scope() {
   fi
 }
 
-require_in_scope 'Built for iPhone, iPad &amp; Mac' "$tmp_dir/homepage" 'homepage should name the supported devices'
-require_in_scope 'Private by architecture' "$tmp_dir/product" 'product page should lead with the privacy pillar'
-require_in_scope 'private local app storage on your iPhone, iPad, or Mac' "$tmp_dir/privacy" 'privacy should match the Apple platform scope'
-require_in_scope 'private invoicing &amp; receipts for iPhone, iPad, and Mac' "$tmp_dir/support" 'support should match the Apple platform scope'
+require_in_scope '"operatingSystem": "iOS 17 or later"' "$tmp_dir/product" 'product JSON-LD should be iPhone-current only'
+require_in_scope 'The launch version lets you record manual payments. Online payment collection is planned for a later release.' "$tmp_dir/product" 'product page should clarify manual payments'
+require_in_scope 'Launching first on iPhone' "$tmp_dir/homepage" 'homepage card should state iPhone-first launch'
+require_in_scope 'iPadOS, macOS, Android, and Windows support is planned' "$tmp_dir/homepage" 'homepage card should mention planned platforms without claiming them current'
+require_in_scope 'private local app storage on your iPhone' "$tmp_dir/privacy" 'privacy should describe current iPhone storage'
+require_in_scope 'iPadOS, macOS, Android, and Windows support' "$tmp_dir/privacy" 'privacy should mention planned platforms without claiming them current'
+require_in_scope 'private invoicing &amp; receipts launching first on iPhone' "$tmp_dir/support" 'support should match iPhone-first scope'
 require_in_scope '<strong>Private iCloud copy.</strong>' "$tmp_dir/deletion" 'deletion should cover the private iCloud copy'
 require_in_scope '<strong>BillingBird Pro subscription record.</strong>' "$tmp_dir/deletion" 'deletion should cover provider-held subscription records'
-require_in_scope 'single-active-device handoff' "$tmp_dir/terms" 'terms should qualify iCloud handoff behavior'
+require_in_scope '<strong>iPhone.</strong>' "$tmp_dir/deletion" 'deletion should describe the current iPhone path'
+require_in_scope 'launches first on iPhone' "$tmp_dir/terms" 'terms should state iPhone-first launch'
 require_in_scope 'React Native</a></strong> 0.85.3' "$tmp_dir/acknowledgements" 'acknowledgements should name the current React Native version'
 require_in_scope 'Expo</a></strong> SDK 56' "$tmp_dir/acknowledgements" 'acknowledgements should name the current Expo version'
 require_in_scope '<strong>Apple CloudKit and iCloud</strong>' "$tmp_dir/acknowledgements" 'acknowledgements should name Apple private-cloud services'

@@ -126,3 +126,15 @@ require '.app-card.is-coming-soon::after' \
 require '.app-card.is-coming-soon .app-icon' \
   styles.css \
   'Coming-soon styling should visually dim app artwork'
+
+reject 'bb-home-spotlight' \
+  index.html \
+  'Homepage should not contain a BillingBird spotlight section'
+
+reject 'billingbird-spotlight' \
+  index.html \
+  'Homepage should not contain a BillingBird spotlight section'
+
+reject 'assets/billingbird/' \
+  index.html \
+  'Homepage should not reference BillingBird marketing screenshot assets'

@@ -46,14 +46,24 @@ fi
 
 require '<h3>BillingBird</h3>' index.html \
   'BillingBird should remain unchanged'
-require 'Professional invoicing, receipt capture, and client bookkeeping for small businesses—built' index.html \
-  'BillingBird homepage description should lead with professional, private bookkeeping'
-require 'Built for iPhone, iPad &amp; Mac' index.html \
-  'BillingBird homepage platforms should be Apple-only for now'
-require 'Optional private iCloud handoff—no DeadStick bookkeeping server' index.html \
+require 'For contractors &amp; service pros' index.html \
+  'BillingBird homepage tag should match the approved iPhone-first positioning'
+require 'Professional estimates, invoices, receipt capture, and client balances for contractors and' index.html \
+  'BillingBird homepage description should lead with the approved iPhone-first copy'
+require 'service professionals—launching first on iPhone, with records that stay on your device.' index.html \
+  'BillingBird homepage description should state the iPhone-first launch and on-device records'
+require 'Launching first on iPhone' index.html \
+  'BillingBird homepage card should state the iPhone-first launch feature'
+require 'Estimates, invoices, receipts &amp; manual payments' index.html \
+  'BillingBird homepage card should list the estimates/invoices/receipts/payments feature'
+require 'Optional private iCloud backup—no DeadStick bookkeeping server' index.html \
   'BillingBird homepage card should state the precise architecture boundary'
+require 'iPadOS, macOS, Android, and Windows support is planned' index.html \
+  'BillingBird homepage card should state the planned-platform roadmap'
 require '>Explore BillingBird <span aria-hidden="true">→</span></a>' index.html \
   'BillingBird homepage link should clearly name its destination'
+reject 'Built for iPhone, iPad &amp; Mac' index.html \
+  'Retired multi-Apple current-availability claim must not remain on the homepage card'
 require '<h3>CarrierPigeonVPN</h3>' index.html \
   'CarrierPigeonVPN should remain unchanged'
 require '.app-card .app-byline {' styles.css \
