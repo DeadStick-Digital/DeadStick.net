@@ -1,10 +1,10 @@
 # Agent Handoff
 
-Last updated: 2026-07-13 BillingBird Apple-platform website repositioning (local, unpublished)
+Last updated: 2026-07-19 BillingBird iPhone-first product-page marketing published and live-verified
 
 Local project: `/Users/chanceneel/Projects/Deadstick website`
-Current branch snapshot: `main`
-Dirty snapshot before this file: 0 changed/untracked paths
+Current branch snapshot: `main`; BillingBird content commit `685ba86` and the earlier DeadStick Dash commit are published to `origin/main`
+Expected dirty snapshot after this handoff is committed: only the pre-existing deletion of `assets/logo-mark-512.png`, which remains intentionally unstaged
 
 GitHub remotes:
 
@@ -13,7 +13,7 @@ GitHub remotes:
 GitHub push readiness snapshot:
 
 - Antigravity MCP token check: GitHub API reported `push=true` and `admin=true` for `DeadStick-Digital/DeadStick.net`.
-- Shell auth check: global `gh` default token was invalid on 2026-06-15. Run `gh auth status` before push.
+- Shell auth check: `gh auth status` succeeded for the active `chanceneel` account immediately before the 2026-07-19 publication push.
 
 ## Start Here
 
@@ -42,6 +42,69 @@ GitHub push readiness snapshot:
 - Codex routing: use `GPT 5.5 High` as the default architect/lead for first-pass design, scope control, implementation planning, ordinary architecture decisions, and normal final review; escalate to `GPT 5.5 xhigh` only for high-risk architecture, persistence/schema migrations, security-sensitive decisions, App Store/TestFlight/release decisions, major cross-system refactors, production incidents, or final review before risky external actions; use `GPT 5.4-mini` for coding/build/test/debug loops once the plan is settled, escalating only if implementation becomes ambiguous or risky.
 
 ## Current Handoff
+
+- Active task: Completed. BillingBird product-page marketing is published while the homepage keeps
+  its stock structure and visual layout. The rejected prominent homepage spotlight was removed;
+  only the existing BillingBird card copy was aligned to current platform truth.
+- Last agents: Grok 4.5 and Claude Sonnet 5 bounded specialists under GPT-5.6 Sol Ultra
+  SuperAssistant implemented and reviewed `apps/billingbird.html`, optimized screenshot assets
+  under `assets/billingbird/` (WebP + PNG, with invoice detail cropped before the historical Draft
+  Invoice timeline), the local `og-1200x630` sharing image, aligned BillingBird support/legal copy,
+  responsive product-page CSS, and focused tests. Claude restored `index.html` plus the two
+  homepage-focused tests byte-for-byte to `HEAD` and removed all homepage-spotlight CSS/tests. The
+  root lead completed desktop/mobile browser acceptance and preserved the pre-existing deletion of
+  `assets/logo-mark-512.png`. The owner approved direct publication; commit `685ba86` and the
+  earlier DeadStick Dash commit were pushed to `main`. GitHub Pages built `685ba86` successfully,
+  and both live pages plus all 12 BillingBird image assets were verified. The App Store link/Smart
+  Banner remains intentionally disabled. No BillBird product source was edited.
+- Screenshot provenance (pre-verified inputs under `/tmp/`):
+  - Dedicated synthetic simulator `B6964F68-B846-472B-AA20-568CC5C950F3`, iPhone 17 Pro, iOS 26.5.
+  - Bundle `com.billingbird.app.deviceuitest`, build 1.0.0 (78); main.jsbundle SHA-256
+    `3b65d18951ce7479c1a421c6a6c918de11d0ea0dc6b1900e4822fad0b32e69d7`.
+  - Home shows exactly “Good morning”; synthetic data: Cedar Ridge Properties, INV-1042, Kitchen
+    Renovation. Invoice-detail marketing asset cropped before historical Draft Invoice timeline.
+- Files touched by this local slice:
+  - `index.html` (existing BillingBird card copy only), `apps/billingbird.html`, `styles.css`
+  - `privacy.html`, `support.html`, `deletion.html`, `terms.html`, `acknowledgements.html`
+  - `assets/billingbird/*` (home, invoice-create, invoice-detail, receipt-capture, clients PNG/WebP;
+    `og-1200x630.png` / `.webp`)
+  - `tests/billingbird-ownership-page.test.sh`, `tests/billingbird-public-surface-consistency.test.sh`,
+    `tests/privacy-billingbird.test.sh`, `tests/homepage-app-focus.test.sh`, and
+    `tests/homepage-card-branding.test.sh`
+  - `tests/deadstick-utilities-app-page.test.sh` (minimal “Six apps” heading assert alignment with
+    existing Dash card already on local main; unrelated and must remain separately scoped)
+  - `AGENT_HANDOFF.md`
+- Validation:
+  - All 15 `tests/*.sh` passed.
+  - `git diff --check` passed.
+  - `CNAME` exactly `www.deadstick.net`.
+  - `/Users/chanceneel/Projects/SuperAssistant/scripts/local-validate.sh website --standard`
+    passed with 0 failures (whitespace, redacted secret scan, shell tests, CNAME).
+  - The homepage diff changes only existing BillingBird card text. No spotlight selector or
+    marketing screenshot reference exists. Playwright confirmed the stock six-card homepage at
+    1440x1100 with the approved card wording and no horizontal overflow.
+  - Playwright product-page acceptance passed at 1440x1100 and 390x844: all five gallery images
+    loaded; metadata and structured data advertise only `iOS 17 or later`; the pre-release App
+    Store status is not a link; no Smart App Banner exists; keyboard focus is visible; the mobile
+    gallery uses touch scrolling and mandatory snap points; there is no document-level horizontal
+    overflow; and the console has 0 errors/warnings.
+  - Visual inspection confirmed the lead screenshot says exactly “Good morning” and all five
+    screenshots contain approved synthetic data without UI-test customer labels.
+  - Initial independent Grok review `a8af78ee-f4a4-4557-bc1d-a764f97b2392` held publication on the
+    stale stock-card claim. The owner approved the recommended existing-card-only correction. Fresh
+    independent review `a0849a48-e8ca-48fe-9f2d-12407386df29` returned `AGREE` with no blocking or
+    material publication defect.
+  - GitHub Pages build for commit `685ba86893c57c85dd04b7128ee4299695f0f1c8` finished `built`
+    with no error. Cache-busted live checks returned HTTP 200 for the homepage, product page, and
+    screenshot assets. Live HTML confirmed no spotlight, accurate card/platform wording, five
+    gallery items, `Good morning` without the retired greeting, and non-clickable pre-release App
+    Store state. All 12 live BillingBird image files matched the reviewed local files byte-for-byte.
+- Change state: BillingBird content committed as `685ba86`, pushed to `origin/main`, GitHub Pages
+  built successfully, and `https://www.deadstick.net/` plus
+  `https://www.deadstick.net/apps/billingbird.html` live-verified. The pre-existing logo deletion
+  remains unstaged and unpublished.
+- Blockers: none for the website publication. App Store link and Smart App Banner activation remain
+  intentionally deferred until the public App Store listing and confirmed app ID are verified.
 
 - Active task: Reposition BillingBird across the public website for iPhone, iPad, and Mac, with
   customer-owned records, professional quality, and Apple-device continuity as the three product
