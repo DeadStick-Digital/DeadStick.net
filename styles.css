@@ -1212,12 +1212,16 @@ footer {
   text-align: center;
 }
 
-.bb-gallery-section { padding-top: 18px; padding-bottom: 10px; }
+.bb-gallery-section {
+  padding-top: 18px;
+  padding-bottom: 10px;
+  scroll-margin-top: 92px;
+}
 .bb-gallery {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 18px;
-  align-items: start;
+  align-items: stretch;
 }
 .bb-gallery-item {
   margin: 0;
@@ -1225,17 +1229,60 @@ footer {
   border-radius: var(--radius-md);
   border: 1px solid rgba(94, 168, 232, 0.16);
   background: linear-gradient(180deg, rgba(94, 168, 232, 0.05), rgba(255,255,255,0.012));
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
-.bb-gallery-item:nth-child(even) {
-  transform: translateY(18px);
+/* Equal phone-like media stage for every gallery card */
+.bb-gallery-stage {
+  position: relative;
+  aspect-ratio: 780 / 1696;
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(180deg, rgba(240, 250, 245, 0.98), rgba(232, 244, 239, 0.96));
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
-.bb-gallery-item img {
+.bb-gallery-stage picture {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.bb-gallery-stage img {
   display: block;
   width: 100%;
-  height: auto;
-  border-radius: 18px;
-  background: #f0faf5;
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+}
+.bb-gallery-index {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  color: var(--text-soft);
+  background: rgba(9, 9, 12, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 5px 8px;
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 .bb-gallery-item figcaption {
   margin-top: 12px;
@@ -1243,12 +1290,18 @@ footer {
   font-size: 13.5px;
   line-height: 1.45;
   font-weight: 500;
+  flex: 1 1 auto;
 }
 .bb-gallery-cue {
   display: none;
   margin: 14px 0 0;
   color: var(--text-soft);
   font-size: 13px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bb-gallery {
+    scroll-behavior: auto;
+  }
 }
 
 .bb-benefits { padding-top: 28px; }
@@ -1397,7 +1450,6 @@ footer {
   .bb-gallery {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  .bb-gallery-item:nth-child(even) { transform: none; }
   .bb-benefit-grid {
     grid-template-columns: 1fr;
   }
