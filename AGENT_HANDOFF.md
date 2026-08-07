@@ -91,6 +91,17 @@ GitHub push readiness snapshot:
   pages. All 15 tests and the standard gate passed; Pages reported `built` for
   `629fee6602409a3c32392cc317142a10ff0f29d0`; cache-busted live checks confirmed the orange and
   green markers, hero icon, lightbox, and zero legacy `#5ea8e8`. Published and verified.
+- Bezel/finish slice (2026-08-07 evening, owner-approved): commit `c9ce3ef` slimmed the phone
+  bezels from 3.5% to 2.2% of width (stage aspect recomputed to `1 / 2.1227` for an even ring),
+  clipped past the ~116px squircle white matte baked into the screenshot corners (pixel-scan
+  verified zero white on the bezel arcs), and added a finish picker with all ten current Apple
+  lineup colors (17 Pro Cosmic Orange/Deep Blue/Silver, 17 Lavender/Sage/Mist Blue/Black, 17e
+  Soft Pink, Air Sky Blue/Light Gold; hexes from the CyberMoai lineup table). Picking a dot
+  re-anodizes all six phones including the hero (default vars wrapped in `:where()` so finish
+  classes win); the lightbox ring follows the tapped phone. Default remains the multicolor
+  lineup mix. Cache-bust `20260807-bb-finishes` on both pages; all 15 tests and the standard
+  gate passed; Pages `built` for `c9ce3efffec225a630c12a5453bc1d70ee34214e`; live checks
+  confirmed picker, finishes, and geometry. Published and verified.
 
 ## Previous Handoff (2026-08-06 gallery slice)
 
