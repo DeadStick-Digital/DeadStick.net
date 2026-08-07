@@ -1,10 +1,10 @@
 # Agent Handoff
 
-Last updated: 2026-07-19 BillingBird iPhone-first product-page marketing published and live-verified
+Last updated: 2026-08-06 BillingBird availability + copy-truth rewrite validated locally, awaiting publication approval
 
 Local project: `/Users/chanceneel/Projects/Deadstick website`
-Current branch snapshot: `main`; BillingBird content commit `685ba86` and the earlier DeadStick Dash commit are published to `origin/main`
-Expected dirty snapshot after this handoff is committed: only the pre-existing deletion of `assets/logo-mark-512.png`, which remains intentionally unstaged
+Current branch snapshot: `main`; gallery commit `3aae810` is pushed and now live-verified (the 2026-08-06 Pages deploy timeout recovered externally: live `apps/billingbird.html` byte-matches `3aae810` apart from Cloudflare injections, stylesheet marker `20260806-billingbird-even-gallery` is being served)
+Expected dirty snapshot after this handoff is committed: the pre-existing unstaged deletion of `assets/logo-mark-512.png` and the untracked local `design-qa.md` record
 
 GitHub remotes:
 
@@ -42,6 +42,94 @@ GitHub push readiness snapshot:
 - Codex routing: use `GPT 5.5 High` as the default architect/lead for first-pass design, scope control, implementation planning, ordinary architecture decisions, and normal final review; escalate to `GPT 5.5 xhigh` only for high-risk architecture, persistence/schema migrations, security-sensitive decisions, App Store/TestFlight/release decisions, major cross-system refactors, production incidents, or final review before risky external actions; use `GPT 5.4-mini` for coding/build/test/debug loops once the plan is settled, escalating only if implementation becomes ambiguous or risky.
 
 ## Current Handoff
+
+- Active task: Owner-directed BillingBird copy-truth and availability rewrite (2026-08-06), local-only.
+- Owner directives implemented: BillingBird has no estimates feature, so every estimates claim was
+  removed site-wide (tests now reject `estimat` on the product page and homepage); the receipt flow
+  is "scan receipts with your phone and attach them to invoices"; the "PDF from the job site or the
+  truck" line was removed as too limiting; headline is now "Professional invoices. Know what you're
+  owed."; tone modernized; "Coming soon" replaced with App Store availability; the page now states
+  the app is privacy-first and designed to meet government NIAP (Protection Profile for Application
+  Software) and FIPS 140-3 standards using the sanctioned designed-to-meet formula with the
+  no-certification disclaimer.
+- Availability evidence: iTunes Search API returned the live listing — BillingBird, seller Chance
+  Neel, free, v1.0.0, iOS 17+, app id `6776299735`,
+  `https://apps.apple.com/us/app/billingbird/id6776299735`. The page now links it (hero primary CTA,
+  closing status block, side card), adds the `apple-itunes-app` Smart App Banner meta, and adds a
+  price-0 USD JSON-LD offer; the prelaunch test gates that rejected `apps.apple.com`/offers were
+  flipped to require them.
+- Files touched by this local slice: `apps/billingbird.html`, `index.html`, `support.html`,
+  `terms.html`, `privacy.html` (status wording only; Last updated date intentionally unchanged),
+  `styles.css` (trust-block paragraph spacing; page cache-bust bumped to
+  `20260806-billingbird-available`), and four tests (`billingbird-ownership-page`,
+  `billingbird-public-surface-consistency`, `homepage-card-branding`, `privacy-billingbird`).
+- Verification: all 15 `tests/*.sh` passed; `local-validate.sh website --standard` finished with 0
+  failures; local browser render at 1440px full-page confirmed layout, spacing, and the new copy
+  with no breakage.
+- Change state: published. The owner approved publication on 2026-08-07. Commit `e369722` (the ten
+  content/test files only) was pushed to `origin/main`; the pre-push hook re-ran the standard gate
+  with 0 failures including the redacted secret scan. GitHub Pages reported `built` for
+  `e369722ae9c4189e680e2307a89abfe5db2e3fb2` on the first poll. Cache-busted live verification
+  confirmed the `20260806-billingbird-available` stylesheet marker, four App Store listing links,
+  the new headline, and the designed-to-meet assurance copy, with zero `estimat` and zero
+  "Coming soon" matches on the product page and homepage; a live browser render of the hero
+  matched the local candidate. No further action pending.
+
+## Previous Handoff (2026-08-06 gallery slice)
+
+- Active task: Polish the BillingBird product-page screenshot gallery and correct the visibly
+  undersized invoice-detail presentation shown in the owner's 2026-08-06 screenshot.
+- Last agent: Rebuilt the five-card gallery around one equal-height phone stage per screen,
+  removed the arbitrary alternating desktop stagger, and added restrained sequence labels. The
+  current five screenshot pairs are all genuine 780x1696 images, including invoice detail, so
+  every screen now fills the same undistorted 780:1696 stage. The existing captions, semantics,
+  and section order remain unchanged. The gallery anchor clears the sticky navigation, and the
+  lead-image description was aligned to the current fictional-data screenshot.
+- Files touched by this local slice:
+  - `apps/billingbird.html`
+  - `styles.css`
+  - `tests/billingbird-ownership-page.test.sh`
+  - `design-qa.md`
+  - `AGENT_HANDOFF.md`
+- Verification:
+  - `bash tests/billingbird-ownership-page.test.sh` passed.
+  - `git diff --check` passed.
+  - All current `tests/*.sh` files passed, and
+    `/Users/chanceneel/Projects/SuperAssistant/scripts/local-validate.sh website --standard`
+    finished with 0 failures, including the redacted secret scan and exact CNAME check.
+  - Local browser review at 1440x1100 measured all five gallery stages at 180.4x392.25 CSS
+    pixels and every card at 210.4x473.39, with all five 780x1696 screenshots rendered at the
+    same 178x390 size.
+  - Local responsive review at 390x844 measured all five stages at 250x543.59 CSS pixels and all
+    five cards at 280x624.73; the
+    document and body scroll widths remained exactly 390, the gallery retained horizontal
+    overflow and `scroll-snap-type: x mandatory`, and the browser console reported no warnings
+    or errors.
+  - Gallery CTA navigation now leaves the target section at 92 CSS pixels below the viewport
+    origin, fully clearing the 73px sticky navigation on desktop and mobile. Design QA passed
+    after one P2 anchor-overlap fix, with normalized full-view and focused before/after evidence.
+  - A bounded Spark implementation pass found no additional layout edit was needed after focused
+    inspection. Root then reran every current shell test, the standard website gate with 0
+    failures, `git diff --check`, the redacted secret scan, and the exact CNAME check.
+  - The owner approved publication on 2026-08-06. Product commit
+    `3aae810fb4841823b4b35ab2bb89e5f8429cc7b1` was pushed to `origin/main`; it contains only the
+    BillingBird page, gallery CSS, focused test, and ten PNG/WebP screenshot assets. The local QA
+    note, this handoff update, and the pre-existing logo deletion were excluded.
+  - GitHub Pages run `31109248744` built and uploaded the exact commit successfully. Its deploy
+    step created the Pages deployment, remained `deployment_in_progress` for ten minutes, then
+    `actions/deploy-pages@v5` hit its 600000ms timeout and canceled the deployment. The Pages API
+    reports commit `3aae810` as `errored` with `Page build failed.`
+  - Post-failure live verification still returns the prior stylesheet marker
+    `20260719-billingbird-iphone`; the versioned 2026-08-06 gallery marker is absent, and the live
+    home screenshot still has the July 19 `Last-Modified` value. Do not report the gallery live.
+- Change state: source commit `3aae810` is committed and pushed on `main`; the GitHub Pages
+  publication failed externally and the live site remains on the prior candidate. This handoff
+  update is local-only and uncommitted. Preserve the pre-existing unstaged deletion of
+  `assets/logo-mark-512.png` and the untracked local `design-qa.md` record.
+- Blocker: GitHub Pages deployment backend timeout after a successful source build. Project policy
+  prohibits rerunning or triggering GitHub Actions. Exact next action: after the external Pages
+  deployment condition changes, retry publication through the approved website workflow, wait for
+  the exact commit to reach `built`, and then repeat cache-busted live HTML, asset, and browser QA.
 
 - Active task: Completed. BillingBird product-page marketing is published while the homepage keeps
   its stock structure and visual layout. The rejected prominent homepage spotlight was removed;
