@@ -1198,9 +1198,9 @@ footer {
 }
 .bb-lead-shot picture {
   display: block;
-  padding: 3.5%;
-  border-radius: 16.6% / 7.9%;
-  background: linear-gradient(180deg, #fa8f47, #f2762a 55%, #dd6420);
+  padding: 2.2%;
+  border-radius: 18.5% / 8.7%;
+  background: linear-gradient(180deg, var(--bezel-light), var(--bezel-base) 55%, var(--bezel-deep));
   border: 1px solid rgba(0, 0, 0, 0.18);
   box-shadow: 0 32px 70px -28px rgba(0, 0, 0, 0.9),
               inset 0 1px 0 rgba(255, 255, 255, 0.35);
@@ -1209,7 +1209,7 @@ footer {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 14.5% / 6.7%;
+  border-radius: 17% / 7.8%;
 }
 .bb-lead-shot figcaption {
   margin-top: 12px;
@@ -1254,20 +1254,37 @@ footer {
   min-width: 0;
 }
 /* Equal phone-like media stage for every gallery card.
-   The aspect ratio is the 780/1696 screen plus a uniform 3.5%-of-width
-   Cosmic Orange bezel on all four sides, so the screen fits exactly with
-   no letterboxing: H = W * ((1 - 0.07) * 1696/780 + 0.07) = W * 2.0922. */
+   The aspect ratio is the 780/1696 screen plus a uniform 2.2%-of-width
+   bezel on all four sides, so the screen fits exactly with no
+   letterboxing: H = W * ((1 - 0.044) * 1696/780 + 0.044) = W * 2.1227.
+   Bezel colors are the Apple iPhone 17 lineup finishes; Cosmic Orange
+   is the default and per-phone classes override the three ramp stops. */
+:where(.bb-gallery-stage, .bb-lead-shot picture) {
+  --bezel-light: #fa8f47;
+  --bezel-base: #f2762a;
+  --bezel-deep: #dd6420;
+}
+.bb-phone-cosmic-orange { --bezel-light: #fa8f47; --bezel-base: #f2762a; --bezel-deep: #dd6420; }
+.bb-phone-deep-blue { --bezel-light: #4b5370; --bezel-base: #383f56; --bezel-deep: #272c3e; }
+.bb-phone-silver    { --bezel-light: #f7f8fa; --bezel-base: #e2e5e9; --bezel-deep: #c6ccd4; }
+.bb-phone-sage      { --bezel-light: #bcc79c; --bezel-base: #a9b689; --bezel-deep: #8f9c70; }
+.bb-phone-lavender  { --bezel-light: #e9dcf2; --bezel-base: #dfceea; --bezel-deep: #c3aed3; }
+.bb-phone-mist-blue { --bezel-light: #a9bfdd; --bezel-base: #96aed1; --bezel-deep: #7c94b8; }
+.bb-phone-black     { --bezel-light: #4a4e50; --bezel-base: #353839; --bezel-deep: #212425; }
+.bb-phone-soft-pink { --bezel-light: #fdf1f0; --bezel-base: #f8dcda; --bezel-deep: #e3bcb9; }
+.bb-phone-sky-blue  { --bezel-light: #f4fafe; --bezel-base: #dcecf7; --bezel-deep: #b9d2e4; }
+.bb-phone-light-gold { --bezel-light: #fffdf7; --bezel-base: #f5ecd8; --bezel-deep: #ddccab; }
 .bb-gallery-stage {
   position: relative;
-  aspect-ratio: 1 / 2.0922;
+  aspect-ratio: 1 / 2.1227;
   width: 100%;
-  padding: 3.5%;
-  border-radius: 16.6% / 7.9%;
+  padding: 2.2%;
+  border-radius: 18.5% / 8.7%;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, #fa8f47, #f2762a 55%, #dd6420);
+  background: linear-gradient(180deg, var(--bezel-light), var(--bezel-base) 55%, var(--bezel-deep));
   border: 1px solid rgba(0, 0, 0, 0.18);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
@@ -1284,8 +1301,9 @@ footer {
   height: 100%;
   object-fit: contain;
   object-position: center center;
-  /* Clip the white matte baked into the screenshot corners (~110px at 780w). */
-  border-radius: 14.5% / 6.7%;
+  /* Clip decisively past the white matte baked into the screenshot
+     corners (squircle, ~116px at 780w) so no white sliver survives. */
+  border-radius: 17% / 7.8%;
   background: transparent;
   border: 0;
 }
@@ -1316,6 +1334,43 @@ footer {
   font-weight: 500;
   flex: 1 1 auto;
 }
+.bb-finish-picker {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 24px;
+}
+.bb-finish-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-soft);
+  font-weight: 500;
+  margin-right: 4px;
+}
+.bb-finish-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: var(--dot, #888);
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.bb-finish-dot:hover { transform: scale(1.12); }
+.bb-finish-dot[aria-pressed="true"] {
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--bill);
+}
+.bb-finish-dot:focus-visible {
+  outline: 2px solid var(--bill);
+  outline-offset: 2px;
+}
+.bb-finish-dot.is-lineup {
+  background: conic-gradient(#f2762a, #dfceea, #96aed1, #a9b689, #e2e5e9, #383f56, #f2762a);
+}
+
 .bb-gallery-zoom {
   display: block;
   width: 100%;
@@ -1350,8 +1405,8 @@ footer {
   max-width: 88vw;
   margin: 20px 20px 8px;
   object-fit: contain;
-  border-radius: 14.5% / 6.7%;
-  outline: 8px solid #f2762a;
+  border-radius: 17% / 7.8%;
+  outline: 6px solid #f2762a;
 }
 .bb-lightbox-caption {
   margin: 0;

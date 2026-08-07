@@ -30,7 +30,11 @@ line_number() {
 }
 
 require '<link rel="canonical" href="https://www.deadstick.net/apps/billingbird.html">' 'canonical URL should identify the public product page'
-require '<link rel="stylesheet" href="../styles.css?v=20260807-billingbird-green">' 'product page should cache-bust its scoped BillingBird styling'
+require '<link rel="stylesheet" href="../styles.css?v=20260807-bb-finishes">' 'product page should cache-bust its scoped BillingBird styling'
+require 'class="bb-finish-picker"' 'gallery should offer the Apple lineup finish picker'
+require 'data-finish="lineup"' 'finish picker should include the default lineup mix'
+require 'data-finish="soft-pink"' 'finish picker should include the iPhone 17e Soft Pink finish'
+require 'data-finish="light-gold"' 'finish picker should include the iPhone Air Light Gold finish'
 require 'class="bb-hero-icon"' 'hero should show the BillingBird feather app icon'
 require '<dialog class="bb-lightbox"' 'gallery should provide the screenshot lightbox dialog'
 require 'assets/billingbird/home.webp?v=20260806-even-gallery' 'gallery images should bypass stale CDN copies for publication'
@@ -58,7 +62,7 @@ require 'Scan receipts and attach them to invoices.' 'gallery caption 4'
 require 'Keep every client and job organized.' 'gallery caption 5'
 require 'assets/billingbird/home.webp' 'gallery should expose WebP sources'
 require 'assets/billingbird/home.png' 'gallery should expose PNG fallback'
-require 'class="bb-gallery-stage"' 'gallery should wrap each screenshot in an equal media stage'
+require 'class="bb-gallery-stage bb-phone-' 'gallery should wrap each screenshot in an equal media stage with a lineup finish'
 require 'class="bb-gallery-index"' 'gallery should show consistent sequence numbering'
 require 'aria-hidden="true">03</span>' 'third gallery stage should remain numbered 03'
 require 'width="780"
@@ -196,8 +200,13 @@ reject_css() {
   fi
 }
 
-require_css 'aspect-ratio: 1 / 2.0922;' 'gallery stages must share the equal bezel-adjusted phone aspect ratio'
-require_css '#f2762a' 'phone bezels must use the Cosmic Orange treatment'
+require_css 'aspect-ratio: 1 / 2.1227;' 'gallery stages must share the equal bezel-adjusted phone aspect ratio'
+require_css '#f2762a' 'the Cosmic Orange bezel default must remain'
+require 'bb-phone-deep-blue' 'gallery phone 1 should wear the Deep Blue finish'
+require 'bb-phone-silver' 'gallery phone 2 should wear the Silver finish'
+require 'bb-phone-sage' 'gallery phone 3 should wear the Sage finish'
+require 'bb-phone-lavender' 'gallery phone 4 should wear the Lavender finish'
+require 'bb-phone-mist-blue' 'gallery phone 5 should wear the Mist Blue finish'
 require_css 'bill: #66e0b0' 'BillingBird accent must match the mint-green app icon'
 reject_css '#5ea8e8' 'retired sky-blue BillingBird accent must not return'
 require_css 'object-fit: contain;' 'gallery images must fit without stretch or crop'
@@ -208,7 +217,7 @@ reject_css '.bb-gallery-item:nth-child(even)' 'desktop alternating vertical stag
 reject_css 'translateY(18px)' 'desktop gallery stagger offset must not return'
 reject_css '.bb-gallery-item.is-detail' 'gallery must not special-case a short detail capture'
 
-stage_count="$(grep -cF 'class="bb-gallery-stage"' "$PAGE" || true)"
+stage_count="$(grep -cF 'class="bb-gallery-stage bb-phone-' "$PAGE" || true)"
 if [ "$stage_count" -ne 5 ]; then
   printf 'Expected 5 equal gallery stages, found %s\n' "$stage_count" >&2
   exit 1
