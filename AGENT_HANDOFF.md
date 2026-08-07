@@ -80,6 +80,17 @@ GitHub push readiness snapshot:
   `og:title`; all shell tests and the standard gate passed, Pages reported `built` for
   `734f16fa3eed295150c7788cb4741d0dea15b44a`, and cache-busted live HTML shows the new headline
   with zero "made to last" matches. Published and verified.
+- Visual slice (2026-08-07, owner-approved): commit `629fee6` rethemed every BillingBird accent
+  from the stale sky-blue to the app icon's mint green (`--bill: #66e0b0`, all rgba echoes
+  replaced), added the feather app icon to the product-page hero, widened the gallery to the
+  1480px stage, made all five screenshots tap-to-enlarge through a native `<dialog>` lightbox
+  with Esc/backdrop close, and framed every phone screenshot in a uniform Cosmic Orange bezel
+  (`#f77e2d` family, sourced from Apple's iPhone 17 Pro compare-page CSS; stage aspect
+  `1 / 2.0922` keeps the bezel even, and percentage corner radii clip the white matte baked into
+  the capture corners). Stylesheet cache-busts moved to `20260807-billingbird-green` on both
+  pages. All 15 tests and the standard gate passed; Pages reported `built` for
+  `629fee6602409a3c32392cc317142a10ff0f29d0`; cache-busted live checks confirmed the orange and
+  green markers, hero icon, lightbox, and zero legacy `#5ea8e8`. Published and verified.
 
 ## Previous Handoff (2026-08-06 gallery slice)
 
