@@ -48,16 +48,18 @@ require '<h3>BillingBird</h3>' index.html \
   'BillingBird should remain unchanged'
 require 'For contractors &amp; service pros' index.html \
   'BillingBird homepage tag should match the approved iPhone-first positioning'
-require 'Professional estimates, invoices, receipt capture, and client balances for contractors and' index.html \
-  'BillingBird homepage description should lead with the approved iPhone-first copy'
-require 'service professionals—launching first on iPhone, with records that stay on your device.' index.html \
-  'BillingBird homepage description should state the iPhone-first launch and on-device records'
-require 'Launching first on iPhone' index.html \
-  'BillingBird homepage card should state the iPhone-first launch feature'
-require 'Estimates, invoices, receipts &amp; manual payments' index.html \
-  'BillingBird homepage card should list the estimates/invoices/receipts/payments feature'
-require 'Optional private iCloud backup—no DeadStick bookkeeping server' index.html \
-  'BillingBird homepage card should state the precise architecture boundary'
+require 'Professional invoicing, receipt capture, and client balances for contractors and' index.html \
+  'BillingBird homepage description should lead with the approved invoicing copy'
+require 'service professionals—available now on iPhone, with records that stay on your device.' index.html \
+  'BillingBird homepage description should state iPhone availability and on-device records'
+require 'Available now on iPhone' index.html \
+  'BillingBird homepage card should state iPhone availability'
+require 'Invoices, receipts &amp; payment tracking' index.html \
+  'BillingBird homepage card should list the invoices/receipts/payments feature'
+require 'Privacy-first — designed to meet government NIAP &amp; FIPS practices' index.html \
+  'BillingBird homepage card should carry the sanctioned privacy-first assurance line'
+reject 'estimates' index.html \
+  'estimates are not a BillingBird feature and must not appear on the homepage'
 require 'iPadOS, macOS, Android, and Windows support is planned' index.html \
   'BillingBird homepage card should state the planned-platform roadmap'
 require '>Explore BillingBird <span aria-hidden="true">→</span></a>' index.html \

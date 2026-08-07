@@ -1356,6 +1356,7 @@ footer {
   font-size: 14.5px;
   line-height: 1.7;
 }
+.bb-trust-block p + p { margin-top: 12px; }
 
 .bb-roadmap-chips {
   display: flex;
