@@ -30,7 +30,9 @@ line_number() {
 }
 
 require '<link rel="canonical" href="https://www.deadstick.net/apps/billingbird.html">' 'canonical URL should identify the public product page'
-require '<link rel="stylesheet" href="../styles.css?v=20260806-billingbird-available">' 'product page should cache-bust its scoped BillingBird styling'
+require '<link rel="stylesheet" href="../styles.css?v=20260807-billingbird-green">' 'product page should cache-bust its scoped BillingBird styling'
+require 'class="bb-hero-icon"' 'hero should show the BillingBird feather app icon'
+require '<dialog class="bb-lightbox"' 'gallery should provide the screenshot lightbox dialog'
 require 'assets/billingbird/home.webp?v=20260806-even-gallery' 'gallery images should bypass stale CDN copies for publication'
 require '<title>BillingBird for iPhone — Invoicing for Contractors | DeadStick</title>' 'title should name iPhone contractor positioning'
 require 'content="Professional invoicing for contractors and service pros. Polished invoices, receipt capture, payments, and client balances — records stay on your iPhone."' 'meta description should match the approved iPhone-local copy'
@@ -194,7 +196,10 @@ reject_css() {
   fi
 }
 
-require_css 'aspect-ratio: 780 / 1696;' 'gallery stages must share a phone-like equal aspect ratio'
+require_css 'aspect-ratio: 1 / 2.0922;' 'gallery stages must share the equal bezel-adjusted phone aspect ratio'
+require_css '#f2762a' 'phone bezels must use the Cosmic Orange treatment'
+require_css 'bill: #66e0b0' 'BillingBird accent must match the mint-green app icon'
+reject_css '#5ea8e8' 'retired sky-blue BillingBird accent must not return'
 require_css 'object-fit: contain;' 'gallery images must fit without stretch or crop'
 require_css 'scroll-margin-top: 92px;' 'gallery anchor must clear the sticky site navigation'
 require_css 'scroll-snap-type: x mandatory;' 'mobile gallery must retain mandatory snap scrolling'
@@ -206,6 +211,12 @@ reject_css '.bb-gallery-item.is-detail' 'gallery must not special-case a short d
 stage_count="$(grep -cF 'class="bb-gallery-stage"' "$PAGE" || true)"
 if [ "$stage_count" -ne 5 ]; then
   printf 'Expected 5 equal gallery stages, found %s\n' "$stage_count" >&2
+  exit 1
+fi
+
+zoom_count="$(grep -cF 'class="bb-gallery-zoom"' "$PAGE" || true)"
+if [ "$zoom_count" -ne 5 ]; then
+  printf 'Expected 5 gallery zoom buttons, found %s\n' "$zoom_count" >&2
   exit 1
 fi
 

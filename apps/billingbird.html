@@ -20,7 +20,7 @@
   <title>BillingBird for iPhone — Invoicing for Contractors | DeadStick</title>
   <link rel="canonical" href="https://www.deadstick.net/apps/billingbird.html">
   <link rel="icon" type="image/png" href="../icons/billingbird.png">
-  <link rel="stylesheet" href="../styles.css?v=20260806-billingbird-available">
+  <link rel="stylesheet" href="../styles.css?v=20260807-billingbird-green">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -73,6 +73,7 @@
 
 <section class="wrap bb-outcome-hero" aria-labelledby="bb-hero-heading">
   <div class="bb-outcome-copy">
+    <div class="bb-hero-icon" aria-hidden="true"><img src="../icons/billingbird.png" alt="" width="96" height="96" decoding="async"></div>
     <div class="eyebrow" style="color:var(--bill);">BillingBird · Available now for iPhone</div>
     <h1 id="bb-hero-heading">Professional invoices. Know what you’re owed.</h1>
     <p class="bb-lead">BillingBird is modern, professional invoicing for contractors and service pros. Create polished invoices, capture receipts, record payments, and keep every client balance clear — all from your iPhone.</p>
@@ -108,13 +109,14 @@
       <div class="eyebrow" style="margin-bottom:18px;color:var(--bill);">In the app</div>
       <h2 id="bb-gallery-heading">See BillingBird in action</h2>
     </div>
-    <p>Five real screens from the iPhone app — browse at your pace.</p>
+    <p>Five real screens from the iPhone app — tap any screen to enlarge.</p>
   </div>
 
   <div class="bb-gallery" role="list">
     <figure class="bb-gallery-item" role="listitem">
       <div class="bb-gallery-stage">
         <span class="bb-gallery-index" aria-hidden="true">01</span>
+        <button type="button" class="bb-gallery-zoom" aria-label="Enlarge screenshot: billed, due, and overdue totals">
         <picture>
           <source type="image/webp" srcset="../assets/billingbird/home.webp?v=20260806-even-gallery">
           <img
@@ -125,6 +127,7 @@
             decoding="async"
             loading="lazy">
         </picture>
+        </button>
       </div>
       <figcaption>See what’s billed, due, and overdue.</figcaption>
     </figure>
@@ -132,6 +135,7 @@
     <figure class="bb-gallery-item" role="listitem">
       <div class="bb-gallery-stage">
         <span class="bb-gallery-index" aria-hidden="true">02</span>
+        <button type="button" class="bb-gallery-zoom" aria-label="Enlarge screenshot: new invoice screen">
         <picture>
           <source type="image/webp" srcset="../assets/billingbird/invoice-create.webp?v=20260806-even-gallery">
           <img
@@ -142,6 +146,7 @@
             decoding="async"
             loading="lazy">
         </picture>
+        </button>
       </div>
       <figcaption>Create a polished invoice in minutes.</figcaption>
     </figure>
@@ -149,6 +154,7 @@
     <figure class="bb-gallery-item" role="listitem">
       <div class="bb-gallery-stage">
         <span class="bb-gallery-index" aria-hidden="true">03</span>
+        <button type="button" class="bb-gallery-zoom" aria-label="Enlarge screenshot: invoice detail and payment history">
         <picture>
           <source type="image/webp" srcset="../assets/billingbird/invoice-detail.webp?v=20260806-even-gallery">
           <img
@@ -159,6 +165,7 @@
             decoding="async"
             loading="lazy">
         </picture>
+        </button>
       </div>
       <figcaption>Keep balances and payment history current.</figcaption>
     </figure>
@@ -166,6 +173,7 @@
     <figure class="bb-gallery-item" role="listitem">
       <div class="bb-gallery-stage">
         <span class="bb-gallery-index" aria-hidden="true">04</span>
+        <button type="button" class="bb-gallery-zoom" aria-label="Enlarge screenshot: receipt capture">
         <picture>
           <source type="image/webp" srcset="../assets/billingbird/receipt-capture.webp?v=20260806-even-gallery">
           <img
@@ -176,6 +184,7 @@
             decoding="async"
             loading="lazy">
         </picture>
+        </button>
       </div>
       <figcaption>Scan receipts and attach them to invoices.</figcaption>
     </figure>
@@ -183,6 +192,7 @@
     <figure class="bb-gallery-item" role="listitem">
       <div class="bb-gallery-stage">
         <span class="bb-gallery-index" aria-hidden="true">05</span>
+        <button type="button" class="bb-gallery-zoom" aria-label="Enlarge screenshot: client list and balances">
         <picture>
           <source type="image/webp" srcset="../assets/billingbird/clients.webp?v=20260806-even-gallery">
           <img
@@ -193,11 +203,43 @@
             decoding="async"
             loading="lazy">
         </picture>
+        </button>
       </div>
       <figcaption>Keep every client and job organized.</figcaption>
     </figure>
   </div>
   <p class="bb-gallery-cue" aria-hidden="true">Swipe to see more →</p>
+
+  <dialog class="bb-lightbox" id="bb-lightbox" aria-label="BillingBird screenshot, enlarged">
+    <button type="button" class="bb-lightbox-close" aria-label="Close enlarged screenshot">✕</button>
+    <img id="bb-lightbox-image" alt="">
+    <p class="bb-lightbox-caption" id="bb-lightbox-caption"></p>
+  </dialog>
+  <script>
+  (function () {
+    var lightbox = document.getElementById('bb-lightbox');
+    if (!lightbox || typeof lightbox.showModal !== 'function') { return; }
+    var image = document.getElementById('bb-lightbox-image');
+    var caption = document.getElementById('bb-lightbox-caption');
+    document.querySelectorAll('.bb-gallery-zoom').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var source = button.querySelector('img');
+        var figure = button.closest('figure');
+        var text = figure && figure.querySelector('figcaption');
+        image.src = source.currentSrc || source.src;
+        image.alt = source.alt;
+        caption.textContent = text ? text.textContent : '';
+        lightbox.showModal();
+      });
+    });
+    lightbox.addEventListener('click', function (event) {
+      if (event.target === lightbox) { lightbox.close(); }
+    });
+    lightbox.querySelector('.bb-lightbox-close').addEventListener('click', function () {
+      lightbox.close();
+    });
+  })();
+  </script>
 </section>
 
 <section class="wrap bb-benefits" aria-labelledby="bb-benefits-heading">

@@ -27,7 +27,7 @@ require '<article class="app-card is-billingbird is-primary-focus">' \
   index.html \
   'BillingBird should carry the primary focus state'
 
-require '<link rel="stylesheet" href="styles.css?v=20260713-billingbird-apple">' \
+require '<link rel="stylesheet" href="styles.css?v=20260807-billingbird-green">' \
   index.html \
   'Homepage should cache-bust the stylesheet for the BillingBird Apple-platform update'
 
