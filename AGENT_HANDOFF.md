@@ -74,6 +74,12 @@ GitHub push readiness snapshot:
   the new headline, and the designed-to-meet assurance copy, with zero `estimat` and zero
   "Coming soon" matches on the product page and homepage; a live browser render of the hero
   matched the local candidate. No further action pending.
+- Follow-up slice (2026-08-07): the owner rejected the homepage headline "Focused software, made to
+  last." as underselling the studio's quality investment and selected "Quality software. Private by
+  design." from presented options. Commit `734f16f` updated the homepage `h1`, `<title>`, and
+  `og:title`; all shell tests and the standard gate passed, Pages reported `built` for
+  `734f16fa3eed295150c7788cb4741d0dea15b44a`, and cache-busted live HTML shows the new headline
+  with zero "made to last" matches. Published and verified.
 
 ## Previous Handoff (2026-08-06 gallery slice)
 
