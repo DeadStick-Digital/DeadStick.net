@@ -72,9 +72,9 @@ require '<a class="app-icon app-icon-link" href="apps/deadstick-utilities.html" 
   index.html \
   'DeadStick Utilities icon should link to its app page'
 
-require 'Six apps. One philosophy.' \
+require 'Five apps. One philosophy.' \
   index.html \
-  'Homepage apps heading should count six apps'
+  'Homepage apps heading should count five apps'
 
 require '.app-card.is-deadstick-utilities { --card-accent: var(--deadstick-utilities); --card-accent-soft: var(--deadstick-utilities-soft); }' \
   styles.css \
