@@ -109,6 +109,17 @@ GitHub push readiness snapshot:
   `20260807-bb-lineup-final`; all tests and the standard gate passed; Pages `built` for
   `4beddb1555398a1fdc5b8fca4977a51581f5970f`; live checks show zero `bb-finish` matches with the
   lineup classes intact. Published and verified.
+- DeadStick Dash removal (2026-08-07, owner-directed): commit `9594447` deleted
+  `apps/deadstickdash.html` and `icons/deadstickdash.png`, removed the homepage card, footer
+  link, support entry, privacy section 10.5 and app-list mentions, and all meta-description
+  references; the homepage heading now reads "Five apps. One philosophy." A new
+  `tests/no-public-deadstick-dash.test.sh` guard rejects any returning public reference, and the
+  Utilities test's six-apps pin was updated to five. Privacy "Last updated" date left unchanged
+  (status removal, not a policy change — Dash collected nothing). All 16 tests and the standard
+  gate passed; Pages `built` for `9594447f6bd45aa2cab192898a24e677d2af02ba`; live checks show the
+  Dash page returning 404 and zero Dash references on the homepage, support, and privacy pages.
+  Note: the Dash GitHub repo and its hosted .dmg were not touched — website-only removal.
+  Published and verified.
 
 ## Previous Handoff (2026-08-06 gallery slice)
 
