@@ -30,11 +30,8 @@ line_number() {
 }
 
 require '<link rel="canonical" href="https://www.deadstick.net/apps/billingbird.html">' 'canonical URL should identify the public product page'
-require '<link rel="stylesheet" href="../styles.css?v=20260807-bb-finishes">' 'product page should cache-bust its scoped BillingBird styling'
-require 'class="bb-finish-picker"' 'gallery should offer the Apple lineup finish picker'
-require 'data-finish="lineup"' 'finish picker should include the default lineup mix'
-require 'data-finish="soft-pink"' 'finish picker should include the iPhone 17e Soft Pink finish'
-require 'data-finish="light-gold"' 'finish picker should include the iPhone Air Light Gold finish'
+require '<link rel="stylesheet" href="../styles.css?v=20260807-bb-lineup-final">' 'product page should cache-bust its scoped BillingBird styling'
+reject 'bb-finish-picker' 'the retired finish picker must not return; the lineup mix is the permanent look'
 require 'class="bb-hero-icon"' 'hero should show the BillingBird feather app icon'
 require '<dialog class="bb-lightbox"' 'gallery should provide the screenshot lightbox dialog'
 require 'assets/billingbird/home.webp?v=20260806-even-gallery' 'gallery images should bypass stale CDN copies for publication'

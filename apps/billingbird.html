@@ -20,7 +20,7 @@
   <title>BillingBird for iPhone — Invoicing for Contractors | DeadStick</title>
   <link rel="canonical" href="https://www.deadstick.net/apps/billingbird.html">
   <link rel="icon" type="image/png" href="../icons/billingbird.png">
-  <link rel="stylesheet" href="../styles.css?v=20260807-bb-finishes">
+  <link rel="stylesheet" href="../styles.css?v=20260807-bb-lineup-final">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -110,21 +110,6 @@
       <h2 id="bb-gallery-heading">See BillingBird in action</h2>
     </div>
     <p>Five real screens from the iPhone app — tap any screen to enlarge.</p>
-  </div>
-
-  <div class="bb-finish-picker" role="group" aria-label="Phone finish — Apple iPhone lineup colors">
-    <span class="bb-finish-label">Finish</span>
-    <button type="button" class="bb-finish-dot is-lineup" data-finish="lineup" aria-pressed="true" aria-label="Full lineup mix" title="Full lineup"></button>
-    <button type="button" class="bb-finish-dot" data-finish="cosmic-orange" style="--dot:#f2762a" aria-pressed="false" aria-label="Cosmic Orange" title="Cosmic Orange"></button>
-    <button type="button" class="bb-finish-dot" data-finish="deep-blue" style="--dot:#383f56" aria-pressed="false" aria-label="Deep Blue" title="Deep Blue"></button>
-    <button type="button" class="bb-finish-dot" data-finish="silver" style="--dot:#e2e5e9" aria-pressed="false" aria-label="Silver" title="Silver"></button>
-    <button type="button" class="bb-finish-dot" data-finish="sage" style="--dot:#a9b689" aria-pressed="false" aria-label="Sage" title="Sage"></button>
-    <button type="button" class="bb-finish-dot" data-finish="lavender" style="--dot:#dfceea" aria-pressed="false" aria-label="Lavender" title="Lavender"></button>
-    <button type="button" class="bb-finish-dot" data-finish="mist-blue" style="--dot:#96aed1" aria-pressed="false" aria-label="Mist Blue" title="Mist Blue"></button>
-    <button type="button" class="bb-finish-dot" data-finish="black" style="--dot:#353839" aria-pressed="false" aria-label="Black" title="Black"></button>
-    <button type="button" class="bb-finish-dot" data-finish="soft-pink" style="--dot:#f8dcda" aria-pressed="false" aria-label="Soft Pink" title="Soft Pink"></button>
-    <button type="button" class="bb-finish-dot" data-finish="sky-blue" style="--dot:#dcecf7" aria-pressed="false" aria-label="Sky Blue" title="Sky Blue"></button>
-    <button type="button" class="bb-finish-dot" data-finish="light-gold" style="--dot:#f5ecd8" aria-pressed="false" aria-label="Light Gold" title="Light Gold"></button>
   </div>
 
   <div class="bb-gallery" role="list">
@@ -255,30 +240,6 @@
     });
     lightbox.querySelector('.bb-lightbox-close').addEventListener('click', function () {
       lightbox.close();
-    });
-
-    var finishClasses = ['bb-phone-cosmic-orange', 'bb-phone-deep-blue', 'bb-phone-silver',
-      'bb-phone-sage', 'bb-phone-lavender', 'bb-phone-mist-blue', 'bb-phone-black',
-      'bb-phone-soft-pink', 'bb-phone-sky-blue', 'bb-phone-light-gold'];
-    var finishDots = Array.prototype.slice.call(document.querySelectorAll('.bb-finish-dot'));
-    var finishTargets = Array.prototype.slice.call(
-      document.querySelectorAll('.bb-gallery-stage, .bb-lead-shot picture'));
-    var lineupDefaults = finishTargets.map(function (el) { return el.className; });
-    finishDots.forEach(function (dot) {
-      dot.addEventListener('click', function () {
-        var finish = dot.getAttribute('data-finish');
-        finishDots.forEach(function (other) {
-          other.setAttribute('aria-pressed', other === dot ? 'true' : 'false');
-        });
-        finishTargets.forEach(function (el, index) {
-          if (finish === 'lineup') {
-            el.className = lineupDefaults[index];
-            return;
-          }
-          finishClasses.forEach(function (name) { el.classList.remove(name); });
-          el.classList.add('bb-phone-' + finish);
-        });
-      });
     });
   })();
   </script>

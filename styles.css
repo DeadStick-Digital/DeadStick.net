@@ -1264,16 +1264,11 @@ footer {
   --bezel-base: #f2762a;
   --bezel-deep: #dd6420;
 }
-.bb-phone-cosmic-orange { --bezel-light: #fa8f47; --bezel-base: #f2762a; --bezel-deep: #dd6420; }
 .bb-phone-deep-blue { --bezel-light: #4b5370; --bezel-base: #383f56; --bezel-deep: #272c3e; }
 .bb-phone-silver    { --bezel-light: #f7f8fa; --bezel-base: #e2e5e9; --bezel-deep: #c6ccd4; }
 .bb-phone-sage      { --bezel-light: #bcc79c; --bezel-base: #a9b689; --bezel-deep: #8f9c70; }
 .bb-phone-lavender  { --bezel-light: #e9dcf2; --bezel-base: #dfceea; --bezel-deep: #c3aed3; }
 .bb-phone-mist-blue { --bezel-light: #a9bfdd; --bezel-base: #96aed1; --bezel-deep: #7c94b8; }
-.bb-phone-black     { --bezel-light: #4a4e50; --bezel-base: #353839; --bezel-deep: #212425; }
-.bb-phone-soft-pink { --bezel-light: #fdf1f0; --bezel-base: #f8dcda; --bezel-deep: #e3bcb9; }
-.bb-phone-sky-blue  { --bezel-light: #f4fafe; --bezel-base: #dcecf7; --bezel-deep: #b9d2e4; }
-.bb-phone-light-gold { --bezel-light: #fffdf7; --bezel-base: #f5ecd8; --bezel-deep: #ddccab; }
 .bb-gallery-stage {
   position: relative;
   aspect-ratio: 1 / 2.1227;
@@ -1334,43 +1329,6 @@ footer {
   font-weight: 500;
   flex: 1 1 auto;
 }
-.bb-finish-picker {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 0 0 24px;
-}
-.bb-finish-label {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--text-soft);
-  font-weight: 500;
-  margin-right: 4px;
-}
-.bb-finish-dot {
-  width: 20px;
-  height: 20px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: var(--dot, #888);
-  cursor: pointer;
-  padding: 0;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-.bb-finish-dot:hover { transform: scale(1.12); }
-.bb-finish-dot[aria-pressed="true"] {
-  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--bill);
-}
-.bb-finish-dot:focus-visible {
-  outline: 2px solid var(--bill);
-  outline-offset: 2px;
-}
-.bb-finish-dot.is-lineup {
-  background: conic-gradient(#f2762a, #dfceea, #96aed1, #a9b689, #e2e5e9, #383f56, #f2762a);
-}
-
 .bb-gallery-zoom {
   display: block;
   width: 100%;
