@@ -102,6 +102,13 @@ GitHub push readiness snapshot:
   lineup mix. Cache-bust `20260807-bb-finishes` on both pages; all 15 tests and the standard
   gate passed; Pages `built` for `c9ce3efffec225a630c12a5453bc1d70ee34214e`; live checks
   confirmed picker, finishes, and geometry. Published and verified.
+- Picker retirement (2026-08-07, owner-directed): the owner prefers the fixed multicolor lineup
+  and no visitor-facing selector. Commit `4beddb1` removed the finish-picker markup, script,
+  styles, and unused finish classes while keeping the five worn finishes and the per-phone
+  lightbox ring; the ownership test now rejects `bb-finish-picker`. Cache-bust
+  `20260807-bb-lineup-final`; all tests and the standard gate passed; Pages `built` for
+  `4beddb1555398a1fdc5b8fca4977a51581f5970f`; live checks show zero `bb-finish` matches with the
+  lineup classes intact. Published and verified.
 
 ## Previous Handoff (2026-08-06 gallery slice)
 
