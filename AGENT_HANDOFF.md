@@ -43,6 +43,18 @@ GitHub push readiness snapshot:
 
 ## Current Handoff
 
+- 2026-09-28 (Houston, afternoon), Claude (SuperAssistant): CarrierPigeonVPN public pages cut to the
+  minimum that meets Apple's rules. Owner: "make sure we don't say too much ... The minimal amount to
+  meet their requirements and give us the highest probability of acceptance. That will also include
+  the webpage." and "Correct anything needed on the website for CarrierPigeonVPN to pass all Apple
+  regulatory issues and hurdles." `apps/carrierpigeonvpn.html`: same story as the App Store listing
+  (your own iPhone as a private VPN for your Mac); dropped the implementation details, the device
+  limits, the carrier disclaimer (it stays in terms 14.2) and the planned platforms; kept the 5.4
+  commitment, the full subscription terms, iOS 26 / macOS 26 and the Personal Hotspot requirement.
+  `index.html` card and the `support.html` line match. `billingbird-public-surface-consistency`
+  now pins the new CarrierPigeonVPN support line instead of the planned-Android wording. All 17 shell
+  tests and `local-validate.sh website --standard` pass. Merged with the WireGuard-wording branch and
+  published to `main`.
 - 2026-09-28 (Houston, about 09:55), Claude (SuperAssistant), local branch
   `claude/2026-09-28-wireguard-wording`, NOT pushed or published. WireGuard's trademark policy
   bars using the mark to advertise or to suggest a relationship without permission, and the

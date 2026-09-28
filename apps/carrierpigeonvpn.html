@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#09090c">
-  <meta name="description" content="CarrierPigeonVPN — share your iPhone's cellular connection with your Mac over an encrypted VPN tunnel. From DeadStick Digital LLC.">
+  <meta name="description" content="CarrierPigeonVPN — your own iPhone as a private VPN for your Mac. From DeadStick Digital LLC.">
   <title>CarrierPigeonVPN — DeadStick Digital LLC</title>
   <link rel="icon" type="image/png" href="../icons/carrierpigeonvpn.png">
   <link rel="stylesheet" href="../styles.css">
@@ -38,11 +38,10 @@
 <section class="wrap app-hero">
   <div class="app-icon"><img src="../icons/carrierpigeonvpn.png" alt="CarrierPigeonVPN app icon"></div>
   <div>
-    <div class="eyebrow" style="color:var(--pigeon);">Paired-device networking</div>
+    <div class="eyebrow" style="color:var(--pigeon);">Private VPN</div>
     <h1>CarrierPigeonVPN</h1>
-    <p>A private VPN tunnel between two devices you already own. CarrierPigeonVPN lets your
-       Mac use your paired iPhone's cellular connection through one encrypted tunnel, with no
-       account and no DeadStick servers in the path.</p>
+    <p>Your own iPhone as a private VPN for your Mac: an encrypted tunnel between two devices
+       you own, with no account and no VPN company in the middle.</p>
     <div class="hero-actions" style="margin-top:28px;">
       <a class="btn btn-primary" href="../index.html#contact">Contact support <span class="btn-arrow">→</span></a>
       <a class="btn" href="#overview">Learn more</a>
@@ -55,53 +54,23 @@
 
     <div class="detail-body">
       <h2 id="overview">Overview</h2>
-      <p>CarrierPigeonVPN has two parts: an iPhone app that shares its cellular connection, and a
-         Mac app that uses it. The Mac joins your iPhone's Personal Hotspot, and all of the Mac's
-         traffic then travels inside an encrypted VPN tunnel to your iPhone, which sends it
-         out over your own cellular plan.</p>
-      <p>You pair the two once by scanning a QR code; the apps exchange keys over Bluetooth. After
-         that you connect from the Mac. While connected, the Mac's DNS lookups also go through the
-         tunnel. Your iPhone can remember up to four paired devices and shares with one Mac at a
-         time.</p>
+      <p>Pair your iPhone and your Mac once with a QR code. When you connect from the Mac, its
+         traffic, including DNS lookups, travels inside an encrypted tunnel to your iPhone and
+         leaves through your iPhone's cellular connection. Disconnect on the Mac and the iPhone
+         stops right away.</p>
 
-      <h3>How it works</h3>
-      <ul>
-        <li>On iPhone, the tunnel runs in a Packet Tunnel extension
-            (<code>NEPacketTunnelProvider</code>). Its only job is to carry your Mac's traffic to
-            your iPhone and out through the iPhone's cellular connection.</li>
-        <li>On the Mac, CarrierPigeonVPN's own network extension routes the Mac's traffic, including
-            DNS, into the tunnel while you are connected.</li>
-        <li>The exit point is your iPhone — your SIM, your plan, your account.</li>
-        <li>When you disconnect on the Mac, the iPhone is told and stops sharing. If the two lose
-            touch, the iPhone stops sharing on its own after about a minute.</li>
-      </ul>
-
-      <h3>What CarrierPigeonVPN is <em>not</em></h3>
-      <p>CarrierPigeonVPN is not a commercial VPN service. We do not operate exit nodes, do not
-         terminate your traffic on DeadStick-owned servers, and do not anonymize you on the public
-         internet. Your exit point is your own phone on your own cellular plan — which is why it
-         is <em>your</em> responsibility to use CarrierPigeonVPN in a manner that complies with your
-         carrier's terms of service and acceptable-use policy. DeadStick Digital makes no
-         representation that any particular use of CarrierPigeonVPN is permitted under any
-         particular plan.</p>
-
-      <h3>VPN scope and disclosures</h3>
-      <p>CarrierPigeonVPN uses Apple's Network Extension VPN APIs on iPhone and Mac for a single
-         purpose: to route your Mac's traffic through your own paired iPhone. We do not inspect,
-         log, collect, share, or transmit the contents, destinations, or metadata of any traffic
-         that flows through the tunnel. The tunnel carries only your own traffic between two
-         devices you control, and the app does not modify traffic from other apps on the
-         iPhone.</p>
-      <p>As required by Apple's App Store Review Guideline 5.4, DeadStick Digital LLC does not sell,
-         use, or disclose to third parties any data collected by CarrierPigeonVPN for any purpose.
-         Before you use the tunnel, the app shows a privacy screen that explains exactly what data
-         is involved.</p>
+      <h3>Privacy</h3>
+      <p>CarrierPigeonVPN never sees the contents, destinations, or metadata of your traffic.
+         Pairing keys stay on your devices in the system keychain, and subscription status is
+         checked through Apple and RevenueCat. As required by Apple's App Store Review Guideline
+         5.4, DeadStick Digital LLC does not sell, use, or disclose to third parties any data
+         collected by CarrierPigeonVPN for any purpose. Before you use it, the app shows exactly
+         what data is involved. See the <a href="../privacy.html#apps">Privacy Policy</a>.</p>
 
       <h3 id="pricing">Pricing and subscription</h3>
-      <p>CarrierPigeonVPN is an auto-renewing annual subscription, bought in the iPhone app:
-         a <strong>7-day free trial</strong>, then <strong>$9.99 per year</strong> (US price;
-         local prices vary by country). One subscription covers sharing to your paired Mac; the
-         Mac app itself is free.</p>
+      <p>An auto-renewing annual subscription, bought in the iPhone app: a
+         <strong>7-day free trial</strong>, then <strong>$9.99 per year</strong> (US price;
+         local prices vary by country). The Mac app is free.</p>
       <ul>
         <li>Starting the free trial costs nothing. When the 7 days end, $9.99 is charged to your
             Apple Account unless you cancel at least 24 hours before the trial ends.</li>
@@ -109,37 +78,26 @@
             auto-renew at least 24 hours before the end of the current period.</li>
         <li>You can manage or cancel it in your Apple Account settings at any time. Deleting the
             app does not cancel a subscription.</li>
-        <li>If you cancel, sharing keeps working until the end of the trial or paid period you
-            already have. After that, the iPhone stops sharing until you subscribe again.</li>
+        <li>If you cancel, the VPN keeps working until the end of the trial or paid period you
+            already have.</li>
       </ul>
       <p>See the <a href="../terms.html#cpvpn-subscription">Terms of Use</a> and the
          <a href="../privacy.html#apps">Privacy Policy</a>. Apple's standard
          <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Licensed
          Application End User License Agreement</a> also applies.</p>
 
-      <h3>How your data is handled</h3>
-      <p>CarrierPigeonVPN never sees the contents, destinations, or metadata of your traffic — that
-         traffic flows directly between your two devices and then out of your iPhone's own
-         network connection. Local configuration (encryption keys, paired-device identifiers) is
-         stored on your devices in the system keychain. Subscription status is checked through
-         Apple and RevenueCat. See the <a href="../privacy.html#apps">privacy policy</a> for the
-         complete treatment.</p>
-
       <h3>Requirements</h3>
       <p><strong>iPhone:</strong> iOS 26 or later, with a cellular plan that includes Personal
          Hotspot.
-         <br><strong>Mac:</strong> macOS 26 or later.
-         <br>Windows, Apple TV, and Android versions are planned and not yet available.</p>
+         <br><strong>Mac:</strong> macOS 26 or later.</p>
     </div>
 
     <aside class="side-card">
       <h4>At a glance</h4>
       <dl>
-        <dt>Category</dt>     <dd>Networking / Utilities</dd>
+        <dt>Category</dt>     <dd>Utilities</dd>
         <dt>Platform</dt>     <dd>iPhone · Mac</dd>
         <dt>Price</dt>        <dd>7-day free trial, then $9.99/year</dd>
-        <dt>Connections</dt>  <dd>One Mac at a time; up to 4 paired devices</dd>
-        <dt>Network use</dt>  <dd>Paired devices only</dd>
         <dt>Account</dt>      <dd>None required</dd>
         <dt>Age rating</dt>   <dd>4+</dd>
       </dl>

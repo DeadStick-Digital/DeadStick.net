@@ -80,8 +80,10 @@ grep -qF 'direct RevenueCat' privacy.html || {
 }
 
 # These technologies still accurately belong to other DeadStick products and global policies.
-grep -qF "CarrierPigeonVPN</a> — shares your iPhone's cellular connection with your Mac; Windows, Apple TV, and Android versions are planned" support.html || {
-  echo 'CarrierPigeonVPN planned Android support was removed unintentionally.' >&2
+# CarrierPigeonVPN's support line (owner 2026-09-28: the site says only what the
+# App Store listing says, so no planned platforms) must survive BillingBird edits.
+grep -qF "CarrierPigeonVPN</a> — your own iPhone as a private VPN for your Mac" support.html || {
+  echo 'CarrierPigeonVPN support line was removed unintentionally.' >&2
   exit 1
 }
 grep -qF 'through iCloud or Google Drive' terms.html || {
