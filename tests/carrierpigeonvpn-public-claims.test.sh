@@ -47,6 +47,12 @@ grep -q 'id="cpvpn-subscription"' terms.html || { echo 'terms.html is missing th
 grep -Eq 'iOS 26 or later' "$tmp_dir/product" && grep -Eq 'macOS 26 or later' "$tmp_dir/product" \
   || { echo 'Product page must state iOS 26 and macOS 26 minimums.' >&2; exit 1; }
 
+# WireGuard's trademark policy bars using the mark to advertise or to suggest a
+# relationship without permission. The marketing surfaces say "VPN tunnel";
+# the acknowledgements page carries the attribution and trademark notice.
+cat "$tmp_dir/product" "$tmp_dir/homepage" > "$tmp_dir/marketing"
+grep -qi 'wireguard' "$tmp_dir/marketing" && fail 'A CarrierPigeonVPN marketing surface uses the WireGuard trademark.' 'wireguard'
+
 # Guideline 5.4 commitment stays in the privacy policy and on the product page.
 grep -q 'does not sell, use, or' "$tmp_dir/privacy" || { echo 'privacy.html 10.2 lost the 5.4 commitment.' >&2; exit 1; }
 grep -q 'does not sell, use, or disclose' "$tmp_dir/product" || { echo 'Product page lost the 5.4 commitment.' >&2; exit 1; }

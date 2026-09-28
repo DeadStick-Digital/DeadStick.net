@@ -43,6 +43,16 @@ GitHub push readiness snapshot:
 
 ## Current Handoff
 
+- 2026-09-28 (Houston, about 09:55), Claude (SuperAssistant), local branch
+  `claude/2026-09-28-wireguard-wording`, NOT pushed or published. WireGuard's trademark policy
+  bars using the mark to advertise or to suggest a relationship without permission, and the
+  App Store listing already dropped it. `index.html` (CarrierPigeonVPN card) and
+  `apps/carrierpigeonvpn.html` (meta description, hero, overview, data section) now say "VPN
+  tunnel" / "encryption keys". The legal pages (privacy 10.2, terms 14.2, deletion) keep their
+  factual technical mentions, and `acknowledgements.html` keeps the attribution and trademark
+  notice. `tests/carrierpigeonvpn-public-claims.test.sh` gains a check that the marketing
+  surfaces never use the mark (it failed on the old pages, passes now); `local-validate.sh
+  website --standard` passes. Next: owner approval to merge to `main` and publish.
 - 2026-09-28, Claude (SuperAssistant), CarrierPigeonVPN Apple-compliance pass. Owner asked:
   "Get this app ready for publication on the apple app store. Update everything on github." and
   "perform all changes needed including to www.deadstick.net to be Apple compliant."

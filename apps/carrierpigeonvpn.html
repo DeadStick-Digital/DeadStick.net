@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#09090c">
-  <meta name="description" content="CarrierPigeonVPN — share your iPhone's cellular connection with your Mac over an encrypted WireGuard tunnel. From DeadStick Digital LLC.">
+  <meta name="description" content="CarrierPigeonVPN — share your iPhone's cellular connection with your Mac over an encrypted VPN tunnel. From DeadStick Digital LLC.">
   <title>CarrierPigeonVPN — DeadStick Digital LLC</title>
   <link rel="icon" type="image/png" href="../icons/carrierpigeonvpn.png">
   <link rel="stylesheet" href="../styles.css">
@@ -40,7 +40,7 @@
   <div>
     <div class="eyebrow" style="color:var(--pigeon);">Paired-device networking</div>
     <h1>CarrierPigeonVPN</h1>
-    <p>A private WireGuard tunnel between two devices you already own. CarrierPigeonVPN lets your
+    <p>A private VPN tunnel between two devices you already own. CarrierPigeonVPN lets your
        Mac use your paired iPhone's cellular connection through one encrypted tunnel, with no
        account and no DeadStick servers in the path.</p>
     <div class="hero-actions" style="margin-top:28px;">
@@ -57,7 +57,7 @@
       <h2 id="overview">Overview</h2>
       <p>CarrierPigeonVPN has two parts: an iPhone app that shares its cellular connection, and a
          Mac app that uses it. The Mac joins your iPhone's Personal Hotspot, and all of the Mac's
-         traffic then travels inside an encrypted WireGuard tunnel to your iPhone, which sends it
+         traffic then travels inside an encrypted VPN tunnel to your iPhone, which sends it
          out over your own cellular plan.</p>
       <p>You pair the two once by scanning a QR code; the apps exchange keys over Bluetooth. After
          that you connect from the Mac. While connected, the Mac's DNS lookups also go through the
@@ -120,7 +120,7 @@
       <h3>How your data is handled</h3>
       <p>CarrierPigeonVPN never sees the contents, destinations, or metadata of your traffic — that
          traffic flows directly between your two devices and then out of your iPhone's own
-         network connection. Local configuration (WireGuard keys, paired-device identifiers) is
+         network connection. Local configuration (encryption keys, paired-device identifiers) is
          stored on your devices in the system keychain. Subscription status is checked through
          Apple and RevenueCat. See the <a href="../privacy.html#apps">privacy policy</a> for the
          complete treatment.</p>
