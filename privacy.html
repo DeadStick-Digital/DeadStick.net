@@ -41,7 +41,7 @@
     <p>This policy explains what information DeadStick Digital LLC collects, how we use it, and the
        rights you have over your data. It covers our website and every app we publish, including
        BillingBird, CarrierPigeonVPN, Holos Drive Vault, and Document Vault.</p>
-    <p class="muted mono" style="margin-top:14px;">Effective date: April 16, 2026 · Last updated: July 19, 2026</p>
+    <p class="muted mono" style="margin-top:14px;">Effective date: April 16, 2026 · Last updated: September 28, 2026</p>
   </div>
 
   <div class="doc-body">
@@ -83,7 +83,7 @@
     <ul>
       <li>The website at <a href="https://www.deadstick.net">www.deadstick.net</a></li>
       <li><strong>BillingBird</strong> — a private invoicing and receipt app, available now on iPhone; iPadOS, macOS, Android, and Windows support is planned</li>
-      <li><strong>CarrierPigeonVPN</strong> — a paired-device networking app for macOS, Windows, tvOS, iOS, and Android</li>
+      <li><strong>CarrierPigeonVPN</strong> — a paired-device networking app for iPhone and Mac; Windows, Apple TV, and Android versions are planned</li>
       <li><strong>Holos Drive Vault</strong> — an encrypted external-drive security utility</li>
       <li><strong>Document Vault</strong> — a secure document scanner for important records</li>
     </ul>
@@ -137,8 +137,9 @@
           payment processing.</li>
       <li><strong><a href="https://www.revenuecat.com/privacy">RevenueCat</a></strong> — processes
           an automatically generated app-user identifier, device/platform information, Apple
-          purchase receipts, and subscription entitlement status so BillingBird can validate and
-          restore paid features. RevenueCat does not receive BillingBird bookkeeping records.</li>
+          purchase receipts, and subscription entitlement status so BillingBird and CarrierPigeonVPN can validate and
+          restore paid features. RevenueCat does not receive BillingBird bookkeeping records or
+          CarrierPigeonVPN network traffic.</li>
       <li><strong>Our email provider</strong> — for receiving and replying to messages you send us
           through our contact form.</li>
       <li><strong>Our contact-form provider (Web3Forms)</strong> — receives submissions from the
@@ -239,11 +240,33 @@
        receive your BillingBird bookkeeping records.</p>
 
     <h3>10.2 CarrierPigeonVPN</h3>
-    <p>CarrierPigeonVPN establishes a WireGuard tunnel directly between your receiving device
-       (Mac, PC, or Apple TV) and your own paired phone. Traffic is not routed through any
-       DeadStick-operated server and we have no visibility into the contents, destinations, or
-       metadata of your network traffic. Local configuration (WireGuard keys, paired device
-       identifiers) is stored on your devices in the system keychain.</p>
+    <p>CarrierPigeonVPN establishes a WireGuard tunnel directly between your Mac and your own
+       paired iPhone. Traffic is not routed through any DeadStick-operated server and we have no
+       visibility into the contents, destinations, or metadata of your network traffic. Local
+       configuration (WireGuard keys, paired device identifiers) is stored on your devices in the
+       system keychain.</p>
+    <p><strong>Hotspot details you enter.</strong> You can choose to enter your iPhone's Personal
+       Hotspot name and password once in the iPhone app. The iPhone sends them, encrypted, only to
+       the Mac you pair with, so the Mac can join the hotspot on its own. Both devices keep them in
+       the system keychain, and they are never sent to us.</p>
+    <p><strong>DNS.</strong> While your Mac is connected, its DNS lookups travel through the
+       tunnel and out through your iPhone's cellular connection to Cloudflare (1.1.1.1) and Google
+       (8.8.8.8) public DNS, whose own privacy policies apply to those lookups. CarrierPigeonVPN
+       does not see, log, or store them.</p>
+    <p><strong>On-device diagnostics.</strong> Each device keeps a local diagnostic log of
+       connection events, such as local network addresses, your hotspot's network name, device
+       names, timings, and data totals, so connection problems can be diagnosed. It does not
+       contain the contents of your traffic or the websites you visit. It stays on your device and
+       reaches us only if you choose to send us a Support Details export.</p>
+    <p><strong>Permissions.</strong> The iPhone app uses the camera only to scan the pairing QR
+       code, Bluetooth only to exchange pairing keys with your nearby device, and Local Network to
+       reach your paired device. The Mac app asks for Location only because macOS requires it to
+       read Wi-Fi network names, which it uses to find and join your iPhone's hotspot; your
+       location is not stored or sent anywhere.</p>
+    <p><strong>Subscription.</strong> Purchases are processed by Apple. RevenueCat receives an
+       automatically generated app-user identifier, device and platform information, the Apple
+       purchase receipt, and subscription status so the iPhone app can check and restore your
+       subscription. RevenueCat never receives your network traffic.</p>
     <p><strong>VPN commitment.</strong> As required by Apple's App Store Review Guideline 5.4
        and Google Play's <em>VpnService</em> policy, DeadStick Digital LLC does not sell, use, or
        disclose to third parties any data collected by CarrierPigeonVPN, and will not use the VPN

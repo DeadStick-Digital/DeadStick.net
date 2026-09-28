@@ -1,6 +1,6 @@
 # Agent Handoff
 
-Last updated: 2026-08-06 BillingBird availability + copy-truth rewrite validated locally, awaiting publication approval
+Last updated: 2026-09-28 CarrierPigeonVPN Apple-compliance pass (see the first Current Handoff entry)
 
 Local project: `/Users/chanceneel/Projects/Deadstick website`
 Current branch snapshot: `main`; gallery commit `3aae810` is pushed and now live-verified (the 2026-08-06 Pages deploy timeout recovered externally: live `apps/billingbird.html` byte-matches `3aae810` apart from Cloudflare injections, stylesheet marker `20260806-billingbird-even-gallery` is being served)
@@ -42,6 +42,24 @@ GitHub push readiness snapshot:
 - Codex routing: use `GPT 5.5 High` as the default architect/lead for first-pass design, scope control, implementation planning, ordinary architecture decisions, and normal final review; escalate to `GPT 5.5 xhigh` only for high-risk architecture, persistence/schema migrations, security-sensitive decisions, App Store/TestFlight/release decisions, major cross-system refactors, production incidents, or final review before risky external actions; use `GPT 5.4-mini` for coding/build/test/debug loops once the plan is settled, escalating only if implementation becomes ambiguous or risky.
 
 ## Current Handoff
+
+- 2026-09-28, Claude (SuperAssistant), CarrierPigeonVPN Apple-compliance pass. Owner asked:
+  "Get this app ready for publication on the apple app store. Update everything on github." and
+  "perform all changes needed including to www.deadstick.net to be Apple compliant."
+  - `apps/carrierpigeonvpn.html`: the product as it ships (iPhone app shares, free Mac app
+    connects), iOS 26 / macOS 26 minimums, 7-day free trial then $9.99 per year with the renewal
+    and cancellation terms (Guideline 3.1.2), no screen-off or five-device claims.
+  - `privacy.html` 10.2: on-device diagnostics, permissions, RevenueCat data, the optional
+    hotspot name and password the iPhone sends only to the paired Mac, the Cloudflare and Google
+    DNS resolvers, and the Guideline 5.4 commitment. Last updated September 28, 2026.
+  - `terms.html` (CarrierPigeonVPN subscription section), `deletion.html`, `index.html`,
+    `support.html`, `acknowledgements.html` (gVisor, google/btree, Go, RevenueCat; WireGuard LLC
+    as the copyright holder; where the notices sit in each app) aligned with the 1.0 release.
+  - New `tests/carrierpigeonvpn-public-claims.test.sh`; two BillingBird tests re-pinned to the new
+    support line and privacy date. All 17 shell tests and `local-validate.sh website --standard` pass.
+  - Unrelated local state left alone: the unstaged deletion of `assets/logo-mark-512.png`,
+    untracked `bb-local-full.png` and `design-qa.md`.
+  - Next action: after the push, confirm the Pages build and the live pages.
 
 - Active task: Owner-directed BillingBird copy-truth and availability rewrite (2026-08-06), local-only.
 - Owner directives implemented: BillingBird has no estimates feature, so every estimates claim was

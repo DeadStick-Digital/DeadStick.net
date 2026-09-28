@@ -76,15 +76,24 @@
     </ul>
 
     <h2 id="carrierpigeonvpn">CarrierPigeonVPN</h2>
-    <p>CarrierPigeonVPN does not store your traffic, destinations, or metadata anywhere — not on your
-       devices, not on ours. The only local state is pairing configuration: WireGuard keys and the
-       identifier of the phone you paired with.</p>
+    <p>CarrierPigeonVPN never records the contents of your traffic or the websites you visit, and
+       DeadStick keeps no copy of anything on your devices. Each device stores its pairing keys in
+       the system keychain, the names of paired devices, and a local diagnostic log.</p>
     <ul>
-      <li><strong>Clear pairing.</strong> Open the desktop or phone companion →
-          <em>Settings</em> → <em>Clear pairing</em>. This deletes the WireGuard keypair and paired
-          device identifier from the system keychain on both devices.</li>
-      <li><strong>Remove the apps.</strong> Uninstalling CarrierPigeonVPN from either device wipes all
-          keychain entries associated with that install.</li>
+      <li><strong>Remove a pairing on iPhone.</strong> Open CarrierPigeonVPN →
+          <em>Paired devices</em> → <em>Remove</em>, or <em>Forget All</em> to remove every paired
+          device.</li>
+      <li><strong>Remove the pairing on Mac.</strong> Open CarrierPigeonVPN → <em>Settings</em> →
+          <em>Forget pairing</em>. This stops the VPN, deletes the saved tunnel settings, and
+          replaces this Mac's WireGuard key.</li>
+      <li><strong>Remove the apps.</strong> Deleting CarrierPigeonVPN removes its app data and
+          diagnostic log from that device. Remove the pairing first so the keys stored in the
+          system keychain are deleted too.</li>
+      <li><strong>Subscription record.</strong> Apple and RevenueCat may keep an automatically
+          generated app-user identifier, the Apple purchase receipt, and subscription history.
+          Deleting the app does not cancel a subscription; manage or cancel it in your Apple
+          Account settings. For an access or deletion request involving RevenueCat data, use the
+          privacy-request path below.</li>
     </ul>
 
     <h2 id="holos-document-vault">Document Vault</h2>

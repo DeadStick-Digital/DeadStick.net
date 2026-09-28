@@ -23,8 +23,8 @@ reject() {
   fi
 }
 
-require 'Last updated: July 19, 2026' privacy.html \
-  'Privacy policy should show the iPhone-first copy update date'
+require 'Last updated: September 28, 2026' privacy.html \
+  'Privacy policy should show its current update date'
 require 'available now on iPhone; iPadOS, macOS, Android, and Windows support is planned' privacy.html \
   'Scope should identify iPhone launch and planned platforms'
 require 'private local app storage on your iPhone' privacy.html \

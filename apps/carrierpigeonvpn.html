@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#09090c">
-  <meta name="description" content="CarrierPigeonVPN — efficient paired-device networking for macOS, Windows, tvOS, iOS, and Android. From DeadStick Digital LLC.">
+  <meta name="description" content="CarrierPigeonVPN — share your iPhone's cellular connection with your Mac over an encrypted WireGuard tunnel. From DeadStick Digital LLC.">
   <title>CarrierPigeonVPN — DeadStick Digital LLC</title>
   <link rel="icon" type="image/png" href="../icons/carrierpigeonvpn.png">
   <link rel="stylesheet" href="../styles.css">
@@ -40,9 +40,9 @@
   <div>
     <div class="eyebrow" style="color:var(--pigeon);">Paired-device networking</div>
     <h1>CarrierPigeonVPN</h1>
-    <p>A lightweight WireGuard bridge between two devices you already own. CarrierPigeonVPN lets
-       your Mac, PC, or Apple TV share a connection with your paired iPhone or Android phone over
-       a single encrypted tunnel — lean, private, and fully under your control.</p>
+    <p>A private WireGuard tunnel between two devices you already own. CarrierPigeonVPN lets your
+       Mac use your paired iPhone's cellular connection through one encrypted tunnel, with no
+       account and no DeadStick servers in the path.</p>
     <div class="hero-actions" style="margin-top:28px;">
       <a class="btn btn-primary" href="../index.html#contact">Contact support <span class="btn-arrow">→</span></a>
       <a class="btn" href="#overview">Learn more</a>
@@ -55,74 +55,90 @@
 
     <div class="detail-body">
       <h2 id="overview">Overview</h2>
-      <p>CarrierPigeonVPN is a powerful, two-part ecosystem designed to perfectly synchronize your
-         devices. Featuring companion apps for your Mac, Windows PC, and tvOS, and a mobile app
-         for your iPhone or Android, they work together, establishing a rock-solid, encrypted
-         WireGuard tunnel directly over your phone's Personal Hotspot (via Wi-Fi or USB).</p>
-      <p>Thanks to our seamless, zero-configuration handshake, your devices authenticate instantly
-         and securely behind the scenes. The result is a lightning-fast, ultra-efficient link
-         between the hardware you already own. Enjoy incredibly low latency, default DNS leak
-         protection, and optimized screen-off battery efficiency — all locked down with
-         uncompromising, end-to-end encryption.</p>
-      <p>Bring the whole household along: a single paired phone can carry up to five receiving
-         devices at once, so your Mac, PC, and Apple TV can share the same tunnel without taking
-         turns.</p>
+      <p>CarrierPigeonVPN has two parts: an iPhone app that shares its cellular connection, and a
+         Mac app that uses it. The Mac joins your iPhone's Personal Hotspot, and all of the Mac's
+         traffic then travels inside an encrypted WireGuard tunnel to your iPhone, which sends it
+         out over your own cellular plan.</p>
+      <p>You pair the two once by scanning a QR code; the apps exchange keys over Bluetooth. After
+         that you connect from the Mac. While connected, the Mac's DNS lookups also go through the
+         tunnel. Your iPhone can remember up to four paired devices and shares with one Mac at a
+         time.</p>
 
       <h3>How it works</h3>
       <ul>
-        <li>On iOS, the phone companion runs a WireGuard endpoint inside an
-            <code>NEPacketTunnelProvider</code>. On Android, the equivalent is a
-            <code>VpnService</code> bound to a foreground service. In both cases, the tunnel's only
-            job is to carry your desktop's traffic to your own phone.</li>
-        <li>The receiving companion (macOS, Windows, or tvOS) configures the local WireGuard client
-            and routes DNS through the paired phone's own network stack, so lookups never leak to
-            whatever network that device is sitting on.</li>
-        <li>Your phone forwards that traffic out through its own cellular or Wi-Fi connection.
-            The exit point is your phone — your SIM, your plan, your account.</li>
+        <li>On iPhone, the tunnel runs in a Packet Tunnel extension
+            (<code>NEPacketTunnelProvider</code>). Its only job is to carry your Mac's traffic to
+            your iPhone and out through the iPhone's cellular connection.</li>
+        <li>On the Mac, CarrierPigeonVPN's own network extension routes the Mac's traffic, including
+            DNS, into the tunnel while you are connected.</li>
+        <li>The exit point is your iPhone — your SIM, your plan, your account.</li>
+        <li>When you disconnect on the Mac, the iPhone is told and stops sharing. If the two lose
+            touch, the iPhone stops sharing on its own after about a minute.</li>
       </ul>
 
       <h3>What CarrierPigeonVPN is <em>not</em></h3>
       <p>CarrierPigeonVPN is not a commercial VPN service. We do not operate exit nodes, do not
          terminate your traffic on DeadStick-owned servers, and do not anonymize you on the public
-         internet. Your exit point is your own phone on your own cellular or Wi-Fi plan — which is
-         why it is <em>your</em> responsibility to use CarrierPigeonVPN in a manner that complies
-         with your carrier's or network's terms of service and acceptable-use policy. DeadStick
-         Digital makes no representation that any particular use of CarrierPigeonVPN is permitted
-         under any particular plan.</p>
+         internet. Your exit point is your own phone on your own cellular plan — which is why it
+         is <em>your</em> responsibility to use CarrierPigeonVPN in a manner that complies with your
+         carrier's terms of service and acceptable-use policy. DeadStick Digital makes no
+         representation that any particular use of CarrierPigeonVPN is permitted under any
+         particular plan.</p>
 
       <h3>VPN scope and disclosures</h3>
-      <p>CarrierPigeonVPN uses Apple's <code>NEPacketTunnelProvider</code> API on iOS, macOS, and
-         tvOS, and Android's <code>VpnService</code> API, for a single purpose: to route the
-         receiving companion's outbound traffic through the paired phone's own networking stack.
-         We do not
-         inspect, log, collect, share, or transmit the contents, destinations, or metadata of any
-         traffic that flows through the tunnel. The tunnel carries only the user's own traffic
-         between two devices that the same user controls, and the app does not modify traffic from
-         other apps on the phone.</p>
-      <p>As required by Apple's App Store Review Guideline 5.4 and Google Play's VPN policy,
-         DeadStick Digital LLC does not sell, use, or disclose to third parties any data collected
-         by CarrierPigeonVPN for any purpose. The first time the tunnel activates, the app surfaces a
-         prominent disclosure describing exactly what the tunnel does.</p>
+      <p>CarrierPigeonVPN uses Apple's Network Extension VPN APIs on iPhone and Mac for a single
+         purpose: to route your Mac's traffic through your own paired iPhone. We do not inspect,
+         log, collect, share, or transmit the contents, destinations, or metadata of any traffic
+         that flows through the tunnel. The tunnel carries only your own traffic between two
+         devices you control, and the app does not modify traffic from other apps on the
+         iPhone.</p>
+      <p>As required by Apple's App Store Review Guideline 5.4, DeadStick Digital LLC does not sell,
+         use, or disclose to third parties any data collected by CarrierPigeonVPN for any purpose.
+         Before you use the tunnel, the app shows a privacy screen that explains exactly what data
+         is involved.</p>
+
+      <h3 id="pricing">Pricing and subscription</h3>
+      <p>CarrierPigeonVPN is an auto-renewing annual subscription, bought in the iPhone app:
+         a <strong>7-day free trial</strong>, then <strong>$9.99 per year</strong> (US price;
+         local prices vary by country). One subscription covers sharing to your paired Mac; the
+         Mac app itself is free.</p>
+      <ul>
+        <li>Starting the free trial costs nothing. When the 7 days end, $9.99 is charged to your
+            Apple Account unless you cancel at least 24 hours before the trial ends.</li>
+        <li>After that, the subscription renews automatically each year unless you turn off
+            auto-renew at least 24 hours before the end of the current period.</li>
+        <li>You can manage or cancel it in your Apple Account settings at any time. Deleting the
+            app does not cancel a subscription.</li>
+        <li>If you cancel, sharing keeps working until the end of the trial or paid period you
+            already have. After that, the iPhone stops sharing until you subscribe again.</li>
+      </ul>
+      <p>See the <a href="../terms.html#cpvpn-subscription">Terms of Use</a> and the
+         <a href="../privacy.html#apps">Privacy Policy</a>. Apple's standard
+         <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Licensed
+         Application End User License Agreement</a> also applies.</p>
 
       <h3>How your data is handled</h3>
       <p>CarrierPigeonVPN never sees the contents, destinations, or metadata of your traffic — that
-         traffic flows directly between your two devices and then out of your phone's own
-         networking stack. Local configuration (WireGuard keys, paired-device identifiers) is
-         stored on your devices in the system keychain. See the
-         <a href="../privacy.html#apps">privacy policy</a> for the complete treatment.</p>
+         traffic flows directly between your two devices and then out of your iPhone's own
+         network connection. Local configuration (WireGuard keys, paired-device identifiers) is
+         stored on your devices in the system keychain. Subscription status is checked through
+         Apple and RevenueCat. See the <a href="../privacy.html#apps">privacy policy</a> for the
+         complete treatment.</p>
 
-      <h3>Platforms</h3>
-      <p><strong>Desktop:</strong> macOS 14 Sonoma or later · Windows 11.
-         <br><strong>TV:</strong> tvOS 17 or later.
-         <br><strong>Phone:</strong> iOS 17 or later · Android 12 or later.</p>
+      <h3>Requirements</h3>
+      <p><strong>iPhone:</strong> iOS 26 or later, with a cellular plan that includes Personal
+         Hotspot.
+         <br><strong>Mac:</strong> macOS 26 or later.
+         <br>Windows, Apple TV, and Android versions are planned and not yet available.</p>
     </div>
 
     <aside class="side-card">
       <h4>At a glance</h4>
       <dl>
         <dt>Category</dt>     <dd>Networking / Utilities</dd>
-        <dt>Platform</dt>     <dd>macOS · Windows · tvOS · iOS · Android</dd>
-        <dt>Connections</dt>  <dd>Up to 5 devices per phone at once</dd>
+        <dt>Platform</dt>     <dd>iPhone · Mac</dd>
+        <dt>Price</dt>        <dd>7-day free trial, then $9.99/year</dd>
+        <dt>Connections</dt>  <dd>One Mac at a time; up to 4 paired devices</dd>
         <dt>Network use</dt>  <dd>Paired devices only</dd>
         <dt>Account</dt>      <dd>None required</dd>
         <dt>Age rating</dt>   <dd>4+</dd>
