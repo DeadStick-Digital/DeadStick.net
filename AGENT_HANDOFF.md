@@ -51,8 +51,10 @@ GitHub push readiness snapshot:
   on the live listing until the next app update, so a root `billingbird.html` now forwards there
   (meta refresh, canonical to the product page, `noindex`, visible fallback link).
   `tests/billingbird-store-marketing-url.test.sh` pins it. All 18 shell tests and
-  `local-validate.sh website --standard` pass; CNAME unchanged. Keep the page until the
-  BillingBird listing points at `apps/billingbird.html` (next app update).
+  `local-validate.sh website --standard` pass; CNAME unchanged. Pushed as `4a49676` at 21:21 CDT
+  (the Mac's connection was intermittent; four tries); live-verified at 21:22 CDT: the old address
+  serves the forwarding page and a browser lands on `apps/billingbird.html`. Keep the page until
+  the BillingBird listing points at `apps/billingbird.html` (next app update).
 
 - 2026-09-28 (Houston, afternoon), Claude (SuperAssistant): CarrierPigeonVPN public pages cut to the
   minimum that meets Apple's rules. Owner: "make sure we don't say too much ... The minimal amount to
