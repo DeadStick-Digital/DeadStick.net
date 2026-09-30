@@ -56,5 +56,13 @@ grep -qi 'wireguard' "$tmp_dir/marketing" && fail 'A CarrierPigeonVPN marketing 
 # Guideline 5.4 commitment stays in the privacy policy and on the product page.
 grep -q 'does not sell, use, or' "$tmp_dir/privacy" || { echo 'privacy.html 10.2 lost the 5.4 commitment.' >&2; exit 1; }
 grep -q 'does not sell, use, or disclose' "$tmp_dir/product" || { echo 'Product page lost the 5.4 commitment.' >&2; exit 1; }
+# Audit 2026-09-30: the commitment must not read as denying the RevenueCat and
+# DNS disclosures right before it. RevenueCat works on our behalf; DNS lookups
+# are the user's own traffic.
+grep -q 'RevenueCat processes your purchase on our behalf' "$tmp_dir/privacy" \
+  && grep -q 'as your own traffic' "$tmp_dir/privacy" \
+  || { echo 'privacy.html 10.2 must square the 5.4 commitment with RevenueCat and DNS.' >&2; exit 1; }
+grep -q 'RevenueCat, which works on our behalf' "$tmp_dir/product" \
+  || { echo 'Product page must say RevenueCat works on our behalf.' >&2; exit 1; }
 
 echo 'CarrierPigeonVPN public claims are consistent.'

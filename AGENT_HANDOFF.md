@@ -43,6 +43,16 @@ GitHub push readiness snapshot:
 
 ## Current Handoff
 
+- 2026-09-30, Claude (SuperAssistant), CarrierPigeonVPN audit item 2d (owner-approved "perform
+  changes 1 though 12"). The privacy policy's 10.2 VPN commitment (Guideline 5.4: "does not sell,
+  use, or disclose to third parties any data") came right after naming RevenueCat and the public
+  DNS services, so it read as denying them. The commitment stays; one sentence now says RevenueCat
+  processes the purchase on DeadStick's behalf only to check and restore the subscription, and
+  DNS lookups reach public DNS as the user's own traffic, which the app does not collect. The
+  product page says RevenueCat "works on our behalf". `tests/carrierpigeonvpn-public-claims.test.sh`
+  pins both; `local-validate.sh website --standard` passes with 0 failures. Committed locally on
+  `main`, NOT pushed: publishing waits for the owner's explicit OK (push to `main` publishes).
+
 - 2026-09-30, Claude (SuperAssistant), owner-approved ("yes to all of it" after Grok and Codex audits of
   the BillingBird 1.0.2 release). The App Store build is universal (iPhone and iPad; Apple's public
   record lists 80 iPad models), but the product page, homepage card, support, privacy and terms said
