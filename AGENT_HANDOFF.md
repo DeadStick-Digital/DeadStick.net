@@ -1,9 +1,9 @@
 # Agent Handoff
 
-Last updated: 2026-09-29 BillingBird App Store marketing-link forwarding page (see the first Current Handoff entry)
+Last updated: 2026-09-30 BillingBird iPad availability wording and subscription price line (see the first Current Handoff entry)
 
 Local project: `/Users/chanceneel/Projects/Deadstick website`
-Current branch snapshot: `main`; gallery commit `3aae810` is pushed and now live-verified (the 2026-08-06 Pages deploy timeout recovered externally: live `apps/billingbird.html` byte-matches `3aae810` apart from Cloudflare injections, stylesheet marker `20260806-billingbird-even-gallery` is being served)
+Current branch snapshot: `main`, equal to `origin/main` after each published entry below (latest first in Current Handoff); older snapshot notes (for example gallery commit `3aae810`) are history
 Expected dirty snapshot after this handoff is committed: the pre-existing unstaged deletion of `assets/logo-mark-512.png` and the untracked local `design-qa.md` record
 
 GitHub remotes:
@@ -42,6 +42,16 @@ GitHub push readiness snapshot:
 - Codex routing: use `GPT 5.5 High` as the default architect/lead for first-pass design, scope control, implementation planning, ordinary architecture decisions, and normal final review; escalate to `GPT 5.5 xhigh` only for high-risk architecture, persistence/schema migrations, security-sensitive decisions, App Store/TestFlight/release decisions, major cross-system refactors, production incidents, or final review before risky external actions; use `GPT 5.4-mini` for coding/build/test/debug loops once the plan is settled, escalating only if implementation becomes ambiguous or risky.
 
 ## Current Handoff
+
+- 2026-09-30, Claude (SuperAssistant), owner-approved ("yes to all of it" after Grok and Codex audits of
+  the BillingBird 1.0.2 release). The App Store build is universal (iPhone and iPad; Apple's public
+  record lists 80 iPad models), but the product page, homepage card, support, privacy and terms said
+  iPadOS support was planned. They now say iPhone and iPad are available (iOS and iPadOS 17 or later)
+  and keep macOS, Android and Windows as planned (no Mac build is sold). The product page's side card
+  adds one line: free download with an optional BillingBird Pro subscription, $9.99/year in the U.S.
+  Privacy and terms "Last updated" moved to September 30, 2026. The BillingBird page tests, homepage
+  test, privacy test and public-surface consistency test now require the new wording and reject the
+  old iPad-planned claim. All 18 shell tests pass.
 
 - 2026-09-29, Claude (SuperAssistant), branch `claude/2026-09-29-billingbird-store-link`
   fast-forwarded into `main` and published on the owner's approval ("Publish it"). The live
