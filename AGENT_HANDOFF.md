@@ -1,6 +1,6 @@
 # Agent Handoff
 
-Last updated: 2026-09-28 CarrierPigeonVPN Apple-compliance pass (see the first Current Handoff entry)
+Last updated: 2026-09-29 BillingBird App Store marketing-link forwarding page (see the first Current Handoff entry)
 
 Local project: `/Users/chanceneel/Projects/Deadstick website`
 Current branch snapshot: `main`; gallery commit `3aae810` is pushed and now live-verified (the 2026-08-06 Pages deploy timeout recovered externally: live `apps/billingbird.html` byte-matches `3aae810` apart from Cloudflare injections, stylesheet marker `20260806-billingbird-even-gallery` is being served)
@@ -42,6 +42,17 @@ GitHub push readiness snapshot:
 - Codex routing: use `GPT 5.5 High` as the default architect/lead for first-pass design, scope control, implementation planning, ordinary architecture decisions, and normal final review; escalate to `GPT 5.5 xhigh` only for high-risk architecture, persistence/schema migrations, security-sensitive decisions, App Store/TestFlight/release decisions, major cross-system refactors, production incidents, or final review before risky external actions; use `GPT 5.4-mini` for coding/build/test/debug loops once the plan is settled, escalating only if implementation becomes ambiguous or risky.
 
 ## Current Handoff
+
+- 2026-09-29, Claude (SuperAssistant), branch `claude/2026-09-29-billingbird-store-link`
+  fast-forwarded into `main` and published on the owner's approval ("Publish it"). The live
+  BillingBird App Store listing
+  (1.0.0 through 1.0.2) sets its marketing URL to `https://www.deadstick.net/billingbird.html`,
+  which returned 404 because the product page lives at `apps/billingbird.html`. The URL is locked
+  on the live listing until the next app update, so a root `billingbird.html` now forwards there
+  (meta refresh, canonical to the product page, `noindex`, visible fallback link).
+  `tests/billingbird-store-marketing-url.test.sh` pins it. All 18 shell tests and
+  `local-validate.sh website --standard` pass; CNAME unchanged. Keep the page until the
+  BillingBird listing points at `apps/billingbird.html` (next app update).
 
 - 2026-09-28 (Houston, afternoon), Claude (SuperAssistant): CarrierPigeonVPN public pages cut to the
   minimum that meets Apple's rules. Owner: "make sure we don't say too much ... The minimal amount to
