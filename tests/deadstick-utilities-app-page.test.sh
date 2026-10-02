@@ -29,40 +29,38 @@ PAGE="apps/deadstick-utilities.html"
 
 [ -f "$PAGE" ] || { echo "Missing $PAGE" >&2; exit 1; }
 
-require 'designed to meet or exceed applicable government-grade software assurance practices' \
-  "$PAGE" \
-  'Assurance claim must use the sanctioned designed-to-meet-or-exceed phrasing'
-
-require 'No agency approval, certification, or formal validation' \
-  "$PAGE" \
-  'Assurance panel must disclaim certification'
-
-require 'No government approval, NIAP certification, Common Criteria' \
-  "$PAGE" \
-  'Footer legal note must disclaim certification and validation'
-
 require 'security-measures is-deadstick-utilities' \
   "$PAGE" \
-  'Assurance panel should use the DeadStick Utilities security-measures variant'
+  'Recovery panel should use the DeadStick Utilities security-measures variant'
 
-require 'Designed to meet government NIAP and FIPS standards' "$PAGE" 'Headline claim must use the designed-to-meet formula with named standards'
-require 'Protection Profile for Application Software' "$PAGE" 'NIAP item should name the actual Protection Profile'
-require 'FIPS 140-3' "$PAGE" 'FIPS item should name the standard by number'
-require 'National Information Assurance Partnership' "$PAGE" 'NIAP should be spelled out for readers'
-require 'NIST SP 800-218' "$PAGE" 'Assurance list should name NIST SSDF by number'
-require 'software bill of materials' "$PAGE" 'Assurance list should name the SBOM release gate'
-require 'VPAT/ACR' "$PAGE" 'Assurance list should name the accessibility evidence track'
-require 'No custom cryptography' "$PAGE" 'Assurance list should state the crypto posture'
+require 'Coming soon to the Mac App Store' "$PAGE" 'Page should state the Mac App Store release status'
+require 'macOS 14 or later' "$PAGE" 'Page should state the minimum macOS version'
+require 'Moving files to Recovery normally does not free disk space' "$PAGE" 'Page should state the Recovery disk-space limit'
+require 'cannot be restored by DeadStick' "$PAGE" 'Page should state that permanent deletion is final'
+require 'does not delete' "$PAGE" 'Page should say held files are not deleted on their own'
+require '7-day free trial' "$PAGE" 'Page should disclose the eligible free trial'
+require 'US reference price; the App Store shows your local price' "$PAGE" 'Page should state the annual US reference price'
+require '$9.99/year' "$PAGE" 'Page should state the annual price'
+require 'renews automatically' "$PAGE" 'Page should disclose auto-renewal'
+require 'stay available without a' "$PAGE" 'Page should state Recovery stays available without a subscription'
+require 'no background agent' "$PAGE" 'Page should state there is no background agent'
 require '../deadstick-utilities/privacy/' "$PAGE" 'Page should link the app privacy policy URL'
 require '../deadstick-utilities/support/' "$PAGE" 'Page should link the app support URL'
-require 'do not let third-party apps clean system caches' \
-  "$PAGE" \
-  'Page should state honest iOS/iPadOS platform limits'
+require '../deadstick-utilities/terms/' "$PAGE" 'Page should link the app terms URL'
 
-reject 'certified' "$PAGE" 'Page must not claim certification'
-reject 'FedRAMP' "$PAGE" 'Page must not invoke FedRAMP'
-reject '100% secure' "$PAGE" 'Page must not claim 100% secure'
-reject 'your Mac is unsafe' "$PAGE" 'Page must not use scareware urgency copy'
+for blocked in iPhone iPad iOS NIAP FIPS VPAT 508 MDM notarized government quarantine \
+  'every connection' 'Pro ' 'SBOM' 'certified' 'FedRAMP' '100% secure' 'secure erase' \
+  'undo for every file' 'file recovery' 'your Mac is unsafe' 'App Store Download'; do
+  reject "$blocked" "$PAGE" "Page must not say: $blocked"
+done
+
+UTIL_CARD="$(sed -n '/<!-- ==== DeadStick Utilities ==== -->/,/<\/article>/p' index.html)"
+for blocked in iPhone iPad iOS NIAP FIPS SBOM government quarantine; do
+  if printf '%s' "$UTIL_CARD" | grep -qF "$blocked"; then
+    printf 'Forbidden DeadStick Utilities homepage card copy: %s\n' "$blocked" >&2
+    exit 1
+  fi
+done
 
 require '<article class="app-card is-deadstick-utilities is-coming-soon" data-status="Coming soon">' \
   index.html \

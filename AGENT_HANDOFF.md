@@ -1,6 +1,6 @@
 # Agent Handoff
 
-Last updated: 2026-09-30 BillingBird iPad availability wording and subscription price line (see the first Current Handoff entry)
+Last updated: 2026-10-02 DeadStick Utilities Mac App Store copy on local branch `utilities-mac-launch-2026-10-02` (see the first Current Handoff entry)
 
 Local project: `/Users/chanceneel/Projects/Deadstick website`
 Current branch snapshot: `main`, equal to `origin/main` after each published entry below (latest first in Current Handoff); older snapshot notes (for example gallery commit `3aae810`) are history
@@ -42,6 +42,22 @@ GitHub push readiness snapshot:
 - Codex routing: use `GPT 5.5 High` as the default architect/lead for first-pass design, scope control, implementation planning, ordinary architecture decisions, and normal final review; escalate to `GPT 5.5 xhigh` only for high-risk architecture, persistence/schema migrations, security-sensitive decisions, App Store/TestFlight/release decisions, major cross-system refactors, production incidents, or final review before risky external actions; use `GPT 5.4-mini` for coding/build/test/debug loops once the plan is settled, escalating only if implementation becomes ambiguous or risky.
 
 ## Current Handoff
+
+- 2026-10-02, Claude (SuperAssistant). DeadStick Utilities is headed to the Mac App Store, but the
+  site still described a Mac+iPhone+iPad, free-core + Pro plan with government-standards claims.
+  On local branch `utilities-mac-launch-2026-10-02` (from `main`), the homepage card and meta,
+  `apps/deadstick-utilities.html`, and `deadstick-utilities/` (release page, privacy, support,
+  terms; dated October 2, 2026) now describe only the Mac release: macOS 14 or later, six areas,
+  user-chosen folders, the Recovery holding area and its limits, one annual Apple subscription
+  (7-day trial for eligible customers, then $9.99/year US reference), on-Mac privacy. CTAs say
+  "Coming soon to the Mac App Store" with no store link yet; swap in the App Store link at launch.
+  `privacy.html` gains section 10.5 and a new Last updated date. The two Utilities tests now pin the
+  Mac facts and reject iPhone/iPad/iOS/NIAP/FIPS/VPAT/508/MDM/notarized/government/quarantine/Pro;
+  `privacy-billingbird.test.sh` pins the new date. `local-validate.sh website --standard` passes with
+  0 failures. Committed locally on the branch only, NOT merged or pushed. The branch is prepared and
+  unpublished; publication needs the owner's exact approval at app launch (push to `main` publishes).
+  The pre-existing deleted `assets/logo-mark-512.png`, `bb-local-full.png` and `design-qa.md` were
+  left unstaged.
 
 - 2026-09-30, Claude (SuperAssistant), CarrierPigeonVPN audit item 2d (owner-approved "perform
   changes 1 though 12"). The privacy policy's 10.2 VPN commitment (Guideline 5.4: "does not sell,

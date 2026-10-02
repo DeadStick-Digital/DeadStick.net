@@ -44,45 +44,69 @@ require '<title>DeadStick Utilities — DeadStick Digital LLC</title>' \
   deadstick-utilities/index.html \
   'product overview title should be present'
 
-require 'Planned annual unlocks at $9.99/year' \
+require 'Coming soon to the Mac App Store' \
   deadstick-utilities/index.html \
-  'product overview should name the planned Pro annual price'
+  'product overview should state the Mac App Store release status'
+
+require '7-day free trial for eligible customers, then $9.99/year' \
+  deadstick-utilities/index.html \
+  'product overview should state the eligible trial and annual price'
 
 require 'https://www.deadstick.net/deadstick-utilities/support' \
   deadstick-utilities/privacy/index.html \
-  'privacy page should expose the candidate Support URL'
+  'privacy page should expose the Support URL'
 
-require 'not designed to upload file names, file paths, photo contents, contact contents' \
+require 'File contents, file names and scan results stay on your Mac' \
   deadstick-utilities/privacy/index.html \
-  'privacy page should preserve local-first no-default-upload posture'
+  'privacy page should state the on-Mac data boundary'
 
-require 'DeadStick Utilities cannot clean protected iPhone or iPad system storage' \
+require 'Apple processes subscription purchases' \
   deadstick-utilities/privacy/index.html \
-  'privacy page should explain iOS/iPadOS platform limits'
+  'privacy page should name Apple as the subscription processor'
 
-require 'annual subscription at <strong>$9.99/year</strong>' \
+require '<strong>$9.99/year</strong>' \
   deadstick-utilities/terms/index.html \
-  'terms page should include the planned Pro annual price'
+  'terms page should include the annual price'
 
-require 'It renews automatically until canceled' \
+require 'renews automatically unless canceled at least 24 hours before the end of the current period' \
   deadstick-utilities/terms/index.html \
   'terms page should include renewal disclosure'
 
-require 'Users manage or cancel App Store subscriptions in their Apple account settings' \
+require 'manage or cancel it in your Apple account settings' \
   deadstick-utilities/terms/index.html \
   'terms page should include cancellation guidance'
 
+require 'Licensed Application End User License Agreement' \
+  deadstick-utilities/terms/index.html \
+  'terms page should reference the Apple standard EULA'
+
+require 'free any particular amount of disk space' \
+  deadstick-utilities/terms/index.html \
+  'terms page should disclaim a particular amount of disk space'
+
 require 'https://www.deadstick.net/deadstick-utilities/privacy' \
   deadstick-utilities/terms/index.html \
-  'terms page should link the candidate Privacy URL'
+  'terms page should link the Privacy URL'
 
 require 'Support contact: <a href="../../index.html#contact">DeadStick Digital message form</a>' \
   deadstick-utilities/support/index.html \
   'support page should use the existing approved site contact path instead of a placeholder'
 
-require 'DeadStick Utilities does not provide iPhone/iPad protected system cleanup' \
+require 'Restore Purchases' \
   deadstick-utilities/support/index.html \
-  'support page should preserve platform-honest support copy'
+  'support page should explain Restore Purchases'
+
+require 'Restore Files From Recovery' \
+  deadstick-utilities/support/index.html \
+  'support page should explain restoring from Recovery'
+
+for page in "${pages[@]}"; do
+  require 'Last updated: October 2, 2026\|Coming soon to the Mac App Store' "$page" "$page should carry the current date or release status"
+  for blocked in iPhone iPad iOS NIAP FIPS VPAT 508 MDM notarized government quarantine \
+    'every connection' 'Pro ' 'pre-release' 'Pre-release' 'Free MVP' 'file recovery' 'secure erase'; do
+    reject "$blocked" "$page" "$page must not say: $blocked"
+  done
+done
 
 require '.du-console' \
   styles.css \
