@@ -58,6 +58,14 @@ GitHub push readiness snapshot:
   unpublished; publication needs the owner's exact approval at app launch (push to `main` publishes).
   The pre-existing deleted `assets/logo-mark-512.png`, `bb-local-full.png` and `design-qa.md` were
   left unstaged.
+  Follow-up commit (same day, same branch): area names now match the shipped Mac sidebar (Smart
+  Scan, Clean Up, Large Files, Duplicates, Storage, Apps, Mac Status, Recovery, plus Settings,
+  Privacy and Help; no "Overview", "Diagnostics" or "six areas"), the three scan modes are described,
+  the pages say which features need the subscription or Apple's free trial and which stay available
+  without one, support uses the shipped Recovery button labels (Restore Files, Export a copy…,
+  Repair folder access…, Refresh), and `privacy.html` 10.5 no longer says a support export reaches
+  DeadStick. Tests updated; `local-validate.sh website --standard` passes with 0 failures. Still
+  unpublished.
 
 - 2026-09-30, Claude (SuperAssistant), CarrierPigeonVPN audit item 2d (owner-approved "perform
   changes 1 though 12"). The privacy policy's 10.2 VPN commitment (Guideline 5.4: "does not sell,

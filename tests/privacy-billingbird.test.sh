@@ -60,3 +60,8 @@ reject 'Built for iPhone, iPad &amp; Mac' privacy.html \
   'Multi-Apple marketing claim must not appear in privacy'
 reject 'Google Drive sync may be available on some platforms or future releases.' privacy.html \
   'BillingBird privacy copy should not advertise future Google Drive behavior'
+
+require 'may choose to attach it to a' privacy.html \
+  'DeadStick Utilities section should say the user may attach the support export'
+reject 'it reaches us only if you decide' privacy.html \
+  'DeadStick Utilities section must not say a support export reaches DeadStick'

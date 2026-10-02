@@ -96,6 +96,22 @@ require 'Restore Purchases' \
   deadstick-utilities/support/index.html \
   'support page should explain Restore Purchases'
 
+require 'choose Restore Files' \
+  deadstick-utilities/support/index.html \
+  'support page should use the shipped Restore Files button label'
+
+require "need an active subscription or Apple's free trial" \
+  deadstick-utilities/terms/index.html \
+  'terms page should state what needs a subscription'
+
+require "need an active subscription or Apple's free trial" \
+  deadstick-utilities/support/index.html \
+  'support page should state what needs a subscription'
+
+require 'Mac Status' \
+  deadstick-utilities/index.html \
+  'release page should use the shipped Mac Status name'
+
 require 'Restore Files From Recovery' \
   deadstick-utilities/support/index.html \
   'support page should explain restoring from Recovery'
@@ -103,7 +119,8 @@ require 'Restore Files From Recovery' \
 for page in "${pages[@]}"; do
   require 'Last updated: October 2, 2026\|Coming soon to the Mac App Store' "$page" "$page should carry the current date or release status"
   for blocked in iPhone iPad iOS NIAP FIPS VPAT 508 MDM notarized government quarantine \
-    'every connection' 'Pro ' 'pre-release' 'Pre-release' 'Free MVP' 'file recovery' 'secure erase'; do
+    'every connection' 'Pro ' 'pre-release' 'Pre-release' 'Free MVP' 'file recovery' 'secure erase' \
+    'Diagnostics' 'diagnostics' 'six areas' 'Six areas' '>Overview<'; do
     reject "$blocked" "$page" "$page must not say: $blocked"
   done
 done

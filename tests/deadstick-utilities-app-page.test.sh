@@ -44,18 +44,26 @@ require '$9.99/year' "$PAGE" 'Page should state the annual price'
 require 'renews automatically' "$PAGE" 'Page should disclose auto-renewal'
 require 'stay available without a' "$PAGE" 'Page should state Recovery stays available without a subscription'
 require 'no background agent' "$PAGE" 'Page should state there is no background agent'
+for area in 'Smart Scan' 'Full System Scan' 'Custom Scan' 'Clean Up' 'Large Files' 'Duplicates' 'Storage' 'Apps' 'Mac Status' 'Recovery'; do
+  require "$area" "$PAGE" "Page should name the shipped sidebar item or scan mode: $area"
+done
+require 'Scanning only reads' "$PAGE" 'Page should state that scanning only reads'
+require 'choose which copy to keep' "$PAGE" 'Page should state that duplicates need a keep choice'
+require "need an active subscription or Apple's free trial" "$PAGE" 'Page should state what needs a subscription'
+require 'Privacy, Settings and Help stay available without a' "$PAGE" 'Page should state what stays free'
 require '../deadstick-utilities/privacy/' "$PAGE" 'Page should link the app privacy policy URL'
 require '../deadstick-utilities/support/' "$PAGE" 'Page should link the app support URL'
 require '../deadstick-utilities/terms/' "$PAGE" 'Page should link the app terms URL'
 
 for blocked in iPhone iPad iOS NIAP FIPS VPAT 508 MDM notarized government quarantine \
   'every connection' 'Pro ' 'SBOM' 'certified' 'FedRAMP' '100% secure' 'secure erase' \
-  'undo for every file' 'file recovery' 'your Mac is unsafe' 'App Store Download'; do
+  'undo for every file' 'file recovery' 'your Mac is unsafe' 'App Store Download' \
+  'Diagnostics' 'six areas' 'Six areas' '>Overview<'; do
   reject "$blocked" "$PAGE" "Page must not say: $blocked"
 done
 
 UTIL_CARD="$(sed -n '/<!-- ==== DeadStick Utilities ==== -->/,/<\/article>/p' index.html)"
-for blocked in iPhone iPad iOS NIAP FIPS SBOM government quarantine; do
+for blocked in iPhone iPad iOS NIAP FIPS SBOM government quarantine diagnostics Diagnostics; do
   if printf '%s' "$UTIL_CARD" | grep -qF "$blocked"; then
     printf 'Forbidden DeadStick Utilities homepage card copy: %s\n' "$blocked" >&2
     exit 1
