@@ -34,7 +34,7 @@ require 'security-measures is-deadstick-utilities' \
   'Recovery panel should use the DeadStick Utilities security-measures variant'
 
 require 'Coming soon to the Mac App Store' "$PAGE" 'Page should state the Mac App Store release status'
-require 'macOS 14 or later' "$PAGE" 'Page should state the minimum macOS version'
+require 'macOS 15 or later' "$PAGE" 'Page should state the minimum macOS version'
 require 'Moving files to Recovery normally does not free disk space' "$PAGE" 'Page should state the Recovery disk-space limit'
 require 'cannot be restored by DeadStick' "$PAGE" 'Page should state that permanent deletion is final'
 require 'does not delete' "$PAGE" 'Page should say held files are not deleted on their own'
