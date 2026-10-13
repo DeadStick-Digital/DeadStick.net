@@ -66,7 +66,7 @@
 
     <div class="callout">
       <strong>Short version.</strong> DeadStick Digital does not sell your data, does not embed
-      third-party analytics or advertising SDKs, and does not maintain user accounts on our servers.
+      advertising SDKs, and does not maintain user accounts on our servers. BillingBird uses RevenueCat for subscription functionality and subscription analytics, as described in Section 10.1.
       Wherever possible, our apps keep your content on your own device or in a cloud account you
       already control (iCloud, Google Drive).
     </div>
@@ -82,7 +82,7 @@
        company ("DeadStick", "we", "us"), and to these properties:</p>
     <ul>
       <li>The website at <a href="https://www.deadstick.net">www.deadstick.net</a></li>
-      <li><strong>BillingBird</strong> — a private invoicing and receipt app, available now on iPhone and iPad; macOS, Android, and Windows support is planned</li>
+      <li><strong>BillingBird</strong> — a private invoicing and receipt app, available on iPhone and iPad, including compatible Macs that run the iPad app; Android and Windows support is planned</li>
       <li><strong>CarrierPigeonVPN</strong> — a paired-device networking app for iPhone and Mac; Windows, Apple TV, and Android versions are planned</li>
       <li><strong>Holos Drive Vault</strong> — an encrypted external-drive security utility</li>
       <li><strong>Document Vault</strong> — a secure document scanner for important records</li>
@@ -116,7 +116,8 @@
     </ul>
 
     <h3>3.3 Information we do not collect</h3>
-    <p>We do not operate advertising SDKs, behavioural analytics, user accounts on our servers,
+    <p>Except for the BillingBird-specific permissions and subscription processing described in
+       Section 10.1, we do not operate advertising SDKs, behavioural analytics, user accounts on our servers,
        location tracking, contact-list access, or any form of device fingerprinting. We do not
        sell or rent any information to third parties.</p>
 
@@ -125,6 +126,7 @@
     <ul>
       <li>Providing the functionality of the app you installed;</li>
       <li>Validating your purchase and enabling paid features you have bought;</li>
+      <li>For BillingBird, subscription analytics through RevenueCat as described in Section 10.1;</li>
       <li>Replying to your support email;</li>
       <li>Diagnosing crashes and fixing bugs;</li>
       <li>Complying with legal obligations (tax, export, court orders).</li>
@@ -227,18 +229,32 @@
     <h2 id="apps">10. App-specific notes</h2>
 
     <h3>10.1 BillingBird</h3>
-    <p>BillingBird stores your clients, invoices, receipts, attachments, reports, and settings in
-       private local app storage on your iPhone or iPad. DeadStick Digital does not collect, receive, read,
-       or store these bookkeeping records. They leave the device only when you choose to export,
-       share, or use the optional private iCloud backup. macOS, Android, and Windows support
-       is planned; those platforms are not yet shipping, and this section does not claim data handling
-       for them is already implemented.</p>
-    <p>When you enable iCloud on iPhone or iPad, BillingBird stores its private app data in your Apple account
-       for optional private backup. This is not real-time collaboration or simultaneous editing, and
-       DeadStick Digital does not operate a server that can read your BillingBird data. Apple provides
-       iCloud and App Store services. RevenueCat may process the limited purchase and entitlement
-       information needed to enable paid features; it does not
-       receive your BillingBird bookkeeping records.</p>
+    <p>BillingBird keeps your business profile, clients, invoices, estimates, receipts, expenses,
+       manual payment records and attachments in private local app storage on your iPhone or iPad.
+       DeadStick Digital does not collect, read or store this bookkeeping database on its servers.
+       You choose what to export or share and what to include in a support message. Support receives
+       the messages and attachments you send.</p>
+    <p>Optional private iCloud backup stores a copy in your Apple account. Device handoff uses backup
+       and restore, with one active editing device; it does not merge simultaneous edits. Bookkeeping
+       can remain local. Subscription checks still contact Apple and RevenueCat. Compatible Macs can
+       run the iPad app where the App Store permits it; a separate native Mac release, Android and
+       Windows support are planned, and those platforms are not yet shipping as separate apps.</p>
+    <p>BillingBird uses Apple and <a href="https://www.revenuecat.com/privacy">RevenueCat</a> for
+       subscription purchases, validation, restoration and subscription analytics. RevenueCat processes
+       purchase and entitlement history, an automatically generated app-user identifier, device and
+       platform information (including Apple's vendor identifier when available), and tracking-permission
+       status. It does not receive your BillingBird bookkeeping records. An automatically generated
+       identifier is not a promise that provider-held records cannot be linked. Deleting the app does
+       not automatically delete provider-held purchase records; see the
+       <a href="deletion.html#billingbird">BillingBird deletion instructions</a>.</p>
+    <p>With your permission, BillingBird can access Contacts to help you select or search for a client.
+       Selected client details are stored in your local bookkeeping records. Camera and photo-library
+       access let you capture or choose receipt images. OCR runs on your device. Online payment
+       collection remains disabled.</p>
+    <p>Version 1.0.3 keeps pending financial-save input and recovery notes in protected local storage.
+       These records are excluded from exported archives and iCloud backups. After a save is verified,
+       unapplied input remains available in Settings &rarr; Privacy &amp; Local Data &rarr; Recovery notes
+       until you remove it. Invoice drafts also remain on the device until saved or explicitly discarded.</p>
 
     <h3>10.2 CarrierPigeonVPN</h3>
     <p>CarrierPigeonVPN establishes a WireGuard tunnel directly between your Mac and your own

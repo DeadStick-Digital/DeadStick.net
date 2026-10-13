@@ -54,17 +54,26 @@ require_in_scope() {
   fi
 }
 
-require_in_scope '"operatingSystem": "iOS 17 or later"' "$tmp_dir/product" 'product JSON-LD should be iPhone-current only'
+require_in_scope '"operatingSystem": "iOS 17 or later; iPadOS 17 or later"' "$tmp_dir/product" 'product JSON-LD should identify both shipped mobile OS floors'
 require_in_scope 'The launch version lets you record manual payments. Online payment collection is planned for a later release.' "$tmp_dir/product" 'product page should clarify manual payments'
 require_in_scope 'Available now on iPhone and iPad' "$tmp_dir/homepage" 'homepage card should state iPhone and iPad availability'
-require_in_scope 'macOS, Android, and Windows support is planned' "$tmp_dir/homepage" 'homepage card should mention planned platforms without claiming them current'
+require_in_scope 'compatible Macs may run the iPad app; separate native Mac, Android, and Windows releases are planned' "$tmp_dir/homepage" 'homepage card should mention planned platforms without claiming them current'
 require_in_scope 'private local app storage on your iPhone or iPad' "$tmp_dir/privacy" 'privacy should describe current iPhone and iPad storage'
-require_in_scope 'macOS, Android, and Windows support' "$tmp_dir/privacy" 'privacy should mention planned platforms without claiming them current'
+require_in_scope 'run the iPad app where the App Store permits it' "$tmp_dir/privacy" 'privacy must identify iPad-on-Mac compatibility separately from native Mac distribution'
 require_in_scope 'private invoicing &amp; receipts, available now on iPhone and iPad' "$tmp_dir/support" 'support should match iPhone and iPad availability'
 require_in_scope '<strong>Private iCloud copy.</strong>' "$tmp_dir/deletion" 'deletion should cover the private iCloud copy'
 require_in_scope '<strong>BillingBird Pro subscription record.</strong>' "$tmp_dir/deletion" 'deletion should cover provider-held subscription records'
-require_in_scope '<strong>iPhone.</strong>' "$tmp_dir/deletion" 'deletion should describe the current iPhone path'
+require_in_scope '<strong>iPhone and iPad.</strong>' "$tmp_dir/deletion" 'deletion should describe the current iPhone path'
 require_in_scope 'available on iPhone and iPad' "$tmp_dir/terms" 'terms should state iPhone and iPad availability'
+require_in_scope 'id="billingbird-subscription"' "$tmp_dir/terms" 'terms should identify the BillingBird Pro subscription'
+require_in_scope 'US $9.99 per year' "$tmp_dir/terms" 'terms should state the United States annual price'
+require_in_scope '14-day free trial' "$tmp_dir/terms" 'terms should state the eligible trial length'
+require_in_scope 'up to three invoices that are still active and not archived' "$tmp_dir/terms" 'terms should state the free active-invoice allowance'
+require_in_scope '24 hours before the end of the current period' "$tmp_dir/terms" 'terms should state the renewal cancellation window'
+if grep -qF '7-day' "$tmp_dir/terms"; then
+  echo 'BillingBird terms must not copy the CarrierPigeonVPN trial length.' >&2
+  exit 1
+fi
 require_in_scope 'React Native</a></strong> 0.85.3' "$tmp_dir/acknowledgements" 'acknowledgements should name the current React Native version'
 require_in_scope 'Expo</a></strong> SDK 56' "$tmp_dir/acknowledgements" 'acknowledgements should name the current Expo version'
 require_in_scope '<strong>Apple CloudKit and iCloud</strong>' "$tmp_dir/acknowledgements" 'acknowledgements should name Apple private-cloud services'

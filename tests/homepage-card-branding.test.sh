@@ -60,7 +60,7 @@ require 'Privacy-first — designed to meet government NIAP &amp; FIPS practices
   'BillingBird homepage card should carry the sanctioned privacy-first assurance line'
 reject 'estimates' index.html \
   'estimates are not a BillingBird feature and must not appear on the homepage'
-require 'macOS, Android, and Windows support is planned' index.html \
+require 'compatible Macs may run the iPad app; separate native Mac, Android, and Windows releases are planned' index.html \
   'BillingBird homepage card should state the planned-platform roadmap'
 require '>Explore BillingBird <span aria-hidden="true">→</span></a>' index.html \
   'BillingBird homepage link should clearly name its destination'

@@ -25,15 +25,15 @@ reject() {
 
 require 'Last updated: October 2, 2026' privacy.html \
   'Privacy policy should show its current update date'
-require 'available now on iPhone and iPad; macOS, Android, and Windows support is planned' privacy.html \
+require 'available on iPhone and iPad, including compatible Macs that run the iPad app; Android and Windows support is planned' privacy.html \
   'Scope should identify iPhone and iPad availability and planned platforms'
 require 'private local app storage on your iPhone or iPad' privacy.html \
   'Policy should describe the current iPhone storage boundary'
 require 'DeadStick Digital does not collect,' privacy.html \
   'Policy should state that DeadStick does not collect bookkeeping records'
-require 'optional private iCloud backup' privacy.html \
+require 'iCloud backup' privacy.html \
   'Policy should qualify optional iCloud backup'
-require 'RevenueCat may process the' privacy.html \
+require 'purchase and entitlement history' privacy.html \
   'Policy should identify the separate entitlement service'
 require '<a href="https://www.revenuecat.com/privacy">RevenueCat</a>' privacy.html \
   'Service-provider list should disclose RevenueCat and link its policy'
@@ -45,11 +45,11 @@ require 'DeadStick does not receive your credit card, billing address, or real n
   'Purchase summary should retain the payment-data boundary'
 require 'direct RevenueCat' privacy.html \
   'Policy should explain provider-held record deletion handling'
-require 'it does not' privacy.html \
+require 'It does not' privacy.html \
   'Policy should separate entitlements from bookkeeping records'
 require 'receive your BillingBird bookkeeping records.' privacy.html \
   'Policy should state the RevenueCat bookkeeping boundary'
-require 'those platforms are not yet shipping' privacy.html \
+require 'BillingBird, subscription analytics through RevenueCat' privacy.html \
   'Policy should not imply future-platform data handling is already implemented'
 
 reject 'private local app storage on your iPhone, iPad, or Mac' privacy.html \

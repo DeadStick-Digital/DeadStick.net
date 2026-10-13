@@ -55,17 +55,23 @@
 
     <h2 id="billingbird">BillingBird</h2>
     <p>BillingBird stores clients, invoices, receipts, and attachments in an on-device database on
-       iPhone. Optional private iCloud backup stores an additional copy in your own Apple account.
-       DeadStick Digital cannot read either copy. iPadOS, macOS, Android, and Windows support is
-       planned; deletion steps for those platforms will be published when those releases ship.</p>
+       iPhone and iPad, including compatible Macs running the iPad app. Optional private iCloud
+       backup stores an additional copy in your own Apple account. DeadStick Digital cannot read
+       either copy. Local invoice drafts and financial recovery notes are removed with the app container;
+       these recovery records are not included in exported archives or iCloud backups.</p>
     <ul>
-      <li><strong>iPhone.</strong> Long-press BillingBird, then choose <em>Remove App</em> →
+      <li><strong>iPhone and iPad.</strong> Long-press BillingBird, then choose <em>Remove App</em> →
           <em>Delete App</em> to remove the app and its local container from that device.</li>
       <li><strong>Private iCloud copy.</strong> On iPhone, open <em>Settings</em> →
           <em>Apple Account</em> → <em>iCloud</em> → <em>Manage Account Storage</em> →
           <em>BillingBird</em> → <em>Delete Data</em>. This removes BillingBird's private iCloud copy.</li>
       <li><strong>Export first, if you want.</strong> Before deleting, you can export your full
           records as a <code>.billingbird</code> archive from <em>Settings → Export</em>.</li>
+      <li><strong>Recovery notes.</strong> In BillingBird 1.0.3, open <em>Settings</em> &rarr;
+          <em>Privacy &amp; Local Data</em> &rarr; <em>Recovery notes</em> to remove reviewed,
+          unapplied input. Removing a note does not change saved invoices or payments. Unresolved
+          saves must be reviewed before editing resumes. These notes are not included in exported
+          archives or private iCloud backups.</li>
       <li><strong>BillingBird Pro subscription record.</strong> Apple and RevenueCat may retain an
           automatically generated app-user identifier, Apple purchase receipt, and entitlement
           history separately from your bookkeeping. Deleting BillingBird or its iCloud data does
