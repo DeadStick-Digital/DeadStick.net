@@ -23,12 +23,12 @@ reject() {
   fi
 }
 
-require 'Last updated: October 2, 2026' privacy.html \
+require 'Last updated: October 16, 2026' privacy.html \
   'Privacy policy should show its current update date'
 require 'available on iPhone and iPad, including compatible Macs that run the iPad app; Android and Windows support is planned' privacy.html \
   'Scope should identify iPhone and iPad availability and planned platforms'
-require 'private local app storage on your iPhone or iPad' privacy.html \
-  'Policy should describe the current iPhone storage boundary'
+require 'private local app storage on your iPhone, iPad or Android device' privacy.html \
+  'Policy should describe the Apple and Android local-storage boundary'
 require 'DeadStick Digital does not collect,' privacy.html \
   'Policy should state that DeadStick does not collect bookkeeping records'
 require 'iCloud backup' privacy.html \

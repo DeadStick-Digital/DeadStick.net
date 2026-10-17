@@ -117,7 +117,7 @@ require 'Restore Files From Recovery' \
   'support page should explain restoring from Recovery'
 
 for page in "${pages[@]}"; do
-  require 'Last updated: October 2, 2026\|Coming soon to the Mac App Store' "$page" "$page should carry the current date or release status"
+  require 'Last updated: October 2, 2026\|Last updated: October 16, 2026\|Coming soon to the Mac App Store' "$page" "$page should carry the current date or release status"
   for blocked in iPhone iPad iOS NIAP FIPS VPAT 508 MDM notarized government quarantine \
     'every connection' 'Pro ' 'pre-release' 'Pre-release' 'Free MVP' 'file recovery' 'secure erase' \
     'Diagnostics' 'diagnostics' 'six areas' 'Six areas' '>Overview<'; do
