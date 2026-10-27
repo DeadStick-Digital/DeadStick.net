@@ -27,7 +27,7 @@ require '<article class="app-card is-billingbird is-primary-focus">' \
   index.html \
   'BillingBird should carry the primary focus state'
 
-require '<link rel="stylesheet" href="styles.css?v=20261027-vertical-apps">' \
+require '<link rel="stylesheet" href="styles.css?v=20261027-fixed-app-cards">' \
   index.html \
   'Homepage should cache-bust the stylesheet for the vertical app layout'
 
@@ -63,13 +63,13 @@ reject '3</strong>Shipping apps' \
   index.html \
   'Homepage stats should not imply all three apps are shipping'
 
-require 'grid-template-columns: repeat(3, minmax(0, 1fr));' \
+require 'flex: 0 1 344px;' \
   styles.css \
-  'Desktop apps should wrap into three equal columns'
+  'App cards should retain their original 344px width'
 
-require 'grid-template-columns: repeat(2, minmax(0, 1fr));' \
+require 'flex-wrap: wrap;' \
   styles.css \
-  'Tablet apps should wrap into two equal columns'
+  'App cards should wrap into vertical rows'
 
 require 'grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.75fr);' \
   styles.css \
