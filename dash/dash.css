@@ -1,0 +1,19 @@
+/* DeadStick Dash: isolated product-page styles. */
+.dash-hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(220px,.65fr);gap:48px;align-items:center;padding-top:64px;padding-bottom:44px}
+.dash-hero h1{font-size:clamp(42px,5vw,72px);line-height:1.06;letter-spacing:-.045em;margin:16px 0 22px}
+.dash-hero p{max-width:53ch;color:var(--text-muted);font-size:18px;line-height:1.7}
+.dash-art{height:auto;width:100%;max-width:360px;justify-self:center}
+.dash-facts{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;color:var(--text-soft);font-size:13px}
+.dash-facts span{padding:7px 12px;border:1px solid var(--border,#303039);border-radius:999px}
+.dash-section{padding-top:32px;padding-bottom:40px}
+.dash-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:24px}
+.dash-card{background:var(--surface,#111116);border:1px solid var(--border,#303039);border-radius:18px;padding:24px}
+.dash-card h3{font-size:19px;margin-bottom:12px}.dash-card p,.dash-section p,.dash-section li{color:var(--text-muted);line-height:1.75}
+.dash-split{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(240px,.8fr);gap:24px}
+.dash-section h2{font-size:30px;margin-bottom:16px}.dash-section h3{margin-top:24px;margin-bottom:8px}
+.dash-card h3{margin-top:0}.dash-section ul,.dash-section ol{padding-left:22px}.dash-section li{margin-bottom:10px}
+.dash-section details{padding:20px 0;border-bottom:1px solid var(--border,#303039)}.dash-section summary{font-size:18px;font-weight:600;cursor:pointer}.dash-section details p{margin-top:12px}
+.dash-section a:not(.btn){text-decoration:underline;text-underline-offset:3px}.dash-section[id]{scroll-margin-top:110px}
+.dash-doc{max-width:850px;padding-top:52px}.dash-doc h1{font-size:clamp(36px,5vw,54px);margin:16px 0}.dash-date{font-size:13px;color:var(--text-soft)}
+@media(max-width:900px){.dash-grid{grid-template-columns:1fr 1fr}.dash-grid .dash-card:last-child{grid-column:1/-1}}
+@media(max-width:679px){.dash-hero,.dash-split,.dash-grid{grid-template-columns:1fr}.dash-hero{gap:16px;padding-top:36px}.dash-art{max-width:220px;grid-row:1}.dash-grid .dash-card:last-child{grid-column:auto}.dash-hero h1{font-size:44px}.dash-facts{gap:8px}}

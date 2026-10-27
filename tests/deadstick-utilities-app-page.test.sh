@@ -78,9 +78,9 @@ require '<a class="app-icon app-icon-link" href="apps/deadstick-utilities.html" 
   index.html \
   'DeadStick Utilities icon should link to its app page'
 
-require 'Five apps. One philosophy.' \
+require 'Focused apps. One philosophy.' \
   index.html \
-  'Homepage apps heading should count five apps'
+  'Homepage apps heading should include the expanded app lineup'
 
 require '.app-card.is-deadstick-utilities { --card-accent: var(--deadstick-utilities); --card-accent-soft: var(--deadstick-utilities-soft); }' \
   styles.css \

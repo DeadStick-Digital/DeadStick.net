@@ -1,19 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
-# DeadStick Dash was removed from the public website on 2026-08-07 at the
-# owner's direction. No public page, card, link, or policy section may
-# reference it, and its page and icon files must stay deleted.
-
-if [ -e apps/deadstickdash.html ] || [ -e icons/deadstickdash.png ]; then
-  echo 'Retired DeadStick Dash page or icon files must not return.' >&2
-  exit 1
+# Owner requested Dash be restored on 2026-10-27. Preserve its public support surface.
+for file in dash/index.html dash/support/index.html dash/privacy/index.html icons/deadstickdash.png apps/deadstickdash.html; do
+  test -s "$file" || { echo "Missing Dash asset: $file" >&2; exit 1; }
+done
+grep -q 'dash/' index.html
+grep -q 'dash/support/' support.html
+grep -q 'contact@deadstick.net' dash/support/index.html
+grep -q 'Screen Recording' dash/privacy/index.html
+grep -q 'Sparkle' dash/privacy/index.html
+if grep -Eiq 'apps.apple.com|Download on the|Available on the Mac App Store' dash/index.html; then
+  echo 'Dash must not imply an unverified store release.' >&2; exit 1
 fi
-
-if grep -rn -i -e 'deadstick dash' -e 'deadstickdash' --include='*.html' . | grep -v '.archive' | grep -q .; then
-  echo 'Retired DeadStick Dash references must not appear on public pages:' >&2
-  grep -rn -i -e 'deadstick dash' -e 'deadstickdash' --include='*.html' . | grep -v '.archive' >&2
-  exit 1
-fi
-
-echo "No public DeadStick Dash references found."
+echo 'DeadStick Dash product, support, and privacy surfaces verified.'
