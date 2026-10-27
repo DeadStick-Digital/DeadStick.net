@@ -27,9 +27,12 @@ extract_between acknowledgements.html '<h2 id="billingbird">' '<h2 id="carrierpi
 
 cat "$tmp_dir"/* > "$tmp_dir/all-billingbird"
 
-if grep -Eqi 'TalkBack|Google Drive|React Native 0\.76|Expo( SDK)? 52' "$tmp_dir/all-billingbird"; then
+# A stated absence of Google Drive synchronization is not a claim to provide it.
+sed 's/does not provide cloud backup or Google Drive synchronization\.//g' \
+  "$tmp_dir/all-billingbird" > "$tmp_dir/billingbird-claims"
+if grep -Eqi 'TalkBack|Google Drive|React Native 0\.76|Expo( SDK)? 52' "$tmp_dir/billingbird-claims"; then
   echo 'A BillingBird-specific public surface still contains TalkBack, Google Drive, or stale framework claims.' >&2
-  grep -Eni 'TalkBack|Google Drive|React Native 0\.76|Expo( SDK)? 52' "$tmp_dir/all-billingbird" >&2
+  grep -Eni 'TalkBack|Google Drive|React Native 0\.76|Expo( SDK)? 52' "$tmp_dir/billingbird-claims" >&2
   exit 1
 fi
 
@@ -58,11 +61,11 @@ require_in_scope '"operatingSystem": "iOS 17 or later; iPadOS 17 or later"' "$tm
 require_in_scope 'The launch version lets you record manual payments. Online payment collection is planned for a later release.' "$tmp_dir/product" 'product page should clarify manual payments'
 require_in_scope 'Available now on iPhone and iPad' "$tmp_dir/homepage" 'homepage card should state iPhone and iPad availability'
 require_in_scope 'compatible Macs may run the iPad app; separate native Mac, Android, and Windows releases are planned' "$tmp_dir/homepage" 'homepage card should mention planned platforms without claiming them current'
-require_in_scope 'private local app storage on your iPhone or iPad' "$tmp_dir/privacy" 'privacy should describe current iPhone and iPad storage'
+require_in_scope 'private local app storage on your iPhone, iPad or Android device' "$tmp_dir/privacy" 'privacy should describe the per-platform local-storage boundary'
 require_in_scope 'run the iPad app where the App Store permits it' "$tmp_dir/privacy" 'privacy must identify iPad-on-Mac compatibility separately from native Mac distribution'
 require_in_scope 'private invoicing &amp; receipts, available now on iPhone and iPad' "$tmp_dir/support" 'support should match iPhone and iPad availability'
 require_in_scope '<strong>Private iCloud copy.</strong>' "$tmp_dir/deletion" 'deletion should cover the private iCloud copy'
-require_in_scope '<strong>BillingBird Pro subscription record.</strong>' "$tmp_dir/deletion" 'deletion should cover provider-held subscription records'
+require_in_scope '<strong>BillingBird Pro Apple subscription record.</strong>' "$tmp_dir/deletion" 'deletion should cover provider-held Apple subscription records'
 require_in_scope '<strong>iPhone and iPad.</strong>' "$tmp_dir/deletion" 'deletion should describe the current iPhone path'
 require_in_scope 'available on iPhone and iPad' "$tmp_dir/terms" 'terms should state iPhone and iPad availability'
 require_in_scope 'id="billingbird-subscription"' "$tmp_dir/terms" 'terms should identify the BillingBird Pro subscription'
