@@ -271,10 +271,14 @@
        visibility into the contents, destinations, or metadata of your network traffic. Local
        configuration (WireGuard keys, paired device identifiers) is stored on your devices in the
        system keychain.</p>
-    <p><strong>Hotspot details you enter.</strong> You can choose to enter your iPhone's Personal
-       Hotspot name and password once in the iPhone app. The iPhone sends them, encrypted, only to
-       the Mac you pair with, so the Mac can join the hotspot on its own. Both devices keep them in
-       the system keychain, and they are never sent to us.</p>
+    <p><strong>Hotspot details you enter.</strong> When pairing with a Windows PC or Android TV,
+       the iPhone app asks for your Personal Hotspot name and password if those details have not
+       already been saved. It keeps them in the iPhone's system Keychain and includes saved hotspot
+       details in the encrypted pairing information sent directly to the device you pair with.
+       A Mac, iPad, or Apple TV does not require you to enter hotspot details in the iPhone app,
+       but may receive details you previously saved. The paired device keeps its saved pairing
+       information in local protected storage. These hotspot details are not sent to DeadStick
+       Digital or RevenueCat.</p>
     <p><strong>DNS.</strong> While your Mac is connected, its DNS lookups travel through the
        tunnel and out through your iPhone's cellular connection to Cloudflare (1.1.1.1) and Google
        (8.8.8.8) public DNS, whose own privacy policies apply to those lookups. CarrierPigeonVPN
