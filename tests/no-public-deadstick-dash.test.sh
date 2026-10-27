@@ -12,4 +12,11 @@ grep -q 'Sparkle' dash/privacy/index.html
 if grep -Eiq 'apps.apple.com|Download on the|Available on the Mac App Store' dash/index.html; then
   echo 'Dash must not imply an unverified store release.' >&2; exit 1
 fi
+grep -q 'Planned for the Mac App Store' dash/index.html
+grep -q '5830 E 2nd St' dash/support/index.html
+grep -q 'stdeula' dash/index.html
+grep -q 'same or equal protection' dash/privacy/index.html
+grep -q 'Retention' dash/privacy/index.html
+grep -q 'id="your-choices"' dash/privacy/index.html
+grep -q 'Mac App Store edition' dash/privacy/index.html
 echo 'DeadStick Dash product, support, and privacy surfaces verified.'
