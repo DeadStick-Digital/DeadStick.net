@@ -1,0 +1,84 @@
+/* Homepage palette: neutral light surfaces and solid, outlined app columns.
+   Kept separate from the shared stylesheet so product/legal pages retain their theme. */
+:root {
+  color-scheme: light;
+  --bg: #ebecee;
+  --bg-elev: #f9fafa;
+  --bg-elev-2: #ffffff;
+  --surface: #f9fafa;
+  --surface-strong: #e1e4e8;
+  --border: #cbd0d8;
+  --border-strong: #aab3bf;
+  --text: #141821;
+  --text-muted: #555e70;
+  --text-soft: #626b7c;
+  --accent: #616e9c;
+  --accent-2: #397d9f;
+  --accent-3: #987523;
+  --bill: #187d58;
+  --pigeon: #7353af;
+  --holos-document-vault: #266caa;
+  --holos-drive-vault: #53794c;
+  --deadstick-utilities: #576d88;
+  --shadow-card: none;
+  --shadow-glow: none;
+}
+
+body::before, body::after { content: none; }
+.nav { background: rgba(235, 236, 238, 0.96); }
+.brand-wordmark { filter: brightness(0); opacity: 0.87; }
+.nav-cta { background: transparent; }
+.nav-cta:hover, .btn:hover { background: #dde1e6; }
+.hero h1 { background: none; color: var(--text); }
+.hero h1 em {
+  background-image: linear-gradient(120deg, #7765b2, #347da8 40%, #398986 68%, #987523);
+}
+.btn-primary { background: #292e3a; color: #fff; box-shadow: none; }
+.btn-primary:hover { background: #1b202b; color: #fff; box-shadow: none; }
+.apps-grid { scrollbar-color: #aab3bf transparent; }
+.apps-grid::-webkit-scrollbar-thumb { background: #aab3bf; }
+
+.app-card { --card-outline: #a7afb9; }
+.app-card.is-billingbird { --card-outline: #55b98c; }
+.app-card.is-carrierpigeonvpn { --card-outline: #ac93d5; }
+.app-card.is-holos-document-vault { --card-outline: #77a9d8; }
+.app-card.is-holos-drive-vault { --card-outline: #9cb58d; }
+.app-card.is-deadstick-dash { --card-accent: #4a708a; --card-outline: #8daaba; }
+.app-card.is-deadstick-utilities { --card-outline: #98a9be; }
+
+.app-card,
+.app-card.is-primary-focus,
+.app-card.is-coming-soon {
+  background: #f9fafa;
+  border-color: var(--card-outline);
+  box-shadow: none;
+}
+.app-card::before,
+.app-card.is-primary-focus::before,
+.app-card.is-coming-soon::before { content: none; }
+.app-card:hover,
+.app-card.is-coming-soon:hover { border-color: var(--card-accent); }
+.app-icon,
+.app-icon-link:hover,
+.app-icon-link:focus-visible,
+.app-card.is-coming-soon .app-icon { filter: none; box-shadow: none; }
+.app-card.is-coming-soon > *,
+.app-card.is-coming-soon:hover > * { opacity: 1; }
+.app-card.is-coming-soon::after {
+  color: #586172;
+  opacity: 0.5;
+  border-color: #aab3bf;
+  text-shadow: none;
+}
+.app-card.is-coming-soon .app-link { color: var(--card-accent); border-color: var(--border); }
+.app-card.is-coming-soon .app-features li::before { background: var(--card-accent); }
+.app-card.is-primary-focus .app-link { border-color: var(--border); }
+
+.cta-panel { background: #e3e6e9; }
+.contact-form { background: #f9fafa; }
+.cf-status.is-error { color: #a52c21; }
+.cf-status.is-success { color: #18714d; }
+.cf-field input:focus,
+.cf-field select:focus,
+.cf-field textarea:focus { box-shadow: 0 0 0 3px rgba(97, 110, 156, 0.16); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
