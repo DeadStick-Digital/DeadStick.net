@@ -127,7 +127,7 @@
       <li>Providing the functionality of the app you installed;</li>
       <li>Validating your purchase and enabling paid features you have bought;</li>
       <li>For BillingBird, subscription analytics through RevenueCat as described in Section 10.1;</li>
-      <li>For CarrierPigeonVPN, subscription billing reports through RevenueCat as described in Section 10.2;</li>
+      <li>For CarrierPigeonVPN, subscription functionality and analytics through RevenueCat as described in Section 10.2;</li>
       <li>Replying to your support email;</li>
       <li>Diagnosing crashes and fixing bugs;</li>
       <li>Complying with legal obligations (tax, export, court orders).</li>
@@ -268,10 +268,16 @@
 
     <h3>10.2 CarrierPigeonVPN</h3>
     <p>CarrierPigeonVPN establishes a WireGuard tunnel directly between your Mac and your own
-       paired iPhone. Traffic is not routed through any DeadStick-operated server and we have no
+       paired iPhone or Android phone. Traffic is not routed through any DeadStick-operated server and we have no
        visibility into the contents, destinations, or metadata of your network traffic. Local
        configuration (WireGuard keys, paired device identifiers) is stored on your devices in the
-       system keychain.</p>
+       system keychain. On Android, pairing records are encrypted using a key held in Android Keystore
+       and are excluded from app backup and device transfer.</p>
+    <p><strong>Android phone connections.</strong> You turn on the phone's system hotspot and join it
+       from your Mac. The Android app does not create a Wi-Fi Direct network or turn the hotspot on or off.
+       If you enter network details for a paired device, those details stay in protected local pairing
+       storage and are sent only in encrypted device-to-device pairing information, not to DeadStick
+       Digital or RevenueCat.</p>
     <p><strong>Hotspot details you enter.</strong> When pairing with a Windows PC or Android TV,
        the iPhone app asks for your Personal Hotspot name and password if those details have not
        already been saved. It keeps them in the iPhone's system Keychain and includes saved hotspot
@@ -281,7 +287,7 @@
        information in local protected storage. These hotspot details are not sent to DeadStick
        Digital or RevenueCat.</p>
     <p><strong>DNS.</strong> While your Mac is connected, its DNS lookups travel through the
-       tunnel and out through your iPhone's cellular connection to Cloudflare (1.1.1.1) and Google
+       tunnel and out through your phone's mobile connection to Cloudflare (1.1.1.1) and Google
        (8.8.8.8) public DNS, whose own privacy policies apply to those lookups. CarrierPigeonVPN
        does not see, log, or store them.</p>
     <p><strong>On-device diagnostics.</strong> Each device keeps a local diagnostic log of
@@ -293,11 +299,25 @@
        code, Bluetooth only to exchange pairing keys with your nearby device, and Local Network to
        reach your paired device. The Mac app asks for Location only because macOS requires it to
        read Wi-Fi network names, which it uses to find and join your iPhone's hotspot; your
-       location is not stored or sent anywhere.</p>
-    <p><strong>Subscription.</strong> Purchases are processed by Apple. RevenueCat receives an
-       automatically generated app-user identifier, device and platform information, the Apple
-       purchase receipt, and subscription status so the iPhone app can check and restore your
-       subscription and provide subscription billing reports. RevenueCat never receives your network traffic.</p>
+       location is not stored or sent anywhere. On Android, the camera scans the pairing code on the
+       phone, Nearby devices/Bluetooth access supports local pairing, and notifications and a
+       connected-device foreground service keep an active connection visible. Camera frames are
+       processed on the phone and are not uploaded by CarrierPigeonVPN. The Android app does not
+       request location access or a battery-optimization exemption.</p>
+    <p><strong>Subscription.</strong> Purchases are processed by Apple or Google Play, depending on
+       the app you use. RevenueCat receives an automatically generated app-scoped user identifier,
+       basic device and app information, purchase and entitlement history, and subscription status
+       to check and restore subscriptions and provide subscription statistics and billing reports.
+       This subscription analytics does not include the contents or destinations of tunnel traffic.
+       The Android integration does not enable advertising or attribution features.</p>
+    <p><strong>Android subscription recovery.</strong> After a purchase, RevenueCat's Android SDK
+       can store its app-user identifier through Google Block Store under your Google account to
+       help recover subscription access on a restored or replacement device. An automatically
+       generated identifier is not a promise that provider-held purchase records cannot be linked.
+       Uninstalling the app does not automatically delete Google Play purchase records or
+       provider-held subscription records. Use the privacy contact route in Section 7 to request
+       deletion of eligible provider-held data. Subscription cancellation is separate from deletion;
+       manage Android subscriptions in Google Play. The retention rules in Section 6 continue to apply.</p>
     <p><strong>VPN commitment.</strong> As required by Apple's App Store Review Guideline 5.4
        and Google Play's <em>VpnService</em> policy, DeadStick Digital LLC does not sell, use, or
        disclose to third parties any data collected by CarrierPigeonVPN, and will not use the VPN
