@@ -27,9 +27,9 @@ require '<article class="app-card is-billingbird is-primary-focus">' \
   index.html \
   'BillingBird should carry the primary focus state'
 
-require '<link rel="stylesheet" href="styles.css?v=20260807-bb-lineup-final">' \
+require '<link rel="stylesheet" href="styles.css?v=20261027-vertical-apps">' \
   index.html \
-  'Homepage should cache-bust the stylesheet for the BillingBird Apple-platform update'
+  'Homepage should cache-bust the stylesheet for the vertical app layout'
 
 require 'DeadStick Digital is built on a simple foundational promise: customer data belongs to' \
   index.html \
@@ -63,13 +63,13 @@ reject '3</strong>Shipping apps' \
   index.html \
   'Homepage stats should not imply all three apps are shipping'
 
-require 'grid-auto-columns: 344px;' \
+require 'grid-template-columns: repeat(3, minmax(0, 1fr));' \
   styles.css \
-  'Homepage app cards should share one equal-size footprint in the rail'
+  'Desktop apps should wrap into three equal columns'
 
-require 'scroll-snap-type: x proximity;' \
+require 'grid-template-columns: repeat(2, minmax(0, 1fr));' \
   styles.css \
-  'Homepage app rail should scroll horizontally with snap points'
+  'Tablet apps should wrap into two equal columns'
 
 require 'grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.75fr);' \
   styles.css \
