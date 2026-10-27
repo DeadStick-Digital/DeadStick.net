@@ -92,9 +92,8 @@ grep -qF 'direct RevenueCat' privacy.html || {
 }
 
 # These technologies still accurately belong to other DeadStick products and global policies.
-# CarrierPigeonVPN's support line (owner 2026-09-28: the site says only what the
-# App Store listing says, so no planned platforms) must survive BillingBird edits.
-grep -qF "CarrierPigeonVPN</a> — your own iPhone as a private VPN for your Mac" support.html || {
+# CarrierPigeonVPN's approved five-platform support description must survive BillingBird edits.
+grep -qF "CarrierPigeonVPN</a> — a private VPN for iPhone, Android phones, iPad, Mac, and Windows" support.html || {
   echo 'CarrierPigeonVPN support line was removed unintentionally.' >&2
   exit 1
 }

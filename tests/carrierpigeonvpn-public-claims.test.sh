@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-# CarrierPigeonVPN public claims must match what the shipping iPhone and Mac
-# apps do (App Review Guideline 2.3.1 covers marketing "within or outside of
-# the App Store"), and the subscription terms must be stated (3.1.2).
+# CarrierPigeonVPN descriptions use the approved five-platform scope without
+# inventing platform requirements or removing Apple-specific subscription terms.
 set -euo pipefail
 
 tmp_dir="$(mktemp -d)"
@@ -64,5 +63,14 @@ grep -q 'RevenueCat processes your purchase on our behalf' "$tmp_dir/privacy" \
   || { echo 'privacy.html 10.2 must square the 5.4 commitment with RevenueCat and DNS.' >&2; exit 1; }
 grep -q 'RevenueCat, which works on our behalf' "$tmp_dir/product" \
   || { echo 'Product page must say RevenueCat works on our behalf.' >&2; exit 1; }
+
+# Overall descriptions must retain the approved platform scope. Platform-specific
+# purchasing and removal instructions may still name their applicable devices.
+for surface in homepage product support privacy terms deletion; do
+  grep -qF 'iPhone, Android phones, iPad, Mac, and Windows' "$tmp_dir/$surface" \
+    || { echo "CarrierPigeonVPN platform scope missing from $surface." >&2; exit 1; }
+done
+pattern='your own iPhone as a private VPN for your Mac|between your Mac and your own|for iPhone and Mac; Windows'
+grep -Eqi "$pattern" "$tmp_dir/all" && fail 'Obsolete CarrierPigeonVPN overall platform description.' "$pattern"
 
 echo 'CarrierPigeonVPN public claims are consistent.'

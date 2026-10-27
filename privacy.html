@@ -83,7 +83,7 @@
     <ul>
       <li>The website at <a href="https://www.deadstick.net">www.deadstick.net</a></li>
       <li><strong>BillingBird</strong> — a private invoicing and receipt app, available on iPhone and iPad, including compatible Macs that run the iPad app; Android and Windows support is planned</li>
-      <li><strong>CarrierPigeonVPN</strong> — a paired-device networking app for iPhone and Mac; Windows, Apple TV, and Android versions are planned</li>
+      <li><strong>CarrierPigeonVPN</strong> — a paired-device VPN being built for iPhone, Android phones, iPad, Mac, and Windows</li>
       <li><strong>Holos Drive Vault</strong> — an encrypted external-drive security utility</li>
       <li><strong>Document Vault</strong> — a secure document scanner for important records</li>
       <li><strong>DeadStick Utilities</strong> — a Mac storage and cleanup utility</li>
@@ -267,14 +267,14 @@
        until you remove it. Invoice drafts also remain on the device until saved or explicitly discarded.</p>
 
     <h3>10.2 CarrierPigeonVPN</h3>
-    <p>CarrierPigeonVPN establishes a WireGuard tunnel directly between your Mac and your own
-       paired iPhone or Android phone. Traffic is not routed through any DeadStick-operated server and we have no
+    <p>CarrierPigeonVPN is being built for iPhone, Android phones, iPad, Mac, and Windows.
+       It establishes a WireGuard tunnel directly between your own paired devices. Traffic is not routed through any DeadStick-operated server and we have no
        visibility into the contents, destinations, or metadata of your network traffic. Local
-       configuration (WireGuard keys, paired device identifiers) is stored on your devices in the
-       system keychain. On Android, pairing records are encrypted using a key held in Android Keystore
+       configuration (WireGuard keys, paired device identifiers) is stored on your devices in
+       secure system storage. On Android, pairing records are encrypted using a key held in Android Keystore
        and are excluded from app backup and device transfer.</p>
     <p><strong>Android phone connections.</strong> You turn on the phone's system hotspot and join it
-       from your Mac. The Android app does not create a Wi-Fi Direct network or turn the hotspot on or off.
+       from your receiving device. The Android app does not create a Wi-Fi Direct network or turn the hotspot on or off.
        If you enter network details for a paired device, those details stay in protected local pairing
        storage and are sent only in encrypted device-to-device pairing information, not to DeadStick
        Digital or RevenueCat.</p>
@@ -286,7 +286,7 @@
        but may receive details you previously saved. The paired device keeps its saved pairing
        information in local protected storage. These hotspot details are not sent to DeadStick
        Digital or RevenueCat.</p>
-    <p><strong>DNS.</strong> While your Mac is connected, its DNS lookups travel through the
+    <p><strong>DNS.</strong> While your receiving device is connected, its DNS lookups travel through the
        tunnel and out through your phone's mobile connection to Cloudflare (1.1.1.1) and Google
        (8.8.8.8) public DNS, whose own privacy policies apply to those lookups. CarrierPigeonVPN
        does not see, log, or store them.</p>
