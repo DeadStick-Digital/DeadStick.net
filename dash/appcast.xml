@@ -6,15 +6,15 @@
     <description>DeadStick Dash release feed</description>
     <item>
       <title>DeadStick Dash 1.0.0</title>
-      <pubDate>Tue, 27 Oct 2026 20:26:53 -0400</pubDate>
-      <sparkle:version>1</sparkle:version>
+      <pubDate>Wed, 28 Oct 2026 11:43:02 -0400</pubDate>
+      <sparkle:version>2</sparkle:version>
       <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
       <enclosure
         url="https://github.com/DeadStick-Digital/DeadStick.net/releases/download/v1.0.0/DeadStickDash.dmg"
         type="application/octet-stream"
-        sparkle:edSignature="oHk+iNa3S+EocoRYhOfaUMnJ1YZ4XvLA8yhogrH+N/fphsK0/eRX/Ui44FbjJvBuH6jFWM9XOQyWzNEipJZ/Cw=="
-        length="4013219" />
+        sparkle:edSignature="nmg/IujJ2zO2wZ3eLE3sOCGAmFZMJKe/3jnX0X1bDog75Fgia4vWPTNeO1Ioql8mEb69t0TAzFAdXCTDfIitCQ=="
+        length="4039275" />
     </item>
   </channel>
 </rss>
