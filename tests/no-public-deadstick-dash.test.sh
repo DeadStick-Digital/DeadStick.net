@@ -19,4 +19,10 @@ grep -q 'same or equal protection' dash/privacy/index.html
 grep -q 'Retention' dash/privacy/index.html
 grep -q 'id="your-choices"' dash/privacy/index.html
 grep -q 'Mac App Store edition' dash/privacy/index.html
+grep -q 'id="open-source-notices"' dash/index.html
+grep -q 'Permission is hereby granted, free of charge' dash/index.html
+grep -q 'id="apps-deadstick-dash"' terms.html
+grep -q 'Apple, the Apple logo, Mac, macOS, and Apple Silicon are trademarks of Apple Inc.' dash/index.html
+grep -q 'Apple, the Apple logo, Mac, macOS, and Apple Silicon are trademarks of Apple Inc.' dash/support/index.html
+grep -q 'Apple, the Apple logo, Mac, macOS, and Apple Silicon are trademarks of Apple Inc.' dash/privacy/index.html
 echo 'DeadStick Dash product, support, and privacy surfaces verified.'
