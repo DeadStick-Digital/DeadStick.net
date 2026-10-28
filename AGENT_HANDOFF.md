@@ -614,3 +614,11 @@ GitHub push readiness snapshot:
 - Release state: committed and pushed to `origin/main` on `https://github.com/DeadStick-Digital/DeadStick.net.git`.
 - Next steps: verify live URLs at /deadstick-utilities/privacy, /deadstick-utilities/terms, /deadstick-utilities/support; update App Store Connect metadata with published URLs; owner/legal review.
 - Blockers: none for publication; App Store Connect metadata entry remains pending.
+
+
+## 2026-10-28 — CarrierPigeonVPN download formatting
+
+- Branch: `codex/carrierpigeon-download-spacing`, based on `origin/main` at `2570548`.
+- Scoped change: `apps/carrierpigeonvpn.html` and `apps/carrierpigeonvpn.css`; separated platform downloads, legal paragraphs, checksum blocks, and update instructions. Preserved download URLs, digests, and existing release/legal details.
+- Evidence: website standard validation passed with 0 failures / 0 skips; browser checked at 1440, 1280, 1024, 680, and 390px with no horizontal overflow.
+- Next action: owner approval to publish this exact formatting change to `www.deadstick.net`; then push and verify live content. Not published yet.
