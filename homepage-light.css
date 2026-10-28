@@ -85,7 +85,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 
 /* Completed homepage: compact product grid, with details available on demand. */
 html { background: #191919; scroll-padding-top: 112px; }
-body { margin: 20px auto; width: calc(100% - 48px); max-width: 1440px; border-radius: 32px; overflow: clip; background: var(--bg); }
+body { margin: 20px auto; width: calc(100% - 48px); max-width: 1440px; border-radius: 32px; overflow: visible; background: var(--bg); }
 :root { --pad-x: clamp(24px, 5vw, 64px); --maxw: 1240px; }
 .nav { position: relative; }
 .nav-inner { min-height: 88px; padding-top: 20px; padding-bottom: 20px; gap: 20px; }
