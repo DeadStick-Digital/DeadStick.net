@@ -43,7 +43,7 @@ body::before, body::after { content: none; }
 .app-card.is-carrierpigeonvpn { --card-outline: #ac93d5; }
 .app-card.is-holos-document-vault { --card-outline: #77a9d8; }
 .app-card.is-holos-drive-vault { --card-outline: #9cb58d; }
-.app-card.is-deadstick-dash { --card-accent: #4a708a; --card-outline: #8daaba; }
+.app-card.is-deadstick-dash { --card-accent: #86263b; --card-outline: #c68694; }
 .app-card.is-deadstick-utilities { --card-outline: #98a9be; }
 
 .app-card,
