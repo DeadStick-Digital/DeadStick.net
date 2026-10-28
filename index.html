@@ -11,7 +11,7 @@
   <link rel="icon" type="image/png" href="assets/logo-mark-128.png">
   <title>DeadStick Digital — Quality software, private by design.</title>
   <link rel="stylesheet" href="styles.css?v=20261027-restored-app-rail">
-  <link rel="stylesheet" href="/site-light.css?v=20261027-restored-app-rail">
+  <link rel="stylesheet" href="homepage-light.css?v=20261027-finished-grid">
 </head>
 <body>
 
@@ -41,25 +41,9 @@
 <!-- =========================== HERO =========================== -->
 <main>
 <section class="hero wrap" id="top">
-  <div class="hero-kicker eyebrow">A Wyoming studio · Est. 2026</div>
   <h1>Quality software. <em>Private by design.</em></h1>
-  <p class="hero-sub">
-    DeadStick Digital is an independent software studio building a small family of
-    thoughtful tools for people who want their work — and their data — to stay their own.
-    We ship carefully, iterate quietly, and treat every release like it ships to production.
-  </p>
-
-  <div class="hero-actions">
-    <a class="btn btn-primary" href="#apps">See our apps <span class="btn-arrow">→</span></a>
-    <a class="btn" href="#company">About the studio</a>
-  </div>
-
-  <div class="hero-meta" aria-label="Studio facts">
-    <div><strong>BillingBird</strong>Available on iPhone</div>
-    <div><strong>Wyoming</strong>Registered LLC</div>
-    <div><strong>macOS · Windows · tvOS · iOS · Android</strong>Supported platforms</div>
-    <div><strong>Independent</strong>No VC, no tracking</div>
-  </div>
+  <p class="hero-sub">Focused tools for everyday work, built with a clear purpose,<br class="desktop-break">
+    honest pricing, and your privacy as the default.</p>
 </section>
 
 <!-- =========================== APPS =========================== -->
@@ -67,7 +51,6 @@
   <div class="wrap">
     <div class="section-head">
       <div>
-        <div class="eyebrow" style="margin-bottom:18px">Our Apps</div>
         <h2>Focused apps. One philosophy.</h2>
       </div>
       <p>Every DeadStick app is built to do one thing beautifully — with a clear purpose, honest
@@ -78,11 +61,15 @@
 
       <!-- ==== BillingBird ==== -->
       <article class="app-card is-billingbird is-primary-focus">
+        <span class="app-status">Available now</span>
         <a class="app-icon app-icon-link" href="apps/billingbird.html" aria-label="Open BillingBird app page">
           <img src="icons/billingbird.png" alt="BillingBird app icon">
         </a>
         <div class="app-tag">For contractors &amp; service pros</div>
         <h3>BillingBird</h3>
+        <p class="app-summary">Professional invoicing, receipt capture, and client balances.</p>
+        <p class="app-availability">Available now · iPhone &amp; iPad</p>
+        <details class="app-more"><summary>Details</summary>
         <p class="app-desc">
           Professional invoicing, receipt capture, and client balances for contractors and
           service professionals—available now on iPhone and iPad, with records that stay on your device.
@@ -93,16 +80,20 @@
           <li>Privacy-first — designed to meet government NIAP &amp; FIPS practices</li>
           <li>compatible Macs may run the iPad app; separate native Mac, Android, and Windows releases are planned</li>
         </ul>
+        </details>
         <a class="app-link" href="apps/billingbird.html">Explore BillingBird <span aria-hidden="true">→</span></a>
       </article>
 
       <!-- ==== CarrierPigeonVPN ==== -->
       <article class="app-card is-carrierpigeonvpn is-coming-soon" data-status="Coming soon">
+        <span class="app-status">Coming soon</span>
         <a class="app-icon app-icon-link" href="apps/carrierpigeonvpn.html" aria-label="Open CarrierPigeonVPN app page">
           <img src="icons/carrierpigeonvpn.png" alt="CarrierPigeonVPN app icon">
         </a>
         <div class="app-tag">Private VPN</div>
         <h3>CarrierPigeonVPN</h3>
+        <p class="app-summary">A private encrypted connection between devices you own.</p>
+        <details class="app-more"><summary>Details</summary>
         <p class="app-desc">
           A private VPN for iPhone, Android phones, iPad, Mac, and Windows: an encrypted tunnel
           between two devices you own, with no account and no VPN company in the middle.
@@ -112,25 +103,33 @@
           <li>One-time QR pairing, no account</li>
           <li>7-day free trial, then $9.99 per year</li>
         </ul>
+        </details>
         <a class="app-link" href="apps/carrierpigeonvpn.html">Learn more <span aria-hidden="true">→</span></a>
       </article>
 
       <!-- ==== DeadStick Dash ==== -->
       <article class="app-card is-deadstick-dash is-coming-soon" data-status="In development">
+        <span class="app-status">In development</span>
         <a class="app-icon app-icon-link" href="dash/" aria-label="Open DeadStick Dash app page"><img src="icons/deadstickdash.png" alt="DeadStick Dash app icon"></a>
         <div class="app-tag">Free Mac menu-bar organizer</div><h3>DeadStick Dash</h3>
+        <p class="app-summary">Pin your everyday apps and tuck others into one compact dropdown.</p>
+        <details class="app-more"><summary>Details</summary>
         <p class="app-desc">A calmer menu bar. Pin your everyday apps and tuck others into one compact dropdown, completely free.</p>
         <ul class="app-features"><li>Mac · macOS 26 or later</li><li>Pin, tuck, and reach your menu-bar apps</li><li>No account, ads, or subscriptions</li><li>In development</li></ul>
+        </details>
         <a class="app-link" href="dash/">Meet Dash <span aria-hidden="true">→</span></a>
       </article>
 
       <!-- ==== DeadStick Utilities ==== -->
       <article class="app-card is-deadstick-utilities is-coming-soon" data-status="Coming soon">
+        <span class="app-status">Coming soon</span>
         <a class="app-icon app-icon-link" href="apps/deadstick-utilities.html" aria-label="Open DeadStick Utilities app page">
           <img src="icons/deadstick-utilities.png" alt="DeadStick Utilities app icon">
         </a>
         <div class="app-tag">Mac storage and cleanup</div>
         <h3>DeadStick Utilities</h3>
+        <p class="app-summary">Scan storage and review cleanup items, large files, and duplicates.</p>
+        <details class="app-more"><summary>Details</summary>
         <p class="app-desc">
           One Mac app to scan, then review cleanup items, large files, exact duplicates, storage
           and apps. You choose what to scan, review each change, and supported files move to a
@@ -142,11 +141,13 @@
           <li>No account, no analytics, no advertising</li>
           <li>7-day free trial for eligible customers, then $9.99 per year</li>
         </ul>
+        </details>
         <a class="app-link" href="apps/deadstick-utilities.html">Learn more <span aria-hidden="true">→</span></a>
       </article>
 
       <!-- ==== Document Vault ==== -->
       <article class="app-card is-holos-document-vault is-coming-soon" data-status="Coming soon">
+        <span class="app-status">Coming soon</span>
         <a class="app-icon app-icon-link" href="apps/holos-document-vault.html" aria-label="Open Document Vault app page">
           <img src="icons/holos-document-vault.png" alt="Document Vault app icon">
         </a>
@@ -155,6 +156,8 @@
           <h3>Document Vault</h3>
           <p class="app-byline">by DeadStick</p>
         </div>
+        <p class="app-summary">Scan, search, and keep important documents on your own device.</p>
+        <details class="app-more"><summary>Details</summary>
         <p class="app-desc">
           A private document scanner and long-term vault for important documents. Capture
           passports, driver's licenses, IDs, receipts, and records; translate extracted text,
@@ -166,11 +169,13 @@
           <li>Long-term storage for passports, IDs, forms, and records</li>
           <li>Folders, tags, translation, search, and PDF export</li>
         </ul>
+        </details>
         <a class="app-link" href="apps/holos-document-vault.html">Learn more <span aria-hidden="true">→</span></a>
       </article>
 
       <!-- ==== Holos Drive Vault ==== -->
       <article class="app-card is-holos-drive-vault is-coming-soon" data-status="Coming soon">
+        <span class="app-status">Coming soon</span>
         <a class="app-icon app-icon-link" href="apps/holos-drive-vault.html" aria-label="Open Holos Drive Vault app page">
           <img src="icons/holos-drive-vault.png" alt="Holos Drive Vault app icon">
         </a>
@@ -179,6 +184,8 @@
           <h3>Drive Vault</h3>
           <p class="app-byline">by DeadStick</p>
         </div>
+        <p class="app-summary">Encrypted external-drive storage for Mac and Windows workflows.</p>
+        <details class="app-more"><summary>Details</summary>
         <p class="app-desc">
           A security-first utility for creating encrypted macOS APFS external drives that can
           move between Mac and Windows workflows, without a DeadStick account or cloud server.
@@ -189,9 +196,9 @@
           <li>Recovery keys stored in Apple Keychain and iCloud Keychain</li>
           <li>No app account, no ads, no telemetry, no DeadStick key server</li>
         </ul>
+        </details>
         <a class="app-link" href="apps/holos-drive-vault.html">Learn more <span aria-hidden="true">→</span></a>
       </article>
-
     </div>
   </div>
 </section>
@@ -320,6 +327,12 @@
 <!-- =========================== FOOTER =========================== -->
 <footer>
   <div class="wrap">
+    <div class="footer-compact">
+      <a class="brand footer-home" href="#top" aria-label="DeadStick Digital home"><img class="brand-wordmark" src="assets/logo-wordmark-deadstick-silver.png" alt="DeadStick Digital LLC" width="172" height="22"></a>
+      <p>Your device. Your data.</p>
+      <nav aria-label="Footer"><a href="support.html">Support</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
+    </div>
+    <details class="site-information"><summary>Company &amp; legal information</summary>
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="brand">
@@ -377,6 +390,7 @@
         Google LLC. Android is a trademark of Google LLC.
       </div>
     </div>
+    </details>
   </div>
 </footer>
 
