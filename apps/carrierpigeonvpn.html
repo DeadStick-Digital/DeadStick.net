@@ -44,8 +44,8 @@
     <p>A private VPN for iPhone, Android phones, iPad, Mac, and Windows: an encrypted tunnel
        between two devices you own, with no account and no VPN company in the middle.</p>
     <div class="hero-actions" style="margin-top:28px;">
-      <a class="btn btn-primary" href="../index.html#contact">Contact support <span class="btn-arrow">→</span></a>
-      <a class="btn" href="#overview">Learn more</a>
+      <a class="btn btn-primary" href="#download">Download <span class="btn-arrow">→</span></a>
+      <a class="btn" href="../index.html#contact">Contact support</a>
     </div>
   </div>
 </section>
@@ -69,12 +69,37 @@
          for any purpose. Before you use it, the app shows exactly what data is involved. See the
          <a href="../privacy.html#apps">Privacy Policy</a>.</p>
 
+      <h3 id="download">Download</h3>
+      <p><strong>Mac:</strong> get CarrierPigeonVPN from the Mac App Store. Apple's standard
+         Licensed Application End User License Agreement and our Terms of Service apply.</p>
+      <p><a class="btn btn-primary" href="https://apps.apple.com/app/id6762552976">Download on the Mac App Store <span class="btn-arrow">→</span></a></p>
+      <p><strong>Windows:</strong> CarrierPigeonVPN for Windows 0.9.0, for Windows 11. Choose the
+         installer for your PC's processor (Settings → System → About → System type).</p>
+      <p><a class="btn btn-primary" href="https://github.com/DeadStick-Digital/DeadStick.net/releases/download/carrierpigeonvpn-windows-v0.9.0/CarrierPigeonVPN-0.9.0-x64.msi">Download for Windows (x64) <span class="btn-arrow">↓</span></a>
+         <a class="btn" href="https://github.com/DeadStick-Digital/DeadStick.net/releases/download/carrierpigeonvpn-windows-v0.9.0/CarrierPigeonVPN-0.9.0-arm64.msi">Download for Windows on Arm (ARM64) <span class="btn-arrow">↓</span></a></p>
+      <p class="muted">By downloading or installing CarrierPigeonVPN for Windows, you agree to the
+         <a href="carrierpigeonvpn/windows/license.html">CarrierPigeonVPN for Windows End User License
+         Agreement</a>, which the installer also shows before it installs anything, our
+         <a href="../terms.html#apps-carrierpigeonvpn">Terms of Service</a>, and our
+         <a href="../privacy.html#cpvpn-windows">Privacy Policy</a>. Open-source components and their
+         licenses are listed in the <a href="carrierpigeonvpn/windows/notices.html">third-party
+         notices</a> and installed with the app.</p>
+      <p class="muted"><strong>Verify your download.</strong> This first Windows release is not yet
+         code-signed, so Windows SmartScreen may warn before it runs. Compare the file's SHA-256
+         (PowerShell: <code>Get-FileHash .\CarrierPigeonVPN-0.9.0-x64.msi</code>) with:
+         <br>x64 (85.6 MB): <code style="word-break:break-all;">1fc8ec8df8612af711bd241b267ceae95bc38bd0f8be4a37e452f4db53174b3d</code>
+         <br>ARM64 (82.3 MB): <code style="word-break:break-all;">68c6d8ae3a9643c79524133327ca31ed848fe414b79d7f08ace65328f51554a5</code></p>
+      <p class="muted">The Windows app checks this website once a day for a newer version (you can turn
+         this off in its Settings). Run a newer installer over the old one; your pairing is kept.
+         Uninstall from Settings → Apps → Installed apps.</p>
+
       <h3 id="pricing">Pricing and subscription</h3>
-      <p>The terms below apply to Apple subscriptions. Android and Windows purchase details will be
-         confirmed before release.</p>
+      <p>The terms below apply to Apple subscriptions. The Mac and Windows companion apps are free
+         and use the connection your phone shares. Android purchase details will be confirmed before
+         release.</p>
       <p>An auto-renewing annual subscription, bought in the iPhone app: a
          <strong>7-day free trial</strong>, then <strong>$9.99 per year</strong> (US price;
-         local prices vary by country). The Mac companion app is free.</p>
+         local prices vary by country).</p>
       <ul>
         <li>Starting the free trial costs nothing. When the 7 days end, $9.99 is charged to your
             Apple Account unless you cancel at least 24 hours before the trial ends.</li>
@@ -93,9 +118,11 @@
       <h3>Requirements</h3>
       <p><strong>iPhone:</strong> iOS 26 or later, with a cellular plan that includes Personal
          Hotspot.
-         <br><strong>Android phones, iPad, and Windows:</strong> Planned support; device and operating-system
+         <br><strong>Android phones and iPad:</strong> Planned support; device and operating-system
          requirements will be confirmed before release.
-         <br><strong>Mac:</strong> macOS 26 or later.</p>
+         <br><strong>Mac:</strong> macOS 26 or later.
+         <br><strong>Windows:</strong> Windows 11 on an x64 or Arm64 PC, with an administrator account
+         to install, Wi-Fi, and an iPhone running CarrierPigeonVPN to share its connection.</p>
     </div>
 
     <aside class="side-card">
@@ -127,7 +154,8 @@
         Apple, the Apple logo, iPhone, iPad, Mac, macOS, and Apple Silicon are trademarks of
         Apple Inc., registered in the U.S. and other countries and regions. App Store is a
         service mark of Apple Inc. Google Play and the Google Play logo are trademarks of
-        Google LLC. Android is a trademark of Google LLC.
+        Google LLC. Android is a trademark of Google LLC. Windows is a trademark of the Microsoft
+        group of companies.
       </div>
     </div>
   </div>

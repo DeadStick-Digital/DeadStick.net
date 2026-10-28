@@ -42,7 +42,7 @@
     <p>This policy explains what information DeadStick Digital LLC collects, how we use it, and the
        rights you have over your data. It covers our website and every app we publish, including
        BillingBird, CarrierPigeonVPN, Holos Drive Vault, Document Vault, and DeadStick Utilities.</p>
-    <p class="muted mono" style="margin-top:14px;">Effective date: April 16, 2026 · Last updated: October 27, 2026</p>
+    <p class="muted mono" style="margin-top:14px;">Effective date: April 16, 2026 · Last updated: October 28, 2026</p>
   </div>
 
   <div class="doc-body">
@@ -305,7 +305,20 @@
        connected-device foreground service keep an active connection visible. Camera frames are
        processed on the phone and are not uploaded by CarrierPigeonVPN. The Android app does not
        request location access or a battery-optimization exemption.</p>
-    <p><strong>Subscription.</strong> Purchases are processed by Apple or Google Play, depending on
+    <p id="cpvpn-windows"><strong>Windows app.</strong> There is no CarrierPigeonVPN account and the
+Windows app sends nothing to DeadStick Digital: no analytics, no crash reports, no usage counts.
+Pairing keys and the paired device's hotspot details are kept in a folder only Windows' system
+account can open, protected with Windows data protection. Once a day, unless you turn it off in
+Settings, the app asks www.deadstick.net (hosted by GitHub Pages) which version is the newest; that
+request carries no identifier, and the host sees only what every web request shows, your network
+address and the time. While a connection is being checked or is up, the Windows service makes small
+fixed requests to confirm that the tunnel works and that nothing leaks past it: a DNS question for
+example.com and an HTTPS request to example.com or Google's connectivity check (www.gstatic.com)
+through the tunnel, and leak checks toward Cloudflare (1.1.1.1) and the same DNS servers that the
+tunnel's firewall stops on the PC. While pairing or connecting, the PC announces itself on the local
+network under a name derived from its public key, and uses Bluetooth only to exchange pairing keys
+with your nearby device. These requests carry nothing about you or your traffic.</p>
+<p><strong>Subscription.</strong> Purchases are processed by Apple or Google Play, depending on
        the app you use. RevenueCat receives an automatically generated app-scoped user identifier,
        basic device and app information, purchase and entitlement history, and subscription status
        to check and restore subscriptions and provide subscription statistics and billing reports.

@@ -31,7 +31,7 @@ pattern='up to (5|five)|five receiving|screen-off|\(Wi-Fi or USB\)|via Wi-Fi or 
 grep -Eqi "$pattern" "$tmp_dir/all" && fail 'A CarrierPigeonVPN public surface makes a claim the app cannot back.' "$pattern"
 
 # Stale platform minimums and platforms presented as shipping.
-pattern='iOS 17|macOS 14|tvOS 17|Android 12|Windows 11|Mac, PC, or Apple TV|Companions for macOS, Windows, and tvOS|Mobile app for iOS and Android'
+pattern='iOS 17|macOS 14|tvOS 17|Android 12|Mac, PC, or Apple TV|Companions for macOS, Windows, and tvOS|Mobile app for iOS and Android'
 grep -Eqi "$pattern" "$tmp_dir/all" && fail 'A CarrierPigeonVPN public surface lists stale platforms or minimums.' "$pattern"
 
 # Old trial length.
@@ -72,5 +72,33 @@ for surface in homepage product support privacy terms deletion; do
 done
 pattern='your own iPhone as a private VPN for your Mac|between your Mac and your own|for iPhone and Mac; Windows'
 grep -Eqi "$pattern" "$tmp_dir/all" && fail 'Obsolete CarrierPigeonVPN overall platform description.' "$pattern"
+
+# Windows ships as a direct download (2026-10-28): the real minimum, the agreement, the
+# privacy and terms sections, and installers whose published digests are the update file's.
+grep -q 'Windows 11' "$tmp_dir/product" || { echo 'Product page must state the Windows 11 minimum.' >&2; exit 1; }
+win=apps/carrierpigeonvpn/windows
+for f in "$win/license.html" "$win/notices.html" "$win/latest.json"; do
+  [ -f "$f" ] || { echo "Missing $f." >&2; exit 1; }
+done
+grep -q 'href="carrierpigeonvpn/windows/license.html"' apps/carrierpigeonvpn.html \
+  || { echo 'Product page must link the Windows license agreement next to the download.' >&2; exit 1; }
+grep -q 'id="cpvpn-windows"' terms.html && grep -q 'id="cpvpn-windows"' privacy.html \
+  || { echo 'terms.html and privacy.html must each have a CarrierPigeonVPN Windows section.' >&2; exit 1; }
+grep -q 'End User License Agreement' "$win/license.html" \
+  || { echo 'The Windows license page lost its agreement.' >&2; exit 1; }
+python3 - "$win/latest.json" apps/carrierpigeonvpn.html <<'PY'
+import json, sys
+m = json.load(open(sys.argv[1])); page = open(sys.argv[2]).read()
+assert m["schema"] == 1 and m["page"] == "https://www.deadstick.net/apps/carrierpigeonvpn.html", "latest.json header"
+for arch in ("x64", "arm64"):
+    d = m["downloads"][arch]
+    assert d["url"].startswith("https://github.com/DeadStick-Digital/DeadStick.net/releases/download/"), arch + " url"
+    assert d["url"] in page, arch + " download link on the page is not the update file's"
+    assert d["sha256"] in page, arch + " SHA-256 on the page is not the update file's"
+PY
+# Mac is offered through the Mac App Store only.
+grep -q 'https://apps.apple.com/app/id6762552976' apps/carrierpigeonvpn.html \
+  || { echo 'Product page must link the Mac App Store listing.' >&2; exit 1; }
+grep -Eqi '\.(dmg|pkg)"' apps/carrierpigeonvpn.html && { echo 'No Mac installer file is offered on the website.' >&2; exit 1; }
 
 echo 'CarrierPigeonVPN public claims are consistent.'
