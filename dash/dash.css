@@ -1,19 +1,333 @@
-/* DeadStick Dash: isolated product-page styles. */
-.dash-hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(220px,.65fr);gap:48px;align-items:center;padding-top:64px;padding-bottom:44px}
-.dash-hero h1{font-size:clamp(42px,5vw,72px);line-height:1.06;letter-spacing:-.045em;margin:16px 0 22px}
-.dash-hero p{max-width:53ch;color:var(--text-muted);font-size:18px;line-height:1.7}
-.dash-art{height:auto;width:100%;max-width:360px;justify-self:center}
-.dash-facts{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;color:var(--text-soft);font-size:13px}
-.dash-facts span{padding:7px 12px;border:1px solid var(--border,#303039);border-radius:999px}
-.dash-section{padding-top:32px;padding-bottom:40px}
-.dash-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:24px}
-.dash-card{background:var(--surface,#111116);border:1px solid var(--border,#303039);border-radius:18px;padding:24px}
-.dash-card h3{font-size:19px;margin-bottom:12px}.dash-card p,.dash-section p,.dash-section li{color:var(--text-muted);line-height:1.75}
-.dash-split{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(240px,.8fr);gap:24px}
-.dash-section h2{font-size:30px;margin-bottom:16px}.dash-section h3{margin-top:24px;margin-bottom:8px}
-.dash-card h3{margin-top:0}.dash-section ul,.dash-section ol{padding-left:22px}.dash-section li{margin-bottom:10px}
-.dash-section details{padding:20px 0;border-bottom:1px solid var(--border,#303039)}.dash-section summary{font-size:18px;font-weight:600;cursor:pointer}.dash-section details p{margin-top:12px}
-.dash-section a:not(.btn){text-decoration:underline;text-underline-offset:3px}.dash-section[id]{scroll-margin-top:110px}
-.dash-doc{max-width:850px;padding-top:52px}.dash-doc h1{font-size:clamp(36px,5vw,54px);margin:16px 0}.dash-date{font-size:13px;color:var(--text-soft)}
-@media(max-width:900px){.dash-grid{grid-template-columns:1fr 1fr}.dash-grid .dash-card:last-child{grid-column:1/-1}}
-@media(max-width:679px){.dash-hero,.dash-split,.dash-grid{grid-template-columns:1fr}.dash-hero{gap:16px;padding-top:36px}.dash-art{max-width:220px;grid-row:1}.dash-grid .dash-card:last-child{grid-column:auto}.dash-hero h1{font-size:44px}.dash-facts{gap:8px}}
+/* DeadStick Dash: isolated product, privacy, and support page styles. */
+.dash-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.32fr) minmax(240px, 0.68fr);
+  gap: 56px;
+  align-items: center;
+  padding-top: 72px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--border, #cbd0d8);
+}
+
+.dash-hero h1 {
+  font-size: clamp(42px, 5vw, 68px);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin: 18px 0 22px;
+}
+
+.dash-hero > div > p {
+  max-width: 56ch;
+  color: var(--text-muted);
+  font-size: 18px;
+  line-height: 1.72;
+  margin-bottom: 28px;
+}
+
+.dash-hero .hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.dash-hero .dash-assent {
+  max-width: 58ch;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--text-soft);
+  margin: 0 0 22px;
+}
+
+.dash-hero .dash-assent a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.dash-art {
+  height: auto;
+  width: 100%;
+  max-width: 340px;
+  justify-self: center;
+  border-radius: 72px;
+}
+
+.dash-facts {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  color: var(--text-soft);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.dash-facts span {
+  padding: 7px 14px;
+  background: var(--surface, #f9fafa);
+  border: 1px solid var(--border, #cbd0d8);
+  border-radius: 999px;
+}
+
+.dash-section {
+  padding-top: 56px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--border, #cbd0d8);
+}
+
+main > .dash-section:last-of-type {
+  border-bottom: none;
+}
+
+.dash-section .eyebrow {
+  margin-bottom: 14px;
+}
+
+.dash-section h2 {
+  font-size: clamp(28px, 3vw, 36px);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin: 0 0 22px;
+}
+
+.dash-section h3 {
+  font-size: 20px;
+  line-height: 1.3;
+  margin: 28px 0 12px;
+}
+
+.dash-card h3 {
+  font-size: 19px;
+  margin: 0 0 12px;
+}
+
+/* Fix global p { margin: 0 } run-on text across all Dash sections, cards, and docs */
+.dash-section p,
+.dash-card p,
+.dash-doc p {
+  color: var(--text-muted);
+  font-size: 16.5px;
+  line-height: 1.75;
+  margin: 0 0 18px;
+  max-width: 68ch;
+}
+
+.dash-section p:last-child,
+.dash-card p:last-child,
+.dash-doc p:last-child {
+  margin-bottom: 0;
+}
+
+.dash-section p strong,
+.dash-card p strong,
+.dash-doc p strong,
+.dash-section li strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 28px;
+}
+
+.dash-card {
+  background: var(--surface, #f9fafa);
+  border: 1px solid var(--border, #cbd0d8);
+  border-radius: 20px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dash-card .eyebrow {
+  margin-bottom: 12px;
+}
+
+.dash-card .btn {
+  align-self: flex-start;
+  margin-top: 20px;
+}
+
+.dash-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+  gap: 36px;
+  align-items: start;
+}
+
+/* Structured Edition & Spec Cards inside #app-information and .dash-split */
+.dash-editions-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.dash-edition-item {
+  background: var(--surface, #f9fafa);
+  border: 1px solid var(--border, #cbd0d8);
+  border-radius: 16px;
+  padding: 20px 24px;
+}
+
+.dash-edition-item p {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.7;
+}
+
+.dash-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin: 26px 0;
+}
+
+.dash-spec-box {
+  background: var(--surface, #f9fafa);
+  border: 1px solid var(--border, #cbd0d8);
+  border-radius: 16px;
+  padding: 22px 24px;
+}
+
+.dash-spec-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-soft);
+  margin-bottom: 8px;
+}
+
+.dash-spec-box p {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.68;
+}
+
+.dash-section ul,
+.dash-section ol {
+  padding-left: 24px;
+  margin: 0 0 22px;
+}
+
+.dash-section li {
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1.75;
+  margin-bottom: 14px;
+  max-width: 68ch;
+}
+
+.dash-section li:last-child {
+  margin-bottom: 0;
+}
+
+.dash-section details {
+  padding: 20px 24px;
+  margin-top: 18px;
+  background: var(--surface, #f9fafa);
+  border: 1px solid var(--border, #cbd0d8);
+  border-radius: 16px;
+}
+
+.dash-section summary {
+  font-size: 16.5px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.dash-section details p {
+  margin-top: 14px;
+}
+
+.dash-section a:not(.btn) {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.dash-section[id] {
+  scroll-margin-top: 110px;
+}
+
+.dash-doc {
+  max-width: 860px;
+  padding-top: 56px;
+  padding-bottom: 64px;
+}
+
+.dash-doc h1 {
+  font-size: clamp(36px, 5vw, 54px);
+  line-height: 1.08;
+  margin: 16px 0 14px;
+}
+
+.dash-doc h2 {
+  margin-top: 40px;
+  margin-bottom: 16px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border, #cbd0d8);
+}
+
+.dash-doc h2:first-of-type {
+  margin-top: 32px;
+}
+
+.dash-date {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-soft);
+  margin-bottom: 20px;
+}
+
+@media (max-width: 900px) {
+  .dash-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .dash-grid .dash-card:last-child {
+    grid-column: 1 / -1;
+  }
+  .dash-specs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 679px) {
+  .dash-hero,
+  .dash-split,
+  .dash-grid,
+  .dash-specs-grid {
+    grid-template-columns: 1fr;
+  }
+  .dash-hero {
+    gap: 24px;
+    padding-top: 36px;
+    padding-bottom: 40px;
+  }
+  .dash-art {
+    max-width: 220px;
+    grid-row: 1;
+    border-radius: 48px;
+  }
+  .dash-grid .dash-card:last-child {
+    grid-column: auto;
+  }
+  .dash-hero h1 {
+    font-size: 42px;
+  }
+  .dash-section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  .dash-facts {
+    gap: 8px;
+  }
+}

@@ -917,11 +917,15 @@ footer {
   margin: 32px 0 8px;
 }
 .doc-body p, .doc-body li { color: var(--text-muted); }
+.doc-body p + p { margin-top: 16px; }
+.doc-body p + ul, .doc-body p + ol { margin-top: 14px; }
+.doc-body ul + p, .doc-body ol + p { margin-top: 16px; }
 .doc-body strong { color: var(--text); font-weight: 500; }
 .doc-body ul, .doc-body ol {
   padding-left: 22px;
+  margin: 12px 0 18px;
 }
-.doc-body li { margin-bottom: 6px; }
+.doc-body li { margin-bottom: 10px; }
 .doc-body a { color: var(--text); border-bottom: 1px solid var(--border-strong); }
 .doc-body a:hover { border-color: var(--accent); color: var(--accent); }
 .doc-body hr {
