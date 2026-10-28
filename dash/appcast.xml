@@ -6,15 +6,16 @@
     <description>DeadStick Dash release feed</description>
     <item>
       <title>DeadStick Dash 1.0.0</title>
-      <pubDate>Wed, 28 Oct 2026 11:43:02 -0400</pubDate>
-      <sparkle:version>2</sparkle:version>
+      <pubDate>Wed, 28 Oct 2026 13:50:28 -0400</pubDate>
+      <sparkle:version>3</sparkle:version>
       <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[<ul><li>Live off-screen menu-bar icon capture and status headers in the dropdown.</li><li>In-place activation for window-based menu-bar items (such as Claude and Google Drive) without menu-bar jumping.</li><li>Gentle in-dropdown Sparkle update reminder banner and yoke attention dot.</li></ul>]]></description>
       <enclosure
         url="https://github.com/DeadStick-Digital/DeadStick.net/releases/download/v1.0.0/DeadStickDash.dmg"
         type="application/octet-stream"
-        sparkle:edSignature="nmg/IujJ2zO2wZ3eLE3sOCGAmFZMJKe/3jnX0X1bDog75Fgia4vWPTNeO1Ioql8mEb69t0TAzFAdXCTDfIitCQ=="
-        length="4039275" />
+        sparkle:edSignature="AD5FjiePztvtYYua5xEpf9hmCZ6mNyHVHYTpyq2lzMeMfXjQFcRoGJT0CiSN+tOfVBsElTbZcG0QLTDTTaGeAg=="
+        length="4074297" />
     </item>
   </channel>
 </rss>
