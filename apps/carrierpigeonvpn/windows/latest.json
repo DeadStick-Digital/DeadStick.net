@@ -8,13 +8,13 @@
   "downloads": {
     "x64": {
       "url": "https://github.com/DeadStick-Digital/DeadStick.net/releases/download/carrierpigeonvpn-windows-v0.9.0/CarrierPigeonVPN-0.9.0-x64.msi",
-      "sha256": "1fc8ec8df8612af711bd241b267ceae95bc38bd0f8be4a37e452f4db53174b3d",
+      "sha256": "eadc251377ab11ebba4de3ac931bbb58ead24e8080c77f898ddfd4113a18e132",
       "bytes": 85643488
     },
     "arm64": {
       "url": "https://github.com/DeadStick-Digital/DeadStick.net/releases/download/carrierpigeonvpn-windows-v0.9.0/CarrierPigeonVPN-0.9.0-arm64.msi",
-      "sha256": "68c6d8ae3a9643c79524133327ca31ed848fe414b79d7f08ace65328f51554a5",
-      "bytes": 82346160
+      "sha256": "294ec2e0de234faa064606496ed52cef1b0418913e389c2e159e9f8fddb62c87",
+      "bytes": 82350256
     }
   }
 }
