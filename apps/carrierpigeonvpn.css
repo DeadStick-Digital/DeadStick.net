@@ -42,3 +42,25 @@
   .cp-download-actions .btn { justify-content: center; }
   .cp-download-command, .cp-download-checksums { padding: 14px; }
 }
+
+/* Mobile OS screenshot gallery, calibrated for 1080x1920 (9:16) Google Play captures. */
+.cp-gallery-section {
+  padding-top: 8px;
+  padding-bottom: 24px;
+}
+.cp-gallery-section .bb-gallery-stage {
+  aspect-ratio: 1 / 1.7436;
+  border-radius: 14% / 7.8%;
+}
+.cp-gallery-section .bb-gallery-stage img {
+  border-radius: 12.5% / 7%;
+  object-fit: cover;
+}
+.cp-gallery-section .bb-gallery-zoom:focus-visible {
+  outline-color: var(--pigeon);
+}
+.cp-gallery-section .bb-lightbox img {
+  border-radius: 12.5% / 7%;
+  outline-color: var(--pigeon);
+}
+
