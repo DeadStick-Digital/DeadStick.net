@@ -9,6 +9,10 @@ grep -q 'headstart/' index.html
 grep -q 'headstart/support/' support.html
 grep -q 'https://www.deadstick.net/headstart/headstart.plg' headstart/index.html
 grep -q 'https://www.deadstick.net/headstart/install.sh' headstart/index.html
+grep -q 'Engineered for media servers.' headstart/index.html
+! grep -q '100+ TB' headstart/index.html
+! grep -q 'mode=ro' headstart/index.html headstart/support/index.html headstart/privacy/index.html
+! grep -q '\.pchunk' headstart/index.html headstart/support/index.html headstart/privacy/index.html
 grep -q 'BillingBird' headstart/index.html
 grep -q 'CarrierPigeonVPN' headstart/index.html
 grep -q 'DeadStick Dash' headstart/index.html

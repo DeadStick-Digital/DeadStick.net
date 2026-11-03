@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ebecee">
-  <meta name="description" content="HeadStart by DeadStick Digital: free NVMe SSD preloader plugin for Unraid, Plex, Infuse, Jellyfin, and Emby. Start 60+ GB 4K Remuxes off sleeping hard drives in 0.3 seconds with zero chop.">
+  <meta name="description" content="HeadStart by DeadStick Digital: free NVMe SSD preloader plugin for Unraid, Plex, Infuse, Jellyfin, and Emby. Start 4K Remuxes off sleeping hard drives in 0.3 seconds with zero chop.">
   <title>HeadStart — Instant NVMe Preloader for Plex &amp; Unraid · DeadStick Digital</title>
   <link rel="canonical" href="https://www.deadstick.net/headstart/">
   <link rel="icon" href="/icons/headstart.png">
@@ -42,29 +42,29 @@
     <div>
       <div class="eyebrow">HeadStart · 100% Free Plugin for Unraid, Linux, Windows &amp; Mac</div>
       <h1>Cold hard drives.<br>Instant 4K playback.</h1>
-      <p>Keep your 20+ drive NAS array spun down, quiet, and cool — without waiting 12 seconds every time someone hits Play. <strong>HeadStart</strong> caches the bitrate-scaled first 30 seconds and 2 MiB seek index of every movie and episode onto your NVMe pool, starts playback in <strong>0.3 seconds</strong>, wakes the sleeping hard drive in the background, and splices the stream at 0:30 without dropping a single frame.</p>
+      <p>Keep your media array spun down, quiet, and cool — without waiting 12 seconds every time someone hits Play. <strong>HeadStart</strong> preloads the opening seconds of every movie and episode onto your NVMe drive, starts playback in <strong>0.3 seconds</strong>, wakes the sleeping hard drive in the background, and hands off the stream seamlessly without dropping a single frame.</p>
 
       <div class="hs-install-box" id="install">
-        <span class="hs-install-label">Option 1 · Unraid WebGUI Plugin URL (Plugins → Install Plugin)</span>
+        <span class="hs-install-label">Option 1 · Unraid WebGUI Plugin URL — Plugins → Install Plugin</span>
         <div class="hs-cmd-row">
           <code id="plg-url">https://www.deadstick.net/headstart/headstart.plg</code>
-          <button type="button" class="hs-copy-btn" onclick="navigator.clipboard.writeText('https://www.deadstick.net/headstart/headstart.plg');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy URL',1800)">Copy URL</button>
+          <button type="button" class="hs-copy-btn" data-copy="https://www.deadstick.net/headstart/headstart.plg" data-label="Copy URL">Copy URL</button>
         </div>
 
-        <span class="hs-install-label" style="margin-top:14px;">Option 2 · 1-Line Terminal Installer (Unraid SSH, Ubuntu, Debian, TrueNAS SCALE)</span>
+        <span class="hs-install-label" style="margin-top:14px;">Option 2 · 1-Line Terminal Installer for Unraid, Ubuntu, Debian &amp; TrueNAS</span>
         <div class="hs-cmd-row">
           <code id="sh-cmd">curl -fsSL https://www.deadstick.net/headstart/install.sh | sudo bash</code>
-          <button type="button" class="hs-copy-btn" onclick="navigator.clipboard.writeText('curl -fsSL https://www.deadstick.net/headstart/install.sh | sudo bash');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Command',1800)">Copy Command</button>
+          <button type="button" class="hs-copy-btn" data-copy="curl -fsSL https://www.deadstick.net/headstart/install.sh | sudo bash" data-label="Copy Command">Copy Command</button>
         </div>
       </div>
 
       <div class="hero-actions" style="margin-top:20px;">
-        <a class="btn btn-primary" href="/headstart/headstart.plg" download="headstart.plg">Download Unraid Plugin (.plg) <span aria-hidden="true">↓</span></a>
+        <a class="btn btn-primary" href="/headstart/headstart.plg" download="headstart.plg">Download Unraid Plugin <span aria-hidden="true">↓</span></a>
         <a class="btn" href="#downloads">All Platform Downloads</a>
         <a class="btn" href="#deadstick-lineup">More from DeadStick →</a>
       </div>
 
-      <p class="dash-assent" style="margin-top:14px;">Version 1.0.0 (2026.11.02) · 100% Free · Zero Telemetry · Read-only FUSE + WebDAV overlay. By downloading or installing, you agree to the <a href="/terms.html#apps-headstart">Terms of Service</a> and <a href="/headstart/privacy/">Privacy Policy</a>.</p>
+      <p class="dash-assent" style="margin-top:14px;">Version 1.0.0 · 100% Free · Zero Telemetry · Strictly Read-Only. By downloading or installing, you agree to the <a href="/terms.html#apps-headstart">Terms of Service</a> and <a href="/headstart/privacy/">Privacy Policy</a>.</p>
 
       <div class="hs-facts">
         <span>0.30s Cold-Drive Start</span>
@@ -73,63 +73,63 @@
         <span>100% Free · No Account or Cloud</span>
       </div>
     </div>
-    <img class="hs-art" src="/icons/headstart.png" alt="HeadStart icon: an NVMe storage card with a glowing cyan-emerald double playhead" width="512" height="512">
+    <img class="hs-art" src="/icons/headstart.png" alt="HeadStart app icon" width="512" height="512">
   </section>
 
   <!-- =========================== LIVE TELEMETRY BENCHMARK =========================== -->
   <section class="wrap hs-section" id="benchmarks">
-    <div class="eyebrow">Verified on a 22-Drive / 266 TB Unraid Array</div>
-    <h2>Why standard script preloaders fail — and how HeadStart fixes them.</h2>
-    <p>Older shell scripts that try to warm `linux page cache` or copy flat 60 MB chunks break on modern 4K HDR10/Dolby Vision Remuxes: MP4 and MKV players immediately seek to the very end of the file (`EOF - 2 MiB`) to read the container index (`moov` atom or MKV `Cues`), stalling on the sleeping hard drive before frame 1 ever renders. And at the 30-second mark, switching filesystems drops frames.</p>
+    <div class="eyebrow">Real-World Performance</div>
+    <h2>Why basic cache scripts stall — and how HeadStart solves it.</h2>
+    <p>Simple file-warming scripts stall on modern 4K HDR and Dolby Vision Remuxes because media players check multiple parts of a file before rendering the first frame, forcing your server to wait on a sleeping hard drive anyway. HeadStart preloads everything the player needs to start immediately and bridges the handoff to the spinning drive without a stutter.</p>
 
     <div class="hs-metric-row">
       <div class="hs-metric">
         <strong>0.30s</strong>
-        <span>Cold-HDD 4K Remux startup (63.8 GB <em>Baraka</em> 4K HDR10 on sleeping SAS drive)</span>
+        <span>Cold-drive 4K Remux startup from a sleeping hard drive</span>
       </div>
       <div class="hs-metric">
         <strong>0 Frames</strong>
-        <span>Dropped at the 0:30 NVMe-to-HDD splice boundary (18 MiB RAM lookahead ring)</span>
+        <span>Dropped during the NVMe-to-hard-drive handoff</span>
       </div>
       <div class="hs-metric">
         <strong>0 Spin-Ups</strong>
-        <span>During library scans, poster browsing, or FFprobe container header/tail checks</span>
+        <span>During library scans, poster browsing, or metadata checks</span>
       </div>
       <div class="hs-metric">
         <strong>1.91 TiB</strong>
-        <span>Total NVMe footprint to preload all 43,524 movies &amp; TV episodes of a 226 TB library</span>
+        <span>NVMe space needed to preload 43,500+ movies and TV episodes</span>
       </div>
     </div>
   </section>
 
   <!-- =========================== ARCHITECTURE =========================== -->
   <section class="wrap hs-section" id="how-it-works">
-    <div class="eyebrow">Architecture</div>
-    <h2>Engineered for 100+ TB media servers.</h2>
+    <div class="eyebrow">How It Works</div>
+    <h2>Engineered for media servers.</h2>
     <div class="hs-grid-3">
       <article class="hs-card">
-        <h3>1. Bitrate-Scaled 30s Head + 2 MiB Tail</h3>
-        <p>Instead of a fixed byte size that under-buffers 100 Mbps 4K Remuxes and wastes SSD space on 1080p episodes, HeadStart queries your Plex database in read-only mode (`?mode=ro`) and sizes each `.pchunk` to exactly <strong>30 seconds of video (plus a 15% VBR burst cushion)</strong> alongside the <strong>last 2 MiB of the file</strong> (`moov` / `Cues` index) and external `.srt`/`.ass` subtitles.</p>
+        <h3>1. Smart Bitrate-Aware Preloading</h3>
+        <p>Instead of using a one-size-fits-all cache size that under-buffers high-bitrate 4K Remuxes and wastes SSD space on smaller episodes, HeadStart automatically sizes each preload to match the video's true bitrate alongside its subtitles.</p>
       </article>
       <article class="hs-card">
-        <h3>2. Zero-Chop 0:30 RAM Ring Splice</h3>
-        <p>Metadata checks (`Stat`, `ReadDir`) and `< 2 MiB` scanner probes are served 100% from NVMe without waking sleeping drives. The moment real playback crosses `2 MiB`, HeadStart wakes only that single target HDD in the background, pre-buffers an `18 MiB` overlap window into RAM, and splices reads across the 30s mark through a single open file descriptor.</p>
+        <h3>2. Seamless Drive Handoff</h3>
+        <p>Routine library scans and poster browsing are served directly from NVMe without waking sleeping drives. Only when someone actually presses Play does HeadStart wake that single target drive in the background and smoothly hand off the stream once it is up to speed.</p>
       </article>
       <article class="hs-card">
         <h3>3. Automatic Free-Space Watchdog</h3>
-        <p>Using your NVMe pool for SABnzbd, qBittorrent, or Unraid Mover staging? HeadStart monitors your NVMe pool's free space every 10 seconds. If a big download batch pushes free space below your reserve (default <strong>500 GiB</strong>), HeadStart automatically evicts lowest-priority TV chunks to hand space back to your downloads immediately — then re-harvests them after Mover runs.</p>
+        <p>Using your NVMe drive for downloads or daily cache staging? HeadStart monitors your free space continuously. If a large download batch needs room, HeadStart automatically frees up low-priority preload data so your downloads never slow down, then rebuilds it when space recovers.</p>
       </article>
       <article class="hs-card">
-        <h3>4. Multi-Drive Btrfs &amp; ZFS Pool Safe</h3>
-        <p>Every `.pchunk` file carries a 64-byte `HDSTART1` header with hardware Castagnoli <strong>CRC32C checksums</strong> for both the head and tail payloads. If an NVMe pool ever suffers a bit flip or truncated write, HeadStart quarantines the chunk and falls back to the array disk mid-stream without interrupting playback.</p>
+        <h3>4. Polite Background Harvesting</h3>
+        <p>HeadStart prioritizes your newest movies and active TV shows first and harvests across a few drives at a time so the rest of your array stays spun down, quiet, and cool.</p>
       </article>
       <article class="hs-card">
-        <h3>5. Universal Client Support (Infuse, Apple TV, WebDAV)</h3>
-        <p>Because HeadStart operates at the filesystem layer (read-only Linux FUSE + built-in HTTP Byte-Range &amp; RFC 4918 WebDAV server on `:8999`), every client connected to your server — <strong>Plex, Infuse, Jellyfin, Emby, VLC, and IINA</strong> — gets instant cold-drive playback automatically.</p>
+        <h3>5. Universal Client Support</h3>
+        <p>Every media app connected to your server — <strong>Plex, Infuse, Jellyfin, Emby, VLC, and IINA</strong> — gets instant cold-drive playback automatically with zero client configuration.</p>
       </article>
       <article class="hs-card">
-        <h3>6. Non-Destructive Pilot Mode &amp; 1-Command Nuke</h3>
-        <p>HeadStart never modifies a single byte of your `/mnt/user` media array. Test it first with a 25-movie side-by-side pilot library, or attach it over `/data` with zero container restart. Stopping or uninstalling HeadStart immediately reveals your untouched underlying array mount.</p>
+        <h3>6. Non-Destructive &amp; 1-Click Removable</h3>
+        <p>HeadStart is strictly read-only and never modifies, moves, or renames a single file on your media array. Stopping or removing the plugin immediately returns your server to its standard setup without restarting Plex.</p>
       </article>
     </div>
   </section>
@@ -140,19 +140,19 @@
     <h2>Install on Unraid, Linux, Windows, or Mac.</h2>
     <div class="hs-grid-2">
       <div class="hs-card">
-        <h3>Unraid &amp; Linux Servers (FUSE + Container Auto-Attach)</h3>
-        <p>Supports Unraid 6.12+, Ubuntu, Debian, TrueNAS SCALE, and Proxmox. Attaches into `Plex-Media-Server` automatically without restarting the container, and re-attaches automatically after Docker image updates.</p>
+        <h3>Unraid &amp; Linux Servers</h3>
+        <p>Supports Unraid, Ubuntu, Debian, TrueNAS SCALE, and Proxmox. Attaches to your media server automatically without restarting your container and stays connected across updates and reboots.</p>
         <ul>
-          <li><a href="/headstart/headstart.plg" download="headstart.plg"><strong>Unraid Plugin Manifest (<code>headstart.plg</code>)</strong></a> — paste URL in <em>Plugins → Install Plugin</em></li>
-          <li><a href="/headstart/install.sh" download="install.sh"><strong>Universal Linux/Unraid Installer (<code>install.sh</code>)</strong></a> — auto-detects NVMe pool &amp; Plex DB</li>
+          <li><a href="/headstart/headstart.plg" download="headstart.plg"><strong>Unraid Plugin Manifest</strong></a> — paste URL in <em>Plugins → Install Plugin</em></li>
+          <li><a href="/headstart/install.sh" download="install.sh"><strong>Universal Linux &amp; Unraid Installer</strong></a> — automatic setup for NVMe and Plex</li>
         </ul>
       </div>
       <div class="hs-card">
-        <h3>Windows &amp; macOS Plex Servers (Built-In WebDAV &amp; Cockpit)</h3>
-        <p>Running Plex on Windows (StableBit DrivePool / Storage Spaces) or macOS with external USB/Thunderbolt DAS bays? HeadStart includes a zero-dependency local WebDAV mount (`/dav/`) and Cockpit UI (`:8999`).</p>
+        <h3>Windows &amp; macOS Media Servers</h3>
+        <p>Running your media server on Windows or macOS with external drive bays? HeadStart includes a built-in local mount and live web dashboard for easy setup on desktop servers.</p>
         <ul>
-          <li><strong>Windows x64 / ARM64:</strong> Mount <code>http://127.0.0.1:8999/dav/</code> as a local drive letter or point Infuse/VLC directly to `:8999`.</li>
-          <li><strong>macOS Universal:</strong> Press <code>⌘K</code> in Finder → connect to <code>http://127.0.0.1:8999/dav/</code>.</li>
+          <li><strong>Windows:</strong> Mount locally as a drive letter or connect your media player directly.</li>
+          <li><strong>macOS:</strong> Connect in Finder with a single local address and monitor live drive savings from the dashboard.</li>
         </ul>
       </div>
     </div>
@@ -243,7 +243,7 @@
   <section class="wrap hs-section" id="app-information">
     <div class="eyebrow">Release &amp; Legal</div>
     <h2>100% free, local-first, and zero telemetry.</h2>
-    <p>HeadStart is developed by <strong>DeadStick Digital LLC</strong> and provided <strong>100% free</strong> with no account registration, subscriptions, analytics, or external network calls. All preload `.pchunk` files and metadata stay strictly on your local server hardware.</p>
+    <p>HeadStart is developed by <strong>DeadStick Digital LLC</strong> and provided <strong>100% free</strong> with no account registration, subscriptions, analytics, or external network calls. All preloaded data stays strictly on your local server hardware.</p>
     <p>Read the <a href="/headstart/support/">HeadStart setup &amp; troubleshooting guide</a>, <a href="/headstart/privacy/">app-specific privacy policy</a>, and <a href="/terms.html#apps-headstart">Terms of Service</a>. Need help? Email <a href="mailto:contact@deadstick.net?subject=HeadStart%20support">contact@deadstick.net</a>.</p>
   </section>
 </main>
@@ -259,5 +259,16 @@
     </div>
   </div>
 </footer>
+<script>
+document.querySelectorAll('.hs-copy-btn').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    navigator.clipboard.writeText(btn.getAttribute('data-copy'));
+    btn.textContent = 'Copied!';
+    setTimeout(function () {
+      btn.textContent = btn.getAttribute('data-label');
+    }, 1800);
+  });
+});
+</script>
 </body>
 </html>

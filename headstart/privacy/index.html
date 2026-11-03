@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#09090c"><meta name="description" content="How HeadStart by DeadStick Digital handles local media metadata, SSD cache chunks, and support correspondence."><title>HeadStart Privacy Policy — DeadStick Digital</title><link rel="icon" href="/icons/headstart.png"><link rel="stylesheet" href="/styles.css?v=20260807-bb-lineup-final"><link rel="stylesheet" href="/dash/dash.css?v=20261027"></head><body><header class="nav">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#09090c"><meta name="description" content="How HeadStart by DeadStick Digital handles local media metadata, SSD cache files, and support correspondence."><title>HeadStart Privacy Policy — DeadStick Digital</title><link rel="icon" href="/icons/headstart.png"><link rel="stylesheet" href="/styles.css?v=20260807-bb-lineup-final"><link rel="stylesheet" href="/dash/dash.css?v=20261027"></head><body><header class="nav">
   <div class="nav-inner">
     <a class="brand" href="/index.html" aria-label="DeadStick Digital LLC — home">
       <span class="brand-lockup">
@@ -27,11 +27,11 @@
 <p class="dash-date">Effective November 2, 2026 · Updated November 2, 2026</p>
 <p>This policy covers <strong>HeadStart</strong>, provided by <strong>DeadStick Digital LLC</strong>. Website visits and contact-form submissions are also covered by the <a href="/privacy.html">DeadStick Digital website privacy policy</a>.</p>
 <h2>Data accessed locally</h2>
-<p>HeadStart runs locally on your server or NAS. It reads your local media file headers/tails and optionally reads file paths, durations, and timestamps from your local Plex database (`com.plexapp.plugins.library.db`) in read-only mode to prioritize and size SSD preload chunks (`.pchunk` files). All `.pchunk` files and the `index.json` metadata index remain strictly on your local SSD storage.</p>
+<p>HeadStart runs locally on your server or NAS. It reads your local media library in read-only mode to prioritize and size SSD preload cache files. All preloaded cache data remains strictly on your local SSD storage.</p>
 <h2>Data we collect and how we use it</h2>
 <p>HeadStart has no user account, no analytics SDK, no telemetry, and no DeadStick-operated cloud service. We never receive your media library inventory, file names, watch history, or server configuration through HeadStart. If you email us or submit our website contact form, we receive only the message and contact details you voluntarily send so we can reply.</p>
 <h2 id="your-choices">Your choices and deletion</h2>
-<p>Uninstalling HeadStart or running `unraid-pilot.sh nuke` removes all local `.pchunk` cache files and local metadata indexes from your SSD. To request deletion of any support correspondence you sent us, email <a href="mailto:contact@deadstick.net?subject=HeadStart%20privacy%20request">contact@deadstick.net</a>.</p>
+<p>Uninstalling HeadStart removes all local preload cache files and local metadata indexes from your SSD. To request deletion of any support correspondence you sent us, email <a href="mailto:contact@deadstick.net?subject=HeadStart%20privacy%20request">contact@deadstick.net</a>.</p>
 <h2>Developer and privacy contact</h2>
 <p><strong>DeadStick Digital LLC</strong><br>c/o Republic Registered Agent LLC<br>5830 E 2nd St, Ste 7000<br>Casper, WY 82609, United States</p>
 <p><a href="/headstart/support/">HeadStart support</a> · <a href="/headstart/">About HeadStart</a></p>
