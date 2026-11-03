@@ -1,1 +1,281 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="refresh" content="0; url=/headstart/"><link rel="canonical" href="https://www.deadstick.net/headstart/"><meta name="robots" content="noindex"><title>HeadStart — DeadStick Digital</title></head><body><p><a href="/headstart/">Continue to HeadStart</a></p></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ebecee">
+  <meta name="description" content="HeadStart by DeadStick Digital: free NVMe SSD preloader plugin for Unraid, Plex, Infuse, Jellyfin, and Emby. Start 4K Remuxes off sleeping hard drives in 0.3 seconds with zero chop.">
+  <title>HeadStart — Instant NVMe Preloader for Plex &amp; Unraid · DeadStick Digital</title>
+  <link rel="canonical" href="https://www.deadstick.net/headstart/">
+  <link rel="icon" href="/icons/headstart.png">
+  <link rel="stylesheet" href="/styles.css?v=20261027-doc-spacing">
+  <link rel="stylesheet" href="/dash/dash.css?v=20261027-polish">
+  <link rel="stylesheet" href="/headstart/headstart.css?v=20261102-launch">
+  <link rel="stylesheet" href="/site-light.css?v=20261027-solid-surfaces">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/index.html" aria-label="DeadStick Digital LLC — home">
+      <span class="brand-lockup">
+        <span class="brand-top">
+          <img class="brand-wordmark" src="/assets/logo-wordmark-deadstick-silver.png" alt="DeadStick" width="172" height="22">
+          <span class="brand-sub">Digital <span class="brand-suffix">LLC</span></span>
+        </span>
+        <span class="brand-sub brand-tagline">Engineered for edge cases</span>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/index.html#apps">Apps</a>
+      <a href="/index.html#company">Company</a>
+      <a href="/support.html">Support</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+    </nav>
+    <a class="nav-cta" href="/index.html#contact">Contact</a>
+  </div>
+</header>
+
+<main>
+  <!-- =========================== HERO =========================== -->
+  <section class="wrap hs-hero">
+    <div>
+      <div class="eyebrow">HeadStart · 100% Free Plugin for Unraid &amp; Linux Media Servers</div>
+      <h1>Cold hard drives.<br>Instant 4K playback.</h1>
+      <p>Keep your media array spun down, quiet, and cool — without waiting 12 seconds every time someone hits Play. <strong>HeadStart</strong> preloads the opening seconds of every movie and episode onto your NVMe drive, starts playback in <strong>0.3 seconds</strong>, wakes the sleeping hard drive in the background, and hands off the stream seamlessly without dropping a single frame.</p>
+
+      <div class="hs-install-box" id="install">
+        <span class="hs-install-label">Option 1 · Unraid WebGUI Plugin URL — Plugins → Install Plugin</span>
+        <div class="hs-cmd-row">
+          <code id="plg-url">https://www.deadstick.net/headstart/headstart.plg</code>
+          <button type="button" class="hs-copy-btn" data-copy="https://www.deadstick.net/headstart/headstart.plg" data-label="Copy URL">Copy URL</button>
+        </div>
+
+        <span class="hs-install-label" style="margin-top:14px;">Option 2 · 1-Line Terminal Installer for Unraid</span>
+        <div class="hs-cmd-row">
+          <code id="sh-cmd">curl -fsSL https://www.deadstick.net/headstart/install.sh | bash</code>
+          <button type="button" class="hs-copy-btn" data-copy="curl -fsSL https://www.deadstick.net/headstart/install.sh | bash" data-label="Copy Command">Copy Command</button>
+        </div>
+
+        <span class="hs-install-label" style="margin-top:14px;">Option 3 · 1-Line Terminal Installer for Ubuntu &amp; Debian</span>
+        <div class="hs-cmd-row">
+          <code id="sh-sudo-cmd">curl -fsSL https://www.deadstick.net/headstart/install.sh | sudo bash</code>
+          <button type="button" class="hs-copy-btn" data-copy="curl -fsSL https://www.deadstick.net/headstart/install.sh | sudo bash" data-label="Copy Command">Copy Command</button>
+        </div>
+      </div>
+
+      <div class="hero-actions" style="margin-top:20px;">
+        <a class="btn btn-primary" href="/headstart/headstart.plg" download="headstart.plg">Download Unraid Plugin <span aria-hidden="true">↓</span></a>
+        <a class="btn" href="#downloads">All Platform Downloads</a>
+        <a class="btn" href="#deadstick-lineup">More from DeadStick →</a>
+      </div>
+
+      <p class="dash-assent" style="margin-top:14px;">Version 1.0.0 · 100% Free · Zero Telemetry · Strictly Read-Only. By downloading or installing, you agree to the <a href="/terms.html#apps-headstart">Terms of Service</a> and <a href="/headstart/privacy/">Privacy Policy</a>.</p>
+
+      <div class="hs-facts">
+        <span>0.30s Cold-Drive Start</span>
+        <span>Works with Plex, Infuse, Jellyfin &amp; Emby</span>
+        <span>Auto-Yields NVMe Space for Downloads</span>
+        <span>100% Free · No Account or Cloud</span>
+      </div>
+    </div>
+    <img class="hs-art" src="/icons/headstart.png" alt="HeadStart app icon" width="512" height="512">
+  </section>
+
+  <!-- =========================== LIVE TELEMETRY BENCHMARK =========================== -->
+  <section class="wrap hs-section" id="benchmarks">
+    <div class="eyebrow">Real-World Performance</div>
+    <h2>Why basic cache scripts stall — and how HeadStart solves it.</h2>
+    <p>Simple file-warming scripts stall on modern 4K HDR and Dolby Vision Remuxes because media players check multiple parts of a file before rendering the first frame, forcing your server to wait on a sleeping hard drive anyway. HeadStart preloads everything the player needs to start immediately and bridges the handoff to the spinning drive without a stutter.</p>
+
+    <div class="hs-metric-row">
+      <div class="hs-metric">
+        <strong>0.30s</strong>
+        <span>Cold-drive 4K Remux startup from a sleeping hard drive</span>
+      </div>
+      <div class="hs-metric">
+        <strong>0 Frames</strong>
+        <span>Dropped during the NVMe-to-hard-drive handoff</span>
+      </div>
+      <div class="hs-metric">
+        <strong>0 Spin-Ups</strong>
+        <span>During most library browsing, poster checks, and preloaded metadata lookups</span>
+      </div>
+      <div class="hs-metric">
+        <strong>1.91 TiB</strong>
+        <span>NVMe space needed to preload 43,500+ movies and TV episodes</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== ARCHITECTURE =========================== -->
+  <section class="wrap hs-section" id="how-it-works">
+    <div class="eyebrow">How It Works</div>
+    <h2>Engineered for media servers.</h2>
+    <div class="hs-grid-3">
+      <article class="hs-card">
+        <h3>1. Smart Bitrate-Aware Preloading</h3>
+        <p>Instead of using a one-size-fits-all cache size that under-buffers high-bitrate 4K Remuxes and wastes SSD space on smaller episodes, HeadStart automatically sizes each preload to match the video's true bitrate alongside its subtitles.</p>
+      </article>
+      <article class="hs-card">
+        <h3>2. Seamless Drive Handoff</h3>
+        <p>Most library browsing and preloaded file metadata checks are served directly from NVMe without waking sleeping drives. Only when someone actually presses Play does HeadStart wake that single target drive in the background and smoothly hand off the stream once it is up to speed.</p>
+      </article>
+      <article class="hs-card">
+        <h3>3. Automatic Free-Space Watchdog</h3>
+        <p>Using your NVMe drive for downloads or daily cache staging? HeadStart monitors your free space continuously. If a large download batch needs room, HeadStart automatically frees up low-priority preload data so your downloads never slow down, then rebuilds it when space recovers.</p>
+      </article>
+      <article class="hs-card">
+        <h3>4. Polite Background Harvesting</h3>
+        <p>HeadStart prioritizes your newest movies and active TV shows first and harvests across a few drives at a time so the rest of your array stays spun down, quiet, and cool.</p>
+      </article>
+      <article class="hs-card">
+        <h3>5. Universal Client Support</h3>
+        <p>Every media app connected to your server — <strong>Plex, Infuse, Jellyfin, Emby, VLC, and IINA</strong> — gets instant cold-drive playback automatically with zero client configuration.</p>
+      </article>
+      <article class="hs-card">
+        <h3>6. Non-Destructive &amp; 1-Click Removable</h3>
+        <p>HeadStart is strictly read-only and never modifies, moves, or renames a single file on your media array. Stopping or removing the plugin immediately returns your server to its standard setup without restarting Plex.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- =========================== DIRECT DOWNLOADS =========================== -->
+  <section class="wrap hs-section" id="downloads">
+    <div class="eyebrow">Downloads &amp; Installation</div>
+    <h2>Install on Unraid or Linux — stream to every device.</h2>
+    <div class="hs-grid-2">
+      <div class="hs-card">
+        <h3>Unraid &amp; Linux Servers</h3>
+        <p>Supports Unraid, Ubuntu, Debian, TrueNAS SCALE, and Proxmox. Attaches to your media server automatically without restarting your container and stays connected across updates and reboots.</p>
+        <ul>
+          <li><a href="/headstart/headstart.plg" download="headstart.plg"><strong>Unraid Plugin Manifest</strong></a> — paste URL in <em>Plugins → Install Plugin</em></li>
+          <li><a href="/headstart/install.sh" download="install.sh"><strong>Universal Linux &amp; Unraid Installer</strong></a> — automatic setup for NVMe and Plex</li>
+        </ul>
+      </div>
+      <div class="hs-card">
+        <h3>Windows, macOS &amp; WebDAV Streaming</h3>
+        <p>Running a Windows media server or connecting from Windows, macOS, iOS, or Apple TV? HeadStart runs natively on Windows and includes built-in read-only WebDAV and HTTP streaming endpoints alongside its live web dashboard.</p>
+        <ul>
+          <li><a href="https://github.com/DeadStick-Digital/DeadStick.net/releases/download/headstart-v1.0.0/headstart-windows-amd64.exe" download="headstart-windows-amd64.exe"><strong>Windows Server Binary (x64)</strong></a> — native Windows preloader, WebDAV mount &amp; dashboard</li>
+          <li><strong>Windows &amp; macOS Clients:</strong> Browse or stream over WebDAV and HTTP in Finder, Explorer, VLC, or IINA.</li>
+          <li><strong>Infuse &amp; Direct Players:</strong> Point Infuse or any HTTP byte-range player at your server's WebDAV or media stream address.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== MORE FROM DEADSTICK DIGITAL =========================== -->
+  <section class="wrap hs-section" id="deadstick-lineup">
+    <div class="eyebrow">Built by DeadStick Digital LLC</div>
+    <h2>Liked HeadStart? Explore our other privacy-first tools.</h2>
+    <p>We build focused, local-first software with no accounts, no telemetry, no ads, and no company cloud servers in the middle. Every tool is engineered to keep your data on hardware you own.</p>
+
+    <div class="hs-eco-grid">
+      <a class="hs-eco-card" href="/apps/billingbird.html">
+        <div class="hs-eco-top">
+          <img src="/icons/billingbird.png" alt="BillingBird icon">
+          <div>
+            <span class="hs-eco-badge" style="color:#187653;">Available now · iPhone &amp; iPad</span>
+            <h3>BillingBird</h3>
+          </div>
+        </div>
+        <p>Professional invoicing, receipt capture, and client balances for contractors and service pros — stored on your device by default.</p>
+        <span class="hs-eco-cta">Explore BillingBird →</span>
+      </a>
+
+      <a class="hs-eco-card" href="/dash/">
+        <div class="hs-eco-top">
+          <img src="/icons/deadstickdash.png" alt="DeadStick Dash icon">
+          <div>
+            <span class="hs-eco-badge" style="color:#86263b;">Available now · 100% Free for Mac</span>
+            <h3>DeadStick Dash</h3>
+          </div>
+        </div>
+        <p>A calmer Mac menu bar. Pin your everyday icons, tuck the rest behind the DeadStick yoke, and keep your workspace clean — 100% free.</p>
+        <span class="hs-eco-cta">Download free for Mac →</span>
+      </a>
+
+      <a class="hs-eco-card" href="/apps/carrierpigeonvpn.html">
+        <div class="hs-eco-top">
+          <img src="/icons/carrierpigeonvpn.png" alt="CarrierPigeonVPN icon">
+          <div>
+            <span class="hs-eco-badge">Coming soon · iOS, Android, Mac &amp; Windows</span>
+            <h3>CarrierPigeonVPN</h3>
+          </div>
+        </div>
+        <p>A private encrypted tunnel directly between devices you own — one-time QR pairing, no account, and no commercial VPN company in the middle.</p>
+        <span class="hs-eco-cta">Learn more →</span>
+      </a>
+
+      <a class="hs-eco-card" href="/apps/holos-drive-vault.html">
+        <div class="hs-eco-top">
+          <img src="/icons/holos-drive-vault.png" alt="Drive Vault icon">
+          <div>
+            <span class="hs-eco-badge">Coming soon · Mac &amp; Windows</span>
+            <h3>Drive Vault</h3>
+          </div>
+        </div>
+        <p>Create encrypted external APFS drives on macOS designed for cross-platform Mac and Windows workflows, with keys kept in your own Keychain.</p>
+        <span class="hs-eco-cta">Learn more →</span>
+      </a>
+
+      <a class="hs-eco-card" href="/apps/deadstick-utilities.html">
+        <div class="hs-eco-top">
+          <img src="/icons/deadstick-utilities.png" alt="DeadStick Utilities icon">
+          <div>
+            <span class="hs-eco-badge">Coming soon · macOS 15+</span>
+            <h3>DeadStick Utilities</h3>
+          </div>
+        </div>
+        <p>Scan storage, review cleanup items, large files, and exact duplicates on your Mac — with a safe Recovery holding area before permanent deletion.</p>
+        <span class="hs-eco-cta">Learn more →</span>
+      </a>
+
+      <a class="hs-eco-card" href="/apps/holos-document-vault.html">
+        <div class="hs-eco-top">
+          <img src="/icons/holos-document-vault.png" alt="Document Vault icon">
+          <div>
+            <span class="hs-eco-badge">Coming soon · iOS</span>
+            <h3>Document Vault</h3>
+          </div>
+        </div>
+        <p>Private document scanner and long-term on-device vault with smart crop, OCR search, translation, and PDF export for passports, IDs, and records.</p>
+        <span class="hs-eco-cta">Learn more →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- =========================== LEGAL & SUPPORT =========================== -->
+  <section class="wrap hs-section" id="app-information">
+    <div class="eyebrow">Release &amp; Legal</div>
+    <h2>100% free, local-first, and zero telemetry.</h2>
+    <p>HeadStart is developed by <strong>DeadStick Digital LLC</strong> and provided <strong>100% free</strong> with no account registration, subscriptions, analytics, or external network calls. All preloaded data stays strictly on your local server hardware.</p>
+    <p>Read the <a href="/headstart/support/">HeadStart setup &amp; troubleshooting guide</a>, <a href="/headstart/privacy/">app-specific privacy policy</a>, and <a href="/terms.html#apps-headstart">Terms of Service</a>. Need help? Email <a href="mailto:contact@deadstick.net?subject=HeadStart%20support">contact@deadstick.net</a>.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-bottom" style="border:0">
+      <div>© 2026 DeadStick Digital LLC · All rights reserved.</div>
+      <div><a href="/headstart/">HeadStart</a> · <a href="/headstart/support/">Support</a> · <a href="/headstart/privacy/">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/index.html">All DeadStick Apps</a></div>
+    </div>
+    <div class="footer-bottom" style="border:0;padding-top:12px;">
+      <div class="legal-note">Plex is a trademark of Plex, Inc. Unraid is a trademark of Lime Technology, Inc. Infuse is a trademark of Firecore, LLC. DeadStick Digital LLC is an independent software studio and is not affiliated with or endorsed by Plex, Inc., Lime Technology, Inc., or Firecore, LLC.</div>
+    </div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.hs-copy-btn').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    navigator.clipboard.writeText(btn.getAttribute('data-copy'));
+    btn.textContent = 'Copied!';
+    setTimeout(function () {
+      btn.textContent = btn.getAttribute('data-label');
+    }, 1800);
+  });
+});
+</script>
+</body>
+</html>
