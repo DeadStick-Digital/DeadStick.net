@@ -3,7 +3,7 @@
   <!ENTITY name      "headstart">
   <!ENTITY author    "DeadStick Digital LLC">
   <!ENTITY version   "2026.11.03">
-  <!ENTITY sha256    "c9430aa8f545221bfdc29cf4e1c43da974ae5c09173357543642a6a9fea4d33c">
+  <!ENTITY sha256    "a089ea9c34d9763fb221ee6cfd0cdec9037ad58797789543edb6192e53404e96">
   <!ENTITY pluginURL "https://www.deadstick.net/headstart/headstart.plg">
   <!ENTITY binaryURL "https://github.com/DeadStick-Digital/DeadStick.net/releases/download/headstart-v1.1.0/headstart-linux-amd64">
 ]>
@@ -185,8 +185,8 @@ supervise() {
     -listen="${LISTEN_ADDR}" \
     -min-free-gib="${MIN_FREE_GIB}" &amp;
   local child=$!
-  trap 'kill -TERM "${child}" 2&gt;/dev/null' TERM INT HUP
-  local fails=0 healthy_once=0 ok status=0 rc sleeper
+  trap 'kill -TERM "${child}" 2&gt;/dev/null' TERM HUP
+  local fails=0 healthy_once=0 ok status=0 rc sleeper health
   local health_url="http://${LISTEN_ADDR/0.0.0.0/127.0.0.1}/healthz"
   while :; do
     sleep 30 &amp;
@@ -194,18 +194,24 @@ supervise() {
     # Returns as soon as EITHER the daemon or the 30s timer exits, so a crash is detached immediately.
     wait -n 2&gt;/dev/null
     rc=$?
+    kill "${sleeper}" 2&gt;/dev/null
     if ! kill -0 "${child}" 2&gt;/dev/null; then
-      kill "${sleeper}" 2&gt;/dev/null
       status=${rc}
       break
     fi
     ok=0
-    if curl -fsS -m 10 "${health_url}" &gt;/dev/null 2&gt;&amp;1; then
+    health="$(curl -fsS -m 10 "${health_url}" 2&gt;/dev/null)"
+    if [ -n "${health}" ]; then
       ok=1
       healthy_once=1
-      if grep -qs " ${FUSE_MOUNT} fuse.headstart " /proc/mounts; then
-        timeout -s KILL 20 ls "${FUSE_MOUNT}" &gt;/dev/null 2&gt;&amp;1 || ok=0
-      fi
+      # Probe the FUSE path only once listings are catalog-backed (never wakes sleeping disks).
+      case "${health}" in
+        *catalog=ready*)
+          if grep -qs " ${FUSE_MOUNT} fuse.headstart " /proc/mounts; then
+            timeout -s KILL 20 ls "${FUSE_MOUNT}" &gt;/dev/null 2&gt;&amp;1 || ok=0
+          fi
+          ;;
+      esac
     fi
     if [ "${healthy_once}" -eq 1 ] &amp;&amp; [ "${ok}" -eq 0 ]; then
       fails=$((fails + 1))
