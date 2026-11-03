@@ -8,8 +8,8 @@ set -euo pipefail
 VERSION="2026.11.02"
 RELEASE_TAG="v1.0.0"
 RELEASE_BASE="https://github.com/DeadStick-Digital/DeadStick.net/releases/download/headstart-${RELEASE_TAG}"
-SHA256_AMD64="9e701b4b936d8b7f1529fd8350e0dd564041f550d5c0a76f0c38cf96e2a8c50e"
-SHA256_ARM64="b07e94facae970661a36a41c683542150f7adcf8a1846eb4969f3fb840cb2183"
+SHA256_AMD64="921fed5dfb8d467b5f3db57e909e3395396d68ffe4c73afd6f642e34b3ddcca3"
+SHA256_ARM64="2aa964da530a1c0d4cfefec83cfb11042500e261cde02e37b10582ed615f267a"
 
 echo "=================================================================="
 echo " HeadStart ${VERSION} — NVMe Preloader for Plex, Infuse & Unraid"
