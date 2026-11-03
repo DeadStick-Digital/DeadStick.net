@@ -8,7 +8,7 @@ set -euo pipefail
 VERSION="2026.11.02"
 RELEASE_TAG="v1.0.0"
 RELEASE_BASE="https://github.com/DeadStick-Digital/DeadStick.net/releases/download/headstart-${RELEASE_TAG}"
-SHA256_AMD64="f0ecc8acd02510c71fb66c14c47e445de346916033ccb1a7df5de98080c83432"
+SHA256_AMD64="9e701b4b936d8b7f1529fd8350e0dd564041f550d5c0a76f0c38cf96e2a8c50e"
 SHA256_ARM64="b07e94facae970661a36a41c683542150f7adcf8a1846eb4969f3fb840cb2183"
 
 echo "=================================================================="
@@ -126,7 +126,7 @@ After=network.target local-fs.target
 
 [Service]
 Type=simple
-ExecStart=${TARGET_BIN} serve -media=${MEDIA_ROOT} -ssd=${SSD_BASE}/store -listen=127.0.0.1:8999
+ExecStart=${TARGET_BIN} serve -media=${MEDIA_ROOT} -ssd=${SSD_BASE}/store -mount=/mnt/disks/headstart_media -container-name=Plex-Media-Server -container-mount=/data -listen=127.0.0.1:8999
 Restart=on-failure
 RestartSec=5
 
@@ -138,5 +138,5 @@ EOF
   echo "   Start with: systemctl enable --now headstart.service"
 else
   echo "-> Binary installed at ${TARGET_BIN} (not started automatically)."
-  echo "   Start manually with: ${TARGET_BIN} serve -media=${MEDIA_ROOT} -ssd=${SSD_BASE}/store -listen=127.0.0.1:8999"
+  echo "   Start manually with: ${TARGET_BIN} serve -media=${MEDIA_ROOT} -ssd=${SSD_BASE}/store -mount=/mnt/disks/headstart_media -container-name=Plex-Media-Server -container-mount=/data -listen=127.0.0.1:8999"
 fi

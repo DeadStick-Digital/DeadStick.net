@@ -3,7 +3,7 @@
   <!ENTITY name      "headstart">
   <!ENTITY author    "DeadStick Digital LLC">
   <!ENTITY version   "2026.11.02">
-  <!ENTITY sha256    "f0ecc8acd02510c71fb66c14c47e445de346916033ccb1a7df5de98080c83432">
+  <!ENTITY sha256    "9e701b4b936d8b7f1529fd8350e0dd564041f550d5c0a76f0c38cf96e2a8c50e">
   <!ENTITY pluginURL "https://www.deadstick.net/headstart/headstart.plg">
   <!ENTITY binaryURL "https://github.com/DeadStick-Digital/DeadStick.net/releases/download/headstart-v1.0.0/headstart-linux-amd64">
 ]>
@@ -81,7 +81,7 @@ FUSE_MOUNT="/mnt/disks/headstart_media"
 LISTEN_ADDR="127.0.0.1:8999"
 MIN_FREE_GIB="500"
 PLEX_CONTAINER="Plex-Media-Server"
-CONTAINER_MOUNT="/data/headstart"
+CONTAINER_MOUNT="/data"
 EOF
 fi
 
@@ -103,8 +103,9 @@ MEDIA_ROOT="${MEDIA_ROOT:-/mnt/user/data/media}"
 FUSE_MOUNT="${FUSE_MOUNT:-/mnt/disks/headstart_media}"
 LISTEN_ADDR="${LISTEN_ADDR:-127.0.0.1:8999}"
 MIN_FREE_GIB="${MIN_FREE_GIB:-500}"
-PLEX_CONTAINER="${PLEX_CONTAINER:-}"
-CONTAINER_MOUNT="${CONTAINER_MOUNT:-/data/headstart}"
+PLEX_CONTAINER="${PLEX_CONTAINER:-Plex-Media-Server}"
+CONTAINER_MOUNT="${CONTAINER_MOUNT:-/data}"
+PLEX_DB="${PLEX_DB:-}"
 
 detach_container_mounts() {
   local pid mp fstype src
@@ -150,6 +151,9 @@ start_headstart() {
     -media="${MEDIA_ROOT}" \
     -ssd="${SSD_STORE}" \
     -mount="${FUSE_MOUNT}" \
+    -db="${PLEX_DB}" \
+    -container-name="${PLEX_CONTAINER}" \
+    -container-mount="${CONTAINER_MOUNT}" \
     -listen="${LISTEN_ADDR}" \
     -min-free-gib="${MIN_FREE_GIB}" &gt;&gt;"${LOG_FILE}" 2&gt;&amp;1 &amp;
   echo $! &gt; "${PID_FILE}"
@@ -243,7 +247,12 @@ if [ -n "${SSD_STORE}" ] &amp;&amp; [ -d "${SSD_STORE}" ]; then
 fi
 
 for pool_dir in /mnt/*/headstart; do
-  if [ -d "${pool_dir}" ]; then
+  case "${pool_dir}" in
+    /mnt/user/*|/mnt/user0/*|/mnt/disk[0-9]*/*|/mnt/disks/*|/mnt/remotes/*|/mnt/addons/*|/mnt/rootshare/*)
+      continue
+      ;;
+  esac
+  if [ -d "${pool_dir}/store" ] || [ -d "${pool_dir}/bin" ]; then
     echo "Removing HeadStart SSD preload directory at: ${pool_dir}"
     rm -rf "${pool_dir}"
   fi
