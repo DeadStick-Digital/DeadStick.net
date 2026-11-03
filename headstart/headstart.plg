@@ -3,41 +3,253 @@
   <!ENTITY name      "headstart">
   <!ENTITY author    "DeadStick Digital LLC">
   <!ENTITY version   "2026.11.02">
+  <!ENTITY sha256    "8c2aa8cfa97410b2eca0c2ca4fa8e9cf91eb7474270774df7467d1ff0a4a7cf1">
   <!ENTITY pluginURL "https://www.deadstick.net/headstart/headstart.plg">
-  <!ENTITY installer "https://www.deadstick.net/headstart/install.sh">
+  <!ENTITY binaryURL "https://github.com/DeadStick-Digital/DeadStick.net/releases/download/headstart-v1.0.0/headstart-linux-amd64">
 ]>
 <PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="6.12.0" support="https://www.deadstick.net/headstart/support/">
 
 <CHANGES>
 ###2026.11.02
-- Initial public release of HeadStart by DeadStick Digital LLC.
-- Bitrate-scaled 30-second head + 2 MiB tail seek index preloading on NVMe pools (including multi-drive Btrfs RAID0/RAID1 and ZFS).
-- Zero-chop 30-second NVMe-to-HDD handoff with hardware CRC32C self-healing verification.
-- Dynamic Free-Space Watchdog automatically yields NVMe space back to downloads/Mover when pool free space drops below the configured reserve.
-- Universal compatibility with Plex Media Server, Infuse, Jellyfin, and Emby via read-only FUSE + WebDAV (/dav/) + HTTP Byte-Range (/media/).
+- Verified SHA-256 binary manifest, Unraid array event hooks, and rc.headstart service lifecycle.
+- Bitrate-scaled 30-second head and 2 MiB tail seek index preloading on NVMe pools.
+- Seamless NVMe-to-HDD handoff with automatic corruption quarantine and branch inotify invalidation.
+- Dynamic Free-Space Watchdog yields NVMe space back to downloads and Mover when pool free space drops below the reserve floor.
 </CHANGES>
+
+<FILE Name="/boot/config/plugins/headstart/headstart-&version;" Mode="0755">
+<URL>&binaryURL;</URL>
+<SHA256>&sha256;</SHA256>
+</FILE>
 
 <FILE Run="/bin/bash">
 <INLINE>
+set -euo pipefail
+
 echo "=================================================================="
-echo " Installing HeadStart (&version;) by DeadStick Digital LLC"
+echo " Installing HeadStart &version; by DeadStick Digital LLC"
 echo " https://www.deadstick.net/headstart/"
 echo "=================================================================="
-mkdir -p /boot/config/plugins/headstart /usr/local/emhttp/plugins/headstart
-curl -fsSL "&installer;" -o /boot/config/plugins/headstart/install.sh
-chmod +x /boot/config/plugins/headstart/install.sh
-/boot/config/plugins/headstart/install.sh --from-plg
+
+PLUGIN_BOOT="/boot/config/plugins/headstart"
+PLUGIN_EMHTTP="/usr/local/emhttp/plugins/headstart"
+RC_SCRIPT="${PLUGIN_EMHTTP}/rc.headstart"
+CFG_FILE="${PLUGIN_BOOT}/headstart.cfg"
+
+mkdir -p "${PLUGIN_BOOT}" "${PLUGIN_EMHTTP}/event"
+
+# Stop any running daemon cleanly before swapping the binary on upgrade
+if [ -x "${RC_SCRIPT}" ]; then
+  "${RC_SCRIPT}" stop || true
+fi
+
+install -m 0755 "${PLUGIN_BOOT}/headstart-&version;" /usr/local/bin/headstart
+
+# Detect persistent Unraid SSD/NVMe pool (never /mnt/user, /mnt/disk*, /mnt/disks, /mnt/remotes, or tmpfs)
+detect_pool() {
+  local mp base
+  while read -r _ mp _; do
+    case "$mp" in
+      /mnt/*)
+        base="${mp#/mnt/}"
+        case "$base" in
+          */*|user|user0|disk[0-9]*|disks|remotes|addons|rootshare) continue ;;
+          *)
+            echo "$mp"
+            return 0
+            ;;
+        esac
+        ;;
+    esac
+  done &lt; /proc/mounts
+  return 1
+}
+
+if [ ! -f "${CFG_FILE}" ]; then
+  POOL_PATH="$(detect_pool || true)"
+  MEDIA_PATH="/mnt/user/data/media"
+  for cand in /mnt/user/data/media /mnt/user/media /mnt/user/Media; do
+    if [ -d "$cand" ]; then
+      MEDIA_PATH="$cand"
+      break
+    fi
+  done
+  cat &gt; "${CFG_FILE}" &lt;&lt;EOF
+SSD_STORE="${POOL_PATH:+${POOL_PATH}/headstart/store}"
+MEDIA_ROOT="${MEDIA_PATH}"
+FUSE_MOUNT="/mnt/disks/headstart_media"
+LISTEN_ADDR="127.0.0.1:8999"
+MIN_FREE_GIB="500"
+PLEX_CONTAINER="Plex-Media-Server"
+CONTAINER_MOUNT="/data/headstart"
+EOF
+fi
+
+cat &gt; "${RC_SCRIPT}" &lt;&lt;'RCEOF'
+#!/usr/bin/env bash
+set -euo pipefail
+
+CFG_FILE="/boot/config/plugins/headstart/headstart.cfg"
+PID_FILE="/var/run/headstart.pid"
+LOG_FILE="/var/log/headstart.log"
+
+if [ -f "${CFG_FILE}" ]; then
+  # shellcheck disable=SC1090
+  source "${CFG_FILE}"
+fi
+
+SSD_STORE="${SSD_STORE:-}"
+MEDIA_ROOT="${MEDIA_ROOT:-/mnt/user/data/media}"
+FUSE_MOUNT="${FUSE_MOUNT:-/mnt/disks/headstart_media}"
+LISTEN_ADDR="${LISTEN_ADDR:-127.0.0.1:8999}"
+MIN_FREE_GIB="${MIN_FREE_GIB:-500}"
+PLEX_CONTAINER="${PLEX_CONTAINER:-}"
+CONTAINER_MOUNT="${CONTAINER_MOUNT:-/data/headstart}"
+
+detach_container_mounts() {
+  local pid mp fstype src
+  if [ -n "${PLEX_CONTAINER}" ] &amp;&amp; command -v docker &gt;/dev/null 2&gt;&amp;1; then
+    pid="$(docker inspect -f '{{.State.Pid}}' "${PLEX_CONTAINER}" 2&gt;/dev/null || true)"
+    if [ -n "${pid}" ] &amp;&amp; [ "${pid}" -gt 0 ] &amp;&amp; [ -r "/proc/${pid}/mounts" ]; then
+      while read -r src mp fstype _; do
+        if [ "${mp}" = "${CONTAINER_MOUNT}" ] &amp;&amp; { [ "${fstype}" = "fuse.headstart" ] || [ "${src}" = "headstart" ]; }; then
+          nsenter -t "${pid}" -m -- umount -l "${CONTAINER_MOUNT}" 2&gt;/dev/null || true
+        fi
+      done &lt; "/proc/${pid}/mounts"
+    fi
+  fi
+}
+
+unmount_host_fuse() {
+  if [ -n "${FUSE_MOUNT}" ] &amp;&amp; grep -qs " ${FUSE_MOUNT} fuse.headstart " /proc/mounts; then
+    fusermount3 -u "${FUSE_MOUNT}" 2&gt;/dev/null || umount -l "${FUSE_MOUNT}" 2&gt;/dev/null || true
+  fi
+}
+
+start_headstart() {
+  if [ -f "${PID_FILE}" ] &amp;&amp; kill -0 "$(cat "${PID_FILE}")" 2&gt;/dev/null; then
+    echo "HeadStart is already running (PID $(cat "${PID_FILE}"))."
+    return 0
+  fi
+  if [ -z "${SSD_STORE}" ]; then
+    echo "HeadStart: no Unraid cache/NVMe pool configured in ${CFG_FILE}; skipping start." &gt;&amp;2
+    return 1
+  fi
+  case "${SSD_STORE}" in
+    /var/lib/*|/tmp/*|/run/*)
+      echo "HeadStart: refusing to place SSD store on tmpfs (${SSD_STORE})." &gt;&amp;2
+      return 1
+      ;;
+  esac
+  if [ ! -d "${MEDIA_ROOT}" ]; then
+    echo "HeadStart: media root ${MEDIA_ROOT} is not mounted yet." &gt;&amp;2
+    return 1
+  fi
+  mkdir -p "${SSD_STORE}" "${FUSE_MOUNT}"
+  nohup /usr/local/bin/headstart serve \
+    -media="${MEDIA_ROOT}" \
+    -ssd="${SSD_STORE}" \
+    -mount="${FUSE_MOUNT}" \
+    -listen="${LISTEN_ADDR}" \
+    -min-free-gib="${MIN_FREE_GIB}" &gt;&gt;"${LOG_FILE}" 2&gt;&amp;1 &amp;
+  echo $! &gt; "${PID_FILE}"
+  echo "HeadStart started (PID $(cat "${PID_FILE}"))."
+}
+
+stop_headstart() {
+  detach_container_mounts
+  if [ -f "${PID_FILE}" ]; then
+    local pid
+    pid="$(cat "${PID_FILE}")"
+    if kill -0 "${pid}" 2&gt;/dev/null; then
+      kill -TERM "${pid}" 2&gt;/dev/null || true
+      local i
+      for i in 1 2 3 4 5 6 7 8 9 10; do
+        if ! kill -0 "${pid}" 2&gt;/dev/null; then
+          break
+        fi
+        sleep 1
+      done
+    fi
+    rm -f "${PID_FILE}"
+  fi
+  unmount_host_fuse
+  echo "HeadStart stopped."
+}
+
+status_headstart() {
+  if [ -f "${PID_FILE}" ] &amp;&amp; kill -0 "$(cat "${PID_FILE}")" 2&gt;/dev/null; then
+    echo "HeadStart is running (PID $(cat "${PID_FILE}"))."
+  else
+    echo "HeadStart is stopped."
+    return 1
+  fi
+}
+
+case "${1:-status}" in
+  start)   start_headstart ;;
+  stop)    stop_headstart ;;
+  restart) stop_headstart; start_headstart ;;
+  status)  status_headstart ;;
+  *)
+    echo "Usage: $0 {start|stop|restart|status}" &gt;&amp;2
+    exit 2
+    ;;
+esac
+RCEOF
+chmod 0755 "${RC_SCRIPT}"
+
+cat &gt; "${PLUGIN_EMHTTP}/event/started" &lt;&lt;'EVSTART'
+#!/usr/bin/env bash
+/usr/local/emhttp/plugins/headstart/rc.headstart start || true
+EVSTART
+chmod 0755 "${PLUGIN_EMHTTP}/event/started"
+
+cat &gt; "${PLUGIN_EMHTTP}/event/stopping_svcs" &lt;&lt;'EVSTOP'
+#!/usr/bin/env bash
+/usr/local/emhttp/plugins/headstart/rc.headstart stop || true
+EVSTOP
+chmod 0755 "${PLUGIN_EMHTTP}/event/stopping_svcs"
+
+if mountpoint -q /mnt/user 2&gt;/dev/null; then
+  "${RC_SCRIPT}" start || true
+fi
 </INLINE>
 </FILE>
 
 <FILE Run="/bin/bash" Method="remove">
 <INLINE>
+set -euo pipefail
+
 echo "Removing HeadStart..."
-if [ -x /mnt/general_cache/headstart/bin/unraid-pilot.sh ]; then
-  /mnt/general_cache/headstart/bin/unraid-pilot.sh stop || true
-elif [ -x /mnt/cache/headstart/bin/unraid-pilot.sh ]; then
-  /mnt/cache/headstart/bin/unraid-pilot.sh stop || true
+CFG_FILE="/boot/config/plugins/headstart/headstart.cfg"
+SSD_STORE=""
+if [ -f "${CFG_FILE}" ]; then
+  # shellcheck disable=SC1090
+  source "${CFG_FILE}"
 fi
+
+if [ -x /usr/local/emhttp/plugins/headstart/rc.headstart ]; then
+  /usr/local/emhttp/plugins/headstart/rc.headstart stop || true
+fi
+
+if [ -n "${SSD_STORE}" ] &amp;&amp; [ -d "${SSD_STORE}" ]; then
+  PARENT_DIR="$(dirname "${SSD_STORE}")"
+  echo "Removing HeadStart SSD preload cache at: ${SSD_STORE}"
+  rm -rf "${SSD_STORE}"
+  if [ "$(basename "${PARENT_DIR}")" = "headstart" ]; then
+    rmdir "${PARENT_DIR}" 2&gt;/dev/null || true
+  fi
+fi
+
+for pool_dir in /mnt/*/headstart; do
+  if [ -d "${pool_dir}" ]; then
+    echo "Removing HeadStart SSD preload directory at: ${pool_dir}"
+    rm -rf "${pool_dir}"
+  fi
+done
+
+rm -f /usr/local/bin/headstart
 rm -rf /usr/local/emhttp/plugins/headstart /boot/config/plugins/headstart
 echo "HeadStart removed cleanly. Original media shares and Plex libraries are untouched."
 </INLINE>
