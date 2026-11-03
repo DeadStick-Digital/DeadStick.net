@@ -44,6 +44,7 @@ body::before, body::after { content: none; }
 .app-card.is-holos-document-vault { --card-outline: #77a9d8; }
 .app-card.is-holos-drive-vault { --card-outline: #9cb58d; }
 .app-card.is-deadstick-dash { --card-accent: #86263b; --card-outline: #c68694; }
+.app-card.is-headstart { --card-accent: #0f766e; --card-outline: #58b4ab; }
 .app-card.is-deadstick-utilities { --card-outline: #98a9be; }
 
 .app-card,

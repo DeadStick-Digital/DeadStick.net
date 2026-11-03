@@ -1,0 +1,46 @@
+<?xml version='1.0' standalone='yes'?>
+<!DOCTYPE PLUGIN [
+  <!ENTITY name      "headstart">
+  <!ENTITY author    "DeadStick Digital LLC">
+  <!ENTITY version   "2026.11.02">
+  <!ENTITY pluginURL "https://www.deadstick.net/headstart/headstart.plg">
+  <!ENTITY installer "https://www.deadstick.net/headstart/install.sh">
+]>
+<PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="6.12.0" support="https://www.deadstick.net/headstart/support/">
+
+<CHANGES>
+###2026.11.02
+- Initial public release of HeadStart by DeadStick Digital LLC.
+- Bitrate-scaled 30-second head + 2 MiB tail seek index preloading on NVMe pools (including multi-drive Btrfs RAID0/RAID1 and ZFS).
+- Zero-chop 30-second NVMe-to-HDD handoff with hardware CRC32C self-healing verification.
+- Dynamic Free-Space Watchdog automatically yields NVMe space back to downloads/Mover when pool free space drops below the configured reserve.
+- Universal compatibility with Plex Media Server, Infuse, Jellyfin, and Emby via read-only FUSE + WebDAV (/dav/) + HTTP Byte-Range (/media/).
+</CHANGES>
+
+<FILE Run="/bin/bash">
+<INLINE>
+echo "=================================================================="
+echo " Installing HeadStart (&version;) by DeadStick Digital LLC"
+echo " https://www.deadstick.net/headstart/"
+echo "=================================================================="
+mkdir -p /boot/config/plugins/headstart /usr/local/emhttp/plugins/headstart
+curl -fsSL "&installer;" -o /boot/config/plugins/headstart/install.sh
+chmod +x /boot/config/plugins/headstart/install.sh
+/boot/config/plugins/headstart/install.sh --from-plg
+</INLINE>
+</FILE>
+
+<FILE Run="/bin/bash" Method="remove">
+<INLINE>
+echo "Removing HeadStart..."
+if [ -x /mnt/general_cache/headstart/bin/unraid-pilot.sh ]; then
+  /mnt/general_cache/headstart/bin/unraid-pilot.sh stop || true
+elif [ -x /mnt/cache/headstart/bin/unraid-pilot.sh ]; then
+  /mnt/cache/headstart/bin/unraid-pilot.sh stop || true
+fi
+rm -rf /usr/local/emhttp/plugins/headstart /boot/config/plugins/headstart
+echo "HeadStart removed cleanly. Original media shares and Plex libraries are untouched."
+</INLINE>
+</FILE>
+
+</PLUGIN>

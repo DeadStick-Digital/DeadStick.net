@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#ebecee"><meta name="description" content="Setup, Unraid plugin installation, Pilot vs. Production mode, and troubleshooting for HeadStart by DeadStick Digital."><title>HeadStart Support — DeadStick Digital</title><link rel="icon" href="/icons/headstart.png"><link rel="stylesheet" href="/styles.css?v=20261027-doc-spacing"><link rel="stylesheet" href="/dash/dash.css?v=20261027-polish"><link rel="stylesheet" href="/site-light.css?v=20261027-solid-surfaces"><link rel="stylesheet" href="/dash/support/support.css?v=20261027-spacing"></head><body><header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/index.html" aria-label="DeadStick Digital LLC — home">
+      <span class="brand-lockup">
+        <span class="brand-top">
+          <img class="brand-wordmark" src="/assets/logo-wordmark-deadstick-silver.png" alt="DeadStick" width="172" height="22">
+          <span class="brand-sub">Digital <span class="brand-suffix">LLC</span></span>
+        </span>
+        <span class="brand-sub brand-tagline">Engineered for edge cases</span>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/index.html#apps">Apps</a>
+      <a href="/index.html#company">Company</a>
+      <a href="/support.html">Support</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+    </nav>
+    <a class="nav-cta" href="/index.html#contact">Contact</a>
+  </div>
+</header>
+
+<main><div class="wrap dash-section dash-doc dash-support">
+<header class="support-intro"><div class="eyebrow">HeadStart support</div><h1>Instant playback, zero risk.</h1><p class="dash-date">Updated November 2, 2026</p>
+<p>HeadStart is a 100% free NVMe SSD preloader for Unraid, Linux, Windows, and macOS media servers running Plex, Infuse, Jellyfin, or Emby.</p>
+</header>
+<div class="support-layout">
+<aside class="support-sidebar">
+<nav aria-label="On this page"><h2>On this page</h2>
+<a href="#getting-started">Getting started</a>
+<a href="#questions">Common questions</a>
+<a href="#contact">Contact support</a>
+<a href="#privacy">Privacy</a>
+<a href="#developer">Developer contact</a>
+</nav>
+<a class="support-back" href="/headstart/">Back to HeadStart</a>
+</aside>
+<div class="support-content">
+<section class="support-section" id="getting-started" aria-labelledby="getting-started-title">
+<h2 id="getting-started-title">Getting started on Unraid &amp; Linux</h2>
+<ol>
+<li><strong>Unraid WebGUI Plugin:</strong> Open your Unraid WebGUI → <strong>Plugins → Install Plugin</strong>, paste <code>https://www.deadstick.net/headstart/headstart.plg</code>, and click <strong>Install</strong>.</li>
+<li><strong>Or 1-Line Terminal Install:</strong> Run <code>curl -fsSL https://www.deadstick.net/headstart/install.sh | sudo bash</code> over SSH.</li>
+<li><strong>Open the Live Cockpit:</strong> Visit <code>http://&lt;your-server-ip&gt;:8999</code> to view live NVMe `.pchunk` usage, tier breakdown (Tier 1 On-Deck/Recent → Tier 2 Movies → Tier 3 TV Season Premieres → Tier 4 Remaining TV), and free-space reserve status.</li>
+</ol>
+</section>
+<section class="support-section" id="questions" aria-labelledby="questions-title">
+<h2 id="questions-title">Common questions</h2>
+<details open><summary>Can HeadStart damage or modify my original media files?</summary><p>No. HeadStart opens your array disks and Plex SQLite database in strict read-only mode and mounts its virtual filesystem read-only (`ro`). Your original `/mnt/user` files are never modified, moved, or renamed.</p></details>
+<details><summary>What happens when SABnzbd, qBittorrent, or Mover needs space on my NVMe pool?</summary><p>HeadStart includes a 10-second Free-Space Watchdog (`-min-free-gib=500` by default). If downloads push free space on your NVMe pool below 500 GiB, HeadStart automatically deletes its lowest-priority TV `.pchunk` cache files to return space immediately, then re-harvests them after Unraid Mover frees up your cache pool.</p></details>
+<details><summary>How do I completely uninstall HeadStart and revert to normal?</summary><p>Remove the plugin from Unraid's <strong>Plugins</strong> tab or run <code>unraid-pilot.sh nuke</code>. The FUSE overlay detaches immediately without restarting Plex, revealing your original `/data` bind mount underneath.</p></details>
+</section>
+<section class="support-section" id="contact" aria-labelledby="contact-title">
+<h2 id="contact-title">Contact us</h2>
+<p>Email <a href="mailto:contact@deadstick.net?subject=HeadStart%20support">contact@deadstick.net</a> or use our <a href="/index.html#contact">contact form</a>.</p>
+</section>
+<section class="support-section" id="privacy" aria-labelledby="privacy-title">
+<h2 id="privacy-title">Privacy</h2>
+<p>Read the <a href="/headstart/privacy/">HeadStart privacy policy</a>. HeadStart runs 100% locally on your server with zero external network connections or telemetry.</p>
+</section>
+<section class="support-section" id="developer" aria-labelledby="developer-title">
+<h2 id="developer-title">Developer contact</h2>
+<p><strong>DeadStick Digital LLC</strong><br>c/o Republic Registered Agent LLC<br>5830 E 2nd St, Ste 7000<br>Casper, WY 82609<br>United States</p>
+</section>
+</div></div></div></main><footer><div class="wrap"><div class="footer-bottom" style="border:0"><div>© 2026 DeadStick Digital LLC · All rights reserved.</div><div><a href="/headstart/">HeadStart</a> · <a href="/headstart/support/">Support</a> · <a href="/headstart/privacy/">Privacy</a> · <a href="/terms.html">Terms</a></div></div></div></footer></body></html>
