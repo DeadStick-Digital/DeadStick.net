@@ -3,7 +3,7 @@
   <!ENTITY name      "headstart">
   <!ENTITY author    "DeadStick Digital LLC">
   <!ENTITY version   "2026.11.03">
-  <!ENTITY sha256    "5ad77e9ad8b0ff7b957b823ce9ea22d5c378d1a8d41b56788d532af9da7cb0b8">
+  <!ENTITY sha256    "f09d7074a6191103177a20e8e095a82994cb245d919e6a112930f168856536a6">
   <!ENTITY pluginURL "https://www.deadstick.net/headstart/headstart.plg">
   <!ENTITY binaryURL "https://github.com/DeadStick-Digital/DeadStick.net/releases/download/headstart-v1.1.0/headstart-linux-amd64">
 ]>
@@ -185,8 +185,8 @@ supervise() {
     -listen="${LISTEN_ADDR}" \
     -min-free-gib="${MIN_FREE_GIB}" &amp;
   local child=$!
-  trap 'kill -TERM "${child}" 2&gt;/dev/null' TERM HUP
-  local fails=0 healthy_once=0 ok status=0 rc sleeper health
+  local fails=0 healthy_once=0 ok status=0 rc sleeper health stopping=0
+  trap 'stopping=1; kill -TERM "${child}" 2&gt;/dev/null; [ -n "${sleeper:-}" ] &amp;&amp; kill "${sleeper}" 2&gt;/dev/null' TERM HUP INT
   local health_url="http://${LISTEN_ADDR/0.0.0.0/127.0.0.1}/healthz"
   while :; do
     sleep 30 &amp;
@@ -195,6 +195,11 @@ supervise() {
     wait -n 2&gt;/dev/null
     rc=$?
     kill "${sleeper}" 2&gt;/dev/null
+    if [ "${stopping}" -eq 1 ]; then
+      wait "${child}" 2&gt;/dev/null
+      status=$?
+      break
+    fi
     if ! kill -0 "${child}" 2&gt;/dev/null; then
       status=${rc}
       break
