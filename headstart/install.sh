@@ -8,7 +8,7 @@ set -euo pipefail
 VERSION="2026.11.02"
 RELEASE_TAG="v1.0.0"
 RELEASE_BASE="https://github.com/DeadStick-Digital/DeadStick.net/releases/download/headstart-${RELEASE_TAG}"
-SHA256_AMD64="a56c37759fb3dc7936e87aa5a1b7006b923a3e3373fe702dfe09c8672433689b"
+SHA256_AMD64="f0ecc8acd02510c71fb66c14c47e445de346916033ccb1a7df5de98080c83432"
 SHA256_ARM64="b07e94facae970661a36a41c683542150f7adcf8a1846eb4969f3fb840cb2183"
 
 echo "=================================================================="
