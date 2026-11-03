@@ -22,8 +22,8 @@
 </header>
 
 <main><div class="wrap dash-section dash-doc dash-support">
-<header class="support-intro"><div class="eyebrow">HeadStart support</div><h1>Instant playback, zero risk.</h1><p class="dash-date">Updated November 2, 2026</p>
-<p>HeadStart is a 100% free NVMe SSD preloader for Unraid and Linux media servers running Plex, Infuse, Jellyfin, or Emby, with built-in WebDAV and HTTP streaming for Windows, macOS, and Apple TV clients.</p>
+<header class="support-intro"><div class="eyebrow">HeadStart support</div><h1>Instant playback, zero risk.</h1><p class="dash-date">Updated November 3, 2026</p>
+<p>HeadStart is a 100% free NVMe SSD preloader for Unraid and Linux media servers running Plex, Jellyfin, or Emby (any client, including Infuse), with built-in WebDAV and HTTP streaming for Windows, macOS, and Apple TV clients.</p>
 </header>
 <div class="support-layout">
 <aside class="support-sidebar">
@@ -42,14 +42,18 @@
 <ol>
 <li><strong>Unraid WebGUI Plugin:</strong> Open your Unraid WebGUI → <strong>Plugins → Install Plugin</strong>, paste <code>https://www.deadstick.net/headstart/headstart.plg</code>, and click <strong>Install</strong>.</li>
 <li><strong>Or 1-Line Terminal Install:</strong> On Unraid run <code>curl -fsSL https://www.deadstick.net/headstart/install.sh | bash</code> over SSH, or on Ubuntu and Debian run <code>curl -fsSL https://www.deadstick.net/headstart/install.sh | sudo bash</code>.</li>
-<li><strong>Open the Live Dashboard:</strong> Visit port <code>8999</code> on your server IP to view live NVMe preload progress and free-space reserve status.</li>
+<li><strong>First start:</strong> HeadStart builds a one-time catalog of every folder on every drive (this wakes each drive once), then attaches to your media server. Until the catalog is complete your server keeps using its normal media path.</li>
+<li><strong>Jellyfin or Emby:</strong> edit <code>/boot/config/plugins/headstart/headstart.cfg</code> on Unraid and set <code>PLEX_CONTAINER</code> to your server's container name, then restart HeadStart from the plugin or with <code>/usr/local/emhttp/plugins/headstart/rc.headstart restart</code>.</li>
+<li><strong>Open the Live Dashboard:</strong> the dashboard listens only on the server itself (<code>127.0.0.1:8999</code>) and requires the access token stored in <code>token</code> inside your HeadStart store. From another computer, use an SSH tunnel: <code>ssh -L 8999:127.0.0.1:8999 root@your-server</code>, then open <code>http://localhost:8999/?token=&lt;token&gt;</code>.</li>
 </ol>
 </section>
 <section class="support-section" id="questions" aria-labelledby="questions-title">
 <h2 id="questions-title">Common questions</h2>
 <details open><summary>Can HeadStart damage or modify my original media files?</summary><p>No. HeadStart is strictly read-only. Your original media files are never modified, moved, or renamed.</p></details>
 <details><summary>What happens when downloads or Mover need space on my NVMe drive?</summary><p>HeadStart continuously monitors your NVMe free space. If downloads reduce free space below your configured reserve, HeadStart automatically removes lowest-priority preload data so your downloads have room immediately, then rebuilds the preload cache once space is free again.</p></details>
-<details><summary>How do I completely uninstall HeadStart and revert to normal?</summary><p>Remove the plugin from Unraid's <strong>Plugins</strong> tab. HeadStart detaches cleanly without restarting Plex, leaving your original media mount untouched.</p></details>
+<details><summary>How do I completely uninstall HeadStart and revert to normal?</summary><p>On Unraid, remove the plugin from the <strong>Plugins</strong> tab. On Linux, run <code>curl -fsSL https://www.deadstick.net/headstart/install.sh | sudo bash -s -- --uninstall</code>. Either way HeadStart detaches without restarting your media server, deletes only its own preload store, and leaves your original media mount untouched.</p></details>
+<details><summary>What happens if HeadStart crashes or stops responding?</summary><p>A supervisor detaches HeadStart from your media server's container the moment the daemon exits, and stops it after three failed health checks, so your server immediately falls back to its normal media path.</p></details>
+<details><summary>Are there any Plex features that don't work with HeadStart?</summary><p>HeadStart's view of your library is read-only, so Plex DVR recordings, “Optimize” versions, and “Allow media deletion” cannot write into folders that HeadStart serves.</p></details>
 </section>
 <section class="support-section" id="contact" aria-labelledby="contact-title">
 <h2 id="contact-title">Contact us</h2>

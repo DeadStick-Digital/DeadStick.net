@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ebecee">
-  <meta name="description" content="HeadStart by DeadStick Digital: free NVMe SSD preloader plugin for Unraid, Plex, Infuse, Jellyfin, and Emby. Start 4K Remuxes off sleeping hard drives in 0.3 seconds with zero chop.">
+  <meta name="description" content="HeadStart by DeadStick Digital: free NVMe SSD preloader plugin for Unraid and Linux media servers running Plex, Jellyfin, or Emby. Start 4K Remuxes off sleeping hard drives without waiting for spin-up.">
   <title>HeadStart — Instant NVMe Preloader for Plex &amp; Unraid · DeadStick Digital</title>
   <link rel="canonical" href="https://www.deadstick.net/headstart/">
   <link rel="icon" href="/icons/headstart.png">
@@ -42,7 +42,7 @@
     <div>
       <div class="eyebrow">HeadStart · 100% Free Plugin for Unraid &amp; Linux Media Servers</div>
       <h1>Cold hard drives.<br>Instant 4K playback.</h1>
-      <p>Keep your media array spun down, quiet, and cool — without waiting 12 seconds every time someone hits Play. <strong>HeadStart</strong> preloads the opening seconds of every movie and episode onto your NVMe drive, starts playback in <strong>0.3 seconds</strong>, wakes the sleeping hard drive in the background, and hands off the stream seamlessly without dropping a single frame.</p>
+      <p>Keep your media array spun down, quiet, and cool — without waiting 12 seconds every time someone hits Play. <strong>HeadStart</strong> preloads the opening seconds of every movie and episode onto your NVMe drive, starts playback in <strong>about 0.3 seconds</strong> instead of waiting for spin-up, wakes the sleeping hard drive in the background, and hands off the stream seamlessly.</p>
 
       <div class="hs-install-box" id="install">
         <span class="hs-install-label">Option 1 · Unraid WebGUI Plugin URL — Plugins → Install Plugin</span>
@@ -70,11 +70,11 @@
         <a class="btn" href="#deadstick-lineup">More from DeadStick →</a>
       </div>
 
-      <p class="dash-assent" style="margin-top:14px;">Version 1.0.0 · 100% Free · Zero Telemetry · Strictly Read-Only. By downloading or installing, you agree to the <a href="/terms.html#apps-headstart">Terms of Service</a> and <a href="/headstart/privacy/">Privacy Policy</a>.</p>
+      <p class="dash-assent" style="margin-top:14px;">Version 1.1.0 (plugin 2026.11.03) · 100% Free · Zero Telemetry · Strictly Read-Only. By downloading or installing, you agree to the <a href="/terms.html#apps-headstart">Terms of Service</a> and <a href="/headstart/privacy/">Privacy Policy</a>.</p>
 
       <div class="hs-facts">
-        <span>0.30s Cold-Drive Start</span>
-        <span>Works with Plex, Infuse, Jellyfin &amp; Emby</span>
+        <span>~0.3s Cold-Drive Start</span>
+        <span>Plex (automatic) · Jellyfin &amp; Emby (filesystem scan)</span>
         <span>Auto-Yields NVMe Space for Downloads</span>
         <span>100% Free · No Account or Cloud</span>
       </div>
@@ -90,16 +90,16 @@
 
     <div class="hs-metric-row">
       <div class="hs-metric">
-        <strong>0.30s</strong>
-        <span>Cold-drive 4K Remux startup from a sleeping hard drive</span>
+        <strong>~0.3s</strong>
+        <span>Cold-drive 4K Remux startup from a sleeping hard drive (measured with HeadStart's sleeping-drive simulator)</span>
       </div>
       <div class="hs-metric">
-        <strong>0 Frames</strong>
-        <span>Dropped during the NVMe-to-hard-drive handoff</span>
+        <strong>Bit-identical</strong>
+        <span>NVMe-to-hard-drive handoff, verified by SHA-256 in our automated tests</span>
       </div>
       <div class="hs-metric">
         <strong>0 Spin-Ups</strong>
-        <span>During most library browsing, poster checks, and preloaded metadata lookups</span>
+        <span>For library browsing and folder lookups once the one-time directory catalog is built</span>
       </div>
       <div class="hs-metric">
         <strong>1.91 TiB</strong>
@@ -115,11 +115,11 @@
     <div class="hs-grid-3">
       <article class="hs-card">
         <h3>1. Smart Bitrate-Aware Preloading</h3>
-        <p>Instead of using a one-size-fits-all cache size that under-buffers high-bitrate 4K Remuxes and wastes SSD space on smaller episodes, HeadStart automatically sizes each preload to match the video's true bitrate alongside its subtitles.</p>
+        <p>Instead of using a one-size-fits-all cache size that under-buffers high-bitrate 4K Remuxes and wastes SSD space on smaller episodes, HeadStart sizes each preload to the video's true bitrate (from Plex's library database) alongside its subtitles. Without a Plex database it uses a fixed-size preload.</p>
       </article>
       <article class="hs-card">
         <h3>2. Seamless Drive Handoff</h3>
-        <p>Most library browsing and preloaded file metadata checks are served directly from NVMe without waking sleeping drives. Only when someone actually presses Play does HeadStart wake that single target drive in the background and smoothly hand off the stream once it is up to speed.</p>
+        <p>HeadStart keeps a complete catalog of every folder on every drive, so library browsing never wakes a sleeping drive and never hides a file that has not been preloaded yet. Only when someone actually presses Play does HeadStart wake that single target drive in the background and hand off the stream once it is up to speed.</p>
       </article>
       <article class="hs-card">
         <h3>3. Automatic Free-Space Watchdog</h3>
@@ -130,12 +130,12 @@
         <p>HeadStart prioritizes your newest movies and active TV shows first and harvests across a few drives at a time so the rest of your array stays spun down, quiet, and cool.</p>
       </article>
       <article class="hs-card">
-        <h3>5. Universal Client Support</h3>
-        <p>Every media app connected to your server — <strong>Plex, Infuse, Jellyfin, Emby, VLC, and IINA</strong> — gets instant cold-drive playback automatically with zero client configuration.</p>
+        <h3>5. Works With Your Media Server</h3>
+        <p><strong>Plex</strong> is detected automatically. For <strong>Jellyfin</strong> or <strong>Emby</strong>, set your server's container name in the plugin settings and HeadStart builds its preload plan from a filesystem scan. Every client of that server — including <strong>Infuse</strong> — benefits with zero client configuration.</p>
       </article>
       <article class="hs-card">
         <h3>6. Non-Destructive &amp; 1-Click Removable</h3>
-        <p>HeadStart is strictly read-only and never modifies, moves, or renames a single file on your media array. Stopping or removing the plugin immediately returns your server to its standard setup without restarting Plex.</p>
+        <p>HeadStart is strictly read-only and never modifies, moves, or renames a single file on your media array. Stopping or removing the plugin — or HeadStart exiting unexpectedly — immediately returns your server to its standard setup without restarting it. Because the overlay is read-only, Plex DVR recordings, “Optimize” versions, and media deletion cannot write into folders HeadStart serves.</p>
       </article>
     </div>
   </section>
@@ -147,17 +147,17 @@
     <div class="hs-grid-2">
       <div class="hs-card">
         <h3>Unraid &amp; Linux Servers</h3>
-        <p>Supports Unraid, Ubuntu, Debian, TrueNAS SCALE, and Proxmox. Attaches to your media server automatically without restarting your container and stays connected across updates and reboots.</p>
+        <p>Supports Unraid 6.12+ and Docker-based media servers on Ubuntu and Debian. Attaches to your media server's container without restarting it, re-attaches after container updates and reboots, and detaches automatically if HeadStart ever stops.</p>
         <ul>
           <li><a href="/headstart/headstart.plg" download="headstart.plg"><strong>Unraid Plugin Manifest</strong></a> — paste URL in <em>Plugins → Install Plugin</em></li>
-          <li><a href="/headstart/install.sh" download="install.sh"><strong>Universal Linux &amp; Unraid Installer</strong></a> — automatic setup for NVMe and Plex</li>
+          <li><a href="/headstart/install.sh" download="install.sh"><strong>Universal Linux &amp; Unraid Installer</strong></a> — verified download, systemd unit with fail-safe detach, and <code>--uninstall</code></li>
         </ul>
       </div>
       <div class="hs-card">
         <h3>Windows, macOS &amp; WebDAV Streaming</h3>
-        <p>Running a Windows media server or connecting from Windows, macOS, iOS, or Apple TV? HeadStart runs natively on Windows and includes built-in read-only WebDAV and HTTP streaming endpoints alongside its live web dashboard.</p>
+        <p>Connecting from Windows, macOS, iOS, or Apple TV? HeadStart includes built-in read-only WebDAV and HTTP streaming endpoints alongside its live web dashboard. The Windows build runs the preloader with WebDAV/HTTP streaming only — it has no kernel mount, so Windows-hosted Plex, Jellyfin, or Emby libraries do not use it directly.</p>
         <ul>
-          <li><a href="https://github.com/DeadStick-Digital/DeadStick.net/releases/download/headstart-v1.0.0/headstart-windows-amd64.exe" download="headstart-windows-amd64.exe"><strong>Windows Server Binary (x64)</strong></a> — native Windows preloader, WebDAV mount &amp; dashboard</li>
+          <li><a href="https://github.com/DeadStick-Digital/DeadStick.net/releases/download/headstart-v1.1.0/headstart-windows-amd64.exe" download="headstart-windows-amd64.exe"><strong>Windows Binary (x64)</strong></a> — preloader with WebDAV &amp; HTTP streaming and dashboard</li>
           <li><strong>Windows &amp; macOS Clients:</strong> Browse or stream over WebDAV and HTTP in Finder, Explorer, VLC, or IINA.</li>
           <li><strong>Infuse &amp; Direct Players:</strong> Point Infuse or any HTTP byte-range player at your server's WebDAV or media stream address.</li>
         </ul>
@@ -262,7 +262,7 @@
       <div><a href="/headstart/">HeadStart</a> · <a href="/headstart/support/">Support</a> · <a href="/headstart/privacy/">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/index.html">All DeadStick Apps</a></div>
     </div>
     <div class="footer-bottom" style="border:0;padding-top:12px;">
-      <div class="legal-note">Plex is a trademark of Plex, Inc. Unraid is a trademark of Lime Technology, Inc. Infuse is a trademark of Firecore, LLC. DeadStick Digital LLC is an independent software studio and is not affiliated with or endorsed by Plex, Inc., Lime Technology, Inc., or Firecore, LLC.</div>
+      <div class="legal-note">Plex is a trademark of Plex, Inc. Unraid is a trademark of Lime Technology, Inc. Infuse is a trademark of Firecore, LLC. Emby is a trademark of Emby LLC. Jellyfin is a trademark of its respective owners. DeadStick Digital LLC is an independent software studio and is not affiliated with or endorsed by Plex, Inc., Lime Technology, Inc., Firecore, LLC, Emby LLC, or the Jellyfin project.</div>
     </div>
   </div>
 </footer>

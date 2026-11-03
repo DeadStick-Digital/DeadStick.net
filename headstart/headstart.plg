@@ -2,14 +2,23 @@
 <!DOCTYPE PLUGIN [
   <!ENTITY name      "headstart">
   <!ENTITY author    "DeadStick Digital LLC">
-  <!ENTITY version   "2026.11.02">
-  <!ENTITY sha256    "921fed5dfb8d467b5f3db57e909e3395396d68ffe4c73afd6f642e34b3ddcca3">
+  <!ENTITY version   "2026.11.03">
+  <!ENTITY sha256    "c9430aa8f545221bfdc29cf4e1c43da974ae5c09173357543642a6a9fea4d33c">
   <!ENTITY pluginURL "https://www.deadstick.net/headstart/headstart.plg">
-  <!ENTITY binaryURL "https://github.com/DeadStick-Digital/DeadStick.net/releases/download/headstart-v1.0.0/headstart-linux-amd64">
+  <!ENTITY binaryURL "https://github.com/DeadStick-Digital/DeadStick.net/releases/download/headstart-v1.1.0/headstart-linux-amd64">
 ]>
 <PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="6.12.0" support="https://www.deadstick.net/headstart/support/">
 
 <CHANGES>
+###2026.11.03
+- Authoritative per-disk directory catalog: media servers always see complete folder listings (uncached media is never hidden), and lookups for sleeping disks are answered from RAM.
+- The media server is attached only after the catalog is complete; trashed Plex items and music/photo libraries are no longer probed or preloaded.
+- Unraid pools are scanned as branches; harvests and playback open files on the exact disk that holds them.
+- Mover/unBALANCE relocations no longer interrupt playback (content-verified identity update).
+- Fail-safe supervisor with health checks detaches every HeadStart layer inside the container on crash or hang, whatever path it was attached at.
+- Jellyfin/Emby: filesystem-scan preload plan when no Plex database is found (set PLEX_CONTAINER in headstart.cfg).
+- Uninstall only removes directories verified to be HeadStart stores; unsafe SSD_STORE locations are refused.
+
 ###2026.11.02
 - Verified SHA-256 binary manifest, Unraid array event hooks, and rc.headstart service lifecycle.
 - Bitrate-scaled 30-second head and 2 MiB tail seek index preloading on NVMe pools.
@@ -44,6 +53,8 @@ if [ -x "${RC_SCRIPT}" ]; then
 fi
 
 install -m 0755 "${PLUGIN_BOOT}/headstart-&version;" /usr/local/bin/headstart
+# Remove binaries from previous plugin versions on the flash drive.
+find "${PLUGIN_BOOT}" -maxdepth 1 -type f -name 'headstart-20*' ! -name "headstart-&version;" -delete 2&gt;/dev/null || true
 
 # Detect persistent Unraid SSD/NVMe pool (never /mnt/user, /mnt/disk*, /mnt/disks, /mnt/remotes, or tmpfs)
 detect_pool() {
@@ -74,15 +85,18 @@ if [ ! -f "${CFG_FILE}" ]; then
       break
     fi
   done
-  cat &gt; "${CFG_FILE}" &lt;&lt;EOF
+  cat &gt; "${CFG_FILE}" &lt;&lt;CFGEOF
 SSD_STORE="${POOL_PATH:+${POOL_PATH}/headstart/store}"
 MEDIA_ROOT="${MEDIA_PATH}"
 FUSE_MOUNT="/mnt/disks/headstart_media"
 LISTEN_ADDR="127.0.0.1:8999"
 MIN_FREE_GIB="500"
+# Docker container of your media server (Plex, Jellyfin or Emby). HeadStart overlays its media path.
 PLEX_CONTAINER="Plex-Media-Server"
 CONTAINER_MOUNT="/data"
-EOF
+# Optional explicit Plex database path; auto-discovered from the container's /config mount when empty.
+PLEX_DB=""
+CFGEOF
 fi
 
 cat &gt; "${RC_SCRIPT}" &lt;&lt;'RCEOF'
@@ -92,6 +106,7 @@ set -euo pipefail
 CFG_FILE="/boot/config/plugins/headstart/headstart.cfg"
 PID_FILE="/var/run/headstart.pid"
 LOG_FILE="/var/log/headstart.log"
+BIN="/usr/local/bin/headstart"
 
 if [ -f "${CFG_FILE}" ]; then
   # shellcheck disable=SC1090
@@ -107,24 +122,105 @@ PLEX_CONTAINER="${PLEX_CONTAINER:-Plex-Media-Server}"
 CONTAINER_MOUNT="${CONTAINER_MOUNT:-/data}"
 PLEX_DB="${PLEX_DB:-}"
 
+# Detach EVERY HeadStart FUSE layer inside the media container, whatever path it was attached at.
+# HeadStart auto-aligns the attach path to the container's media bind (e.g. /data/media), so a fixed
+# path check would leave a dead layer behind and the server would see "Transport endpoint is not connected".
 detach_container_mounts() {
-  local pid mp fstype src
-  if [ -n "${PLEX_CONTAINER}" ] &amp;&amp; command -v docker &gt;/dev/null 2&gt;&amp;1; then
-    pid="$(docker inspect -f '{{.State.Pid}}' "${PLEX_CONTAINER}" 2&gt;/dev/null || true)"
-    if [ -n "${pid}" ] &amp;&amp; [ "${pid}" -gt 0 ] &amp;&amp; [ -r "/proc/${pid}/mounts" ]; then
-      while read -r src mp fstype _; do
-        if [ "${mp}" = "${CONTAINER_MOUNT}" ] &amp;&amp; { [ "${fstype}" = "fuse.headstart" ] || [ "${src}" = "headstart" ]; }; then
-          nsenter -t "${pid}" -m -- umount -l "${CONTAINER_MOUNT}" 2&gt;/dev/null || true
-        fi
-      done &lt; "/proc/${pid}/mounts"
-    fi
+  local pid src mp fstype
+  if [ -z "${PLEX_CONTAINER}" ] || ! command -v docker &gt;/dev/null 2&gt;&amp;1; then
+    return 0
   fi
+  pid="$(docker inspect -f '{{.State.Pid}}' "${PLEX_CONTAINER}" 2&gt;/dev/null || true)"
+  case "${pid}" in
+    ''|0|*[!0-9]*) return 0 ;;
+  esac
+  [ -r "/proc/${pid}/mounts" ] || return 0
+  if [ -x "${BIN}" ]; then
+    "${BIN}" detach -container-pid="${pid}" 2&gt;/dev/null || true
+  fi
+  # Fallback (binary missing or failed): lazily unmount any remaining HeadStart layer, deepest first.
+  while read -r src mp fstype _; do
+    if [ "${fstype}" = "fuse.headstart" ] || [ "${src}" = "headstart" ]; then
+      printf '%s\n' "${mp}"
+    fi
+  done &lt; "/proc/${pid}/mounts" | awk '{ print length($0) "\t" $0 }' | sort -rn | cut -f2- | while IFS= read -r mp; do
+    nsenter -t "${pid}" -m -- umount -l "$(printf '%b' "${mp}")" 2&gt;/dev/null || true
+  done
 }
 
 unmount_host_fuse() {
   if [ -n "${FUSE_MOUNT}" ] &amp;&amp; grep -qs " ${FUSE_MOUNT} fuse.headstart " /proc/mounts; then
-    fusermount3 -u "${FUSE_MOUNT}" 2&gt;/dev/null || umount -l "${FUSE_MOUNT}" 2&gt;/dev/null || true
+    fusermount3 -u -z "${FUSE_MOUNT}" 2&gt;/dev/null || umount -l "${FUSE_MOUNT}" 2&gt;/dev/null || true
   fi
+}
+
+# Refuse store locations that would put chunks on the array, a share, the flash drive, or tmpfs.
+validate_store() {
+  case "${SSD_STORE}" in
+    ""|/|/mnt|/mnt/user|/mnt/user/*|/mnt/user0|/mnt/user0/*|/mnt/disk[0-9]*|/mnt/disks|/mnt/disks/*|/mnt/remotes|/mnt/remotes/*|/mnt/addons|/mnt/addons/*|/boot|/boot/*|/var/lib/*|/tmp|/tmp/*|/run|/run/*)
+      echo "HeadStart: refusing unsafe SSD_STORE='${SSD_STORE}' (use a directory on an SSD/NVMe pool, e.g. /mnt/cache/headstart/store)." &gt;&amp;2
+      return 1
+      ;;
+  esac
+  case "${SSD_STORE%/}/" in
+    "${MEDIA_ROOT%/}/"*)
+      echo "HeadStart: refusing SSD_STORE inside MEDIA_ROOT (${MEDIA_ROOT})." &gt;&amp;2
+      return 1
+      ;;
+  esac
+  return 0
+}
+
+# Supervisor: runs headstart, probes liveness, and ALWAYS detaches the container overlay when headstart
+# exits for any reason (crash, OOM kill, health-check kill, or stop).
+supervise() {
+  set +e
+  "${BIN}" serve \
+    -media="${MEDIA_ROOT}" \
+    -ssd="${SSD_STORE}" \
+    -mount="${FUSE_MOUNT}" \
+    -db="${PLEX_DB}" \
+    -container-name="${PLEX_CONTAINER}" \
+    -container-mount="${CONTAINER_MOUNT}" \
+    -listen="${LISTEN_ADDR}" \
+    -min-free-gib="${MIN_FREE_GIB}" &amp;
+  local child=$!
+  trap 'kill -TERM "${child}" 2&gt;/dev/null' TERM INT HUP
+  local fails=0 healthy_once=0 ok status=0 rc sleeper
+  local health_url="http://${LISTEN_ADDR/0.0.0.0/127.0.0.1}/healthz"
+  while :; do
+    sleep 30 &amp;
+    sleeper=$!
+    # Returns as soon as EITHER the daemon or the 30s timer exits, so a crash is detached immediately.
+    wait -n 2&gt;/dev/null
+    rc=$?
+    if ! kill -0 "${child}" 2&gt;/dev/null; then
+      kill "${sleeper}" 2&gt;/dev/null
+      status=${rc}
+      break
+    fi
+    ok=0
+    if curl -fsS -m 10 "${health_url}" &gt;/dev/null 2&gt;&amp;1; then
+      ok=1
+      healthy_once=1
+      if grep -qs " ${FUSE_MOUNT} fuse.headstart " /proc/mounts; then
+        timeout -s KILL 20 ls "${FUSE_MOUNT}" &gt;/dev/null 2&gt;&amp;1 || ok=0
+      fi
+    fi
+    if [ "${healthy_once}" -eq 1 ] &amp;&amp; [ "${ok}" -eq 0 ]; then
+      fails=$((fails + 1))
+      echo "HeadStart: health check failed (${fails}/3)"
+    else
+      fails=0
+    fi
+    if [ "${fails}" -ge 3 ]; then
+      echo "HeadStart: daemon unresponsive; killing it so the media server falls back to its native mount."
+      kill -KILL "${child}" 2&gt;/dev/null
+    fi
+  done
+  echo "HeadStart: daemon exited (status ${status}); detaching container overlay."
+  detach_container_mounts
+  unmount_host_fuse
 }
 
 start_headstart() {
@@ -136,59 +232,47 @@ start_headstart() {
     echo "HeadStart: no Unraid cache/NVMe pool configured in ${CFG_FILE}; skipping start." &gt;&amp;2
     return 1
   fi
-  case "${SSD_STORE}" in
-    /var/lib/*|/tmp/*|/run/*)
-      echo "HeadStart: refusing to place SSD store on tmpfs (${SSD_STORE})." &gt;&amp;2
-      return 1
-      ;;
-  esac
+  validate_store || return 1
   if [ ! -d "${MEDIA_ROOT}" ]; then
     echo "HeadStart: media root ${MEDIA_ROOT} is not mounted yet." &gt;&amp;2
     return 1
   fi
   mkdir -p "${SSD_STORE}" "${FUSE_MOUNT}"
-  (
-    /usr/local/bin/headstart serve \
-      -media="${MEDIA_ROOT}" \
-      -ssd="${SSD_STORE}" \
-      -mount="${FUSE_MOUNT}" \
-      -db="${PLEX_DB}" \
-      -container-name="${PLEX_CONTAINER}" \
-      -container-mount="${CONTAINER_MOUNT}" \
-      -listen="${LISTEN_ADDR}" \
-      -min-free-gib="${MIN_FREE_GIB}" || true
-    detach_container_mounts
-    unmount_host_fuse
-  ) &gt;&gt;"${LOG_FILE}" 2&gt;&amp;1 &amp;
+  # Clear any dead layer left by an unclean shutdown before starting.
+  detach_container_mounts
+  unmount_host_fuse
+  ( supervise ) &gt;&gt;"${LOG_FILE}" 2&gt;&amp;1 &amp;
   echo $! &gt; "${PID_FILE}"
-  echo "HeadStart started (PID $(cat "${PID_FILE}"))."
+  echo "HeadStart started (supervisor PID $(cat "${PID_FILE}"))."
 }
 
 stop_headstart() {
+  local pid
   detach_container_mounts
-  pkill -TERM -x headstart 2&gt;/dev/null || pkill -TERM -f "/usr/local/bin/headstart" 2&gt;/dev/null || true
   if [ -f "${PID_FILE}" ]; then
-    local pid
     pid="$(cat "${PID_FILE}")"
     if kill -0 "${pid}" 2&gt;/dev/null; then
       kill -TERM "${pid}" 2&gt;/dev/null || true
-      local i
-      for i in 1 2 3 4 5 6 7 8 9 10; do
-        if ! kill -0 "${pid}" 2&gt;/dev/null; then
-          break
-        fi
+      for _ in $(seq 1 20); do
+        kill -0 "${pid}" 2&gt;/dev/null || break
         sleep 1
       done
     fi
     rm -f "${PID_FILE}"
   fi
+  if pgrep -x headstart &gt;/dev/null 2&gt;&amp;1; then
+    pkill -TERM -x headstart 2&gt;/dev/null || true
+    sleep 5
+    pkill -KILL -x headstart 2&gt;/dev/null || true
+  fi
+  detach_container_mounts
   unmount_host_fuse
   echo "HeadStart stopped."
 }
 
 status_headstart() {
   if [ -f "${PID_FILE}" ] &amp;&amp; kill -0 "$(cat "${PID_FILE}")" 2&gt;/dev/null; then
-    echo "HeadStart is running (PID $(cat "${PID_FILE}"))."
+    echo "HeadStart is running (supervisor PID $(cat "${PID_FILE}"))."
   else
     echo "HeadStart is stopped."
     return 1
@@ -242,13 +326,25 @@ if [ -x /usr/local/emhttp/plugins/headstart/rc.headstart ]; then
   /usr/local/emhttp/plugins/headstart/rc.headstart stop || true
 fi
 
-if [ -n "${SSD_STORE}" ] &amp;&amp; [ -d "${SSD_STORE}" ]; then
-  PARENT_DIR="$(dirname "${SSD_STORE}")"
-  echo "Removing HeadStart SSD preload cache at: ${SSD_STORE}"
-  rm -rf "${SSD_STORE}"
-  if [ "$(basename "${PARENT_DIR}")" = "headstart" ]; then
-    rmdir "${PARENT_DIR}" 2&gt;/dev/null || true
-  fi
+# Only ever delete directories that are verifiably HeadStart stores (token + index or chunk dir).
+is_headstart_store() {
+  [ -d "$1" ] &amp;&amp; [ -f "$1/token" ] &amp;&amp; { [ -f "$1/index.json" ] || [ -d "$1/chunks" ]; }
+}
+
+if [ -n "${SSD_STORE}" ] &amp;&amp; is_headstart_store "${SSD_STORE}"; then
+  case "${SSD_STORE}" in
+    /mnt/user|/mnt/user/*|/mnt/user0|/mnt/user0/*|/mnt/disk[0-9]*|/boot|/boot/*)
+      echo "Not removing ${SSD_STORE}: it is on the array or flash drive; delete it manually if intended."
+      ;;
+    *)
+      PARENT_DIR="$(dirname "${SSD_STORE}")"
+      echo "Removing HeadStart SSD preload cache at: ${SSD_STORE}"
+      rm -rf "${SSD_STORE}"
+      if [ "$(basename "${PARENT_DIR}")" = "headstart" ]; then
+        rmdir "${PARENT_DIR}" 2&gt;/dev/null || true
+      fi
+      ;;
+  esac
 fi
 
 for pool_dir in /mnt/*/headstart; do
@@ -257,15 +353,20 @@ for pool_dir in /mnt/*/headstart; do
       continue
       ;;
   esac
-  if [ -d "${pool_dir}/store" ] || [ -d "${pool_dir}/bin" ]; then
-    echo "Removing HeadStart SSD preload directory at: ${pool_dir}"
-    rm -rf "${pool_dir}"
+  if is_headstart_store "${pool_dir}/store"; then
+    echo "Removing HeadStart SSD preload store at: ${pool_dir}/store"
+    rm -rf "${pool_dir}/store"
   fi
+  if [ -x "${pool_dir}/bin/headstart" ]; then
+    rm -f "${pool_dir}/bin/headstart"
+    rmdir "${pool_dir}/bin" 2&gt;/dev/null || true
+  fi
+  rmdir "${pool_dir}" 2&gt;/dev/null || true
 done
 
 rm -f /usr/local/bin/headstart
 rm -rf /usr/local/emhttp/plugins/headstart /boot/config/plugins/headstart
-echo "HeadStart removed cleanly. Original media shares and Plex libraries are untouched."
+echo "HeadStart removed cleanly. Original media shares and media server libraries are untouched."
 </INLINE>
 </FILE>
 
