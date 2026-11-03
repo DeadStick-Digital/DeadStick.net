@@ -147,21 +147,26 @@ start_headstart() {
     return 1
   fi
   mkdir -p "${SSD_STORE}" "${FUSE_MOUNT}"
-  nohup /usr/local/bin/headstart serve \
-    -media="${MEDIA_ROOT}" \
-    -ssd="${SSD_STORE}" \
-    -mount="${FUSE_MOUNT}" \
-    -db="${PLEX_DB}" \
-    -container-name="${PLEX_CONTAINER}" \
-    -container-mount="${CONTAINER_MOUNT}" \
-    -listen="${LISTEN_ADDR}" \
-    -min-free-gib="${MIN_FREE_GIB}" &gt;&gt;"${LOG_FILE}" 2&gt;&amp;1 &amp;
+  (
+    /usr/local/bin/headstart serve \
+      -media="${MEDIA_ROOT}" \
+      -ssd="${SSD_STORE}" \
+      -mount="${FUSE_MOUNT}" \
+      -db="${PLEX_DB}" \
+      -container-name="${PLEX_CONTAINER}" \
+      -container-mount="${CONTAINER_MOUNT}" \
+      -listen="${LISTEN_ADDR}" \
+      -min-free-gib="${MIN_FREE_GIB}" || true
+    detach_container_mounts
+    unmount_host_fuse
+  ) &gt;&gt;"${LOG_FILE}" 2&gt;&amp;1 &amp;
   echo $! &gt; "${PID_FILE}"
   echo "HeadStart started (PID $(cat "${PID_FILE}"))."
 }
 
 stop_headstart() {
   detach_container_mounts
+  pkill -TERM -f "/usr/local/bin/headstart serve" 2&gt;/dev/null || true
   if [ -f "${PID_FILE}" ]; then
     local pid
     pid="$(cat "${PID_FILE}")"
