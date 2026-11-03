@@ -3,7 +3,7 @@
   <!ENTITY name      "headstart">
   <!ENTITY author    "DeadStick Digital LLC">
   <!ENTITY version   "2026.11.02">
-  <!ENTITY sha256    "9e701b4b936d8b7f1529fd8350e0dd564041f550d5c0a76f0c38cf96e2a8c50e">
+  <!ENTITY sha256    "4b43ff9248cb8a6ad271f4e1fcb94fd0e754ff27926015265f3f42d32f7d7640">
   <!ENTITY pluginURL "https://www.deadstick.net/headstart/headstart.plg">
   <!ENTITY binaryURL "https://github.com/DeadStick-Digital/DeadStick.net/releases/download/headstart-v1.0.0/headstart-linux-amd64">
 ]>
