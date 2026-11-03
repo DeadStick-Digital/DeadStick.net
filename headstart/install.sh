@@ -16,8 +16,8 @@ set -euo pipefail
 VERSION="2026.11.03"
 RELEASE_TAG="v1.1.0"
 RELEASE_BASE="https://github.com/DeadStick-Digital/DeadStick.net/releases/download/headstart-${RELEASE_TAG}"
-SHA256_AMD64="a089ea9c34d9763fb221ee6cfd0cdec9037ad58797789543edb6192e53404e96"
-SHA256_ARM64="3c7a90af7a25bc40beb2b1b3206725ab1fb95866be4e431cad9e62d48fe68bcb"
+SHA256_AMD64="5ad77e9ad8b0ff7b957b823ce9ea22d5c378d1a8d41b56788d532af9da7cb0b8"
+SHA256_ARM64="58e662ed10074adaec6f512c5e552ead26bab08e55e8d41aa0829c224516ab81"
 
 FUSE_MOUNT="/mnt/disks/headstart_media"
 CONTAINER="${HEADSTART_CONTAINER:-Plex-Media-Server}"
