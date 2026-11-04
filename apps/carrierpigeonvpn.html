@@ -381,5 +381,97 @@
   </div>
 </footer>
 
+<aside id="ds-dl-hud" hidden aria-hidden="true" style="position:fixed;right:18px;bottom:18px;z-index:9999;width:340px;background:#111318;color:#f3f4f6;border:1px solid rgba(255,255,255,0.14);border-radius:12px;padding:14px 16px;font:13px/1.45 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-variant-numeric:tabular-nums;box-shadow:0 16px 38px rgba(0,0,0,0.45);">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.1);">
+    <strong style="font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#9ca3af;">DeadStick Download Metrics</strong>
+    <button type="button" id="ds-dl-close" style="background:none;border:0;color:#9ca3af;cursor:pointer;font-size:15px;line-height:1;padding:2px 4px;">×</button>
+  </div>
+  <div id="ds-dl-body" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;">Loading release counters…</div>
+</aside>
+<script>
+(function () {
+  var REPO_API = 'https://api.github.com/repos/DeadStick-Digital/DeadStick.net/releases';
+  var MAC_PING = 'https://github.com/DeadStick-Digital/DeadStick.net/releases/download/carrierpigeonvpn-windows-v0.9.0/CarrierPigeonVPN-macOS.count';
+
+  function ping(url) {
+    try {
+      fetch(url + '?t=' + Date.now(), { mode: 'no-cors', keepalive: true, cache: 'no-store' });
+    } catch (_) {}
+  }
+
+  document.querySelectorAll('a[href*="apps.apple.com/app/id6762552976"]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      var ua = navigator.userAgent || '';
+      var plat = navigator.platform || '';
+      var inAppleSection = !!link.closest('[aria-labelledby="download-apple"]');
+      if (/Macintosh|Mac OS X|MacIntel/i.test(ua + ' ' + plat) || inAppleSection) {
+        ping(MAC_PING);
+      }
+    });
+  });
+
+  var hud = document.getElementById('ds-dl-hud');
+  var body = document.getElementById('ds-dl-body');
+  var closeBtn = document.getElementById('ds-dl-close');
+  if (closeBtn && hud) {
+    closeBtn.addEventListener('click', function () { hud.hidden = true; });
+  }
+
+  function renderHud() {
+    if (!hud || !body) return;
+    hud.hidden = false;
+    fetch(REPO_API, { headers: { 'Accept': 'application/vnd.github+json' }, cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (releases) {
+        var counts = { winX64: 0, winArm64: 0, mac: 0, hsPlg: 0, hsLinux: 0, hsWin: 0 };
+        (releases || []).forEach(function (rel) {
+          (rel.assets || []).forEach(function (a) {
+            var n = a.name || '';
+            var c = Number(a.download_count || 0);
+            if (n === 'CarrierPigeonVPN-0.9.0-x64.msi') counts.winX64 += c;
+            else if (n === 'CarrierPigeonVPN-0.9.0-arm64.msi') counts.winArm64 += c;
+            else if (n === 'CarrierPigeonVPN-macOS.count') counts.mac += c;
+            else if (n === 'headstart-plugin-web.count' || n === 'headstart.plg') counts.hsPlg += c;
+            else if (n === 'headstart-linux-amd64' || n === 'headstart-linux-arm64') counts.hsLinux += c;
+            else if (n === 'headstart-windows-amd64.exe') counts.hsWin += c;
+          });
+        });
+        var winTotal = counts.winX64 + counts.winArm64;
+        var hsTotal = counts.hsPlg + counts.hsLinux + counts.hsWin;
+        body.innerHTML =
+          '<div style="margin-bottom:8px;">' +
+            '<div style="color:#cbd5e1;font-weight:600;margin-bottom:3px;">CarrierPigeonVPN</div>' +
+            '<div style="display:flex;justify-content:space-between;"><span>Windows (Total)</span><strong>' + winTotal + '</strong></div>' +
+            '<div style="display:flex;justify-content:space-between;color:#9ca3af;padding-left:10px;"><span>↳ x64 MSI</span><span>' + counts.winX64 + '</span></div>' +
+            '<div style="display:flex;justify-content:space-between;color:#9ca3af;padding-left:10px;"><span>↳ ARM64 MSI</span><span>' + counts.winArm64 + '</span></div>' +
+            '<div style="display:flex;justify-content:space-between;margin-top:2px;"><span>macOS (App Store)</span><strong>' + counts.mac + '</strong></div>' +
+          '</div>' +
+          '<div style="padding-top:8px;border-top:1px solid rgba(255,255,255,0.1);">' +
+            '<div style="color:#cbd5e1;font-weight:600;margin-bottom:3px;">HeadStart Plugin</div>' +
+            '<div style="display:flex;justify-content:space-between;"><span>Total Downloads</span><strong>' + hsTotal + '</strong></div>' +
+            '<div style="display:flex;justify-content:space-between;color:#9ca3af;padding-left:10px;"><span>↳ Unraid .plg / Web</span><span>' + counts.hsPlg + '</span></div>' +
+            '<div style="display:flex;justify-content:space-between;color:#9ca3af;padding-left:10px;"><span>↳ Linux / Unraid Bin</span><span>' + counts.hsLinux + '</span></div>' +
+            '<div style="display:flex;justify-content:space-between;color:#9ca3af;padding-left:10px;"><span>↳ Windows x64 .exe</span><span>' + counts.hsWin + '</span></div>' +
+          '</div>';
+      })
+      .catch(function () {
+        body.textContent = 'Could not load release counters.';
+      });
+  }
+
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('dl') === '1' || params.get('metrics') === '1' || window.location.hash === '#dl-stats') {
+    renderHud();
+  }
+  window.addEventListener('keydown', function (e) {
+    if (e.altKey && e.shiftKey && (e.key === 'D' || e.key === 'd' || e.code === 'KeyD')) {
+      e.preventDefault();
+      if (hud && !hud.hidden) hud.hidden = true;
+      else renderHud();
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
